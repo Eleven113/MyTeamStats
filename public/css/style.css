@@ -1,4 +1,58 @@
-.col-*{
-    border:1px solid black;
+header {
+    font-size : 3vw;
+    padding: 10px;
+    color:white;
 }
 
+.menu_option{
+    position: relative;
+    top: 6%;
+}
+
+.menu_option-ico{
+    font-size: 12vw;
+}
+
+.menu_option-txt{
+    font-size: 5vw;
+}
+
+body{
+    height: 100vh;
+    border: 1px solid red;
+}
+
+.link:link,
+.link:visited,
+.link:focus,
+.link:hover,
+.link:active,
+header:link,
+header:visited,
+header:focus,
+header:hover,
+header:active{
+    color: white;
+    text-decoration: none;
+}
+
+#table_options{
+    width: 10%
+}
+
+#table_licenced{
+    width: 15%
+}
+
+#table_licencenum{
+    width: 13%
+}
+
+#login_form, #lostpassword_form, #createaccount_form, .table-responsive{
+    margin-top:30px;
+}
+
+#login-form{
+    margin-top:10px;
+    margin-bottom:10px;
+}

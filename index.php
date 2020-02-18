@@ -13,8 +13,34 @@ if (isset($_GET['action'])) {
             PublicMatchs();
         }
     }
+
+    if ($_GET['action'] == 'playerslist'){
+        $controllerFront = new ControllerFront();
+        $controllerFront->PlayersList();
+    }
+
+    if ($_GET['action'] == 'login'){
+        $controllerFront = new ControllerFront();
+        $controllerFront->Login();
+    }
+
+    if ($_GET['action'] == 'lostpassword'){
+        $controllerFront = new ControllerFront();
+        $controllerFront->LostPassword();
+    }
+
+    if ($_GET['action'] == 'createaccount'){
+        $controllerFront = new ControllerFront();
+        $controllerFront->CreateAccount();
+    }
+
+    if ($_GET['action'] == 'matchslist'){
+        $controllerFront = new ControllerFront();
+        $controllerFront->MatchsList();
+    }
 }
 else {
     $controllerFront = new ControllerFront();
-    $controllerFront->PublicAccueil();
+    $controllerFront->Home();
 }
+
