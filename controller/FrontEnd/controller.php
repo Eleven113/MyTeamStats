@@ -29,5 +29,13 @@ Class ControllerFront {
     public function Club(){
         require('view/FrontEnd/ClubView.php');
     }
+
+    public function Player(){
+        require('view/FrontEnd/PlayerView.php');
+    }
+
+    public function Match(){
+        require('view/FrontEnd/MatchView.php');
+    }
 }
 

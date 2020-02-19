@@ -1,4 +1,4 @@
-<?php $title = 'MyTeamStats - Accueil'; ?>
+<?php $title = 'Accueil - MyTeamStats'; ?>
 <!-- <?php $script1= '<script src ="../public/js/tinymce.js"></script>'; ?> -->
 
 <?php ob_start(); ?>

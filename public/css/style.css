@@ -48,7 +48,7 @@ header:active{
     width: 13%
 }
 
-#login_form, #lostpassword_form, #createaccount_form, .table-responsive, #club{
+#login_form, #lostpassword_form, #createaccount_form, .table-responsive, #club, #player, #createplayer_form, #creatematch_form, #match{
     margin-top:30px;
 }
 
@@ -59,4 +59,17 @@ header:active{
 
 #club_data{
     font-size: 2vw;
+}
+
+.fit-image{
+    width: 100%;
+    object-fit: cover;
+}
+
+#club_soclink{
+    font-size: 5vw;
+}
+
+.myborder{
+    border-width: 2px !important;
 }

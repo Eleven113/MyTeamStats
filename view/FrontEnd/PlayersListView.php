@@ -1,5 +1,4 @@
-<?php $title = 'MyTeamStats - Accueil'; ?>
-<!-- <?php $script1= '<script src ="../public/js/tinymce.js"></script>'; ?> -->
+<?php $title = 'Liste des joueurs - MyTeamStats'; ?>
 
 <?php ob_start(); ?>
 <div class="table-responsive">
