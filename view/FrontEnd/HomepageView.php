@@ -37,10 +37,12 @@
         <div class="col-5">
             <div class="embed-responsive embed-responsive-1by1 text-center">
                 <div class="embed-responsive-item bg-primary rounded-lg">
-                    <div class="menu_option">
-                        <span class="menu_option-ico"><i class="fas fa-clipboard-list"></i></span><br/>
-                        <span class="menu_option-txt">Infos Club</span>
-                    </div>              
+                    <a href="index.php?action=club" class="link">
+                        <div class="menu_option">
+                            <span class="menu_option-ico"><i class="fas fa-clipboard-list"></i></span><br/>
+                            <span class="menu_option-txt">Infos Club</span>
+                        </div>     
+                    </a>             
                 </div>
             </div>
         </div>

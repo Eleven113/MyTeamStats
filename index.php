@@ -38,6 +38,11 @@ if (isset($_GET['action'])) {
         $controllerFront = new ControllerFront();
         $controllerFront->MatchsList();
     }
+
+    if ($_GET['action'] == 'club'){
+        $controllerFront = new ControllerFront();
+        $controllerFront->Club();
+    }
 }
 else {
     $controllerFront = new ControllerFront();

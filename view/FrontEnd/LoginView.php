@@ -8,14 +8,14 @@
     <form id="login-form" class="col-lg-6">
         <legend>Connexion</legend>
         <div class="form-group">
-            <label for="text"><i class="fas fa-at"></i>&nbsp;&nbsp;adresse mail</label>
+            <label for="text"><i class="fas fa-at"></i>&nbsp;&nbsp;Adresse mail</label>
             <input id="text" type="text" name="mail" class="form-control">        
         </div>
         <div class="form-group">
-            <label for="text"><i class="fas fa-key"></i>&nbsp;&nbsp;mot de passe</label>
+            <label for="text"><i class="fas fa-key"></i>&nbsp;&nbsp;Mot de passe</label>
             <input id="text" type="text" name="mdp" class="form-control">
         </div>    
-        <button type="submit" class="btn btn-primary">Envoyer</button>
+        <button type="submit" class="btn btn-primary"><i class="fas fa-check-circle"></i>&nbsp;&nbsp;Envoyer</button>
     </form>
     <div id="login-create"><a href="index.php?action=lostpassword">Mot de passe oublié ?</a></div>
 </div>

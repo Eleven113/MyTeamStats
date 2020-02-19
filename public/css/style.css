@@ -48,11 +48,15 @@ header:active{
     width: 13%
 }
 
-#login_form, #lostpassword_form, #createaccount_form, .table-responsive{
+#login_form, #lostpassword_form, #createaccount_form, .table-responsive, #club{
     margin-top:30px;
 }
 
 #login-form{
     margin-top:10px;
     margin-bottom:10px;
+}
+
+#club_data{
+    font-size: 2vw;
 }

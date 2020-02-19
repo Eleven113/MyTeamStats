@@ -10,9 +10,8 @@
             <label for="text"><i class="fas fa-at"></i>&nbsp;&nbsp;Entrez votre adresse mail</label>
             <input id="text" type="text" name="mail" class="form-control">        
         </div>
-        <button type="submit" class="btn btn-primary">Envoyer</button>
+        <button type="submit" class="btn btn-primary"><i class="fas fa-check-circle"></i>&nbsp;&nbsp;Envoyer</button>
     </form>
-    <div id="login-create"><a href="index.php?action=lostpassword">Mot de passe oublié ?</a></div>
 </div>
 
 

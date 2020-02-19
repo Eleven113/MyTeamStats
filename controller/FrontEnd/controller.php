@@ -25,5 +25,9 @@ Class ControllerFront {
     public function MatchsList(){
         require('view/FrontEnd/MatchsListView.php');
     }
+
+    public function Club(){
+        require('view/FrontEnd/ClubView.php');
+    }
 }
 
