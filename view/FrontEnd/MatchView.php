@@ -29,7 +29,7 @@
     
     <div id="match_data" class="m-4 p-4 col-8 border border-primary rounded-lg myborder">
         <p id="match_address">
-            <span class="player_data-title font-weight-bold">Adresse :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span class="player_data-title font-weight-bold">Terrain :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
             <span class="player_data-txt">28 rue des cèpes 53210 Argentré</span>
         </p>
         <p id="match_field">
