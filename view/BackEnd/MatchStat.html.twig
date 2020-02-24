@@ -1,0 +1,118 @@
+{% extends "layout.html.twig" %}
+
+{% block head %}
+    <title>Match Stat - MyTeamStats</title>
+{% endblock %}
+
+{% block content %}
+
+<div id="match" class="d-flex flex-column col-10 offset-1 align-items-center">
+
+    <h3 id="match_name">E113 FC - Stade Lavallois</h3>
+    <h5 id="match_date">Le 10/10/2020 à 14h30</h5>
+
+    <div id="match_teams" class="d-flex flex-row justify-content-center">
+        <div id="match_team_home" class="d-flex flex-column align-items-center justify-content-end col-6">
+            <div id ="match_team_home-logo" class="col-5">
+                <img src="public/img/logo.png" class="img-responsive fit-image">
+            </div>
+            <div id ="match_team_home-name">
+                E113 Football Club
+            </div>
+        </div>
+        <div id="match_score" class="col-2">
+            3-0
+        </div>    
+        <div id="match_team_away" class="d-flex flex-column align-items-center col-6">
+            <div id ="match_team_away-logo" class="col-5">
+                <img src="public/img/logo_sl.svg" class="img-responsive fit-image">
+            </div>
+            <div id ="match_team_away-name">
+                Stade Lavallois
+            </div>
+        </div>
+    </div>
+
+    <div id="match_stat_record" class="d-flex flex-row col-12 mt-5">
+        <div class="col-6 d-flex flex-column">
+            <div class="stat_bar d-flex flex-row mb-3 align-items-center">
+                <div class="stat_bar-btnless col-2 text-right">-</div>
+                <div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">Passes</div>
+                <div class="stat_bar-num col-2 border border-primary border-left-0">250</div>
+                <div class="stat_bar-btnplus col-2">+</div>
+            </div>
+            <div class="stat_bar d-flex flex-row mb-3">
+                <div class="stat_bar-btnless col-2 text-right">-</div>
+                <div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">Passes réussies</div>
+                <div class="stat_bar-num col-2 border border-primary border-left-0">0</div>
+                <div class="stat_bar-btnplus col-2">+</div>
+            </div>
+            <div class="stat_bar d-flex flex-row mb-3">
+                <div class="stat_bar-btnless col-2 text-right">-</div>
+                <div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">Passes ratées</div>
+                <div class="stat_bar-num col-2 border border-primary border-left-0">0</div>
+                <div class="stat_bar-btnplus col-2">+</div>
+            </div>
+            <div class="stat_bar d-flex flex-row mb-3">
+                <div class="stat_bar-btnless col-2 text-right">-</div>
+                <div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">Tirs</div>
+                <div class="stat_bar-num  col-2 border border-primary border-left-0">0</div>
+                <div class="stat_bar-btnplus col-2">+</div>
+            </div>
+            <div class="stat_bar d-flex flex-row mb-3">
+                <div class="stat_bar-btnless col-2 text-right">-</div>
+                <div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">Tirs cadrés</div>
+                <div class="stat_bar-num  col-2 border border-primary border-left-0">0</div>
+                <div class="stat_bar-btnplus col-2">+</div>
+            </div>
+            <div class="stat_bar d-flex flex-row mb-3">
+                <div class="stat_bar-btnless col-2 text-right">-</div>
+                <div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">Tirs non cadrés</div>
+                <div class="stat_bar-num col-2 border border-primary border-left-0">0</div>
+                <div class="stat_bar-btnplus col-2">+</div>
+            </div>
+        </div>    
+
+        <div class="col-6 d-flex flex-column">
+            <div class="stat_bar d-flex flex-row mb-3">
+                <div class="stat_bar-btnless col-2 text-right">-</div>
+                <div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">Hors-jeu</div>
+                <div class="stat_bar-num  col-2 border border-primary border-left-0">0</div>
+                <div class="stat_bar-btnplus col-2">+</div>
+            </div>
+            <div class="stat_bar d-flex flex-row mb-3">
+                <div class="stat_bar-btnless col-2 text-right">-</div>
+                <div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">Corner</div>
+                <div class="stat_bar-num  col-2 border border-primary border-left-0">0</div>
+                <div class="stat_bar-btnplus col-2">+</div>
+            </div>
+            <div class="stat_bar d-flex flex-row mb-3">
+                <div class="stat_bar-btnless col-2 text-right">-</div>
+                <div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">Coup-francs</div>
+                <div class="stat_bar-num  col-2 border border-primary border-left-0">0</div>
+                <div class="stat_bar-btnplus col-2">+</div>
+            </div>
+            <div class="stat_bar d-flex flex-row mb-3">
+                <div class="stat_bar-btnless col-2 text-right">-</div>
+                <div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">Fautes</div>
+                <div class="stat_bar-num  col-2 border border-primary border-left-0">0</div>
+                <div class="stat_bar-btnplus col-2">+</div>
+            </div>
+            <div class="stat_bar d-flex flex-row mb-3">
+                <div class="stat_bar-btnless col-2 text-right">-</div>
+                <div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">Ballons gagnés</div>
+                <div class="stat_bar-num  col-2 border border-primary border-left-0">0</div>
+                <div class="stat_bar-btnplus col-2">+</div>
+            </div>
+            <div class="stat_bar d-flex flex-row mb-3">
+                <div class="stat_bar-btnless col-2 text-right">-</div>
+                <div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">Ballons perdus</div>
+                <div class="stat_bar-num  col-2 border border-primary border-left-0">0</div>
+                <div class="stat_bar-btnplus col-2">+</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

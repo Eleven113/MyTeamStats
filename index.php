@@ -1,8 +1,14 @@
 <?php
 session_start();
 
-require('controller/FrontEnd/controller.php');
-require('controller/BackEnd/controller.php');
+require ('vendor/autoload.php');
+require ('controller/FrontEnd/controller.php');
+require ('controller/BackEnd/controller.php');
+
+$loader = new \Twig\Loader\FilesystemLoader(__DIR__ . '/view');
+$twig = new \Twig\Environment($loader, [
+    'cache' => false,
+]);
 
 if (isset($_GET['action'])) {
     if ($_GET['action'] == 'matchs'){
@@ -16,57 +22,65 @@ if (isset($_GET['action'])) {
 
     if ($_GET['action'] == 'playerslist'){
         $controllerFront = new ControllerFront();
-        $controllerFront->PlayersList();
+        $controllerFront->PlayersList($twig);
     }
 
     if ($_GET['action'] == 'login'){
         $controllerFront = new ControllerFront();
-        $controllerFront->Login();
+        $controllerFront->Login($twig);
     }
 
     if ($_GET['action'] == 'lostpassword'){
         $controllerFront = new ControllerFront();
-        $controllerFront->LostPassword();
+        $controllerFront->LostPassword($twig);
     }
 
     if ($_GET['action'] == 'createaccount'){
         $controllerFront = new ControllerFront();
-        $controllerFront->CreateAccount();
+        $controllerFront->CreateAccount($twig);
     }
 
     if ($_GET['action'] == 'matchslist'){
         $controllerFront = new ControllerFront();
-        $controllerFront->MatchsList();
+        $controllerFront->MatchsList($twig);
     }
 
     if ($_GET['action'] == 'club'){
         $controllerFront = new ControllerFront();
-        $controllerFront->Club();
+        $controllerFront->Club($twig);
     }
 
     if ($_GET['action'] == 'player'){
         $controllerFront = new ControllerFront();
-        $controllerFront->Player();
+        $controllerFront->Player($twig);
     }
 
     if ($_GET['action'] == 'createplayer'){
         $controllerBack = new ControllerBack();
-        $controllerBack->CreatePlayer();
+        $controllerBack->CreatePlayer($twig);
     }
 
     if ($_GET['action'] == 'creatematch'){
         $controllerBack = new ControllerBack();
-        $controllerBack->CreateMatch();
+        $controllerBack->CreateMatch($twig);
     }
 
     if ($_GET['action'] == 'match'){
         $controllerFront = new ControllerFront();
-        $controllerFront->Match();
+        $controllerFront->Match($twig);
+    }
+
+    if ($_GET['action'] == 'matchstat'){
+        $controllerBack = new ControllerBack();
+        $controllerBack->MatchStat($twig);
     }
 
 }
 else {
     $controllerFront = new ControllerFront();
-    $controllerFront->Home();
+    $controllerFront->Home($twig);
 }
 
+
+
+// echo $twig->render('/FrontEnd/Homepage.twig');

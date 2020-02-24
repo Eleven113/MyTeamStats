@@ -1,7 +1,11 @@
-<?php $title = 'Créér Match - MyTeamStats'; ?>
-<!-- <?php $script1= '<script src ="../public/js/tinymce.js"></script>'; ?> -->
+{% extends "layout.html.twig" %}
 
-<?php ob_start(); ?>
+{% block head %}
+    <title>Créér match - MyTeamStats</title>
+{% endblock %}
+
+
+{% block content %}
 
 <div id="creatematch_form" class="d-flex flex-column justify-content-center align-items-center">
     <form id="createapmatch-form" class="col-lg-6">
@@ -45,6 +49,4 @@
 </div>
 
 
-<?php $content = ob_get_clean(); ?>
-
-<?php require('view/template.php'); ?>
+{% endblock %}

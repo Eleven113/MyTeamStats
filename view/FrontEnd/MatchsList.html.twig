@@ -1,7 +1,11 @@
-<?php $title = 'MyTeamStats - Accueil'; ?>
-<!-- <?php $script1= '<script src ="../public/js/tinymce.js"></script>'; ?> -->
+{% extends "layout.html.twig" %}
 
-<?php ob_start(); ?>
+{% block head %}
+    <title>Liste des matchs - MyTeamStats</title>
+{% endblock %}
+
+{% block content %}
+
 <div class="table-responsive">
     <table class="table table table-bordered table-striped text-center">
         <caption class="text-center">
@@ -78,6 +82,4 @@
     </table>
 </div>    
 
-<?php $content = ob_get_clean(); ?>
-
-<?php require('view/template.php'); ?>
+{% endblock %}

@@ -1,7 +1,10 @@
-<?php $title = 'Infos Club - MyTeamStats'; ?>
-<!-- <?php $script1= '<script src ="../public/js/tinymce.js"></script>'; ?> -->
+{% extends "layout.html.twig" %}
 
-<?php ob_start(); ?>
+{% block head %}
+    <title>Liste des joueurs - MyTeamStats</title>
+{% endblock %}
+
+{% block content %}
 
 <div id="club" class="d-flex flex-column col-8 offset-2 align-items-center">
     <h3 id="club_name">E113 Football Club</h3>
@@ -35,7 +38,7 @@
             <span class="club_data-title font-weight-bold">Mail :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
             <span class="club_data-txt">contact@e113-fc.fr</span>
         </p>
-        <p id="club_website"">
+        <p id="club_website">
             <span class="club_data-title font-weight-bold">Site internet :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
             <span class="club_data-txt">www.e133-fc.fr</span>
         </p>
@@ -43,6 +46,4 @@
 </div>
 
 
-<?php $content = ob_get_clean(); ?>
-
-<?php require('view/template.php'); ?>
+{% endblock %}

@@ -73,3 +73,12 @@ header:active{
 .myborder{
     border-width: 2px !important;
 }
+
+#match_stat_record{
+    font-size: 1.7vw;
+}
+
+.stat_bar-btnless,  .stat_bar-btnplus {
+    font-size: 2vw;
+    font-weight: bold;
+}
