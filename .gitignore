@@ -2,3 +2,8 @@
 *.ini
 view/FrontEnd/test.php
 view/templatetest.htm
+.idea/dictionaries/minar.xml
+.idea/misc.xml
+.idea/MyTeamStats.iml
+.idea/modules.xml
+*.xml
