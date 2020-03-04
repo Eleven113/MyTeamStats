@@ -4,11 +4,22 @@ session_start();
 require ('vendor/autoload.php');
 require ('controller/FrontEnd/controller.php');
 require ('controller/BackEnd/controller.php');
+require ('model/Player.php');
+require ('model/PlayerManager.php');
+require ('model/PlayerManagerPDO.php');
+require ('model/DBFactory.php');
+
+$db = DBFactory::ConnexionPDO();
+$playerManager = new PlayerManager($db);
 
 $loader = new \Twig\Loader\FilesystemLoader(__DIR__ . '/view');
 $twig = new \Twig\Environment($loader, [
-    'cache' => false,
+    'cache' => false
 ]);
+
+$controllerFront = new ControllerFront($twig, $playerManager);
+$controllerBack = new ControllerBack($twig, $playerManager);
+
 
 if (isset($_GET['action'])) {
     if ($_GET['action'] == 'matchs'){
@@ -21,66 +32,68 @@ if (isset($_GET['action'])) {
     }
 
     if ($_GET['action'] == 'playerslist'){
-        $controllerFront = new ControllerFront();
-        $controllerFront->PlayersList($twig);
+
+        $controllerFront->PlayersList();
     }
 
     if ($_GET['action'] == 'login'){
-        $controllerFront = new ControllerFront();
-        $controllerFront->Login($twig);
+
+        $controllerFront->Login();
     }
 
     if ($_GET['action'] == 'lostpassword'){
-        $controllerFront = new ControllerFront();
-        $controllerFront->LostPassword($twig);
+
+        $controllerFront->LostPassword();
     }
 
     if ($_GET['action'] == 'createaccount'){
-        $controllerFront = new ControllerFront();
-        $controllerFront->CreateAccount($twig);
+
+        $controllerFront->CreateAccount();
     }
 
     if ($_GET['action'] == 'matchslist'){
-        $controllerFront = new ControllerFront();
-        $controllerFront->MatchsList($twig);
+
+        $controllerFront->MatchsList();
     }
 
     if ($_GET['action'] == 'club'){
-        $controllerFront = new ControllerFront();
-        $controllerFront->Club($twig);
+
+        $controllerFront->Club();
     }
 
     if ($_GET['action'] == 'player'){
-        $controllerFront = new ControllerFront();
-        $controllerFront->Player($twig);
+
+        $controllerFront->Player();
     }
 
     if ($_GET['action'] == 'createplayer'){
-        $controllerBack = new ControllerBack();
-        $controllerBack->CreatePlayer($twig);
+
+        $controllerBack->CreatePlayer();
+    }
+
+    if ($_GET['action'] == 'addplayer'){
+        $controllerBack->AddPlayer($_POST['lastname'], $_POST['firstname'], $_POST['licencenum'], $_POST['activelicence'], $_POST['birthdate'], $_POST['category'], $_FILES['photo']['name'], $_POST['poste'], $_POST['address'],  $_POST['phonenum'], $_POST['mail']);
     }
 
     if ($_GET['action'] == 'creatematch'){
-        $controllerBack = new ControllerBack();
-        $controllerBack->CreateMatch($twig);
+
+        $controllerBack->CreateMatch();
     }
 
     if ($_GET['action'] == 'match'){
-        $controllerFront = new ControllerFront();
-        $controllerFront->Match($twig);
+
+        $controllerFront->Match();
     }
 
     if ($_GET['action'] == 'matchstat'){
-        $controllerBack = new ControllerBack();
-        $controllerBack->MatchStat($twig);
+
+        $controllerBack->MatchStat();
     }
 
 }
 else {
-    $controllerFront = new ControllerFront();
-    $controllerFront->Home($twig);
+
+    $controllerFront->Home();
 }
 
 
-
-// echo $twig->render('/FrontEnd/Homepage.twig');

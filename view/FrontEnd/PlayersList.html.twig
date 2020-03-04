@@ -21,62 +21,24 @@
             </tr>
         </thead>
         <tbody>
+        {%   for player in playerListObj %}
+
             <tr>
-                <td>123456</td>
-                <td>Neymar</td>
-                <td>Jean</td>
-                <th>26/09/1984</td>
-                <td>yes</td>
+                <td><a href="index.php?action=player&id={{ player.playerid }}">{{player.licence}}</a></td>
+                <td>{{player.lastname}}</td>
+                <td>{{player.firstname}}</td>
+                <td>{{player.birthdate}}</td>
+                <td>
+                    {% if player.activelicence == 1  %}
+                        <i class="fas fa-check greencheck"></i>
+                    {%  else %}
+                        <i class="fas fa-times redtimes"></i>
+                     {% endif %}
+                </td>
                 <td><i class="fas fa-user-edit"></i>&nbsp;&nbsp;<i class="fas fa-trash-alt"></i></td>
             </tr>
-            <tr>
-                <td>123456</td>
-                <td>Neymar</td>
-                <td>Jean</td>
-                <th>26/09/1984</td>
-                <td>yes</td>
-                <td>buttons</td>
-            </tr>
-            <tr>
-                <td>123456</td>
-                <td>Neymar</td>
-                <td>Jean</td>
-                <th>26/09/1984</td>
-                <td>yes</td>
-                <td>buttons</td>
-            </tr>
-            <tr>
-                <td>123456</td>
-                <td>Neymar</td>
-                <td>Jean</td>
-                <th>26/09/1984</td>
-                <td>yes</td>
-                <td>buttons</td>
-            </tr>
-            <tr>
-                <td>123456</td>
-                <td>Neymar</td>
-                <td>Jean</td>
-                <th>26/09/1984</td>
-                <td>yes</td>
-                <td>buttons</td>
-            </tr>
-            <tr>
-                <td>123456</td>
-                <td>Neymar</td>
-                <td>Jean</td>
-                <th>26/09/1984</td>
-                <td>yes</td>
-                <td>buttons</td>
-            </tr>
-            <tr>
-                <td>123456</td>
-                <td>Neymar</td>
-                <td>Jean</td>
-                <th>26/09/1984</td>
-                <td>yes</td>
-                <td>buttons</td>
-            </tr>
+
+        {% endfor %}
         </tbody>
     </table>
 </div>    

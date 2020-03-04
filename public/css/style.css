@@ -82,3 +82,11 @@ header:active{
     font-size: 2vw;
     font-weight: bold;
 }
+
+.greencheck{
+    color : green !important;
+}
+
+.redtimes{
+    color : red !important;
+}
