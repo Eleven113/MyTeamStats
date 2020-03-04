@@ -62,8 +62,12 @@ if (isset($_GET['action'])) {
     }
 
     if ($_GET['action'] == 'player'){
-
-        $controllerFront->Player();
+        if (isset($_GET['id']) && $_GET['id'] > 0) {
+            $controllerFront->Player($_GET['id']);
+        }
+        else {
+            echo  "Erreur : pas d'id joueur";
+        }
     }
 
     if ($_GET['action'] == 'createplayer'){

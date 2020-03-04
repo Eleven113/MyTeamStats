@@ -50,4 +50,14 @@ class PlayerManager
 
         return $playersListObj;
     }
+
+    public function getPlayer($id)
+    {
+        $query = $this->db->prepare('SELECT * FROM PLAYER WHERE PLAYERID = :playerid');
+        $query->bindValue(':playerid', $id);
+        $query->execute();
+        $player = new Player($query->fetch(PDO::FETCH_ASSOC));
+
+        return $player;
+    }
 }

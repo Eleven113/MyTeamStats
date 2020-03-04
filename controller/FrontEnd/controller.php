@@ -17,7 +17,7 @@ Class ControllerFront {
 
     public function PlayersList(){
         $playersListObj = $this->playerManager->getPlayersList();
-        echo $this->twig->render('/FrontEnd/PlayersList.html.twig', ['playerListObj'=>$playersListObj]);
+        echo $this->twig->render('/FrontEnd/PlayersList.html.twig', ['playerListObj' => $playersListObj]);
     }
 
     public function Login(){
@@ -40,8 +40,9 @@ Class ControllerFront {
         echo $this->twig->render('/FrontEnd/Club.html.twig');
     }
 
-    public function Player(){
-        echo $this->twig->render('/FrontEnd/Player.html.twig');
+    public function Player($id){
+        $player = $this->playerManager->getPlayer($id);
+        echo $this->twig->render('/FrontEnd/Player.html.twig', ['player' => $player]);
     }
 
     public function Match(){

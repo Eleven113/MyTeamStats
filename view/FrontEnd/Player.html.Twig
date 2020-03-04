@@ -7,20 +7,28 @@
 {% block content %}
 
 <div id="player" class="d-flex flex-column col-8 offset-2 align-items-center">
-    <h3 id="player_name">Chloé MINARD</h3>
+    <h3 id="player_name">{{ player.firstname}} {{player.lastname}}</h3>
     <div id="player_photo" class="d-flex flex-column align-items-center">
         <div class="col-6">
-            <img src="public/img/players/cminard.jpg" class="img-responsive fit-image">
+            <img src="public/img/players/{{ player.photo }}" class="img-responsive fit-image">
         </div>
     </div>
     <div id="player_data" class="m-4 p-4 border border-primary rounded-lg myborder">
         <p id="player_licence">
             <span class="player_data-title font-weight-bold">N° Licence :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            <span class="player_data-txt">123456</span>
+            <span class="player_data-txt">{{ player.licence }}</span>
+        </p>
+        <p id="player_birthdate">
+            <span class="player_data-title font-weight-bold">Date de naissance :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span class="player_data-txt">{{ player.birthdate }}</span>
+        </p>
+        <p id="player_category">
+            <span class="player_data-title font-weight-bold">Catégorie :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span class="player_data-txt">{{ player.category }}</span>
         </p>
         <p id="player_position">
             <span class="player_data-title font-weight-bold">Poste :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            <span class="player_data-txt">Milieu gauche</span>
+            <span class="player_data-txt">{{ player.poste }}</span>
         </p>
         <p id="player_goal">
             <span class="player_data-title font-weight-bold">But(s) marqué(s) :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
@@ -35,6 +43,18 @@
             <span class="player_data-txt">0 Jaune - 0 Rouge</span>
         </p>
         <div id="player_coord">
+            <p>
+                <span class="player_data-title font-weight-bold">Adresse :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                <span class="player_data-txt">{{ player.address }}</span>
+            </p>
+            <p>
+                <span class="player_data-title font-weight-bold">N° tel :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                <span class="player_data-txt">{{ player.phonenum }}</span>
+            </p>
+            <p>
+                <span class="player_data-title font-weight-bold">Mail :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                <span class="player_data-txt">{{ player.mail }}</span>
+            </p>
         </div>
     </div>    
 </div>
