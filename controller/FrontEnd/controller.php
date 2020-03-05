@@ -63,7 +63,7 @@ Class ControllerFront {
             $_SESSION['notice'] = "Adresse mail inconnue ou mot de passe incorrect";
         }
 
-        echo $this->twig->render('/FrontEnd/Homepage.html.twig', ['notice' => $_SESSION['notice']]);
+       echo $this->twig->render('/FrontEnd/Homepage.html.twig', ['notice' => $_SESSION['notice']]);
     }
 
     public function MatchsList(){

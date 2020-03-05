@@ -1,6 +1,5 @@
 <?php
 session_start();
-$_SESSION['user_status'] = 1;
 
 require ('vendor/autoload.php');
 require ('controller/FrontEnd/controller.php');

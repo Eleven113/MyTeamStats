@@ -45,6 +45,7 @@ class UserManager
                 $_SESSION['user_firstname'] = $user->getFirstname();
                 $_SESSION['user_mail'] = $user->getMail();
                 $_SESSION['user_status'] = $user->getStatus();
+
             }
             else {
                 $login = False;
