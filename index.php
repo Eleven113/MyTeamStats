@@ -8,18 +8,20 @@ require ('controller/BackEnd/controller.php');
 require('model/Player/Player.php');
 require('model/Player/PlayerManager.php');
 require('model/User/UserManager.php');
+require('model/User/User.php');
 require ('model/DBFactory.php');
 
 $db = DBFactory::ConnexionPDO();
 $playerManager = new PlayerManager($db);
+$userManager = new UserManager($db);
 
 $loader = new \Twig\Loader\FilesystemLoader(__DIR__ . '/view');
 $twig = new \Twig\Environment($loader, [
     'cache' => false
 ]);
 
-$controllerFront = new ControllerFront($twig, $playerManager);
-$controllerBack = new ControllerBack($twig, $playerManager);
+$controllerFront = new ControllerFront($twig, $playerManager, $userManager);
+$controllerBack = new ControllerBack($twig, $playerManager, $userManager);
 
 
 if (isset($_GET['action'])) {
@@ -35,6 +37,15 @@ if (isset($_GET['action'])) {
     if ($_GET['action'] == 'login'){
 
         $controllerFront->Login();
+    }
+
+    if ($_GET['action'] == 'userLogin'){
+        if (isset($_POST['mail']) || $_POST['pwd']){
+            $controllerFront->UserLogin($_POST['mail'], $_POST['pwd']);
+        }
+        else {
+            echo "Vous devez saisir un mail et un mot de passe";
+        }
     }
 
     if ($_GET['action'] == 'lostpassword'){

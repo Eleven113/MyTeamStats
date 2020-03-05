@@ -4,11 +4,13 @@ class ControllerBack {
 
     private $twig;
     private $playerManager;
+    private $userManager;
 
-    public function __construct($twig, $playerManager)
+    public function __construct($twig, $playerManager, $userManager)
     {
         $this->twig = $twig;
         $this->playerManager = $playerManager;
+        $this->userManager = $userManager;
     }
 
     public function CreatePlayer(){

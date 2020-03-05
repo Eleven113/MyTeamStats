@@ -4,11 +4,13 @@ Class ControllerFront {
 
     private $twig;
     private $playerManager;
+    private $userManager;
 
-    public function __construct($twig, $playerManager)
+    public function __construct($twig, $playerManager, $userManager)
     {
         $this->twig = $twig;
         $this->playerManager = $playerManager;
+        $this->userManager = $userManager;
     }
 
     public function Home(){
@@ -38,7 +40,21 @@ Class ControllerFront {
 
     public function AddUser($lastname, $firstname, $mail, $pwd){
         $h_pwd = password_hash($pwd, PASSWORD_DEFAULT);
-        $this->playerManager->AddUser($lastname, $firstname, $mail, $h_pwd);
+        $user = [
+            'lastname' => $lastname,
+            'firstname' => $firstname,
+            'mail' => $mail,
+            'pwd' => $h_pwd
+        ];
+
+        $this->userManager->AddUser($user);
+
+        echo $this->twig->render('/FrontEnd/Login.html.twig');
+    }
+
+    public function UserLogin($mail, $pwd){
+        $h_pwd = password_hash($pwd, PASSWORD_DEFAULT);
+        $this->userManager->UserLogin($mail, $h_pwd);
 
 
     }
