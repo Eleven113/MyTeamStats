@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block content %}
+<div id="add_player" class="myborder">Créér un joueur</div>
 <div class="table-responsive">
     <table class="table table table-bordered table-striped text-center">
         <caption class="text-center">
@@ -16,6 +17,7 @@
                 <th id="table_surname">Nom</th>
                 <th id="table_name">Prénom</th>
                 <th id="table_birthdate">Date de naissance</th>
+                <th id="table_category">Catégorie</th>
                 <th id="table_licenced">Licencié.e ?</th>
                 <th id="table_options">Options</th>
             </tr>
@@ -24,10 +26,11 @@
         {%   for player in playerListObj %}
 
             <tr>
-                <td><a href="index.php?action=player&id={{ player.playerid }}">{{player.licence}}</a></td>
+                <td>{{player.licence}}</a></td>
                 <td>{{player.lastname}}</td>
                 <td>{{player.firstname}}</td>
                 <td>{{player.birthdate}}</td>
+                <td>{{player.category}}</td>
                 <td>
                     {% if player.activelicence == 1  %}
                         <i class="fas fa-check greencheck"></i>
@@ -35,7 +38,11 @@
                         <i class="fas fa-times redtimes"></i>
                      {% endif %}
                 </td>
-                <td><i class="fas fa-user-edit"></i>&nbsp;&nbsp;<i class="fas fa-trash-alt"></i></td>
+                <td class="d-flex flex-row justify-content-between">
+                    <div><a href="index.php?action=player&id={{ player.playerid }}"><i class="fas fa-user"></i></a></div>
+                    <div><a href="index.php?action=modifyplayer&id={{ player.playerid }}"><i class="fas fa-user-edit"></i></a></div>
+                    <div><a href="index.php?action=deleteplayer&id={{ player.playerid }}"><i class="fas fa-user-times"></i></a></div>
+                </td>
             </tr>
 
         {% endfor %}

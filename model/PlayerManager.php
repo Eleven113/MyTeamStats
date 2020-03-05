@@ -60,4 +60,35 @@ class PlayerManager
 
         return $player;
     }
+
+    public function DeletePlayer($id)
+    {
+        $query = $this->db->prepare('DELETE FROM PLAYER WHERE PLAYERID = :playerid');
+        $query->bindValue(':playerid', $id);
+        $query->execute();
+
+    }
+
+    public function UpdatePlayer(array $player)
+    {
+
+        $player = new Player($player);
+        $q = $this->db->prepare('UPDATE PLAYER SET LICENCE = :licence, LASTNAME = :lastname, FIRSTNAME = :firstname, ADDRESS = :address, PHONENUM = :phonenume, MAIL = :mail, BIRTHDATE = :birthdate, ACTIVELICENCE = :activelicence, PHOTO = :photo, CATEGORY = :category, POSTE = :poste WHERE PLAYERID = :playerid');
+
+        $q->bindValue(':playerid', $player->getPlayerid());
+        $q->bindValue(':licence', $player->getLicence());
+        $q->bindValue(':lastname', $player->getLastname());
+        $q->bindValue(':firstname', $player->getFirstname());
+        $q->bindValue(':address', $player->getAddress());
+        $q->bindValue(':phonenum', $player->getPhonenum());
+        $q->bindValue(':mail', $player->getMail());
+        $q->bindValue(':birthdate', $player->getBirthdate());
+        $q->bindValue(':activelicence', $player->getActivelicence());
+        $q->bindValue(':photo', $player->getPhoto());
+        $q->bindValue(':category', $player->getCategory());
+        $q->bindValue(':poste', $player->getPoste());
+
+        $q->execute();
+
+    }
 }

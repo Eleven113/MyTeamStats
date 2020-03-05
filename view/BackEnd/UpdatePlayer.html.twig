@@ -7,19 +7,19 @@
 {% block content %}
 
     <div id="createplayer_form" class="d-flex flex-column justify-content-center align-items-center">
-        <form id="createaplayer-form" class="col-lg-6" action="index.php?action=addplayer"  method="post" enctype="multipart/form-data">
+        <form id="createaplayer-form" class="col-lg-6" action="index.php?action=updateplayer&id={{ player.playerid }}"  method="post" enctype="multipart/form-data">
             <legend>Créér un joueur</legend>
             <div class="form-group">
                 <label for="text">Nom</label>
-                <input id="text" type="text" name="lastname" class="form-control" required>
+                <input id="text" type="text" name="lastname" class="form-control" value="{{ player.lastname }}" required>
             </div>
             <div class="form-group">
                 <label for="text">Prénom</label>
-                <input id="text" type="text" name="firstname" class="form-control" required>
+                <input id="text" type="text" name="firstname" class="form-control" value="{{ player.firstname }}" required>
             </div>
             <div class="form-group">
                 <label for="text">N° Licence</label>
-                <input id="text" type="number" name="licencenum" class="form-control">
+                <input id="text" type="number" name="licencenum" value="{{ player.licence }}" class="form-control">
             </div>
             <div class="form-group">
                 <label for="text">Licence active ?</label>
@@ -30,7 +30,7 @@
             </div>
             <div class="form-group">
                 <label for="text">Date de naissance</label>
-                <input id="text" type="date" name="birthdate" class="form-control" required>
+                <input id="text" type="date" name="birthdate" class="form-control" value="{{ player.birthdate }}" required>
             </div>
             <div class="form-group">
                 <label for="text">Catégorie</label>
@@ -54,15 +54,15 @@
             </div>
             <div class="form-group">
                 <label for="text">Adresse</label>
-                <input id="text" type="text" name="address" class="form-control">
+                <input id="text" type="text" name="address" value="{{ player.address }}" class="form-control">
             </div>
             <div class="form-group">
                 <label for="text">Téléphone</label>
-                <input id="text" type="number" name="phonenum" class="form-control">
+                <input id="text" type="number" name="phonenum"  value="{{ player.phonenum}}" class="form-control">
             </div>
             <div class="form-group">
                 <label for="text">Mail</label>
-                <input id="text" type="mail" name="mail" class="form-control">
+                <input id="text" type="mail" name="mail" value="{{ player.mail }}" class="form-control">
             </div>
             <button type="submit" class="btn btn-primary"><i class="fas fa-check-circle"></i>&nbsp;&nbsp;Envoyer</button>
         </form>

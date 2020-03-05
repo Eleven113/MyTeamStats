@@ -70,6 +70,33 @@ if (isset($_GET['action'])) {
         }
     }
 
+    if ($_GET['action'] == 'deleteplayer'){
+        if (isset($_GET['id']) && $_GET['id'] > 0) {
+            $controllerBack->DeletePlayer($_GET['id']);
+        }
+        else {
+            echo  "Erreur : pas d'id joueur";
+        }
+    }
+
+    if ($_GET['action'] == 'modifyplayer'){
+        if (isset($_GET['id']) && $_GET['id'] > 0) {
+            $controllerBack->ModifyPlayer($_GET['id']);
+        }
+        else {
+            echo  "Erreur : pas d'id joueur";
+        }
+    }
+
+    if ($_GET['action'] == 'updateplayer'){
+        if (isset($_GET['id']) && $_GET['id'] > 0) {
+            $controllerBack->UpdatePlayer($_GET['id'],$_POST['lastname'], $_POST['firstname'], $_POST['licencenum'], $_POST['activelicence'], $_POST['birthdate'], $_POST['category'], $_FILES['photo']['name'], $_POST['poste'], $_POST['address'],  $_POST['phonenum'], $_POST['mail']);
+        }
+        else {
+            echo  "Erreur : pas d'id joueur";
+        }
+    }
+
     if ($_GET['action'] == 'createplayer'){
 
         $controllerBack->CreatePlayer();
@@ -78,6 +105,7 @@ if (isset($_GET['action'])) {
     if ($_GET['action'] == 'addplayer'){
         $controllerBack->AddPlayer($_POST['lastname'], $_POST['firstname'], $_POST['licencenum'], $_POST['activelicence'], $_POST['birthdate'], $_POST['category'], $_FILES['photo']['name'], $_POST['poste'], $_POST['address'],  $_POST['phonenum'], $_POST['mail']);
     }
+
 
     if ($_GET['action'] == 'creatematch'){
 
