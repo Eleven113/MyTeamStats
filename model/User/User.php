@@ -6,7 +6,7 @@ class User
     private $lastname;
     private $firstname;
     private $mail;
-    private $pwd;
+    private $password;
     private $status;
 
     // GETTER
@@ -38,9 +38,9 @@ class User
     /**
      * @return mixed
      */
-    public function getPwd()
+    public function getPassword()
     {
-        return $this->pwd;
+        return $this->password;
     }
 
     /**
@@ -78,11 +78,11 @@ class User
     }
 
     /**
-     * @param mixed $pwd
+     * @param mixed $password
      */
-    public function setPwd($pwd)
+    public function setPassword($password)
     {
-        $this->pwd = $pwd;
+        $this->password = $password;
     }
 
     /**

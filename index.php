@@ -19,6 +19,7 @@ $loader = new \Twig\Loader\FilesystemLoader(__DIR__ . '/view');
 $twig = new \Twig\Environment($loader, [
     'cache' => false
 ]);
+$twig->addGlobal('session', $_SESSION);
 
 $controllerFront = new ControllerFront($twig, $playerManager, $userManager);
 $controllerBack = new ControllerBack($twig, $playerManager, $userManager);
@@ -39,8 +40,8 @@ if (isset($_GET['action'])) {
         $controllerFront->Login();
     }
 
-    if ($_GET['action'] == 'userLogin'){
-        if (isset($_POST['mail']) || $_POST['pwd']){
+    if ($_GET['action'] == 'userlogin'){
+        if ( isset($_POST['mail']) || isset($_POST['pwd']) ){
             $controllerFront->UserLogin($_POST['mail'], $_POST['pwd']);
         }
         else {

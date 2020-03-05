@@ -19,7 +19,7 @@ class UserManager
         $query->bindValue(':lastname', $user->getLastname());
         $query->bindValue(':firstname', $user->getFirstname());
         $query->bindValue(':mail', $user->getMail());
-        $query->bindValue(':password', $user->getPwd());
+        $query->bindValue(':password', $user->getPassword());
         $query->bindValue(':status', 1);
 
         $query->execute();
@@ -28,12 +28,30 @@ class UserManager
 
     public function UserLogin($mail, $pwd){
 
-        $userPDO = $this->db->prepare('SELECT * FROM USER WHERE MAIL = :mail');
-        $userPDO->bindValue(':mail', $mail);
+        $userPDO = $this->db->prepare('SELECT * FROM USER WHERE MAIL = :mail ');
+        $userPDO->bindValue(':mail', $mail );
+        $userPDO->execute();
         $userArray = $userPDO->fetch(PDO::FETCH_ASSOC);
+
         $user = new User($userArray);
 
-        empty($user);
+        if (empty($user->getMail())){
+            $login = False;
+        }
+        else {
+            if (password_verify($pwd, $user->getPassword())) {
+                $login = True;
+                $_SESSION['user_lastname'] = $user->getLastname();
+                $_SESSION['user_firstname'] = $user->getFirstname();
+                $_SESSION['user_mail'] = $user->getMail();
+                $_SESSION['user_status'] = $user->getStatus();
+            }
+            else {
+                $login = False;
+            }
+        }
+
+        return $login;
     }
 
 }

@@ -53,10 +53,17 @@ Class ControllerFront {
     }
 
     public function UserLogin($mail, $pwd){
-        $h_pwd = password_hash($pwd, PASSWORD_DEFAULT);
-        $this->userManager->UserLogin($mail, $h_pwd);
 
+        $login = $this->userManager->UserLogin($mail, $pwd);
 
+        if ($login){
+            $_SESSION['notice'] = "Vous avez été correctement identifié";
+        }
+        else {
+            $_SESSION['notice'] = "Adresse mail inconnue ou mot de passe incorrect";
+        }
+
+        echo $this->twig->render('/FrontEnd/Homepage.html.twig', ['notice' => $_SESSION['notice']]);
     }
 
     public function MatchsList(){
