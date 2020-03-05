@@ -5,9 +5,9 @@ $_SESSION['user_status'] = 1;
 require ('vendor/autoload.php');
 require ('controller/FrontEnd/controller.php');
 require ('controller/BackEnd/controller.php');
-require ('model/Player.php');
-require ('model/PlayerManager.php');
-require ('model/PlayerManagerPDO.php');
+require('model/Player/Player.php');
+require('model/Player/PlayerManager.php');
+require('model/User/UserManager.php');
 require ('model/DBFactory.php');
 
 $db = DBFactory::ConnexionPDO();
@@ -24,12 +24,7 @@ $controllerBack = new ControllerBack($twig, $playerManager);
 
 if (isset($_GET['action'])) {
     if ($_GET['action'] == 'matchs'){
-        if ($_SESSION['admin_user'] == TRUE){
-            AdminMatchs();
-        }
-        else {
-            PublicMatchs();
-        }
+
     }
 
     if ($_GET['action'] == 'playerslist'){
@@ -53,6 +48,7 @@ if (isset($_GET['action'])) {
     }
 
     if ($_GET['action'] == 'adduser'){
+
         $controllerFront->AddUser($_POST['lastname'], $_POST['firstname'], $_POST['mail'], $_POST['pwd1'] );
     }
 

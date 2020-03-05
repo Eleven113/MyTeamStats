@@ -36,6 +36,13 @@ Class ControllerFront {
         echo $this->twig->render('/FrontEnd/CreateUser.html.twig');
     }
 
+    public function AddUser($lastname, $firstname, $mail, $pwd){
+        $h_pwd = password_hash($pwd, PASSWORD_DEFAULT);
+        $this->playerManager->AddUser($lastname, $firstname, $mail, $h_pwd);
+
+
+    }
+
     public function MatchsList(){
         echo $this->twig->render('/FrontEnd/MatchsList.html.twig');
     }
