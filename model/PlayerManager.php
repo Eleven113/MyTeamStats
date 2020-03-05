@@ -73,7 +73,7 @@ class PlayerManager
     {
 
         $player = new Player($player);
-        $q = $this->db->prepare('UPDATE PLAYER SET LICENCE = :licence, LASTNAME = :lastname, FIRSTNAME = :firstname, ADDRESS = :address, PHONENUM = :phonenume, MAIL = :mail, BIRTHDATE = :birthdate, ACTIVELICENCE = :activelicence, PHOTO = :photo, CATEGORY = :category, POSTE = :poste WHERE PLAYERID = :playerid');
+        $q = $this->db->prepare('UPDATE PLAYER SET LICENCE = :licence, LASTNAME = :lastname, FIRSTNAME = :firstname, ADDRESS = :address, PHONENUM = :phonenum, MAIL = :mail, BIRTHDATE = :birthdate, ACTIVELICENCE = :activelicence, PHOTO = :photo, CATEGORY = :category, POSTE = :poste WHERE PLAYERID = :playerid');
 
         $q->bindValue(':playerid', $player->getPlayerid());
         $q->bindValue(':licence', $player->getLicence());
