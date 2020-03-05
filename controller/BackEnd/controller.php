@@ -73,12 +73,16 @@ class ControllerBack {
         header ('Location: index.php?action=playerslist');
     }
 
-    public function CreateMatch($twig){
+    public function CreateMatch(){
         echo $this->twig->render('/BackEnd/CreateMatch.html.twig');
     }
 
-    public function MatchStat($twig){
+    public function MatchStat(){
         echo $this->twig->render('/BackEnd/MatchStat.html.twig');
+    }
+
+    public function Admin(){
+        echo $this->twig->render('/BackEnd/Admin.html.twig');
     }
 }
 

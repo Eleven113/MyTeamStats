@@ -139,6 +139,11 @@ if (isset($_GET['action'])) {
         $controllerFront->SessionKill();
     }
 
+    if ($_GET['action'] == 'admin'){
+
+        $controllerBack->Admin();
+    }
+
 }
 else {
 
