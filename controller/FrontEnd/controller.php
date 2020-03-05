@@ -44,7 +44,7 @@ Class ControllerFront {
             'lastname' => $lastname,
             'firstname' => $firstname,
             'mail' => $mail,
-            'pwd' => $h_pwd
+            'password' => $h_pwd
         ];
 
         $this->userManager->AddUser($user);
@@ -84,8 +84,10 @@ Class ControllerFront {
     }
 
     public function SessionKill(){
+        $_SESSION = array();
         session_destroy();
-        $this->Home();
+        $this->home();
+
     }
 }
 
