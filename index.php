@@ -1,5 +1,6 @@
 <?php
 session_start();
+$_SESSION['user_status'] = 1;
 
 require ('vendor/autoload.php');
 require ('controller/FrontEnd/controller.php');
@@ -46,9 +47,13 @@ if (isset($_GET['action'])) {
         $controllerFront->LostPassword();
     }
 
-    if ($_GET['action'] == 'createaccount'){
+    if ($_GET['action'] == 'createuser'){
 
-        $controllerFront->CreateAccount();
+        $controllerFront->CreateUser();
+    }
+
+    if ($_GET['action'] == 'adduser'){
+        $controllerFront->AddUser($_POST['lastname'], $_POST['firstname'], $_POST['mail'], $_POST['pwd1'] );
     }
 
     if ($_GET['action'] == 'matchslist'){

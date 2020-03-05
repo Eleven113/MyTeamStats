@@ -5,10 +5,18 @@
 {% endblock %}
 
 {% block content %}
-<div id="add_player" class="myborder">Créér un joueur</div>
+
+{% if sessionUser >= 1 %}
+    <div id="add_player" class="col-1 m-4 border border-primary rounded-lg myborder">
+        <a href="index.php?action=createplayer">
+            <i class="fas fa-user-plus"></i>&nbsp;Créér un joueur
+        </a>
+    </div>
+{% endif %}
+
 <div class="table-responsive">
     <table class="table table table-bordered table-striped text-center">
-        <caption class="text-center">
+        <caption class="col-12 text-center">
             <h4>Liste des joueurs</h4>
         </caption>
         <thead>
@@ -48,6 +56,12 @@
         {% endfor %}
         </tbody>
     </table>
+    {% if sessionUser == 0 %}
+        {{ sessionUser }}
+        <span>Pas connecté</span>
+    {% else %}
+        <span>Connecté</span>
+    {% endif %}
 </div>    
 
 {% endblock %}

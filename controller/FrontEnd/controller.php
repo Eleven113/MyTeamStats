@@ -17,7 +17,11 @@ Class ControllerFront {
 
     public function PlayersList(){
         $playersListObj = $this->playerManager->getPlayersList();
-        echo $this->twig->render('/FrontEnd/PlayersList.html.twig', ['playerListObj' => $playersListObj]);
+        echo $this->twig->render('/FrontEnd/PlayersList.html.twig',
+            [
+                'playerListObj' => $playersListObj,
+                'sessionUser' => $_SESSION['user_status']
+            ]);
     }
 
     public function Login(){
@@ -28,8 +32,8 @@ Class ControllerFront {
         echo $this->twig->render('/FrontEnd/LostPassword.html.twig');
     }
 
-    public function CreateAccount(){
-        echo $this->twig->render('/FrontEnd/CreateAccount.html.twig');
+    public function CreateUser(){
+        echo $this->twig->render('/FrontEnd/CreateUser.html.twig');
     }
 
     public function MatchsList(){
