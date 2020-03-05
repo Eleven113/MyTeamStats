@@ -49,6 +49,20 @@
                 </div>
             </div>
         </div>
+        {% if session.user_statut >= 4 %}
+            <div class="offset-2 col-5">
+                <div class="embed-responsive embed-responsive-1by1 text-center align-middle">
+                    <div class="embed-responsive-item bg-primary rounded-lg">
+                        <a href="index.php?action=admin" class="link">
+                            <div class="menu_option">
+                                <span class="menu_option-ico"><i class="fas fa-cog"></i></span><br/>
+                                <span class="menu_option-txt">Gestion</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
     </div>    
 </div>
 

@@ -134,6 +134,11 @@ if (isset($_GET['action'])) {
         $controllerBack->MatchStat();
     }
 
+    if ($_GET['action'] == 'sessionkill'){
+
+        $controllerFront->SessionKill();
+    }
+
 }
 else {
 

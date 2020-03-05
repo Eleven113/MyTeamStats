@@ -82,5 +82,10 @@ Class ControllerFront {
     public function Match(){
         echo $this->twig->render('/FrontEnd/MatchView.html.twig');
     }
+
+    public function SessionKill(){
+        session_destroy();
+        $this->Home();
+    }
 }
 
