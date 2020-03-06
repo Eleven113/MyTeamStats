@@ -84,6 +84,18 @@ class ControllerBack {
     public function Admin(){
         echo $this->twig->render('/BackEnd/Admin.html.twig');
     }
+
+    public function UsersList(){
+        $usersListObj = $this->userManager->getUsersList();
+
+        echo $this->twig->render('/BackEnd/UsersList.html.twig', ['usersListObj' => $usersListObj]);
+    }
+
+    public function DeleteUser($id){
+        $this->userManager->DeleteUser($id);
+
+        header ('Location: index.php?action=userslist');
+    }
 }
 
 // $surname, $name, $licencenum, $activelicence, $category, $photo, $position, $address, $phonenum, $mail

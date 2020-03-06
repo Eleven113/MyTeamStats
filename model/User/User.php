@@ -8,6 +8,7 @@ class User
     private $mail;
     private $password;
     private $status;
+    private $userid;
 
     // GETTER
 
@@ -51,6 +52,14 @@ class User
         return $this->status;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getUserid()
+    {
+        return $this->userid;
+    }
+
     // SETTER
 
     /**
@@ -91,6 +100,14 @@ class User
     public function setStatus($status)
     {
         $this->status = $status;
+    }
+
+    /**
+     * @param mixed $userid
+     */
+    public function setUserid($userid)
+    {
+        $this->userid = $userid;
     }
 
     // Constructor

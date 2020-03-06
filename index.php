@@ -63,6 +63,20 @@ if (isset($_GET['action'])) {
         $controllerFront->AddUser($_POST['lastname'], $_POST['firstname'], $_POST['mail'], $_POST['pwd1'] );
     }
 
+    if ($_GET['action'] == 'deleteuser'){
+        if (isset($_GET['id']) && $_GET['id'] > 0) {
+            $controllerBack->DeleteUser($_GET['id']);
+        }
+        else {
+            echo  "Erreur : pas d'id user";
+        }
+    }
+
+    if ($_GET['action'] == 'userslist'){
+
+        $controllerBack->UsersList();
+    }
+
     if ($_GET['action'] == 'matchslist'){
 
         $controllerFront->MatchsList();
@@ -143,6 +157,8 @@ if (isset($_GET['action'])) {
 
         $controllerBack->Admin();
     }
+
+
 
 }
 else {

@@ -55,4 +55,21 @@ class UserManager
         return $login;
     }
 
+     public function getUsersList(){
+        $usersList = $this->db->query('SELECT * FROM USER');
+        $usersListObj = new ArrayObject();
+        while ($userArray = $usersList->fetch(PDO::FETCH_ASSOC)){
+            $user = new User($userArray);
+            $usersListObj->append($user);
+        }
+
+        return $usersListObj;
+     }
+
+     public function DeleteUser($id){
+        $query = $this->db->prepare('DELETE FROM USER WHERE USERID = :userid');
+        $query->bindValue(':userid', $id);
+        $query->execute();
+
+     }
 }
