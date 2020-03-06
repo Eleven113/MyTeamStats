@@ -10,9 +10,8 @@ require('model/User/UserManager.php');
 require('model/User/User.php');
 require ('model/DBFactory.php');
 
-putenv("PRESIDENT=Thibaut");
 
-echo getenv(PRESIDENT);
+echo getenv('PRESIDENT');
 
 $db = DBFactory::ConnexionPDO();
 $playerManager = new PlayerManager($db);
@@ -23,6 +22,7 @@ $twig = new \Twig\Environment($loader, [
     'cache' => false
 ]);
 $twig->addGlobal('session', $_SESSION);
+$twig->addGlobal('env', $_ENV);
 
 $controllerFront = new ControllerFront($twig, $playerManager, $userManager);
 $controllerBack = new ControllerBack($twig, $playerManager, $userManager);

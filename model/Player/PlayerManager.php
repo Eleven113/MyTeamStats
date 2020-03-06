@@ -19,7 +19,7 @@ class PlayerManager
     public function AddPlayer(array $player)
     {
 
-        $player = new Player($player);
+        $player = new Player($player);v
         $q = $this->db->prepare('INSERT INTO PLAYER (LICENCE, LASTNAME, FIRSTNAME, ADDRESS, PHONENUM, MAIL, BIRTHDATE, ACTIVELICENCE, PHOTO, CATEGORY, POSTE)
         VALUES (:licence, :lastname, :firstname, :address, :phonenum, :mail, :birthdate, :activelicence, :photo, :category, :poste) ');
 
