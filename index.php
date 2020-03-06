@@ -10,6 +10,10 @@ require('model/User/UserManager.php');
 require('model/User/User.php');
 require ('model/DBFactory.php');
 
+putenv("PRESIDENT=Thibaut");
+
+echo getenv(PRESIDENT);
+
 $db = DBFactory::ConnexionPDO();
 $playerManager = new PlayerManager($db);
 $userManager = new UserManager($db);
@@ -23,6 +27,17 @@ $twig->addGlobal('session', $_SESSION);
 $controllerFront = new ControllerFront($twig, $playerManager, $userManager);
 $controllerBack = new ControllerBack($twig, $playerManager, $userManager);
 
+
+// Vérifie le statut de l'utilisateur pour protéger la saisie via URL
+
+if ( $_SESSION['user_status'] >= 3){
+    $isAuthorized = True;
+}
+else {
+    $isAuthorized = false;
+}
+
+// Routeur
 
 if (isset($_GET['action'])) {
     if ($_GET['action'] == 'matchs'){
@@ -64,11 +79,16 @@ if (isset($_GET['action'])) {
     }
 
     if ($_GET['action'] == 'deleteuser'){
-        if (isset($_GET['id']) && $_GET['id'] > 0) {
-            $controllerBack->DeleteUser($_GET['id']);
+        if ($isAuthorized){
+            if (isset($_GET['id']) && $_GET['id'] > 0) {
+                $controllerBack->DeleteUser($_GET['id']);
+            }
+            else {
+                echo  "Erreur : pas d'id user";
+            }
         }
         else {
-            echo  "Erreur : pas d'id user";
+            echo "Vous n'êtes pas autorisé à effectuer cette action";
         }
     }
 
@@ -115,11 +135,16 @@ if (isset($_GET['action'])) {
     }
 
     if ($_GET['action'] == 'deleteplayer'){
-        if (isset($_GET['id']) && $_GET['id'] > 0) {
-            $controllerBack->DeletePlayer($_GET['id']);
+        if ($isAuthorized){
+            if (isset($_GET['id']) && $_GET['id'] > 0) {
+                $controllerBack->DeletePlayer($_GET['id']);
+            }
+            else {
+                echo  "Erreur : pas d'id joueur";
+            }
         }
         else {
-            echo  "Erreur : pas d'id joueur";
+            echo "Vous n'êtes pas autorisé à effectuer cette action";
         }
     }
 

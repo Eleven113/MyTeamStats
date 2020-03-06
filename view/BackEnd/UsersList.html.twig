@@ -27,7 +27,17 @@
                         <td>{{user.lastname}}</td>
                         <td>{{user.firstname}}</td>
                         <td>{{user.mail}}</td>
-                        <td>{{user.status}}</td>
+                        <td>
+                            {% if user.status == 1 %}
+                                Visiteur
+                            {% elseif user.status == 2 %}
+                                Joueur
+                            {% elseif user.status == 3 %}
+                                Coach/Dirigeant
+                            {% elseif user.status == 4 %}
+                                Administrateur
+                            {%  endif %}
+                        </td>
                         <td class="d-flex flex-row justify-content-around">
                             <div><a href="index.php?action=modifyuser&id={{ user.userid }}"><i class="fas fa-user-edit"></i></a></div>
                             <div><a href="index.php?action=deleteuser&id={{ user.userid }}"><i class="fas fa-user-times"></i></a></div>

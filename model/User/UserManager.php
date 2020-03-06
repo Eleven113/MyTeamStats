@@ -84,6 +84,7 @@ class UserManager
     }
 
     public function UpdateUser($user){
+
         $user = new User($user);
 
         $query = $this->db->prepare('UPDATE USER SET LASTNAME = :lastname, FIRSTNAME = :firstname, MAIL = :mail, STATUS = :status WHERE USERID = :userid');

@@ -105,15 +105,16 @@ class ControllerBack {
 
     public function UpdateUser($id, $lastname, $firstname, $mail, $status){
         $user = [
-            'userid' => $user,
+            'userid' => $id,
             'lastname' => $lastname,
             'firstname' => $firstname,
-            'mail' => $mail
+            'mail' => $mail,
+            'status' => $status
         ];
 
         $this->userManager->UpdateUser($user);
 
-        echo $this->twig->render('/BackEnd/UsersList.html.twig');
+        header ('Location: index.php?action=userslist');
     }
 }
 
