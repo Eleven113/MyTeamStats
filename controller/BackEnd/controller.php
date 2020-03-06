@@ -96,6 +96,25 @@ class ControllerBack {
 
         header ('Location: index.php?action=userslist');
     }
+
+    public function ModifyUser($id){
+        $user = $this->userManager->getUser($id);
+
+        echo $this->twig->render('/BackEnd/UpdateUser.html.twig', ['user' => $user]);
+    }
+
+    public function UpdateUser($id, $lastname, $firstname, $mail, $status){
+        $user = [
+            'userid' => $user,
+            'lastname' => $lastname,
+            'firstname' => $firstname,
+            'mail' => $mail
+        ];
+
+        $this->userManager->UpdateUser($user);
+
+        echo $this->twig->render('/BackEnd/UsersList.html.twig');
+    }
 }
 
 // $surname, $name, $licencenum, $activelicence, $category, $photo, $position, $address, $phonenum, $mail

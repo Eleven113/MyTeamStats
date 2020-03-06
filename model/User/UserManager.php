@@ -72,4 +72,27 @@ class UserManager
         $query->execute();
 
      }
+
+    public function getUser($id)
+    {
+        $query = $this->db->prepare('SELECT * FROM USER WHERE USERID = :userid');
+        $query->bindValue(':userid', $id);
+        $query->execute();
+        $user = new User($query->fetch(PDO::FETCH_ASSOC));
+
+        return $user;
+    }
+
+    public function UpdateUser($user){
+        $user = new User($user);
+
+        $query = $this->db->prepare('UPDATE USER SET LASTNAME = :lastname, FIRSTNAME = :firstname, MAIL = :mail, STATUS = :status WHERE USERID = :userid');
+        $query->bindValue(':userid', $user->getUserid());
+        $query->bindValue(':lastname', $user->getLastname());
+        $query->bindValue(':firstname', $user->getFirstname());
+        $query->bindValue(':mail', $user->getMail());
+        $query->bindValue(':status', $user->getStatus());
+
+        $query->execute();
+    }
 }

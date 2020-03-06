@@ -72,6 +72,24 @@ if (isset($_GET['action'])) {
         }
     }
 
+    if ($_GET['action'] == 'modifyuser'){
+        if (isset($_GET['id']) && $_GET['id'] > 0) {
+            $controllerBack->ModifyUser($_GET['id']);
+        }
+        else {
+            echo  "Erreur : pas d'id user";
+        }
+    }
+
+    if ($_GET['action'] == 'updateuser'){
+        if (isset($_GET['id']) && $_GET['id'] > 0) {
+            $controllerBack->UpdateUser($_GET['id'], $_POST['lastname'], $_POST['firstname'], $_POST['mail'], $_POST['status']);
+        }
+        else {
+            echo  "Erreur : pas d'id user";
+        }
+    }
+
     if ($_GET['action'] == 'userslist'){
 
         $controllerBack->UsersList();

@@ -6,9 +6,9 @@
 
 {% block content %}
 
-    <div id="createplayer_form" class="d-flex flex-column justify-content-center align-items-center">
-        <form id="createaplayer-form" class="col-lg-6" action="index.php?action=updateplayer&id={{ player.playerid }}"  method="post" enctype="multipart/form-data">
-            <legend>Créér un joueur</legend>
+    <div id="updateplayer_form" class="d-flex flex-column justify-content-center align-items-center">
+        <form id="updateplayer_form-form" class="col-lg-6" action="index.php?action=updateplayer&id={{ player.playerid }}"  method="post" enctype="multipart/form-data">
+            <legend>Modifier un joueur</legend>
             <div class="form-group">
                 <label for="text">Nom</label>
                 <input id="text" type="text" name="lastname" class="form-control" value="{{ player.lastname }}" required>

@@ -1,0 +1,39 @@
+{% extends "layout.html.twig" %}
+
+{% block head %}
+    <title>Modifier un utilisateur - MyTeamStats</title>
+{% endblock %}
+
+{% block content %}
+
+    <div id="updateuser_form" class="d-flex flex-column justify-content-center align-items-center">
+        <form id="updateuser-form" class="col-lg-6" action="index.php?action=updateuser&id={{ user.userid }}"  method="post" enctype="multipart/form-data">
+            <legend>Modifier un utilisateur</legend>
+            <div class="form-group">
+                <label for="text">Nom</label>
+                <input id="text" type="text" name="lastname" class="form-control" value="{{ user.lastname }}" required>
+            </div>
+            <div class="form-group">
+                <label for="text">Prénom</label>
+                <input id="text" type="text" name="firstname" class="form-control" value="{{ user.firstname }}" required>
+            </div>
+            <div class="form-group">
+                <label for="text">Mail</label>
+                <input id="text" type="mail" name="mail" value="{{ user.mail }}" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="text">Statut    </label>
+                <select name="status">
+                    <option value="1">Visiteur</option>
+                    <option value="2">Joueur</option>
+                    <option value="3">Coach/Dirigeant</option>
+                    <option value="4" disabled>Administrateur</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary"><i class="fas fa-check-circle"></i>&nbsp;&nbsp;Envoyer</button>
+        </form>
+    </div>
+
+
+{% endblock %}

@@ -6,36 +6,40 @@
 
 {% block content %}
 
-    <div class="table-responsive">
-        <table class="table table table-bordered table-striped text-center">
-            <caption class="col-12 text-center">
-                <h4>Liste des utilisateurs</h4>
-            </caption>
-            <thead>
-            <tr>
-                <th id="table_surname">Nom</th>
-                <th id="table_name">Prénom</th>
-                <th id="table_birthdate">Mail</th>
-                <th id="table_category">Statut</th>
-                <th id="table_category">Options</th>
-            </tr>
-            </thead>
-            <tbody>
-            {%   for user in usersListObj %}
+    {% if session.user_status >= 4 %}
+        <div class="table-responsive">
+            <table class="table table table-bordered table-striped text-center">
+                <caption class="col-12 text-center">
+                    <h4>Liste des utilisateurs</h4>
+                </caption>
+                <thead>
                 <tr>
-                    <td>{{user.lastname}}</td>
-                    <td>{{user.firstname}}</td>
-                    <td>{{user.mail}}</td>
-                    <td>{{user.status}}</td>
-                    <td class="d-flex flex-row justify-content-around">
-                        <div><a href="index.php?action=modifyuser&id={{ user.userid }}"><i class="fas fa-user-edit"></i></a></div>
-                        <div><a href="index.php?action=deleteuser&id={{ user.userid }}"><i class="fas fa-user-times"></i></a></div>
-                    </td>
+                    <th id="table_surname">Nom</th>
+                    <th id="table_name">Prénom</th>
+                    <th id="table_birthdate">Mail</th>
+                    <th id="table_category">Statut</th>
+                    <th id="table_category">Options</th>
                 </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-    </div>
+                </thead>
+                <tbody>
+                {%   for user in usersListObj %}
+                    <tr>
+                        <td>{{user.lastname}}</td>
+                        <td>{{user.firstname}}</td>
+                        <td>{{user.mail}}</td>
+                        <td>{{user.status}}</td>
+                        <td class="d-flex flex-row justify-content-around">
+                            <div><a href="index.php?action=modifyuser&id={{ user.userid }}"><i class="fas fa-user-edit"></i></a></div>
+                            <div><a href="index.php?action=deleteuser&id={{ user.userid }}"><i class="fas fa-user-times"></i></a></div>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <span>Vous n'êtes pas autorisé à afficher cette page</span>
+    {% endif %}
 
 {% endblock %}
 
