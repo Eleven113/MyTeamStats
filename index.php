@@ -8,11 +8,14 @@ require('model/Player/Player.php');
 require('model/Player/PlayerManager.php');
 require('model/User/UserManager.php');
 require('model/User/User.php');
+require('model/Opponent/Opponent.php');
+require('model/Opponent/OpponentManager.php');
 require ('model/DBFactory.php');
 
 $db = DBFactory::ConnexionPDO();
 $playerManager = new PlayerManager($db);
 $userManager = new UserManager($db);
+$opponentManager = new OpponentManager($db);
 
 $loader = new \Twig\Loader\FilesystemLoader(__DIR__ . '/view');
 $twig = new \Twig\Environment($loader, [
@@ -22,7 +25,7 @@ $twig->addGlobal('session', $_SESSION);
 $twig->addGlobal('env', $_ENV);
 
 $controllerFront = new ControllerFront($twig, $playerManager, $userManager);
-$controllerBack = new ControllerBack($twig, $playerManager, $userManager);
+$controllerBack = new ControllerBack($twig, $playerManager, $userManager, $opponentManager);
 
 \Cloudinary::config( array (
     "cloud_name" => "marthyte" ,
@@ -162,7 +165,7 @@ if (isset($_GET['action'])) {
 
     if ($_GET['action'] == 'updateplayer'){
         if (isset($_GET['id']) && $_GET['id'] > 0) {
-            $controllerBack->UpdatePlayer($_GET['id'],$_POST['lastname'], $_POST['firstname'], $_POST['licencenum'], $_POST['activelicence'], $_POST['birthdate'], $_POST['category'], $_FILES['photo']['name'], $_POST['poste'], $_POST['address'],  $_POST['phonenum'], $_POST['mail']);
+            $controllerBack->UpdatePlayer($_GET['id'],$_POST['lastname'], $_POST['firstname'], $_POST['licencenum'], $_POST['activelicence'], $_POST['birthdate'], $_POST['category'], $_FILES['photo']['tmp_name'], $_POST['poste'], $_POST['address'],  $_POST['phonenum'], $_POST['mail']);
         }
         else {
             echo  "Erreur : pas d'id joueur";
@@ -209,6 +212,10 @@ if (isset($_GET['action'])) {
         $controllerBack->CreateOppo();
     }
 
+    if ($_GET['action'] == 'addoppo'){
+
+        $controllerBack->AddOppo($_POST['name'], $_FILES['logo']['tmp_name']);
+    }
 
 }
 else {

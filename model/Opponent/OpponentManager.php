@@ -18,7 +18,13 @@ class OpponentManager
 
     }
 
-    public function AddOppo(){
+    public function AddOppo($oppo){
+        $oppo = new Opponent($oppo);
+
+        $query = $this->db->prepare('INSERT INTO OPPONENT(NAME, LOGO) VALUES (:name, :logo)');
+        $query->bindValue(':name',$oppo->getName());
+        $query->bindValue(':logo', $oppo->getLogo());
+        $query->execute();
 
     }
 

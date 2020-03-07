@@ -5,12 +5,14 @@ class ControllerBack {
     private $twig;
     private $playerManager;
     private $userManager;
+    private $opponentManager;
 
-    public function __construct($twig, $playerManager, $userManager)
+    public function __construct($twig, $playerManager, $userManager, $opponentManager)
     {
         $this->twig = $twig;
         $this->playerManager = $playerManager;
         $this->userManager = $userManager;
+        $this->opponentManager = $opponentManager;
     }
 
     public function CreatePlayer(){
@@ -54,6 +56,8 @@ class ControllerBack {
 
     public function UpdatePlayer($id, $lastname, $firstname, $licencenum, $activelicence, $birthdate, $category, $photo, $poste, $address, $phonenum, $mail){
 
+        $result = \Cloudinary\Uploader::upload($photo, array("folder" => "Players/") );
+
         $player = [
             'playerid' => $id,
             'lastname' => $lastname,
@@ -62,7 +66,7 @@ class ControllerBack {
             'activelicence' => $activelicence,
             'birthdate' => $birthdate,
             'category' => $category,
-            'photo' => $photo,
+            'photo' => $result['url'],
             'poste' => $poste,
             'address' => $address,
             'phonenum' => $phonenum,
@@ -120,7 +124,20 @@ class ControllerBack {
     }
 
     public function CreateOppo(){
-        echo $this->twig->render('/BackEnd/CreateOppo.html.twig';
+        echo $this->twig->render('/BackEnd/CreateOppo.html.twig');
+    }
+
+    public function AddOppo($name, $photo){
+        $result = \Cloudinary\Uploader::upload($photo, array("folder" => "Opponent/") );
+
+        $oppo = [
+            'name' => $name,
+            'logo' => $result['url']
+        ];
+
+        $this->opponentManager->AddOppo($oppo);
+
+//        header ('Location: index.php?action=oppolist');
     }
 }
 
