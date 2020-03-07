@@ -10,9 +10,6 @@ require('model/User/UserManager.php');
 require('model/User/User.php');
 require ('model/DBFactory.php');
 
-
-echo getenv('PRESIDENT');
-
 $db = DBFactory::ConnexionPDO();
 $playerManager = new PlayerManager($db);
 $userManager = new UserManager($db);
@@ -27,6 +24,12 @@ $twig->addGlobal('env', $_ENV);
 $controllerFront = new ControllerFront($twig, $playerManager, $userManager);
 $controllerBack = new ControllerBack($twig, $playerManager, $userManager);
 
+\Cloudinary::config( array (
+    "cloud_name" => "marthyte" ,
+    "api_key" => "284172277764297" ,
+    "api_secret" => "FymxxaeAwKJB9bVn-2J5cFozT4k" ,
+    "secure" => true
+));
 
 // Vérifie le statut de l'utilisateur pour protéger la saisie via URL
 
@@ -172,7 +175,7 @@ if (isset($_GET['action'])) {
     }
 
     if ($_GET['action'] == 'addplayer'){
-        $controllerBack->AddPlayer($_POST['lastname'], $_POST['firstname'], $_POST['licencenum'], $_POST['activelicence'], $_POST['birthdate'], $_POST['category'], $_FILES['photo']['name'], $_POST['poste'], $_POST['address'],  $_POST['phonenum'], $_POST['mail']);
+        $controllerBack->AddPlayer($_POST['lastname'], $_POST['firstname'], $_POST['licencenum'], $_POST['activelicence'], $_POST['birthdate'], $_POST['category'], $_FILES['photo']['tmp_name'], $_POST['poste'], $_POST['address'],  $_POST['phonenum'], $_POST['mail']);
     }
 
 
@@ -201,6 +204,10 @@ if (isset($_GET['action'])) {
         $controllerBack->Admin();
     }
 
+    if ($_GET['action'] == 'createoppo'){
+
+        $controllerBack->CreateOppo();
+    }
 
 
 }

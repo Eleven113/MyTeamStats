@@ -19,7 +19,7 @@ class PlayerManager
     public function AddPlayer(array $player)
     {
 
-        $player = new Player($player);v
+        $player = new Player($player);
         $q = $this->db->prepare('INSERT INTO PLAYER (LICENCE, LASTNAME, FIRSTNAME, ADDRESS, PHONENUM, MAIL, BIRTHDATE, ACTIVELICENCE, PHOTO, CATEGORY, POSTE)
         VALUES (:licence, :lastname, :firstname, :address, :phonenum, :mail, :birthdate, :activelicence, :photo, :category, :poste) ');
 
@@ -41,7 +41,7 @@ class PlayerManager
 
     public function getPlayersList()
     {
-        $playersList = $this->db->query('SELECT * FROM PLAYER');
+        $playersList = $this->db->query('SELECT PLAYERID, LICENCE, LASTNAME, FIRSTNAME, ADDRESS, PHONENUM, MAIL, DATE_FORMAT(BIRTHDATE,\' %d-%m-%Y\') AS BIRTHDATE, ACTIVELICENCE, PHOTO, CATEGORY, POSTE FROM PLAYER');
         $playersListObj = new ArrayObject();
         while ($playerArray = $playersList->fetch(PDO::FETCH_ASSOC)){
                 $player = new Player($playerArray);
@@ -53,7 +53,7 @@ class PlayerManager
 
     public function getPlayer($id)
     {
-        $query = $this->db->prepare('SELECT * FROM PLAYER WHERE PLAYERID = :playerid');
+        $query = $this->db->prepare('SELECT PLAYERID, LICENCE, LASTNAME, FIRSTNAME, ADDRESS, PHONENUM, MAIL, DATE_FORMAT(BIRTHDATE,\' %d-%m-%Y\') AS BIRTHDATE, ACTIVELICENCE, PHOTO, CATEGORY, POSTE FROM PLAYER WHERE PLAYERID = :playerid');
         $query->bindValue(':playerid', $id);
         $query->execute();
         $player = new Player($query->fetch(PDO::FETCH_ASSOC));

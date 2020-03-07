@@ -19,6 +19,8 @@ class ControllerBack {
 
     public function AddPlayer($lastname, $firstname, $licencenum, $activelicence, $birthdate, $category, $photo, $poste, $address, $phonenum, $mail){
 
+        $result = \Cloudinary\Uploader::upload($photo, array("folder" => "Players/") );
+
         $player = [
             'lastname' => $lastname,
             'firstname' => $firstname,
@@ -26,7 +28,7 @@ class ControllerBack {
             'activelicence' => $activelicence,
             'birthdate' => $birthdate,
             'category' => $category,
-            'photo' => $photo,
+            'photo' => $result['url'],
             'poste' => $poste,
             'address' => $address,
             'phonenum' => $phonenum,
@@ -115,6 +117,10 @@ class ControllerBack {
         $this->userManager->UpdateUser($user);
 
         header ('Location: index.php?action=userslist');
+    }
+
+    public function CreateOppo(){
+        echo $this->twig->render('/BackEnd/CreateOppo.html.twig';
     }
 }
 
