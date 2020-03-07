@@ -7,16 +7,16 @@
 {% block content %}
 
     {% if session.user_status >= 4 %}
-        <div id="createoppo_form" class="d-flex flex-column justify-content-center align-items-center">
-            <form id="createoppo-form" class="col-lg-6" action="index.php?action=addoppo"  method="post" enctype="multipart/form-data">
+        <div id="updateoppo_form" class="d-flex flex-column justify-content-center align-items-center">
+            <form id="updateoppo-form" class="col-lg-6" action="index.php?action=updateoppo&id={{ oppo.oppoid }}"  method="post" enctype="multipart/form-data">
                 <legend>Créér un adversaire</legend>
                 <div class="form-group">
                     <label for="text">Nom</label>
-                    <input id="text" type="text" name="name" class="form-control" required>
+                    <input id="text" type="text" name="name" class="form-control" value="{{ oppo.name }}" required>
                 </div>
                 <div class="form-group">
                     <label for="text">Ajouter un logo</label>
-                    <input id="text" type="file" name="logo" class="form-control">
+                    <input id="text" type="file" name="logo" value="{{ oppo.logo }}" class="form-control">
                 </div>
                 <button type="submit" class="btn btn-primary"><i class="fas fa-check-circle"></i>&nbsp;&nbsp;Envoyer</button>
             </form>
@@ -24,7 +24,6 @@
     {% else %}
         <span>Vous n'êtes pas autorisé à afficher cette page</span>
     {% endif %}
-
 
 
 {% endblock %}

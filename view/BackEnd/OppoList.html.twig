@@ -1,0 +1,40 @@
+{% extends "layout.html.twig" %}
+
+{% block head %}
+    <title>Gestion des adversaires - MyTeamStats</title>
+{% endblock %}
+
+{% block content %}
+
+    {% if session.user_status >= 4 %}
+        <div class="table-responsive">
+            <table class="table table table-bordered table-striped text-center">
+                <caption class="col-12 text-center">
+                    <h4>Liste des adversaires</h4>
+                </caption>
+                <thead>
+                <tr class="col-6">
+                    <th id="table_club" class="col-2">Club</th>
+                    <th id="table_logo" class="col-2">Logo</th>
+                    <th id="table_options" class="col-2">Options</th>
+                </tr>
+                </thead>
+                <tbody>
+                {%   for oppo in oppoListObj %}
+                    <tr>
+                        <td>{{oppo.name}}</td>
+                        <td><img src="{{oppo.logo}}" class="img-responsive fit-image"></td>
+                          <td class="d-flex flex-row justify-content-around">
+                            <div><a href="index.php?action=modifyoppo&id={{ oppo.oppoid }}"><i class="fas fa-pen"></i></a></div>
+                            <div><a href="index.php?action=deleteoppo&id={{ oppo.oppoid }}"><i class="fas fa-trash-alt"></i></a></div>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <span>Vous n'êtes pas autorisé à afficher cette page</span>
+    {% endif %}
+
+{% endblock %}

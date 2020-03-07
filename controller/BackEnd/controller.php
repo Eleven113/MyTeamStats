@@ -127,8 +127,8 @@ class ControllerBack {
         echo $this->twig->render('/BackEnd/CreateOppo.html.twig');
     }
 
-    public function AddOppo($name, $photo){
-        $result = \Cloudinary\Uploader::upload($photo, array("folder" => "Opponent/") );
+    public function AddOppo($name, $logo){
+        $result = \Cloudinary\Uploader::upload($logo, array("folder" => "Opponent/") );
 
         $oppo = [
             'name' => $name,
@@ -137,7 +137,34 @@ class ControllerBack {
 
         $this->opponentManager->AddOppo($oppo);
 
-//        header ('Location: index.php?action=oppolist');
+        header ('Location: index.php?action=oppolist');
+    }
+
+    public function OppoList(){
+        $oppoListObj = $this->opponentManager->getOppoList();
+
+        echo $this->twig->render('/BackEnd/OppoList.html.twig', [ 'oppoListObj' => $oppoListObj]);
+    }
+
+    public function ModifyOppo($id){
+        $oppo = $this->opponentManager->getOppo($id);
+
+        echo $this->twig->render('/BackEnd/UpdateOppo.html.twig', [ 'oppo' => $oppo]);
+    }
+
+    public function UpdateOppo($id, $name, $logo){
+        $result = \Cloudinary\Uploader::upload($logo, array("folder" => "Opponent/") );
+
+        $oppo = [
+            'oppoid' => $id,
+            'name' => $name,
+            'logo' => $result['url']
+        ];
+
+        $this->opponentManager->UpdateOppo($oppo);
+
+        header ('Location: index.php?action=oppolist');
+
     }
 }
 

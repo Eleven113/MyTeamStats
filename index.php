@@ -217,6 +217,21 @@ if (isset($_GET['action'])) {
         $controllerBack->AddOppo($_POST['name'], $_FILES['logo']['tmp_name']);
     }
 
+    if ($_GET['action'] == 'oppolist'){
+
+        $controllerBack->OppoList();
+    }
+
+    if ($_GET['action'] == 'modifyoppo'){
+
+        $controllerBack->ModifyOppo($_GET['id']);
+    }
+
+    if ($_GET['action'] == 'updateoppo'){
+
+        $controllerBack->UpdateOppo($_GET['id'], $_POST['name'], $_FILES['logo']['tmp_name']);
+    }
+
 }
 else {
 

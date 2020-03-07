@@ -14,8 +14,23 @@ class OpponentManager
     }
 
 
-    public function OppoList(){
+    public function getOppoList(){
+        $oppoList = $this->db->query('SELECT * FROM OPPONENT');
+        $oppoListObj = new ArrayObject();
+        while ($oppoArray = $oppoList->fetch(PDO::FETCH_ASSOC)){
+            $oppo = new Opponent($oppoArray);
+            $oppoListObj->append($oppo);
+        }
 
+        return $oppoListObj;
+    }
+
+    public function getOppo($id){
+        $query = $this->db->prepare('SELECT * FROM OPPONENT WHERE OPPOID = :oppoid');
+        $query->bindValue(':oppoid',$id);
+        $query->execute();
+
+        return new Opponent($query->fetch(PDO::FETCH_ASSOC));
     }
 
     public function AddOppo($oppo){
@@ -32,7 +47,13 @@ class OpponentManager
 
     }
 
-    public function UpdateOppo(){
-
+    public function UpdateOppo($oppo){
+        $oppo = new Opponent($oppo);
+        $query = $this->db->prepare('UPDATE OPPONENT SET NAME = :name, LOGO = :logo WHERE OPPOID = :oppoid');
+        $query->bindValue(':name', $oppo->getName());
+        $query->bindValue(':logo', $oppo->getLogo());
+        $query->bindValue(':oppoid', $oppo->getOppoid());
+        $query->execute();
+        
     }
 }
