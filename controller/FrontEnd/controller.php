@@ -63,7 +63,9 @@ Class ControllerFront {
             $_SESSION['notice'] = "Adresse mail inconnue ou mot de passe incorrect";
         }
 
-       echo $this->twig->render('/FrontEnd/Homepage.html.twig', ['notice' => $_SESSION['notice']]);
+        $this->twig->addGlobal('session', $_SESSION);
+        echo $this->twig->render('/FrontEnd/Homepage.html.twig', ['notice' => $_SESSION['notice']]);
+
     }
 
     public function MatchsList(){
@@ -86,8 +88,12 @@ Class ControllerFront {
     public function SessionKill(){
         $_SESSION = array();
         session_destroy();
+
+        $this->twig->addGlobal('session', $_SESSION);
         $this->home();
 
     }
+
+
 }
 
