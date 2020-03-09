@@ -7,6 +7,11 @@
 {% block content %}
 
     {% if session.user_status >= 4 %}
+        <div id="add_oppo" class="col-1 m-4 border border-primary rounded-lg myborder">
+            <a href="index.php?action=createoppo">
+                <i class="fas fa-shield-alt"></i>&nbsp;Créér un adversaire
+            </a>
+        </div>
         <div class="table-responsive">
             <table class="table table table-bordered table-striped text-center">
                 <caption class="col-12 text-center">

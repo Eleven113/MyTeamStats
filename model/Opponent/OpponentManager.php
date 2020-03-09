@@ -43,7 +43,10 @@ class OpponentManager
 
     }
 
-    public function DeleteOppo(){
+    public function DeleteOppo($id){
+        $query = $this->db->prepare('DELETE FROM OPPONENT WHERE OPPOID = :oppoid');
+        $query->bindValue(':oppoid', $id);
+        $query->execute();
 
     }
 
@@ -54,6 +57,6 @@ class OpponentManager
         $query->bindValue(':logo', $oppo->getLogo());
         $query->bindValue(':oppoid', $oppo->getOppoid());
         $query->execute();
-        
+
     }
 }

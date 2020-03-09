@@ -166,6 +166,12 @@ class ControllerBack {
         header ('Location: index.php?action=oppolist');
 
     }
+
+    public function DeleteOppo($id){
+        $this->opponentManager->DeleteOppo($id);
+
+        header ('Location: index.php?action=oppolist');
+    }
 }
 
 // $surname, $name, $licencenum, $activelicence, $category, $photo, $position, $address, $phonenum, $mail

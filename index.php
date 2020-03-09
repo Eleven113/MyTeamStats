@@ -223,13 +223,35 @@ if (isset($_GET['action'])) {
     }
 
     if ($_GET['action'] == 'modifyoppo'){
-
-        $controllerBack->ModifyOppo($_GET['id']);
+        if (isset($_GET['id']) && $_GET['id'] > 0) {
+            $controllerBack->ModifyOppo($_GET['id']);
+        }
+        else {
+            echo "Erreur : pas d'id oppo";
+        }
     }
 
     if ($_GET['action'] == 'updateoppo'){
+        if (isset($_GET['id']) && $_GET['id'] > 0) {
+            $controllerBack->UpdateOppo($_GET['id'], $_POST['name'], $_FILES['logo']['tmp_name']);
+        }
+        else {
+            echo "Erreur : pas d'id oppo";
+        }
+    }
 
-        $controllerBack->UpdateOppo($_GET['id'], $_POST['name'], $_FILES['logo']['tmp_name']);
+    if ($_GET['action'] == 'deleteoppo'){
+        if ($isAuthorized){
+            if (isset($_GET['id']) && $_GET['id'] > 0) {
+                $controllerBack->DeleteOppo($_GET['id']);
+            }
+            else {
+                echo  "Erreur : pas d'id oppo";
+            }
+        }
+        else {
+            echo "Vous n'êtes pas autorisé à effectuer cette action";
+        }
     }
 
 }
