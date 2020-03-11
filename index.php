@@ -11,11 +11,10 @@ require('model/User/User.php');
 require('model/Opponent/Opponent.php');
 require('model/Opponent/OpponentManager.php');
 require ('model/DBFactory.php');
-
-$router = new AltoRouter();
-$router->setBasePath('/MyTeamStats');
+require('router.php');
 
 $db = DBFactory::ConnexionPDO();
+
 $playerManager = new PlayerManager($db);
 $userManager = new UserManager($db);
 $opponentManager = new OpponentManager($db);
@@ -259,39 +258,3 @@ else {
 //    $controllerFront->Home();
 //}
 
-//$router->map( 'GET', '/', $controllerFront->Home(), 'home' );
-$router->addRoutes(array(
-    array( 'GET', '/', function () use($controllerFront){$controllerFront->Home();}, 'home' ),
-    array( 'GET', '/PlayersList', function () use($controllerFront){$controllerFront->PlayersList();}, 'PlayersList' ),
-    array( 'GET', '/Player/[i:id]', function ($id) use($controllerFront){$controllerFront->Player($id);}, 'Player'),
-    array( 'GET', '/create', function () use($controllerBack){$controllerBack->CreatePlayer();}, '' )
-));
-
-// match current request url
-$match = $router->match();
-
-//echo var_dump($match['target']);
-//echo var_dump($match['params']);
-//echo var_dump($match['name']);
-
-//if($match) {
-//    $target = $match["target"];
-//    if(strpos($target, "#") !== false) {
-//        list($controller, $action) = explode("#", $target);
-//        $controller = new $controller;
-//        $controller->$action($match["params"]);
-//    } else {
-//        if(is_callable($match["target"])) call_user_func_array($match["target"], $match["params"]);
-//        else require $match["target"];
-//    }
-//} else {
-//    header( $_SERVER["SERVER_PROTOCOL"] . ' 404 Not Found');
-//}
-
-// call closure or throw 404 status
-if( is_array($match) && is_callable( $match['target'] ) ) {
-    call_user_func_array( $match['target'], $match['params'] );
-} else {
-    // no route was matched
-    header( $_SERVER["SERVER_PROTOCOL"] . ' 404 Not Found');
-}

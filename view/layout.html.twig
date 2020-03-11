@@ -12,21 +12,21 @@
     {% block head %}{% endblock %}
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">   
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    <link href="public/css/style.css" rel="stylesheet" />
-    <link rel="stylesheet" media="screen and (max-width: 767px)" href="public/css/style_mobile.css" />
+    <link href="/MyTeamStats/public/css/style.css" rel="stylesheet" />
+    <link rel="stylesheet" media="screen and (max-width: 767px)" href="/MyTeamStats//public/css/style_mobile.css" />
     <script src="https://kit.fontawesome.com/5fbf6a0223.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
     <div class="container-fluid">
         <header class="row d-flex justify-content-between bg-primary">
-            <div class="col-4 text-left"><a href="/" class="link"><i class="fas fa-bars"></i></a></div>
+            <div class="col-4 text-left"><a href="/MyteamStats" class="link"><i class="fas fa-bars"></i></a></div>
             <div class="col-4 text-center">MyTeamStats</div>
             <div class="col-4 text-right">
                 {%  if session.user_status > 0 %}
-                    Bienvenue <a href="index.php?action=sessionkill" class="link">{{ session.user_firstname }}</a>
+                    Bienvenue <a href="/SessionKill" class="link">{{ session.user_firstname }}</a>
                 {% else %}
-                    <a href="index.php?action=login" class="link"><i class="fas fa-user"></i>&nbsp;&nbsp;Connexion</a>
+                    <a href="/Login" class="link"><i class="fas fa-user"></i>&nbsp;&nbsp;Connexion</a>
                 {% endif %}
             </div>
         </header>

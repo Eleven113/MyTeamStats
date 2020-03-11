@@ -22,7 +22,8 @@ Class ControllerFront {
         echo $this->twig->render('/FrontEnd/PlayersList.html.twig',
             [
                 'playerListObj' => $playersListObj,
-                'sessionUser' => $_SESSION['user_status']
+                'sessionUser' => $_SESSION['user_status'],
+                'link' => $this->link
             ]);
     }
 
