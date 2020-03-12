@@ -105,57 +105,6 @@ else {
 //        $controllerBack->UsersList();
 //    }
 //
-//    if ($_GET['action'] == 'club'){
-//
-//        $controllerFront->Club();
-//    }
-//
-//    if ($_GET['action'] == 'player'){
-
-
-//    }
-//
-//    if ($_GET['action'] == 'deleteplayer'){
-//        if ($isAuthorized){
-//            if (isset($_GET['id']) && $_GET['id'] > 0) {
-//                $controllerBack->DeletePlayer($_GET['id']);
-//            }
-//            else {
-//                echo  "Erreur : pas d'id joueur";
-//            }
-//        }
-//        else {
-//            echo "Vous n'êtes pas autorisé à effectuer cette action";
-//        }
-//    }
-//
-//    if ($_GET['action'] == 'modifyplayer'){
-//        if (isset($_GET['id']) && $_GET['id'] > 0) {
-//            $controllerBack->ModifyPlayer($_GET['id']);
-//        }
-//        else {
-//            echo  "Erreur : pas d'id joueur";
-//        }
-//    }
-//
-//    if ($_GET['action'] == 'updateplayer'){
-//        if (isset($_GET['id']) && $_GET['id'] > 0) {
-//            $controllerBack->UpdatePlayer($_GET['id'],$_POST['lastname'], $_POST['firstname'], $_POST['licencenum'], $_POST['activelicence'], $_POST['birthdate'], $_POST['category'], $_FILES['photo']['tmp_name'], $_POST['poste'], $_POST['address'],  $_POST['phonenum'], $_POST['mail']);
-//        }
-//        else {
-//            echo  "Erreur : pas d'id joueur";
-//        }
-//    }
-//
-//    if ($_GET['action'] == 'createplayer'){
-//
-//        $controllerBack->CreatePlayer();
-//    }
-//
-//    if ($_GET['action'] == 'addplayer'){
-//        $controllerBack->AddPlayer($_POST['lastname'], $_POST['firstname'], $_POST['licencenum'], $_POST['activelicence'], $_POST['birthdate'], $_POST['category'], $_FILES['photo']['tmp_name'], $_POST['poste'], $_POST['address'],  $_POST['phonenum'], $_POST['mail']);
-//    }
-//
 //
 //    if ($_GET['action'] == 'creatematch'){
 //
@@ -172,68 +121,7 @@ else {
 //        $controllerBack->MatchStat();
 //    }
 //
-//    if ($_GET['action'] == 'sessionkill'){
-//
-//        $controllerFront->SessionKill();
-//    }
-//
-//    if ($_GET['action'] == 'admin'){
-//
-//        $controllerBack->Admin();
-//    }
-//
-//    if ($_GET['action'] == 'createoppo'){
-//
-//        $controllerBack->CreateOppo();
-//    }
-//
-//    if ($_GET['action'] == 'addoppo'){
-//
-//        $controllerBack->AddOppo($_POST['name'], $_FILES['logo']['tmp_name']);
-//    }
-//
-//    if ($_GET['action'] == 'oppolist'){
-//
-//        $controllerBack->OppoList();
-//    }
-//
-//    if ($_GET['action'] == 'modifyoppo'){
-//        if (isset($_GET['id']) && $_GET['id'] > 0) {
-//            $controllerBack->ModifyOppo($_GET['id']);
-//        }
-//        else {
-//            echo "Erreur : pas d'id oppo";
-//        }
-//    }
-//
-//    if ($_GET['action'] == 'updateoppo'){
-//        if (isset($_GET['id']) && $_GET['id'] > 0) {
-//            $controllerBack->UpdateOppo($_GET['id'], $_POST['name'], $_FILES['logo']['tmp_name']);
-//        }
-//        else {
-//            echo "Erreur : pas d'id oppo";
-//        }
-//    }
-//
-//    if ($_GET['action'] == 'deleteoppo'){
-//        if ($isAuthorized){
-//            if (isset($_GET['id']) && $_GET['id'] > 0) {
-//                $controllerBack->DeleteOppo($_GET['id']);
-//            }
-//            else {
-//                echo  "Erreur : pas d'id oppo";
-//            }
-//        }
-//        else {
-//            echo "Vous n'êtes pas autorisé à effectuer cette action";
-//        }
-//    }
-//
-//}
-//else {
-//
-//    $controllerFront->Home();
-//}
+
 
 $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     // FrontEnd
@@ -247,7 +135,7 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('GET', '/MyTeamStats/Match/{id:[0-9]+}', 'controllerFront/Match');
         // Club
     $r->addRoute('GET', '/MyTeamStats/Club', 'controllerFront/Club');
-        // USER
+        // User
     $r->addRoute('GET', '/MyTeamStats/Login', 'controllerFront/Login');
     $r->addRoute('GET', '/MyTeamStats/CreateUser', 'controllerFront/CreateUser');
     $r->addRoute('GET', '/MyTeamStats/LostPassword', 'controllerFront/LostPassword');
@@ -255,10 +143,30 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('POST', '/MyTeamStats/UserLogin', 'controllerFront/UserLogin');
 
 
-
     // BackEnd
+        // Admin
+    $r->addRoute('GET', '/MyTeamStats/Admin', 'controllerBack/Admin');
         // Player
-    $r->addRoute('GET', '/MyTeamStats/UpdatePlayer/{id:[0-9]+}', 'controllerBack/UpdatePlayer');
+    $r->addRoute('GET', '/MyTeamStats/CreatePlayer', 'controllerBack/CreatePlayer');
+    $r->addRoute('POST', '/MyTeamStats/AddPlayer', 'controllerBack/AddPlayer');
+    $r->addRoute('GET', '/MyTeamStats/ModifyPlayer/{id:[0-9]+}', 'controllerBack/ModifyPlayer');
+    $r->addRoute('POST', '/MyTeamStats/UpdatePlayer/{id:[0-9]+}', 'controllerBack/UpdatePlayer');
+    $r->addRoute('GET', '/MyTeamStats/DeletePlayer/{id:[0-9]+}', 'controllerBack/DeletePlayer');
+        // Match
+        // Oppo
+    $r->addRoute('GET', '/MyTeamStats/OppoList', 'controllerBack/OppoList');
+    $r->addRoute('GET', '/MyTeamStats/CreateOppo', 'controllerBack/CreateOppo');
+    $r->addRoute('POST', '/MyTeamStats/AddOppo', 'controllerBack/AddOppo');
+    $r->addRoute('GET', '/MyTeamStats/ModifyOppo/{id:[0-9]+}', 'controllerBack/ModifyOppo');
+    $r->addRoute('POST', '/MyTeamStats/UpdateOppo/{id:[0-9]+}', 'controllerBack/UpdateOppo');
+    $r->addRoute('GET', '/MyTeamStats/DeleteOppo/{id:[0-9]+}', 'controllerBack/DeleteOppo');
+        // Club
+        // User
+    $r->addRoute('GET', '/MyTeamStats/UsersList', 'controllerBack/UsersList');
+    $r->addRoute('GET', '/MyTeamStats/ModifyUser/{id:[0-9]+}', 'controllerBack/ModifyUser');
+    $r->addRoute('GET', '/MyTeamStats/DeleteUser/{id:[0-9]+}', 'controllerBack/DeleteUser');
+
+
     // {id} must be a number (\d+)
     $r->addRoute('GET', '/user/{id:\d+}', 'get_user_handler');
     // The /{title} suffix is optional
@@ -290,6 +198,7 @@ switch ($routeInfo[0]) {
         $handler = $routeInfo[1];
         $vars = $routeInfo[2];
         $vars += $_POST;
+        $vars += $_FILES;
         $action = explode('/',$handler,2);
         $controller = $action[0];
         $method = $action[1];

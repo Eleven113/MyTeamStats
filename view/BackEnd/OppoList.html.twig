@@ -8,7 +8,7 @@
 
     {% if session.user_status >= 4 %}
         <div id="add_oppo" class="col-1 m-4 border border-primary rounded-lg myborder">
-            <a href="index.php?action=createoppo">
+            <a href="/MyTeamStast/CreateOppo">
                 <i class="fas fa-shield-alt"></i>&nbsp;Créér un adversaire
             </a>
         </div>
@@ -30,8 +30,8 @@
                         <td>{{oppo.name}}</td>
                         <td><img src="{{oppo.logo}}" class="img-responsive fit-image"></td>
                           <td class="d-flex flex-row justify-content-around">
-                            <div><a href="index.php?action=modifyoppo&id={{ oppo.oppoid }}"><i class="fas fa-pen"></i></a></div>
-                            <div><a href="index.php?action=deleteoppo&id={{ oppo.oppoid }}"><i class="fas fa-trash-alt"></i></a></div>
+                            <div><a href="/MyTeamStast/ModifyOppo/{{ oppo.oppoid }}"><i class="fas fa-pen"></i></a></div>
+                            <div><a href="/MyTeamStast/DeleteOppo/{{ oppo.oppoid }}"><i class="fas fa-trash-alt"></i></a></div>
                         </td>
                     </tr>
                 {% endfor %}

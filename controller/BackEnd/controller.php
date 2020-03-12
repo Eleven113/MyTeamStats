@@ -19,8 +19,8 @@ class ControllerBack {
         echo $this->twig->render('/BackEnd/CreatePlayer.html.twig');
     }
 
-    public function AddPlayer($lastname, $firstname, $licencenum, $activelicence, $birthdate, $category, $photo, $poste, $address, $phonenum, $mail){
-
+    public function AddPlayer($lastname, $firstname, $licencenum, $activelicence, $birthdate, $category, $poste, $address, $phonenum, $mail, $photo){
+        $photo = $photo['tmp_name'];
         $result = \Cloudinary\Uploader::upload($photo, array("folder" => "Players/") );
 
         $player = [
@@ -40,13 +40,13 @@ class ControllerBack {
         $this->playerManager->AddPlayer($player);
 
 
-        header ('Location: index.php?action=playerslist');
+        header ('Location: http://www.thibaut-minard.fr/MyTeamStats/PlayersList');
     }
 
     public function DeletePlayer($id){
         $this->playerManager->DeletePlayer($id);
 
-        header ('Location: index.php?action=playerslist');
+        header ('Location: http://www.thibaut-minard.fr/MyTeamStats/PlayersList');
     }
 
     public function ModifyPlayer($id){
@@ -54,8 +54,8 @@ class ControllerBack {
         echo $this->twig->render('/BackEnd/UpdatePlayer.html.twig', ['player' => $player]);
     }
 
-    public function UpdatePlayer($id, $lastname, $firstname, $licencenum, $activelicence, $birthdate, $category, $photo, $poste, $address, $phonenum, $mail){
-
+    public function UpdatePlayer($id, $lastname, $firstname, $licencenum, $activelicence, $birthdate, $category, $poste, $address, $phonenum, $mail, $photo){
+        $photo = $photo['tmp_name'];
         $result = \Cloudinary\Uploader::upload($photo, array("folder" => "Players/") );
 
         $player = [
@@ -76,7 +76,7 @@ class ControllerBack {
         $this->playerManager->UpdatePlayer($player);
 
 
-        header ('Location: index.php?action=playerslist');
+        header ('Location: http://www.thibaut-minard.fr/MyTeamStats/PlayersList');
     }
 
     public function CreateMatch(){
@@ -100,7 +100,7 @@ class ControllerBack {
     public function DeleteUser($id){
         $this->userManager->DeleteUser($id);
 
-        header ('Location: index.php?action=userslist');
+        header ('Location: http://www.thibaut-minard.fr/MyTeamStats/UsersList');
     }
 
     public function ModifyUser($id){
@@ -120,7 +120,7 @@ class ControllerBack {
 
         $this->userManager->UpdateUser($user);
 
-        header ('Location: index.php?action=userslist');
+        header ('Location: http://www.thibaut-minard.fr/MyTeamStats/UsersList');
     }
 
     public function CreateOppo(){
@@ -128,6 +128,7 @@ class ControllerBack {
     }
 
     public function AddOppo($name, $logo){
+        $logo = $logo['tmp_name'];
         $result = \Cloudinary\Uploader::upload($logo, array("folder" => "Opponent/") );
 
         $oppo = [
@@ -137,7 +138,7 @@ class ControllerBack {
 
         $this->opponentManager->AddOppo($oppo);
 
-        header ('Location: index.php?action=oppolist');
+        header ('Location: http://www.thibaut-minard.fr/MyTeamStats/OppoList');
     }
 
     public function OppoList(){
@@ -153,6 +154,7 @@ class ControllerBack {
     }
 
     public function UpdateOppo($id, $name, $logo){
+        $logo = $logo['tmp_name'];
         $result = \Cloudinary\Uploader::upload($logo, array("folder" => "Opponent/") );
 
         $oppo = [
@@ -163,15 +165,14 @@ class ControllerBack {
 
         $this->opponentManager->UpdateOppo($oppo);
 
-        header ('Location: index.php?action=oppolist');
+        header ('Location: http://www.thibaut-minard.fr/MyTeamStats/OppoList');
 
     }
 
     public function DeleteOppo($id){
         $this->opponentManager->DeleteOppo($id);
 
-        header ('Location: index.php?action=oppolist');
+        header ('Location: http://www.thibaut-minard.fr/MyTeamStats/OppoList');
     }
 }
 
-// $surname, $name, $licencenum, $activelicence, $category, $photo, $position, $address, $phonenum, $mail
