@@ -8,7 +8,7 @@
 
     {% if session.user_status >= 4 %}
         <div id="updateuser_form" class="d-flex flex-column justify-content-center align-items-center">
-            <form id="updateuser-form" class="col-lg-6" action="index.php?action=updateuser&id={{ user.userid }}"  method="post" enctype="multipart/form-data">
+            <form id="updateuser-form" class="col-lg-6" action="/MyTeamStats/UpdateUser/{{ user.userid }}"  method="post" enctype="multipart/form-data">
                 <legend>Modifier un utilisateur</legend>
                 <div class="form-group">
                     <label for="text">Nom</label>

@@ -6,60 +6,60 @@
 
 {% block content %}
 
-{% if session.user_status >= 1 %}
-    <div id="add_player" class="col-1 m-4 border border-primary rounded-lg myborder">
-        <a href="/MyTeamStats/CreatePlayer">
-            <i class="fas fa-user-plus"></i>&nbsp;Créér un joueur
-        </a>
+    {% if session.user_status >= 3 %}
+        <div id="add_player" class="col-1 m-4 border border-primary rounded-lg myborder">
+            <a href="/MyTeamStats/CreatePlayer">
+                <i class="fas fa-user-plus"></i>&nbsp;Créér un joueur
+            </a>
+        </div>
+    {% endif %}
+
+    <div class="table-responsive">
+        <table class="table table table-bordered table-striped text-center">
+            <caption class="col-12 text-center">
+                <h4>Liste des joueurs</h4>
+            </caption>
+            <thead>
+                <tr>
+                    <th id="table_licencenum">N° Licence</th>
+                    <th id="table_surname">Nom</th>
+                    <th id="table_name">Prénom</th>
+                    <th id="table_birthdate">Date de naissance</th>
+                    <th id="table_category">Catégorie</th>
+                    <th id="table_licenced">Licencié.e ?</th>
+                    <th id="table_options">Options</th>
+                </tr>
+            </thead>
+            <tbody>
+            {%   for player in playerListObj %}
+
+                <tr>
+                    <td>{{player.licence}}</a></td>
+                    <td>{{player.lastname}}</td>
+                    <td>{{player.firstname}}</td>
+                    <td>{{player.birthdate}}</td>
+                    <td>{{player.category}}</td>
+                    <td>
+                        {% if player.activelicence == 1  %}
+                            <i class="fas fa-check greencheck"></i>
+                        {%  else %}
+                            <i class="fas fa-times redtimes"></i>
+                         {% endif %}
+                    </td>
+                    <td class="d-flex flex-row justify-content-between">
+                        <div><a href="/MyTeamStats/Player/{{ player.playerid }}"><i class="fas fa-user"></i></a></div>
+                        {%  if session.user_status >= 3 %}
+                            <div><a href="/MyTeamStats/ModifyPlayer/{{ player.playerid }}"><i class="fas fa-user-edit"></i></a></div>
+                            <div><a href="/MyTeamStats/DeletePlayer/{{ player.playerid }}"><i class="fas fa-user-times"></i></a></div>
+                        {% endif %}
+                    </td>
+                </tr>
+
+            {% endfor %}
+            </tbody>
+        </table>
+        {{ env.president }}
     </div>
-{% endif %}
-
-<div class="table-responsive">
-    <table class="table table table-bordered table-striped text-center">
-        <caption class="col-12 text-center">
-            <h4>Liste des joueurs</h4>
-        </caption>
-        <thead>
-            <tr>
-                <th id="table_licencenum">N° Licence</th>
-                <th id="table_surname">Nom</th>
-                <th id="table_name">Prénom</th>
-                <th id="table_birthdate">Date de naissance</th>
-                <th id="table_category">Catégorie</th>
-                <th id="table_licenced">Licencié.e ?</th>
-                <th id="table_options">Options</th>
-            </tr>
-        </thead>
-        <tbody>
-        {%   for player in playerListObj %}
-
-            <tr>
-                <td>{{player.licence}}</a></td>
-                <td>{{player.lastname}}</td>
-                <td>{{player.firstname}}</td>
-                <td>{{player.birthdate}}</td>
-                <td>{{player.category}}</td>
-                <td>
-                    {% if player.activelicence == 1  %}
-                        <i class="fas fa-check greencheck"></i>
-                    {%  else %}
-                        <i class="fas fa-times redtimes"></i>
-                     {% endif %}
-                </td>
-                <td class="d-flex flex-row justify-content-between">
-                    <div><a href="/MyTeamStats/Player/{{ player.playerid }}"><i class="fas fa-user"></i></a></div>
-                    {%  if session.user_status >= 3 %}
-                        <div><a href="/MyTeamStats/ModifyPlayer/{{ player.playerid }}"><i class="fas fa-user-edit"></i></a></div>
-                        <div><a href="/MyTeamStats/DeletePlayer/{{ player.playerid }}"><i class="fas fa-user-times"></i></a></div>
-                    {% endif %}
-                </td>
-            </tr>
-
-        {% endfor %}
-        </tbody>
-    </table>
-    {{ env.president }}
-</div>    
 
 {% endblock %}
 

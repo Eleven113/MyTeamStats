@@ -46,66 +46,7 @@ else {
 }
 
 //// Routeur
-//
-//if (isset($_GET['action'])) {
-//    if ($_GET['action'] == 'matchs'){
-//
-//    }
-//
-//    if ($_GET['action'] == 'userlogin'){
-//        if ( isset($_POST['mail']) || isset($_POST['pwd']) ){
-//            $controllerFront->UserLogin($_POST['mail'], $_POST['pwd']);
-//        }
-//        else {
-//            echo "Vous devez saisir un mail et un mot de passe";
-//        }
-//    }
-//
 
-//
-//    if ($_GET['action'] == 'adduser'){
-//
-//        $controllerFront->AddUser($_POST['lastname'], $_POST['firstname'], $_POST['mail'], $_POST['pwd1'] );
-//    }
-//
-//    if ($_GET['action'] == 'deleteuser'){
-//        if ($isAuthorized){
-//            if (isset($_GET['id']) && $_GET['id'] > 0) {
-//                $controllerBack->DeleteUser($_GET['id']);
-//            }
-//            else {
-//                echo  "Erreur : pas d'id user";
-//            }
-//        }
-//        else {
-//            echo "Vous n'êtes pas autorisé à effectuer cette action";
-//        }
-//    }
-//
-//    if ($_GET['action'] == 'modifyuser'){
-//        if (isset($_GET['id']) && $_GET['id'] > 0) {
-//            $controllerBack->ModifyUser($_GET['id']);
-//        }
-//        else {
-//            echo  "Erreur : pas d'id user";
-//        }
-//    }
-//
-//    if ($_GET['action'] == 'updateuser'){
-//        if (isset($_GET['id']) && $_GET['id'] > 0) {
-//            $controllerBack->UpdateUser($_GET['id'], $_POST['lastname'], $_POST['firstname'], $_POST['mail'], $_POST['status']);
-//        }
-//        else {
-//            echo  "Erreur : pas d'id user";
-//        }
-//    }
-//
-//    if ($_GET['action'] == 'userslist'){
-//
-//        $controllerBack->UsersList();
-//    }
-//
-//
 //    if ($_GET['action'] == 'creatematch'){
 //
 //        $controllerBack->CreateMatch();
@@ -122,6 +63,7 @@ else {
 //    }
 //
 
+// Router
 
 $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     // FrontEnd
@@ -153,6 +95,7 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('POST', '/MyTeamStats/UpdatePlayer/{id:[0-9]+}', 'controllerBack/UpdatePlayer');
     $r->addRoute('GET', '/MyTeamStats/DeletePlayer/{id:[0-9]+}', 'controllerBack/DeletePlayer');
         // Match
+
         // Oppo
     $r->addRoute('GET', '/MyTeamStats/OppoList', 'controllerBack/OppoList');
     $r->addRoute('GET', '/MyTeamStats/CreateOppo', 'controllerBack/CreateOppo');
@@ -161,9 +104,11 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('POST', '/MyTeamStats/UpdateOppo/{id:[0-9]+}', 'controllerBack/UpdateOppo');
     $r->addRoute('GET', '/MyTeamStats/DeleteOppo/{id:[0-9]+}', 'controllerBack/DeleteOppo');
         // Club
+
         // User
     $r->addRoute('GET', '/MyTeamStats/UsersList', 'controllerBack/UsersList');
     $r->addRoute('GET', '/MyTeamStats/ModifyUser/{id:[0-9]+}', 'controllerBack/ModifyUser');
+    $r->addRoute('POST', '/MyTeamStats/UpdateUser/{id:[0-9]+}', 'controllerBack/UpdateUser');
     $r->addRoute('GET', '/MyTeamStats/DeleteUser/{id:[0-9]+}', 'controllerBack/DeleteUser');
 
 
