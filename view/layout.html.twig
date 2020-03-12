@@ -21,7 +21,7 @@
     <div class="container-fluid">
         <header class="row d-flex justify-content-between bg-primary">
             <div class="col-4 text-left"><a href="/MyteamStats" class="link"><i class="fas fa-bars"></i></a></div>
-            <div class="col-4 text-center">MyTeamStats</div>
+            <div class="col-4 text-center"><a href="/MyteamStats" class="link">MyTeamStats</a></div>
             <div class="col-4 text-right">
                 {%  if session.user_status > 0 %}
                     Bienvenue <a href="/MyTeamStats/SessionKill" class="link">{{ session.user_firstname }}</a>

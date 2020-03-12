@@ -26,7 +26,7 @@ class OpponentManager
     }
 
     public function getOppo($id){
-        $query = $this->db->prepare('SELECT * FROM OPPONENT WHERE OPPOID = :oppoid');
+        $query = $this->db->prepare('SELECT * FROM OPPONENT WHERE OPPONENTID = :oppoid');
         $query->bindValue(':oppoid',$id);
         $query->execute();
 
@@ -44,7 +44,7 @@ class OpponentManager
     }
 
     public function DeleteOppo($id){
-        $query = $this->db->prepare('DELETE FROM OPPONENT WHERE OPPOID = :oppoid');
+        $query = $this->db->prepare('DELETE FROM OPPONENT WHERE OPPONENTID = :oppoid');
         $query->bindValue(':oppoid', $id);
         $query->execute();
 
@@ -52,7 +52,7 @@ class OpponentManager
 
     public function UpdateOppo($oppo){
         $oppo = new Opponent($oppo);
-        $query = $this->db->prepare('UPDATE OPPONENT SET NAME = :name, LOGO = :logo WHERE OPPOID = :oppoid');
+        $query = $this->db->prepare('UPDATE OPPONENT SET NAME = :name, LOGO = :logo WHERE OPPONENTID = :oppoid');
         $query->bindValue(':name', $oppo->getName());
         $query->bindValue(':logo', $oppo->getLogo());
         $query->bindValue(':oppoid', $oppo->getOppoid());

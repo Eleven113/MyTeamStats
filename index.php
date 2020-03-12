@@ -128,7 +128,6 @@ if (false !== $pos = strpos($uri, '?')) {
 }
 $uri = rawurldecode($uri);
 
-
 $routeInfo = $dispatcher->dispatch($httpMethod, $uri);
 
 switch ($routeInfo[0]) {
@@ -147,11 +146,17 @@ switch ($routeInfo[0]) {
         $action = explode('/',$handler,2);
         $controller = $action[0];
         $method = $action[1];
+
         if ($controller == 'controllerFront'){
             $controllerFront->{$method}(...array_values($vars));
         }
         else {
-            $controllerBack->{$method}(...array_values($vars));
+            if ($_SESSION['user_status'] >= 3){
+                $controllerBack->{$method}(...array_values($vars));
+            }
+            else {
+                echo "Vous n'êtes pas autorisé à effectuer cette action";
+            }
         }
 
         break;
