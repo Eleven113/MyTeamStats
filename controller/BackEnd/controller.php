@@ -6,13 +6,15 @@ class ControllerBack {
     private $playerManager;
     private $userManager;
     private $opponentManager;
+    private $matchManager;
 
-    public function __construct($twig, $playerManager, $userManager, $opponentManager)
+    public function __construct($twig, $playerManager, $userManager, $opponentManager, $matchManager)
     {
         $this->twig = $twig;
         $this->playerManager = $playerManager;
         $this->userManager = $userManager;
         $this->opponentManager = $opponentManager;
+        $this->matchManager = $matchManager;
     }
 
     public function CreatePlayer(){
@@ -173,6 +175,10 @@ class ControllerBack {
         $this->opponentManager->DeleteOppo($id);
 
         header ('Location: http://www.thibaut-minard.fr/MyTeamStats/OppoList');
+    }
+
+    public function CreateMatch($date, $opponent, $athome, $location, $){
+
     }
 }
 

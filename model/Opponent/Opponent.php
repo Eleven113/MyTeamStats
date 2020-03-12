@@ -3,7 +3,7 @@
 
 class Opponent
 {
-    private $oppoid;
+    private $opponentid;
     private $name;
     private $logo;
 
@@ -28,9 +28,9 @@ class Opponent
     /**
      * @return mixed
      */
-    public function getOppoid()
+    public function getOpponentid()
     {
-        return $this->oppoid;
+        return $this->opponentid;
     }
 
     // SETTER
@@ -52,11 +52,11 @@ class Opponent
     }
 
     /**
-     * @param mixed $oppoid
+     * @param mixed $opponentid
      */
-    public function setOppoid($oppoid)
+    public function setOpponentid($opponentid)
     {
-        $this->oppoid = $oppoid;
+        $this->opponentid = $opponentid;
     }
 
     // Constructor

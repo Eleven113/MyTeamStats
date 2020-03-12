@@ -12,6 +12,7 @@ class Match
     private $type;
     private $periodnum;
     private $periodduration;
+    private $status;
 
     // GETTER
 
@@ -95,6 +96,14 @@ class Match
         return $this->oppoid;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
     // SETTER
 
     /**
@@ -159,6 +168,14 @@ class Match
     public function setType($type)
     {
         $this->type = $type;
+    }
+
+    /**
+     * @param mixed $status
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
     }
 
     // Constructor

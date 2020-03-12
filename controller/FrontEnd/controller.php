@@ -5,12 +5,14 @@ Class ControllerFront {
     private $twig;
     private $playerManager;
     private $userManager;
+    private $matchManager;
 
-    public function __construct($twig, $playerManager, $userManager)
+    public function __construct($twig, $playerManager, $userManager, $matchManager)
     {
         $this->twig = $twig;
         $this->playerManager = $playerManager;
         $this->userManager = $userManager;
+        $this->matchManager = $matchManager;
     }
 
     public function Home(){

@@ -10,6 +10,8 @@ require('model/User/UserManager.php');
 require('model/User/User.php');
 require('model/Opponent/Opponent.php');
 require('model/Opponent/OpponentManager.php');
+require('model/Match/Match.php');
+require('model/Match/MatchManager.php');
 require ('model/DBFactory.php');
 //require('router.php');
 
@@ -18,6 +20,7 @@ $db = DBFactory::ConnexionPDO();
 $playerManager = new PlayerManager($db);
 $userManager = new UserManager($db);
 $opponentManager = new OpponentManager($db);
+$matchManager = new MatchManager($db);
 
 $loader = new \Twig\Loader\FilesystemLoader(__DIR__ . '/view');
 $twig = new \Twig\Environment($loader, [
@@ -26,8 +29,8 @@ $twig = new \Twig\Environment($loader, [
 $twig->addGlobal('session', $_SESSION);
 $twig->addGlobal('env', $_ENV);
 
-$controllerFront = new ControllerFront($twig, $playerManager, $userManager);
-$controllerBack = new ControllerBack($twig, $playerManager, $userManager, $opponentManager);
+$controllerFront = new ControllerFront($twig, $playerManager, $userManager, $matchManager);
+$controllerBack = new ControllerBack($twig, $playerManager, $userManager, $opponentManager, $matchManager);
 
 \Cloudinary::config( array (
     "cloud_name" => "marthyte" ,
@@ -95,7 +98,7 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('POST', '/MyTeamStats/UpdatePlayer/{id:[0-9]+}', 'controllerBack/UpdatePlayer');
     $r->addRoute('GET', '/MyTeamStats/DeletePlayer/{id:[0-9]+}', 'controllerBack/DeletePlayer');
         // Match
-
+    $r->addRoute('GET', '/MyTeamStats/CreateMatch', 'controllerBack/CreateMatch');
         // Oppo
     $r->addRoute('GET', '/MyTeamStats/OppoList', 'controllerBack/OppoList');
     $r->addRoute('GET', '/MyTeamStats/CreateOppo', 'controllerBack/CreateOppo');
