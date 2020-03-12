@@ -4,7 +4,7 @@
 class Match
 {
     private $matchid;
-    private $oppoid;
+    private $opponentid;
     private $category;
     private $date;
     private $location;
@@ -81,19 +81,11 @@ class Match
     }
 
     /**
-     * @param mixed $oppoid
-     */
-    public function setOppoid($oppoid)
-    {
-        $this->oppoid = $oppoid;
-    }
-
-    /**
      * @return mixed
      */
-    public function getOppoid()
+    public function getOpponentid()
     {
-        return $this->oppoid;
+        return $this->opponentid;
     }
 
     /**
@@ -176,6 +168,14 @@ class Match
     public function setStatus($status)
     {
         $this->status = $status;
+    }
+
+    /**
+     * @param mixed $oppoid
+     */
+    public function setOpponentid($opponentid)
+    {
+        $this->opponentoid = $opponentid;
     }
 
     // Constructor

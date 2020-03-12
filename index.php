@@ -72,14 +72,18 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     // FrontEnd
         // Home
     $r->addRoute('GET', '/MyTeamStats/', 'controllerFront/Home');
+
         // Player
     $r->addRoute('GET', '/MyTeamStats/PlayersList', 'controllerFront/PlayersList');
     $r->addRoute('GET', '/MyTeamStats/Player/{id:[0-9]+}', 'controllerFront/Player');
+
         // Match
     $r->addRoute('GET', '/MyTeamStats/MatchsList', 'controllerFront/MatchsList');
     $r->addRoute('GET', '/MyTeamStats/Match/{id:[0-9]+}', 'controllerFront/Match');
+
         // Club
     $r->addRoute('GET', '/MyTeamStats/Club', 'controllerFront/Club');
+
         // User
     $r->addRoute('GET', '/MyTeamStats/Login', 'controllerFront/Login');
     $r->addRoute('GET', '/MyTeamStats/CreateUser', 'controllerFront/CreateUser');
@@ -91,14 +95,18 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     // BackEnd
         // Admin
     $r->addRoute('GET', '/MyTeamStats/Admin', 'controllerBack/Admin');
+
         // Player
     $r->addRoute('GET', '/MyTeamStats/CreatePlayer', 'controllerBack/CreatePlayer');
     $r->addRoute('POST', '/MyTeamStats/AddPlayer', 'controllerBack/AddPlayer');
     $r->addRoute('GET', '/MyTeamStats/ModifyPlayer/{id:[0-9]+}', 'controllerBack/ModifyPlayer');
     $r->addRoute('POST', '/MyTeamStats/UpdatePlayer/{id:[0-9]+}', 'controllerBack/UpdatePlayer');
     $r->addRoute('GET', '/MyTeamStats/DeletePlayer/{id:[0-9]+}', 'controllerBack/DeletePlayer');
+
         // Match
     $r->addRoute('GET', '/MyTeamStats/CreateMatch', 'controllerBack/CreateMatch');
+    $r->addRoute('POST', '/MyTeamStats/AddMatch', 'controllerBack/AddMatch');
+
         // Oppo
     $r->addRoute('GET', '/MyTeamStats/OppoList', 'controllerBack/OppoList');
     $r->addRoute('GET', '/MyTeamStats/CreateOppo', 'controllerBack/CreateOppo');
@@ -106,6 +114,7 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('GET', '/MyTeamStats/ModifyOppo/{id:[0-9]+}', 'controllerBack/ModifyOppo');
     $r->addRoute('POST', '/MyTeamStats/UpdateOppo/{id:[0-9]+}', 'controllerBack/UpdateOppo');
     $r->addRoute('GET', '/MyTeamStats/DeleteOppo/{id:[0-9]+}', 'controllerBack/DeleteOppo');
+
         // Club
 
         // User
@@ -144,6 +153,7 @@ switch ($routeInfo[0]) {
     case FastRoute\Dispatcher::FOUND:
         $handler = $routeInfo[1];
         $vars = $routeInfo[2];
+        print_r($_POST);
         $vars += $_POST;
         $vars += $_FILES;
         $action = explode('/',$handler,2);

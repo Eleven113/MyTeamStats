@@ -82,7 +82,9 @@ class ControllerBack {
     }
 
     public function CreateMatch(){
-        echo $this->twig->render('/BackEnd/CreateMatch.html.twig');
+        $oppoListObj = $this->opponentManager->getOppoList();
+
+        echo $this->twig->render('/BackEnd/CreateMatch.html.twig', [ 'oppoListObj' => $oppoListObj]);
     }
 
     public function MatchStat(){
@@ -177,7 +179,20 @@ class ControllerBack {
         header ('Location: http://www.thibaut-minard.fr/MyTeamStats/OppoList');
     }
 
-    public function CreateMatch($date, $opponent, $athome, $location, $){
+    public function AddMatch($date, $opponent, $athome, $location, $category, $type, $periodnum, $periodduration){
+        $match = [
+            'date' => $date,
+            'opponent' => $opponent,
+            'athome' => $athome,
+            'category' => $category,
+            'type' => $type,
+            'periodnum' => $periodnum,
+            'periodduration' => $periodduration
+        ];
+
+        $this->matchManager->AddMatch($match);
+
+        header ('Location: http://www.thibaut-minard.fr/MyTeamStats/MatchsList');
 
     }
 }
