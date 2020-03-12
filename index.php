@@ -11,7 +11,7 @@ require('model/User/User.php');
 require('model/Opponent/Opponent.php');
 require('model/Opponent/OpponentManager.php');
 require ('model/DBFactory.php');
-require('router.php');
+//require('router.php');
 
 $db = DBFactory::ConnexionPDO();
 
@@ -52,16 +52,6 @@ else {
 //
 //    }
 //
-//    if ($_GET['action'] == 'playerslist'){
-//
-//        $controllerFront->PlayersList();
-//    }
-//
-//    if ($_GET['action'] == 'login'){
-//
-//        $controllerFront->Login();
-//    }
-//
 //    if ($_GET['action'] == 'userlogin'){
 //        if ( isset($_POST['mail']) || isset($_POST['pwd']) ){
 //            $controllerFront->UserLogin($_POST['mail'], $_POST['pwd']);
@@ -71,15 +61,7 @@ else {
 //        }
 //    }
 //
-//    if ($_GET['action'] == 'lostpassword'){
-//
-//        $controllerFront->LostPassword();
-//    }
-//
-//    if ($_GET['action'] == 'createuser'){
-//
-//        $controllerFront->CreateUser();
-//    }
+
 //
 //    if ($_GET['action'] == 'adduser'){
 //
@@ -121,11 +103,6 @@ else {
 //    if ($_GET['action'] == 'userslist'){
 //
 //        $controllerBack->UsersList();
-//    }
-//
-//    if ($_GET['action'] == 'matchslist'){
-//
-//        $controllerFront->MatchsList();
 //    }
 //
 //    if ($_GET['action'] == 'club'){
@@ -258,3 +235,70 @@ else {
 //    $controllerFront->Home();
 //}
 
+$dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
+    // FrontEnd
+        // Home
+    $r->addRoute('GET', '/MyTeamStats/', 'controllerFront/Home');
+        // Player
+    $r->addRoute('GET', '/MyTeamStats/PlayersList', 'controllerFront/PlayersList');
+    $r->addRoute('GET', '/MyTeamStats/Player/{id:[0-9]+}', 'controllerFront/Player');
+        // Match
+    $r->addRoute('GET', '/MyTeamStats/MatchsList', 'controllerFront/MatchsList');
+    $r->addRoute('GET', '/MyTeamStats/Match/{id:[0-9]+}', 'controllerFront/Match');
+        // Club
+    $r->addRoute('GET', '/MyTeamStats/Club', 'controllerFront/Club');
+        // USER
+    $r->addRoute('GET', '/MyTeamStats/Login', 'controllerFront/Login');
+    $r->addRoute('GET', '/MyTeamStats/CreateUser', 'controllerFront/CreateUser');
+    $r->addRoute('GET', '/MyTeamStats/LostPassword', 'controllerFront/LostPassword');
+    $r->addRoute('GET', '/MyTeamStats/SessionKill', 'controllerFront/SessionKill');
+    $r->addRoute('POST', '/MyTeamStats/UserLogin', 'controllerFront/UserLogin');
+
+
+
+    // BackEnd
+        // Player
+    $r->addRoute('GET', '/MyTeamStats/UpdatePlayer/{id:[0-9]+}', 'controllerBack/UpdatePlayer');
+    // {id} must be a number (\d+)
+    $r->addRoute('GET', '/user/{id:\d+}', 'get_user_handler');
+    // The /{title} suffix is optional
+    $r->addRoute('GET', '/articles/{id:\d+}[/{title}]', 'get_article_handler');
+});
+
+// Fetch method and URI from somewhere
+$httpMethod = $_SERVER['REQUEST_METHOD'];
+$uri = $_SERVER['REQUEST_URI'];
+
+// Strip query string (?foo=bar) and decode URI
+if (false !== $pos = strpos($uri, '?')) {
+    $uri = substr($uri, 0, $pos);
+}
+$uri = rawurldecode($uri);
+
+
+$routeInfo = $dispatcher->dispatch($httpMethod, $uri);
+
+switch ($routeInfo[0]) {
+    case FastRoute\Dispatcher::NOT_FOUND:
+        echo '404';
+        break;
+    case FastRoute\Dispatcher::METHOD_NOT_ALLOWED:
+        $allowedMethods = $routeInfo[1];
+        echo '405';
+        break;
+    case FastRoute\Dispatcher::FOUND:
+        $handler = $routeInfo[1];
+        $vars = $routeInfo[2];
+        $vars += $_POST;
+        $action = explode('/',$handler,2);
+        $controller = $action[0];
+        $method = $action[1];
+        if ($controller == 'controllerFront'){
+            $controllerFront->{$method}(...array_values($vars));
+        }
+        else {
+            $controllerBack->{$method}(...array_values($vars));
+        }
+
+        break;
+}

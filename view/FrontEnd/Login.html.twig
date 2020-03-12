@@ -7,8 +7,8 @@
 {% block content %}
 
 <div id="login_form" class="d-flex flex-column justify-content-center align-items-center">
-    <div id="login-create">Première connexion ? <a href="index.php?action=createuser">Créér un compte</a></div>
-    <form id="login-form" class="col-lg-6" action="index.php?action=userlogin" method="post">
+    <div id="login-create">Première connexion ? <a href="/MyTeamStats/CreateUser">Créér un compte</a></div>
+    <form id="login-form" class="col-lg-6" action="/MyTeamStats/UserLogin" method="post">
         <legend>Connexion</legend>
         <div class="form-group">
             <label for="text"><i class="fas fa-at"></i>&nbsp;&nbsp;Adresse mail</label>
@@ -20,7 +20,7 @@
         </div>    
         <button type="submit" class="btn btn-primary"><i class="fas fa-check-circle"></i>&nbsp;&nbsp;Envoyer</button>
     </form>
-    <div id="login-create"><a href="index.php?action=lostpassword">Mot de passe oublié ?</a></div>
+    <div id="login-create"><a href="/MyTeamStats/LostPassword">Mot de passe oublié ?</a></div>
 </div>
 
 

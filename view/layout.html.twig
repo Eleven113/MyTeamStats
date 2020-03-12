@@ -24,9 +24,9 @@
             <div class="col-4 text-center">MyTeamStats</div>
             <div class="col-4 text-right">
                 {%  if session.user_status > 0 %}
-                    Bienvenue <a href="/SessionKill" class="link">{{ session.user_firstname }}</a>
+                    Bienvenue <a href="/MyTeamStats/SessionKill" class="link">{{ session.user_firstname }}</a>
                 {% else %}
-                    <a href="/Login" class="link"><i class="fas fa-user"></i>&nbsp;&nbsp;Connexion</a>
+                    <a href="/MyTeamStats/Login" class="link"><i class="fas fa-user"></i>&nbsp;&nbsp;Connexion</a>
                 {% endif %}
             </div>
         </header>
