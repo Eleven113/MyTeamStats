@@ -31,7 +31,7 @@ class MatchManager
         $query->bindValue(':periodnum', $match->getPeriodnum());
         $query->bindValue(':type', $match->getType());
         $query->bindValue(':periodduration', $match->getPeriodduration());
-        $query->bindValue(':status', 'prout');
+        $query->bindValue(':status', $match->getStatus());
 
         $query->execute();
 

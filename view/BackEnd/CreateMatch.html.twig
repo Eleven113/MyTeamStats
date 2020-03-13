@@ -31,7 +31,11 @@
             </div>
             <div class="form-group">
                 <label for="text">Terrain</label>
-                <input id="text" type="text" name="fieldid" class="form-control">
+                <select name="fieldid">
+                    {% for field in fieldsListObj %}
+                        <option value="{{ field.fieldid }}">{{ field.name }} / {{ field.address }} / {{  field.city }} / {{ field.turf }}</option>
+                    {% endfor %}
+                </select>
             </div>
             <div class="form-group">
                 <label for="text">Catégorie</label>

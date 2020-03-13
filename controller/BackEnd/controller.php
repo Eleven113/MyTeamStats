@@ -85,8 +85,14 @@ class ControllerBack {
 
     public function CreateMatch(){
         $oppoListObj = $this->opponentManager->getOppoList();
+        $fieldsListObj = $this->fieldManager->getFieldsList();
 
-        echo $this->twig->render('/BackEnd/CreateMatch.html.twig', [ 'oppoListObj' => $oppoListObj]);
+        print_r($fieldsListObj);
+        echo $this->twig->render('/BackEnd/CreateMatch.html.twig',
+            [
+                'oppoListObj' => $oppoListObj,
+                'fieldsListObj' => $fieldsListObj
+            ]);
     }
 
     public function MatchStat(){
