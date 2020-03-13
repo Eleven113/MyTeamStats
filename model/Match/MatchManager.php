@@ -12,7 +12,14 @@ class MatchManager
     }
 
     public function getMatchList(){
+        $matchList = $this->db->query('SELECT * FROM GAME');
+        $matchListObj = new ArrayObject();
+        while ($matchArray = $matchList->fetch(PDO::FETCH_ASSOC)){
+            $match = new Opponent($matchArray);
+            $matchListObj->append($match);
+        }
 
+        return $matchListObj;
     }
 
     public function getMatch($id){

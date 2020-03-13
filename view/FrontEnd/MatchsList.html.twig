@@ -21,71 +21,32 @@
         </caption>
         <thead>
             <tr>
-                <th id="table_category">Catégorie</th>
-                <th id="table_opponent">Adversaire</th>
-                <th id="table_place">Lieu</th>
-                <th id="table_date">Date</th>
-                <th id="table_status">Statut</th>
-                <th id="table_options">Options</th>
+                <th id="table_matchcategory">Catégorie</th>
+                <th id="table_matchopponent">Adversaire</th>
+                <th id="table_matchplace">Lieu</th>
+                <th id="table_matchdate">Date</th>
+                <th id="table_match">Metéo</th>
+                <th id="table_match">Options</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>U15F</td>
-                <td>Argentré</td>
-                <td>Domicile</td>
-                <th>26/09/2020</td>
-                <td>A venir</td>
-                <td><i class="fas fa-user-edit"></i>&nbsp;&nbsp;&nbsp;<i class="fas fa-trash-alt"></i></td>
-            </tr>
-            <tr>
-                <td>U15F</td>
-                <td>Argentré</td>
-                <td>Domicile</td>
-                <th>26/09/2020</td>
-                <td>A venir</td>
-                <td><i class="fas fa-user-edit"></i>&nbsp;&nbsp;&nbsp;<i class="fas fa-trash-alt"></i></td>
-            </tr>
-            <tr>
-                <td>U15F</td>
-                <td>Argentré</td>
-                <td>Domicile</td>
-                <th>26/09/2020</td>
-                <td>A venir</td>
-                <td><i class="fas fa-user-edit"></i>&nbsp;&nbsp;&nbsp;<i class="fas fa-trash-alt"></i></td>
-            </tr>
-            <tr>
-                <td>U15F</td>
-                <td>Argentré</td>
-                <td>Domicile</td>
-                <th>26/09/2020</td>
-                <td>A venir</td>
-                <td><i class="fas fa-user-edit"></i>&nbsp;&nbsp;&nbsp;<i class="fas fa-trash-alt"></i></td>
-            </tr>
-            <tr>
-                <td>U15F</td>
-                <td>Argentré</td>
-                <td>Domicil</td>
-                <th>26/09/2020</td>
-                <td>A venir</td>
-                <td><i class="fas fa-user-edit"></i>&nbsp;&nbsp;&nbsp;<i class="fas fa-trash-alt"></i></td>
-            </tr>
-            <tr>
-                <td>U15F</td>
-                <td>Argentré</td>
-                <td>Domicile</td>
-                <th>26/09/2020</td>
-                <td>A venir</td>
-                <td><i class="fas fa-user-edit"></i>&nbsp;&nbsp;&nbsp;<i class="fas fa-trash-alt"></i></td>
-            </tr>
-            <tr>
-                <td>U15F</td>
-                <td>Argentré</td>
-                <td>Domicile</td>
-                <th>26/09/2020</td>
-                <td>A venir</td>
-                <td><i class="fas fa-user-edit"></i>&nbsp;&nbsp;&nbsp;<i class="fas fa-trash-alt"></i></td>
-            </tr>
+            {% for match in matchsListObj %}
+                <tr>
+                    <td>{{ match.category }}</td>
+                    <td>{{ match.opponent }}</td>
+                    <td>{{ match.fieldid }}</td>
+                    <th>{{ match.date }}</td>
+                    <td>Meteo</td>
+                    <td>
+                        <div><a href="/MyTeamStats/Match"><i class="fas fa-clipboard-list"></i></a></div>
+                        {% if session.user_status >= 3 %}
+                            <div><a href="/MyTeamStats/AddCompo"><i class="fas fa-users"></i></a></div>
+                            <div><a href="/MyTeamStats/ModifyMatch"><i class="fas fa-pen"></i></a></div>
+                            <div><a href="/MyTeamStats/DeleteMatch"><i class="fas fa-trash-alt"></i></a></div>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
         </tbody>
     </table>
 </div>    

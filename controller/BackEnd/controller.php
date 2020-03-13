@@ -259,5 +259,11 @@ class ControllerBack {
 
         header('Location: http://www.thibaut-minard.fr/MyTeamStats/FieldsList');
     }
+
+    public function MatchsList(){
+        $matchsListObj = $this->matchManager->getMatchsList();
+
+        echo $this->twig->render('/BackEnd/MatchsList.html.twig', [ 'matchsListObj' => $matchsListObj]);
+    }
 }
 
