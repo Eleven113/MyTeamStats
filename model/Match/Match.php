@@ -3,7 +3,7 @@
 
 class Match
 {
-    private $matchid;
+    private $gameid;
     private $opponentid;
     private $category;
     private $date;
@@ -51,9 +51,9 @@ class Match
     /**
      * @return mixed
      */
-    public function getMatchid()
+    public function getGameid()
     {
-        return $this->matchid;
+        return $this->gameid;
     }
 
     /**
@@ -131,11 +131,11 @@ class Match
     }
 
     /**
-     * @param mixed $matchid
+     * @param mixed $gameid
      */
-    public function setMatchid($matchid)
+    public function setGameid($gameid)
     {
-        $this->matchid = $matchid;
+        $this->gameid = $gameid;
     }
 
     /**

@@ -32,7 +32,7 @@ $twig = new \Twig\Environment($loader, [
 $twig->addGlobal('session', $_SESSION);
 $twig->addGlobal('env', $_ENV);
 
-$controllerFront = new ControllerFront($twig, $playerManager, $userManager, $matchManager);
+$controllerFront = new ControllerFront($twig, $playerManager, $userManager, $opponentManager, $matchManager, $fieldManager);
 $controllerBack = new ControllerBack($twig, $playerManager, $userManager, $opponentManager, $matchManager, $fieldManager);
 
 \Cloudinary::config( array (
@@ -109,6 +109,9 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
         // Match
     $r->addRoute('GET', '/MyTeamStats/CreateMatch', 'controllerBack/CreateMatch');
     $r->addRoute('POST', '/MyTeamStats/AddMatch', 'controllerBack/AddMatch');
+    $r->addRoute('GET', '/MyTeamStats/ModifyMatch/{id:[0-9]+}', 'controllerBack/ModifyMatch');
+    $r->addRoute('POST', '/MyTeamStats/UpdateMatch/{id:[0-9]+}', 'controllerBack/UpdateMatch');
+    $r->addRoute('GET', '/MyTeamStats/DeleteMatch/{id:[0-9]+}', 'controllerBack/DeleteMatch');
 
         // Oppo
     $r->addRoute('GET', '/MyTeamStats/OppoList', 'controllerBack/OppoList');

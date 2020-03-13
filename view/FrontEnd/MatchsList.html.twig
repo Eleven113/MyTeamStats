@@ -33,16 +33,16 @@
             {% for match in matchsListObj %}
                 <tr>
                     <td>{{ match.category }}</td>
-                    <td>{{ match.opponent }}</td>
+                    <td>{{ match.opponentid }}</td>
                     <td>{{ match.fieldid }}</td>
                     <th>{{ match.date }}</td>
                     <td>Meteo</td>
-                    <td>
-                        <div><a href="/MyTeamStats/Match"><i class="fas fa-clipboard-list"></i></a></div>
+                    <td class="d-flex flex-row justify-content-between">
+                        <div><a href="/MyTeamStats/Match/{{ match.gameid }}"><i class="fas fa-clipboard-list"></i></a></div>
                         {% if session.user_status >= 3 %}
-                            <div><a href="/MyTeamStats/AddCompo"><i class="fas fa-users"></i></a></div>
-                            <div><a href="/MyTeamStats/ModifyMatch"><i class="fas fa-pen"></i></a></div>
-                            <div><a href="/MyTeamStats/DeleteMatch"><i class="fas fa-trash-alt"></i></a></div>
+                            <div><a href="/MyTeamStats/AddCompo/{{ match.gameid }}"><i class="fas fa-users"></i></a></div>
+                            <div><a href="/MyTeamStats/ModifyMatch/{{ match.gameid }}"><i class="fas fa-pen"></i></a></div>
+                            <div><a href="/MyTeamStats/DeleteMatch/{{ match.gameid }}"><i class="fas fa-trash-alt"></i></a></div>
                         {% endif %}
                     </td>
                 </tr>

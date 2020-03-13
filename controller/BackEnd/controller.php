@@ -260,10 +260,24 @@ class ControllerBack {
         header('Location: http://www.thibaut-minard.fr/MyTeamStats/FieldsList');
     }
 
-    public function MatchsList(){
-        $matchsListObj = $this->matchManager->getMatchsList();
+    public function ModifyMatch($id){
+        $match = $this->matchManager->getMatch($id);
+        $oppoListObj = $this->opponentManager->getOppoList();
+        $fieldsListObj = $this->fieldManager->getFieldsList();
 
-        echo $this->twig->render('/BackEnd/MatchsList.html.twig', [ 'matchsListObj' => $matchsListObj]);
+        echo $this->twig->render('/BackEnd/CreateMatch.html.twig',
+            [
+                'match' => $match,
+                'oppoListObj' => $oppoListObj,
+                'fieldsListObj' => $fieldsListObj
+            ]);
     }
+
+    public function DeleteMatch($id){
+        $this->matchManager->DeleteMatch($id);
+
+        header('Location: http://www.thibaut-minard.fr/MyTeamStats/MatchsList');
+    }
+
 }
 

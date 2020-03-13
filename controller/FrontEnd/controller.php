@@ -5,14 +5,18 @@ Class ControllerFront {
     private $twig;
     private $playerManager;
     private $userManager;
+    private $opponentManager;
     private $matchManager;
+    private $fieldManager;
 
-    public function __construct($twig, $playerManager, $userManager, $matchManager)
+    public function __construct($twig, $playerManager, $userManager, $opponentManager, $matchManager, $fieldManager)
     {
         $this->twig = $twig;
         $this->playerManager = $playerManager;
         $this->userManager = $userManager;
+        $this->opponentManager = $opponentManager;
         $this->matchManager = $matchManager;
+        $this->fieldManager = $fieldManager;
     }
 
     public function Home(){
@@ -72,7 +76,9 @@ Class ControllerFront {
     }
 
     public function MatchsList(){
-        echo $this->twig->render('/FrontEnd/MatchsList.html.twig');
+        $matchsListObj = $this->matchManager->getMatchsList();
+
+        echo $this->twig->render('/FrontEnd/MatchsList.html.twig', [ 'matchsListObj' => $matchsListObj]);
     }
 
     public function Club(){

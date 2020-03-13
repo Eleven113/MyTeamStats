@@ -11,11 +11,11 @@ class MatchManager
         $this->db = $db;
     }
 
-    public function getMatchList(){
+    public function getMatchsList(){
         $matchList = $this->db->query('SELECT * FROM GAME');
         $matchListObj = new ArrayObject();
         while ($matchArray = $matchList->fetch(PDO::FETCH_ASSOC)){
-            $match = new Opponent($matchArray);
+            $match = new Match($matchArray);
             $matchListObj->append($match);
         }
 
@@ -23,6 +23,11 @@ class MatchManager
     }
 
     public function getMatch($id){
+        $query = $this->db->prepare('SELECT * FROM GAME WHERE GAMEID = :gameid');
+        $query->bindValue(':gameid', $id);
+        $query->execute();
+
+        return new Match($query->fetch(PDO::FETCH_ASSOC));
 
     }
 
@@ -50,6 +55,9 @@ class MatchManager
     }
 
     public function DeleteMatch($id){
+        $query = $this->db->prepare('DELETE FROM GAME WHERE GAMEID = :gameid');
+        $query->bindValue(':gameid', $id);
 
+        $query->execute();
     }
 }
