@@ -21,7 +21,9 @@ class MatchManager
 
     public function AddMatch($match){
         $match = new Match($match);
-
+        ?><pre><?php
+        print_r($match);
+        ?></pre><?php
         $query = $this->db->prepare('INSERT INTO GAME (OPPONENTID, CATEGORY, DATE, LOCATION, ATHOME, PERIODNUM, TYPE, PERIODDURATION, STATUS) VALUES (:opponentid, :category, :date, :location, :athome, :periodnum, :type, :periodduration, :status)');
         $query->bindValue(':opponentid', $match->getOpponentid());
         $query->bindValue(':category', $match->getCategory());

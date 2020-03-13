@@ -182,14 +182,18 @@ class ControllerBack {
     public function AddMatch($date, $opponent, $athome, $location, $category, $type, $periodnum, $periodduration){
         $match = [
             'date' => $date,
-            'opponent' => $opponent,
+            'opponentid' => $opponent,
             'athome' => $athome,
+            'location' => $location,
             'category' => $category,
             'type' => $type,
             'periodnum' => $periodnum,
-            'periodduration' => $periodduration
+            'periodduration' => $periodduration,
+            'status' => 1
         ];
-
+        ?><pre><?php
+        print_r($match);
+        ?></pre><?php
         $this->matchManager->AddMatch($match);
 
         header ('Location: http://www.thibaut-minard.fr/MyTeamStats/MatchsList');

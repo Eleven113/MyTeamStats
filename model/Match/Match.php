@@ -175,7 +175,7 @@ class Match
      */
     public function setOpponentid($opponentid)
     {
-        $this->opponentoid = $opponentid;
+        $this->opponentid = $opponentid;
     }
 
     // Constructor
