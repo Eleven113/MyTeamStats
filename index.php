@@ -12,6 +12,8 @@ require('model/Opponent/Opponent.php');
 require('model/Opponent/OpponentManager.php');
 require('model/Match/Match.php');
 require('model/Match/MatchManager.php');
+require('model/Field/Field.php');
+require('model/Field/FieldManager.php');
 require ('model/DBFactory.php');
 //require('router.php');
 
@@ -21,6 +23,7 @@ $playerManager = new PlayerManager($db);
 $userManager = new UserManager($db);
 $opponentManager = new OpponentManager($db);
 $matchManager = new MatchManager($db);
+$fieldManager = new FieldManager($db);
 
 $loader = new \Twig\Loader\FilesystemLoader(__DIR__ . '/view');
 $twig = new \Twig\Environment($loader, [
@@ -30,7 +33,7 @@ $twig->addGlobal('session', $_SESSION);
 $twig->addGlobal('env', $_ENV);
 
 $controllerFront = new ControllerFront($twig, $playerManager, $userManager, $matchManager);
-$controllerBack = new ControllerBack($twig, $playerManager, $userManager, $opponentManager, $matchManager);
+$controllerBack = new ControllerBack($twig, $playerManager, $userManager, $opponentManager, $matchManager, $fieldManager);
 
 \Cloudinary::config( array (
     "cloud_name" => "marthyte" ,

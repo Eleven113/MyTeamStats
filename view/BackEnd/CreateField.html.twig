@@ -1,0 +1,41 @@
+{% extends "layout.html.twig" %}
+
+{% block head %}
+    <title>Créér un terrain - MyTeamStats</title>
+{% endblock %}
+
+{% block content %}
+    prout
+    <div id="createfield_form" class="d-flex flex-column justify-content-center align-items-center">
+        <form id="createfield-form" class="col-lg-6" action="/MyTeamStats/AddField"  method="post" enctype="multipart/form-data">
+            <legend>Créér un match</legend>
+            <div class="form-group">
+                <label for="text">Nom</label>
+                <input id="text" type="text" name="name" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="text">Adresse</label>
+                <input id="text" type="text" name="address" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="text">Code Postal</label>
+                <input id="text" type="number" name="zipcode" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="text">Ville</label>
+                <input id="text" type="text" name="city" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="text">Pelouse</label>
+                <select name="turf">
+                    <option value="grass">Naturelle</option>
+                    <option value="synthetic">Synthétique</option>
+                    <option value="indoor">Salle</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary"><i class="fas fa-check-circle"></i>&nbsp;&nbsp;Envoyer</button>
+        </form>
+    </div>
+
+
+{% endblock %}

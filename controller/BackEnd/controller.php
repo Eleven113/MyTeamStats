@@ -7,14 +7,16 @@ class ControllerBack {
     private $userManager;
     private $opponentManager;
     private $matchManager;
+    private $fieldManager;
 
-    public function __construct($twig, $playerManager, $userManager, $opponentManager, $matchManager)
+    public function __construct($twig, $playerManager, $userManager, $opponentManager, $matchManager, $fieldManager)
     {
         $this->twig = $twig;
         $this->playerManager = $playerManager;
         $this->userManager = $userManager;
         $this->opponentManager = $opponentManager;
         $this->matchManager = $matchManager;
+        $this->fieldManager = $fieldManager;
     }
 
     public function CreatePlayer(){
@@ -179,21 +181,19 @@ class ControllerBack {
         header ('Location: http://www.thibaut-minard.fr/MyTeamStats/OppoList');
     }
 
-    public function AddMatch($date, $opponent, $athome, $location, $category, $type, $periodnum, $periodduration){
+    public function AddMatch($date, $opponent, $athome, $fieldid, $category, $type, $periodnum, $periodduration){
         $match = [
             'date' => $date,
             'opponentid' => $opponent,
             'athome' => $athome,
-            'location' => $location,
+            'fieldid' => $fieldid,
             'category' => $category,
             'type' => $type,
             'periodnum' => $periodnum,
             'periodduration' => $periodduration,
             'status' => 1
         ];
-        ?><pre><?php
-        print_r($match);
-        ?></pre><?php
+
         $this->matchManager->AddMatch($match);
 
         header ('Location: http://www.thibaut-minard.fr/MyTeamStats/MatchsList');

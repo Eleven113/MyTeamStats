@@ -7,7 +7,7 @@ class Match
     private $opponentid;
     private $category;
     private $date;
-    private $location;
+    private $fieldid;
     private $atHome;
     private $type;
     private $periodnum;
@@ -43,9 +43,9 @@ class Match
     /**
      * @return mixed
      */
-    public function getLocation()
+    public function getFieldid()
     {
-        return $this->location;
+        return $this->fieldid;
     }
 
     /**
@@ -123,11 +123,11 @@ class Match
     }
 
     /**
-     * @param mixed $location
+     * @param mixed $fieldid
      */
-    public function setLocation($location)
+    public function setFieldid($fieldid)
     {
-        $this->location = $location;
+        $this->fieldid = $fieldid;
     }
 
     /**
