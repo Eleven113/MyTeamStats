@@ -123,6 +123,8 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('GET', '/MyTeamStats/CreateField', 'controllerBack/CreateField');
     $r->addRoute('POST', '/MyTeamStats/AddField', 'controllerBack/AddField');
     $r->addRoute('GET', '/MyTeamStats/ModifyField/{id:[0-9]+}', 'controllerBack/ModifyField');
+    $r->addRoute('POST', '/MyTeamStats/UpdateField/{id:[0-9]+}', 'controllerBack/UpdateField');
+    $r->addRoute('GET', '/MyTeamStats/DeleteField/{id:[0-9]+}', 'controllerBack/DeleteField');
         // Club
 
         // User

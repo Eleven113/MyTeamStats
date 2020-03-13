@@ -231,5 +231,27 @@ class ControllerBack {
 
         echo $this->twig->render('/BackEnd/UpdateField.html.twig', [ 'field' => $field]);
     }
+
+    public function UpdateField($id, $name, $address, $zipcode, $city, $turf)
+    {
+        $field = [
+            'fieldid' => $id,
+            'name' => $name,
+            'address' => $address,
+            'zipcode' => $zipcode,
+            'city' => $city,
+            'turf' => $turf
+        ];
+
+        $this->fieldManager->UpdateField($field);
+
+        header('Location: http://www.thibaut-minard.fr/MyTeamStats/FieldsList');
+    }
+
+    public function DeleteField($id){
+        $this->fieldManager->DeleteField($id);
+
+        header('Location: http://www.thibaut-minard.fr/MyTeamStats/FieldsList');
+    }
 }
 
