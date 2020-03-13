@@ -199,5 +199,24 @@ class ControllerBack {
         header ('Location: http://www.thibaut-minard.fr/MyTeamStats/MatchsList');
 
     }
+
+    public function CreateField(){
+
+        echo $this->twig->render('/BackEnd/CreateField.html.twig');
+    }
+
+    public function AddField($name, $address, $zipcode, $city, $turf){
+        $field = [
+            'name' => $name,
+            'address' => $address,
+            'zipcode'=> $zipcode,
+            'city' => $city,
+            'turf' => $turf
+        ];
+
+        $this->fieldManager->AddField($field);
+
+        header ('Location: http://www.thibaut-minard.fr/MyTeamStats/FieldsList');
+    }
 }
 
