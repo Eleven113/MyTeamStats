@@ -153,7 +153,6 @@ switch ($routeInfo[0]) {
     case FastRoute\Dispatcher::FOUND:
         $handler = $routeInfo[1];
         $vars = $routeInfo[2];
-        print_r($_POST);
         $vars += $_POST;
         $vars += $_FILES;
         $action = explode('/',$handler,2);
