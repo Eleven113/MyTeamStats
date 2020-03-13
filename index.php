@@ -119,8 +119,10 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('GET', '/MyTeamStats/DeleteOppo/{id:[0-9]+}', 'controllerBack/DeleteOppo');
 
         // Field
+    $r->addRoute('GET', '/MyTeamStats/FieldsList', 'controllerBack/FieldsList');
     $r->addRoute('GET', '/MyTeamStats/CreateField', 'controllerBack/CreateField');
-
+    $r->addRoute('POST', '/MyTeamStats/AddField', 'controllerBack/AddField');
+    $r->addRoute('GET', '/MyTeamStats/ModifyField/{id:[0-9]+}', 'controllerBack/ModifyField');
         // Club
 
         // User

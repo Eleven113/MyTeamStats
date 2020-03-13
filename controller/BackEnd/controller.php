@@ -205,6 +205,13 @@ class ControllerBack {
         echo $this->twig->render('/BackEnd/CreateField.html.twig');
     }
 
+    public function FieldsList(){
+        $fieldsListObj = $this->fieldManager->getFieldsList();
+
+        echo $this->twig->render('/BackEnd/FieldsList.html.twig', [ 'fieldListObj' => $fieldsListObj]);
+
+    }
+
     public function AddField($name, $address, $zipcode, $city, $turf){
         $field = [
             'name' => $name,
@@ -217,6 +224,12 @@ class ControllerBack {
         $this->fieldManager->AddField($field);
 
         header ('Location: http://www.thibaut-minard.fr/MyTeamStats/FieldsList');
+    }
+
+    public function ModifyField($id){
+        $field = $this->fieldManager->getField($id);
+
+        echo $this->twig->render('/BackEnd/UpdateField.html.twig', [ 'field' => $field]);
     }
 }
 
