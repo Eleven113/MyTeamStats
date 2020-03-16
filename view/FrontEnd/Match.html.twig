@@ -8,27 +8,53 @@
 
 <div id="match" class="d-flex flex-column col-10 offset-1 align-items-center">
 
-    <h3 id="match_name">E113 FC - Stade Lavallois</h3>
-    <h5 id="match_date">Le 10/10/2020 à 14h30</h5>
+    <h1>{{ match.type }}</h1>
+    <h3 id="match_name">
+        {% if match.athome == 1 %}
+            Reception de
+        {% else %}
+            Déplacement à
+        {% endif %}
+        {{ match.oppo }}
+    </h3>
+    <h5 id="match_date">{{ match.date }}</h5>
 
     <div id="match_teams" class="d-flex flex-row justify-content-center">
         <div id="match_team_home" class="d-flex flex-column align-items-center justify-content-end col-6">
             <div id ="match_team_home-logo" class="col-5">
-                <img src="public/img/logo.png" class="img-responsive fit-image">
+                {% if match.athome == 1 %}
+                    <img src="/public/img/logo.png" class="img-responsive fit-image">
+                {% else %}
+                <img src="{{ match.logo }}" class="img-responsive fit-image">
+                {% endif %}
             </div>
             <div id ="match_team_home-name">
-                E113 Football Club
+                {%  if match.athome == 1 %}
+                    Lavalloise Football Cub
+                {% else %}
+                    {{ match.oppo }}
+                {% endif %}
             </div>
         </div>
-        <div id="match_score" class="col-2">
-            3-0
-        </div>    
+        {% if match.status == 0 %}
+            <div id="match_score" class="col-2">
+                3-0
+            </div>
+        {% endif %}
         <div id="match_team_away" class="d-flex flex-column align-items-center col-6">
             <div id ="match_team_away-logo" class="col-5">
-                <img src="public/img/logo_sl.svg" class="img-responsive fit-image">
+                {% if match.athome == 0 %}
+                    <img src="/public/img/logo.png" class="img-responsive fit-image">
+                {% else %}
+                    <img src="{{ match.logo }}" class="img-responsive fit-image">
+                {% endif %}
             </div>
             <div id ="match_team_away-name">
-                Stade Lavallois
+                {%  if match.athome == 0 %}
+                    Lavalloise Football Cub
+                {% else %}
+                    {{ match.oppo }}
+                {% endif %}
             </div>
         </div>
     </div>
@@ -37,11 +63,11 @@
         <div id="match_data" class="m-4 p-4 col-8 border border-primary rounded-lg myborder">
             <p id="match_address">
                 <span class="player_data-title font-weight-bold">Terrain :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                <span class="player_data-txt">28 rue des cèpes 53210 Argentré</span>
+                <span class="player_data-txt">{{ match.address }} à {{ match.city }} ({{ match.zipcode }})</span>
             </p>
             <p id="match_field">
                 <span class="player_data-title font-weight-bold">Pelouse :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                <span class="player_data-txt">Naturelle</span>
+                <span class="player_data-txt">{{ match.turf }}</span>
             </p>
             <p id="match_meteo">
                 <span class="player_data-title font-weight-bold">Prévision météo :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>

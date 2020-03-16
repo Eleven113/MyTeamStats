@@ -76,9 +76,9 @@ Class ControllerFront {
     }
 
     public function MatchsList(){
-        $matchsListObj = $this->matchManager->getMatchsList();
+        $matchs = $this->matchManager->getMatchsList();
 
-        echo $this->twig->render('/FrontEnd/MatchsList.html.twig', [ 'matchsListObj' => $matchsListObj]);
+        echo $this->twig->render('/FrontEnd/MatchsList.html.twig', [ 'matchs' => $matchs]);
     }
 
     public function Club(){
@@ -90,8 +90,10 @@ Class ControllerFront {
         echo $this->twig->render('/FrontEnd/Player.html.twig', ['player' => $player]);
     }
 
-    public function Match(){
-        echo $this->twig->render('/FrontEnd/MatchView.html.twig');
+    public function Match($id){
+        $match = $this->matchManager->getMatch($id);
+
+        echo $this->twig->render('/FrontEnd/Match.html.twig', [ 'match' => $match ]);
     }
 
     public function SessionKill(){

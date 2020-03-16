@@ -11,6 +11,7 @@ require('model/User/User.php');
 require('model/Opponent/Opponent.php');
 require('model/Opponent/OpponentManager.php');
 require('model/Match/Match.php');
+require('model/Match/MatchDisplay.php');
 require('model/Match/MatchManager.php');
 require('model/Field/Field.php');
 require('model/Field/FieldManager.php');
@@ -27,8 +28,10 @@ $fieldManager = new FieldManager($db);
 
 $loader = new \Twig\Loader\FilesystemLoader(__DIR__ . '/view');
 $twig = new \Twig\Environment($loader, [
-    'cache' => false
+    'cache' => false,
+    'debug' => true
 ]);
+$twig->addExtension(new \Twig\Extension\DebugExtension());
 $twig->addGlobal('session', $_SESSION);
 $twig->addGlobal('env', $_ENV);
 

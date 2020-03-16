@@ -30,11 +30,17 @@
             </tr>
         </thead>
         <tbody>
-            {% for match in matchsListObj %}
+            {% for match in matchs %}
                 <tr>
                     <td>{{ match.category }}</td>
-                    <td>{{ match.opponentid }}</td>
-                    <td>{{ match.fieldid }}</td>
+                    <td>{{ match.oppo }}</td>
+                    <td>
+                        {% if match.athome == 1  %}
+                            Domicile
+                        {% else %}
+                            Extérieur
+                        {% endif %}
+                    </td>
                     <th>{{ match.date }}</td>
                     <td>Meteo</td>
                     <td class="d-flex flex-row justify-content-between">
@@ -42,6 +48,8 @@
                         {% if session.user_status >= 3 %}
                             <div><a href="/MyTeamStats/AddCompo/{{ match.gameid }}"><i class="fas fa-users"></i></a></div>
                             <div><a href="/MyTeamStats/ModifyMatch/{{ match.gameid }}"><i class="fas fa-pen"></i></a></div>
+                        {% endif %}
+                        {% if session.user_status >= 4 %}
                             <div><a href="/MyTeamStats/DeleteMatch/{{ match.gameid }}"><i class="fas fa-trash-alt"></i></a></div>
                         {% endif %}
                     </td>

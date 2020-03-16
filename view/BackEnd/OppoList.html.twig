@@ -12,6 +12,7 @@
                 <i class="fas fa-shield-alt"></i>&nbsp;Créér un adversaire
             </a>
         </div>
+
         <div class="table-responsive">
             <table class="table table table-bordered table-striped text-center">
                 <caption class="col-12 text-center">
@@ -26,6 +27,7 @@
                 </thead>
                 <tbody>
                 {%   for oppo in oppoListObj %}
+                    <pre>{{ dump(oppo) }}</pre>
                     <tr>
                         <td>{{oppo.name}}</td>
                         <td><img src="{{oppo.logo}}" class="img-responsive fit-image"></td>
