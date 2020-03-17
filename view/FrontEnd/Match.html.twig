@@ -11,7 +11,7 @@
     <h1>{{ match.type }} - {{ match.category }}</h1>
     <h3 id="match_name">
         {% if match.athome == 1 %}
-            Reception de
+            Réception de
         {% else %}
             Déplacement à
         {% endif %}
@@ -58,48 +58,51 @@
             </div>
         </div>
     </div>
-    
-    <div id="pre_match">
-        <div id="match_data" class="m-4 p-4 col-8 border border-primary rounded-lg myborder">
-            <p id="match_address">
-                <span class="player_data-title font-weight-bold">Terrain :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                <span class="player_data-txt">{{ match.address }} à {{ match.city }} ({{ match.zipcode }})</span>
-            </p>
-            <div class="meteo_zipcode">{{ match.zipcode }}</div>
-            <div class="meteo_date">{{ match.date }}</div>
-            <p id="match_field">
-                <span class="player_data-title font-weight-bold">Pelouse :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                <span class="player_data-txt">{{ match.turf }}</span>
-            </p>
-            <p id="match_meteo">
-                <span class="player_data-title font-weight-bold">Prévision météo :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                <span class="meteo_display">Soleil</span>
-            </p>
-        </div>  
 
-        <div id="match_player" class="m-4 p-4 col-8 border border-primary rounded-lg myborder">
-            <div id="match_player-title">Joueurs convoqués</div>
-            <ul>
-                <li>Nom Prénom</li>
-                <li>Nom Prénom</li>
-                <li>Nom Prénom</li>
-                <li>Nom Prénom</li>
-                <li>Nom Prénom</li>
-                <li>Nom Prénom</li>
-                <li>Nom Prénom</li>
-                <li>Nom Prénom</li>
-                <li>Nom Prénom</li>
-                <li>Nom Prénom</li>
-                <li>Nom Prénom</li>
-            </ul>
+    <div id="match_infos"  class="m-4 p-4 col-8 border border-primary rounded-lg myborder">
+        <p id="match_address">
+            <span class="player_data-title font-weight-bold">Terrain :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span class="player_data-txt">{{ match.address }} à {{ match.city }} ({{ match.zipcode }})</span>
+        </p>
+        <p id="match_field">
+            <span class="player_data-title font-weight-bold">Pelouse :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span class="player_data-txt">{{ match.turf }}</span>
+        </p>
+    </div>
+    {% if match.status == 1 %}
+        <div id="pre_match">
+            <div id="match_data" class="m-4 p-4 col-12 border border-primary rounded-lg myborder">
+                <div class="meteo_zipcode">{{ match.zipcode }}</div>
+                <div class="meteo_date">{{ match.date }}</div>
+                <p id="match_meteo">
+                    <span class="player_data-title font-weight-bold">Prévision météo :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span class="meteo_display"></span>
+                </p>
+            </div>
+
+            <div id="match_player" class="m-4 p-4 col-8 border border-primary rounded-lg myborder">
+                <div id="match_player-title">Joueurs convoqués</div>
+                <ul>
+                    <li>Nom Prénom</li>
+                    <li>Nom Prénom</li>
+                    <li>Nom Prénom</li>
+                    <li>Nom Prénom</li>
+                    <li>Nom Prénom</li>
+                    <li>Nom Prénom</li>
+                    <li>Nom Prénom</li>
+                    <li>Nom Prénom</li>
+                    <li>Nom Prénom</li>
+                    <li>Nom Prénom</li>
+                    <li>Nom Prénom</li>
+                </ul>
+            </div>
         </div>
-    </div>
+    {%  else %}
 
-    <div id="post_match">
-        
-    </div>
+        <div id="post_match">
 
-
+        </div>
+    {%  endif %}
 
 </div>
 

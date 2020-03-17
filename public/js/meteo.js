@@ -1,33 +1,24 @@
-// let dateDiv = document.getElementsByClassName("meteo_date");
-// let dateDivLength = dateDiv.length;
-// let dateMatch;
-// let timeStampDateMatch;
-// console.log(dateDivLength);
-
-// for (let i =0; i < dateDivLength; i++){
-//     dateMatch = dateDiv[i].innerHTML;
-//     console.log(dateMatch);
-//     timeStampDateMatch = (Date.parse(dateMatch)/1000) + 3600;
-//     console.log(timeStampDateMatch);
-// }
-
-
 class MeteoAPI {
     constructor(divZipCode,divDate,spanMeteo){
     this.divZipCode = document.getElementsByClassName(divZipCode);
     this.divDate = document.getElementsByClassName(divDate);
-    this.spanMeteo = document.getElementsByClassName(spanMeteo)
+    this.spanMeteo = document.getElementsByClassName(spanMeteo);
     this.dateMatch;
     this.hourMatch;
     this.dateNow = Date.now()/1000;
     this.zipCode;
     this.urlRequest
     this.apiResponse;
+    this.temperature;
+    this.weather;
+    this.icon;
 
-    this.displayMeteo()
+    this.testTimestamp();
+    this.displayMeteo();
     }
 
-    displayMeteo(){
+    // Test la différence entre la date du moment et la date du match si inférieur à 5 jours, on peut afficher la météo
+    testTimestamp(){
         for ( let i = 0 ; i < this.divZipCode.length; i++){
             this.dateMatch = (Date.parse(this.divDate[i].innerHTML)/1000 + 3600)
             let date = new Date(this.dateMatch * 1000);
@@ -42,6 +33,7 @@ class MeteoAPI {
         }
     }
 
+    // Récupérer les données dans l'API
     getMeteo(i){
         this.zipCode = this.divZipCode[i].innerHTML;
 
@@ -49,15 +41,28 @@ class MeteoAPI {
 
         ajaxGet(this.urlRequest, function(response){
             this.apiResponse = JSON.parse(response);
-            let i = 0;
-            while (this.dateMatch > this.apiResponse.list[i].dt){
-                i++;
+            let time = 0;
+            // Test du temps pour trouver le prochain Timestamp le plus proche de dateMatch
+            while (this.dateMatch > this.apiResponse.list[time].dt){
+                time++;
             }
-            console.log(i);
+            
+            // Récupération des données dans l'API
+            this.icon = this.apiResponse.list[time].weather[0].icon;
+            this.weather = this.apiResponse.list[time].weather[0].main;
+            this.temperature = Math.round(this.apiResponse.list[time].main.temp);
+
+
+            this.displayMeteo(i, this.icon, this.weather, this.temperature);
         }.bind(this));
-        console.log("dateMatch",this.dateMatch);
-        console.log("dt",this.apiResponse.list[i].dt);
+
     }
+
+    // Construction de la div meteo
+    displayMeteo(i, icon, weather, temperature){
+        console.log(this.spanMeteo);
+        this.spanMeteo[i].innerHTML = '<img src="http://openweathermap.org/img/wn/'+ icon +'@2x.png" alt="' + weather + '"> ' + temperature + '°C' ;
+    };
 
 }
 
