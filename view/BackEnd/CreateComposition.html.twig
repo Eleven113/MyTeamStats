@@ -8,6 +8,7 @@
 
     <h3>Créér la composition d'équipe pour ce match</h3>
 
+
     <div class="table-responsive">
         <table class="table table table-bordered table-striped text-center">
             <caption class="col-12 text-center">
@@ -24,7 +25,7 @@
             </thead>
             <tbody>
 
-            {%   for player in playerListObj %}
+            {%   for player in playersList %}
 
                 <tr>
                     <td>{{player.lastname}}</td>
@@ -38,7 +39,7 @@
                         {% endif %}
                     </td>
                     <td class="d-flex flex-row justify-content-between">
-                        <input type="checkbox"
+                        <input type="checkbox">
                     </td>
                 </tr>
 

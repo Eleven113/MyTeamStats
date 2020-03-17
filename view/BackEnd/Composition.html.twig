@@ -8,6 +8,35 @@
 
     <h3>Créér la composition d'équipe pour ce match</h3>
 
+    {% if playersList is null %}
 
+        <div id="no_compo">
+            Il n'y a pas encore de composition d'équipe pour ce match
+        </div>
 
+        <div id="add_compo" class="col-1 m-4 border border-primary rounded-lg myborder">
+            <a href="/MyTeamStats/CreateComposition/{{ id }}">
+                <i class="fas fa-user-plus"></i>&nbsp;Créér la compo
+            </a>
+        </div>
+
+    {% else %}
+
+        Voici la liste des joueurs convoqués :
+        <ul>
+            {%  for player in playersList %}
+                <li>{{ player.firstname }}  {{ player.lastname }}</li>
+            {% endfor %}
+        </ul>
+        <div id="add_compo" class="col-1 m-4 border border-primary rounded-lg myborder">
+            <a href="/MyTeamStats/UpdateComposition/{{ id }}">
+                <i class="fas fa-user-plus"></i>&nbsp;Modifier la compo
+            </a>
+        </div>
+        <div id="add_compo" class="col-1 m-4 border border-primary rounded-lg myborder">
+            <a href="/MyTeamStats/DeleteComposition/{{ id }}">
+                <i class="fas fa-user-plus"></i>&nbsp;Supprimer la compo
+            </a>
+        </div>
+    {% endif %}
 {% endblock %}

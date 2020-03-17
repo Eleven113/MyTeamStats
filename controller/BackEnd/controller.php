@@ -281,15 +281,24 @@ class ControllerBack {
     }
 
     public function Composition($id){
-        $playerList = $this->compositionManager->getComposition();
+        $playersList = $this->compositionManager->getComposition($id);
 
-
+        echo $this->twig->render('/BackEnd/Composition.html.twig',
+            [
+            'playersList' => $playersList,
+            'id' => $id
+            ]
+        );
     }
 
     public function CreateComposition($id){
-        $playersList = $this->playerManager->getPlayersList();
+        $playersList = $this->playerManager->getPlayersList($id);
 
-        echo $this->twig->render('/BackEnd/UpdateField.html.twig', [ 'playersList' => $playersList]);
+        echo $this->twig->render('/BackEnd/CreateComposition.html.twig',
+            [
+                'playersList' => $playersList,
+                'id' => $id
+            ]);
     }
 
 
