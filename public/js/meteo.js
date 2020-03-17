@@ -19,6 +19,9 @@ class MeteoAPI {
     this.spanMeteo = document.getElementsByClassName(spanMeteo)
     this.dateMatch;
     this.dateNow = Date.now()/1000;
+    this.zipCode;
+    this.urlRequest
+    this.apiResponse;
 
     this.displayMeteo()
     }
@@ -29,7 +32,7 @@ class MeteoAPI {
             
             console.log (this.dateMatch - this.dateNow);
             if ( this.dateMatch - this.dateNow <= 432000 && this.dateMatch - this.dateNow >= - 10800 ){
-                this.getMeteo();
+                this.getMeteo(i);
             }
             else {
                 this.spanMeteo[i].innerHTML = "La météo n'est pas disponible pour ce match"
@@ -37,7 +40,14 @@ class MeteoAPI {
         }
     }
 
-    getMeteo(){
+    getMeteo(i){
+        this.zipCode = this.divZipCode[i].innerHTML;
+        console.log(this.zipCode);
+        this.urlRequest = "api.openweathermap.org/data/2.5/forecast?zip="+this.zipCode+",FR&appid=544af5ad005b2c4b8fd3f5709fada161&units=metric";
+        ajaxGet(this.urlRequest, function(response){
+            this.apiResponse = JSON.parse(response);
+            console.log(this.apiResponse);
+        });
 
     }
 
