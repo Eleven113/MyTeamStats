@@ -1,15 +1,15 @@
-let dateDiv = document.getElementsByClassName("meteo_date");
-let dateDivLength = dateDiv.length;
-let dateMatch;
-let timeStampDateMatch;
-console.log(dateDivLength);
+// let dateDiv = document.getElementsByClassName("meteo_date");
+// let dateDivLength = dateDiv.length;
+// let dateMatch;
+// let timeStampDateMatch;
+// console.log(dateDivLength);
 
-for (let i =0; i < dateDivLength; i++){
-    dateMatch = dateDiv[i].innerHTML;
-    console.log(dateMatch);
-    timeStampDateMatch = (Date.parse(dateMatch)/1000) + 3600;
-    console.log(timeStampDateMatch);
-}
+// for (let i =0; i < dateDivLength; i++){
+//     dateMatch = dateDiv[i].innerHTML;
+//     console.log(dateMatch);
+//     timeStampDateMatch = (Date.parse(dateMatch)/1000) + 3600;
+//     console.log(timeStampDateMatch);
+// }
 
 
 class MeteoAPI {
@@ -44,14 +44,19 @@ class MeteoAPI {
 
     getMeteo(i){
         this.zipCode = this.divZipCode[i].innerHTML;
-        console.log(this.zipCode);
+
         this.urlRequest = "http://api.openweathermap.org/data/2.5/forecast?zip="+this.zipCode+",FR&appid=544af5ad005b2c4b8fd3f5709fada161&units=metric";
-        console.log(this.urlRequest);
+
         ajaxGet(this.urlRequest, function(response){
             this.apiResponse = JSON.parse(response);
-            console.log(this.apiResponse);
+            let i = 0;
+            while (this.dateMatch > this.apiResponse.list[i].dt){
+                i++;
+            }
+            console.log(i);
         }.bind(this));
-
+        console.log("dateMatch",this.dateMatch);
+        console.log("dt",this.apiResponse.list[i].dt);
     }
 
 }
