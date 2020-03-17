@@ -1,4 +1,4 @@
-function ajaxGet(url, callback) {
+    function ajaxGet(url, callback) {
     var req = new XMLHttpRequest();
     req.open("GET", url);
     req.addEventListener("load", function () {
