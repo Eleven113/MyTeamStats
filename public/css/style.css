@@ -91,6 +91,6 @@ header:active{
     color : red !important;
 }
 
-.meteo_zipcode{
+.meteo_zipcode, .meteo_date{
     display : none;
 }
