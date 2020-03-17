@@ -92,7 +92,19 @@ Class ControllerFront {
 
     public function Match($id){
         $match = $this->matchManager->getMatch($id);
+        $matchTime = strtotime($match->getDate());
+        $currentTime = time();
+        $diffTime = $matchTime - $currentTime;
+        print_r($diffTime);
 
+        if ( ($diffTime <= 432000) && ($diffTime >= -14400) ){
+            $meteoDisplay = true ;
+            echo 'ture';
+        }
+        else {
+            $meteoDisplay = false;
+            echo "false";
+        }
         echo $this->twig->render('/FrontEnd/Match.html.twig', [ 'match' => $match ]);
     }
 

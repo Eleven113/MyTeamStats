@@ -90,3 +90,7 @@ header:active{
 .redtimes{
     color : red !important;
 }
+
+.meteo_zipcode{
+    display : none;
+}

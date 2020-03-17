@@ -65,6 +65,7 @@
                 <span class="player_data-title font-weight-bold">Terrain :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                 <span class="player_data-txt">{{ match.address }} à {{ match.city }} ({{ match.zipcode }})</span>
             </p>
+            <div class="meteo_zipcode">{{ match.zipcode }}</div>
             <p id="match_field">
                 <span class="player_data-title font-weight-bold">Pelouse :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                 <span class="player_data-txt">{{ match.turf }}</span>
@@ -101,5 +102,9 @@
 
 </div>
 
+
+{% endblock %}
+
+{% block script %}
 
 {% endblock %}

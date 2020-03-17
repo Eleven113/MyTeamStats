@@ -87,7 +87,6 @@ class ControllerBack {
         $oppoListObj = $this->opponentManager->getOppoList();
         $fieldsListObj = $this->fieldManager->getFieldsList();
 
-        print_r($fieldsListObj);
         echo $this->twig->render('/BackEnd/CreateMatch.html.twig',
             [
                 'oppoListObj' => $oppoListObj,
