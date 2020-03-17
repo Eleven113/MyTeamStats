@@ -1,7 +1,7 @@
 <?php
 
 
-class Compostion
+class Composition
 {
     private $gameid;
     private $playerid;

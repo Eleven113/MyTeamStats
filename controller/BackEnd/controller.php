@@ -8,8 +8,9 @@ class ControllerBack {
     private $opponentManager;
     private $matchManager;
     private $fieldManager;
+    private $compositionManager;
 
-    public function __construct($twig, $playerManager, $userManager, $opponentManager, $matchManager, $fieldManager)
+    public function __construct($twig, $playerManager, $userManager, $opponentManager, $matchManager, $fieldManager, $compositionManager)
     {
         $this->twig = $twig;
         $this->playerManager = $playerManager;
@@ -17,6 +18,7 @@ class ControllerBack {
         $this->opponentManager = $opponentManager;
         $this->matchManager = $matchManager;
         $this->fieldManager = $fieldManager;
+        $this->compositionManager = $compositionManager;
     }
 
     public function CreatePlayer(){
@@ -279,6 +281,8 @@ class ControllerBack {
     }
 
     public function Composition($id){
+        $playerList = $this->compositionManager->getComposition();
+
 
     }
 

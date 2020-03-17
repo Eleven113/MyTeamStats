@@ -13,6 +13,8 @@ require('model/Opponent/OpponentManager.php');
 require('model/Match/Match.php');
 require('model/Match/MatchDisplay.php');
 require('model/Match/MatchManager.php');
+require('model/Composition/Composition.php');
+require('model/Composition/CompositionManager.php');
 require('model/Field/Field.php');
 require('model/Field/FieldManager.php');
 require ('model/DBFactory.php');
@@ -25,6 +27,7 @@ $userManager = new UserManager($db);
 $opponentManager = new OpponentManager($db);
 $matchManager = new MatchManager($db);
 $fieldManager = new FieldManager($db);
+$compositionManager = new CompositionManager($db);
 
 $loader = new \Twig\Loader\FilesystemLoader(__DIR__ . '/view');
 $twig = new \Twig\Environment($loader, [
@@ -36,7 +39,7 @@ $twig->addGlobal('session', $_SESSION);
 $twig->addGlobal('env', $_ENV);
 
 $controllerFront = new ControllerFront($twig, $playerManager, $userManager, $opponentManager, $matchManager, $fieldManager);
-$controllerBack = new ControllerBack($twig, $playerManager, $userManager, $opponentManager, $matchManager, $fieldManager);
+$controllerBack = new ControllerBack($twig, $playerManager, $userManager, $opponentManager, $matchManager, $fieldManager, $compositionManager);
 
 \Cloudinary::config( array (
     "cloud_name" => "marthyte" ,
@@ -117,9 +120,9 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('GET', '/MyTeamStats/DeleteMatch/{id:[0-9]+}', 'controllerBack/DeleteMatch');
 
         // Composition
-    $r->addRoute('GET', '/MyTeamStats/CreateComposition/{id:[0-9]+}', 'controllerBack/Composition');
+    $r->addRoute('GET', '/MyTeamStats/Composition/{id:[0-9]+}', 'controllerBack/Composition');
     $r->addRoute('GET', '/MyTeamStats/CreateComposition/{id:[0-9]+}', 'controllerBack/CreateComposition');
-    $r->addRoute('GET', '/MyTeamStats/AddCompo/{id:[0-9]+}', 'controllerBack/AddCompo');
+//    $r->addRoute('GET', '/MyTeamStats/AddCompo/{id:[0-9]+}', 'controllerBack/AddCompo');
 
         // Oppo
     $r->addRoute('GET', '/MyTeamStats/OppoList', 'controllerBack/OppoList');

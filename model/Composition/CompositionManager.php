@@ -17,7 +17,8 @@ class CompositionManager
         $composition->execute();
         $count = 0;
         while($player = $composition->fetch(PDO::FETCH_ASSOC)){
-            $count++
+            $count++;
+            echo $count;
         }
     }
 }
