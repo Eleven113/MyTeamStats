@@ -8,46 +8,47 @@
 
     <h3>Créér la composition d'équipe pour ce match</h3>
 
-
-    <div class="table-responsive">
-        <table class="table table table-bordered table-striped text-center">
-            <caption class="col-12 text-center">
-                <h4>Liste des joueurs</h4>
-            </caption>
-            <thead>
-            <tr>
-                <th id="table_surname">Nom</th>
-                <th id="table_name">Prénom</th>
-                <th id="table_category">Catégorie</th>
-                <th id="table_licenced">Licencié.e ?</th>
-                <th id="table_options">Selection</th>
-            </tr>
-            </thead>
-            <tbody>
-
-            {%   for player in playersList %}
-
+    <form id="createcompo-form" class="col-lg-6" action="/MyTeamStats/AddComposition/{{ id }}"  method="post">
+        <div class="table-responsive">
+            <table class="table table table-bordered table-striped text-center">
+                <caption class="col-12 text-center">
+                    <h4>Liste des joueurs</h4>
+                </caption>
+                <thead>
                 <tr>
-                    <td>{{player.lastname}}</td>
-                    <td>{{player.firstname}}</td>
-                    <td>{{player.category}}</td>
-                    <td>
-                        {% if player.activelicence == 1  %}
-                            <i class="fas fa-check greencheck"></i>
-                        {%  else %}
-                            <i class="fas fa-times redtimes"></i>
-                        {% endif %}
-                    </td>
-                    <td class="d-flex flex-row justify-content-between">
-                        <input type="checkbox">
-                    </td>
+                    <th id="table_surname">Nom</th>
+                    <th id="table_name">Prénom</th>
+                    <th id="table_category">Catégorie</th>
+                    <th id="table_licenced">Licencié.e ?</th>
+                    <th id="table_options">Selection</th>
                 </tr>
+                </thead>
+                <tbody>
 
-            {% endfor %}
+                {%   for player in playersList %}
 
-            </tbody>
-        </table>
-    </div>
+                    <tr>
+                        <td>{{player.lastname}}</td>
+                        <td>{{player.firstname}}</td>
+                        <td>{{player.category}}</td>
+                        <td>
+                            {% if player.activelicence == 1  %}
+                                <i class="fas fa-check greencheck"></i>
+                            {%  else %}
+                                <i class="fas fa-times redtimes"></i>
+                            {% endif %}
+                        </td>
+                        <td class="d-flex flex-row justify-content-between">
+                            <input type="checkbox" name="check_list[]" value="{{ player.playerid }}">
+                        </td>
+                    </tr>
 
+                {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+        <button type="submit" class="btn btn-primary"><i class="fas fa-check-circle"></i>&nbsp;&nbsp;Envoyer</button>
+    </form>
 {% endblock %}
 

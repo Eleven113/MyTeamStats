@@ -30,5 +30,21 @@ class CompositionManager
         return $playerList;
     }
 
+    public function addComposition($id, $playersList){
+        $count = count($playersList);
+        $match = new Match($id);
+
+        for ( $i = 0 ; $i < $count ; $i++){
+
+            $player = [ 'playerid' => $playersList[$i]];
+            $player = new Player($player);
+
+            $query = $this->db->prepare('INSERT INTO PLAY (GAMEID , PLAYERID) VALUES ( :gameid , :playerid )');
+            $query->bindValue(':gameid', $match->getGameid());
+            $query->bindValue('playerid', $player->getPlayerid());
+            $query->execute();
+
+        }
+    }
 
 }

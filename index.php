@@ -96,6 +96,7 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
         // User
     $r->addRoute('GET', '/MyTeamStats/Login', 'controllerFront/Login');
     $r->addRoute('GET', '/MyTeamStats/CreateUser', 'controllerFront/CreateUser');
+    $r->addRoute('POST', '/MyTeamStats/AddUser', 'controllerFront/AddUser');
     $r->addRoute('GET', '/MyTeamStats/LostPassword', 'controllerFront/LostPassword');
     $r->addRoute('GET', '/MyTeamStats/SessionKill', 'controllerFront/SessionKill');
     $r->addRoute('POST', '/MyTeamStats/UserLogin', 'controllerFront/UserLogin');
@@ -122,7 +123,7 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
         // Composition
     $r->addRoute('GET', '/MyTeamStats/Composition/{id:[0-9]+}', 'controllerBack/Composition');
     $r->addRoute('GET', '/MyTeamStats/CreateComposition/{id:[0-9]+}', 'controllerBack/CreateComposition');
-//    $r->addRoute('GET', '/MyTeamStats/AddCompo/{id:[0-9]+}', 'controllerBack/AddCompo');
+    $r->addRoute('POST', '/MyTeamStats/AddComposition/{id:[0-9]+}', 'controllerBack/AddComposition');
 
         // Oppo
     $r->addRoute('GET', '/MyTeamStats/OppoList', 'controllerBack/OppoList');

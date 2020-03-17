@@ -301,7 +301,12 @@ class ControllerBack {
             ]);
     }
 
+    public function AddComposition($id, $playersList){
+        $idArray = [ 'gameid' => $id];
+        $this->compositionManager->AddComposition($idArray, $playersList);
 
+        header('Location: http://www.thibaut-minard.fr/MyTeamStats/MatchsList');
+    }
 
 }
 
