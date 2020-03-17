@@ -278,5 +278,17 @@ class ControllerBack {
         header('Location: http://www.thibaut-minard.fr/MyTeamStats/MatchsList');
     }
 
+    public function Composition($id){
+
+    }
+
+    public function CreateComposition($id){
+        $playersList = $this->playerManager->getPlayersList();
+
+        echo $this->twig->render('/BackEnd/UpdateField.html.twig', [ 'playersList' => $playersList]);
+    }
+
+
+
 }
 
