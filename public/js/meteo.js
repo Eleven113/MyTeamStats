@@ -60,7 +60,6 @@ class MeteoAPI {
 
     // Construction de la div meteo
     displayMeteo(i, icon, weather, temperature){
-        console.log(this.spanMeteo);
         this.spanMeteo[i].innerHTML = '<img src="http://openweathermap.org/img/wn/'+ icon +'@2x.png" alt="' + weather + '"> ' + temperature + '°C' ;
     };
 
