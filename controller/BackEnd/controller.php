@@ -345,8 +345,14 @@ class ControllerBack {
     }
 
     public function MatchStats($id){
+        $match = $this->matchManager->getMatch($id);
+        $playersList = $this->compositionManager->getComposition($id);
 
-        echo $this->twig->render('/BackEnd/MatchStats.html.twig', [ 'id' => $id] );
+        echo $this->twig->render('/BackEnd/MatchStats.html.twig', [
+            'match' => $match,
+            'playersList' => $playersList,
+            'id' => $id
+        ]);
     }
 }
 
