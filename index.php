@@ -38,7 +38,7 @@ $twig->addExtension(new \Twig\Extension\DebugExtension());
 $twig->addGlobal('session', $_SESSION);
 $twig->addGlobal('env', $_ENV);
 
-$controllerFront = new ControllerFront($twig, $playerManager, $userManager, $opponentManager, $matchManager, $fieldManager);
+$controllerFront = new ControllerFront($twig, $playerManager, $userManager, $opponentManager, $matchManager, $fieldManager, $compositionManager);
 $controllerBack = new ControllerBack($twig, $playerManager, $userManager, $opponentManager, $matchManager, $fieldManager, $compositionManager);
 
 \Cloudinary::config( array (
@@ -56,24 +56,6 @@ if ( $_SESSION['user_status'] >= 3){
 else {
     $isAuthorized = False;
 }
-
-//// Routeur
-
-//    if ($_GET['action'] == 'creatematch'){
-//
-//        $controllerBack->CreateMatch();
-//    }
-//
-//    if ($_GET['action'] == 'match'){
-//
-//        $controllerFront->Match();
-//    }
-//
-//    if ($_GET['action'] == 'matchstat'){
-//
-//        $controllerBack->MatchStat();
-//    }
-//
 
 // Router
 
@@ -119,11 +101,17 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('GET', '/MyTeamStats/ModifyMatch/{id:[0-9]+}', 'controllerBack/ModifyMatch');
     $r->addRoute('POST', '/MyTeamStats/UpdateMatch/{id:[0-9]+}', 'controllerBack/UpdateMatch');
     $r->addRoute('GET', '/MyTeamStats/DeleteMatch/{id:[0-9]+}', 'controllerBack/DeleteMatch');
+    $r->addRoute('GET', '/MyTeamStats/MatchStats/{id:[0-9]+}', 'controllerBack/MatchStats');
+
 
         // Composition
     $r->addRoute('GET', '/MyTeamStats/Composition/{id:[0-9]+}', 'controllerBack/Composition');
     $r->addRoute('GET', '/MyTeamStats/CreateComposition/{id:[0-9]+}', 'controllerBack/CreateComposition');
     $r->addRoute('POST', '/MyTeamStats/AddComposition/{id:[0-9]+}', 'controllerBack/AddComposition');
+    $r->addRoute('GET', '/MyTeamStats/ModifyComposition/{id:[0-9]+}', 'controllerBack/ModifyComposition');
+    $r->addRoute('POST', '/MyTeamStats/UpdateComposition/{id:[0-9]+}', 'controllerBack/UpdateComposition');
+    $r->addRoute('GET', '/MyTeamStats/DeleteComposition/{id:[0-9]+}', 'controllerBack/DeleteComposition');
+
 
         // Oppo
     $r->addRoute('GET', '/MyTeamStats/OppoList', 'controllerBack/OppoList');

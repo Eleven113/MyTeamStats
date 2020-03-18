@@ -29,14 +29,18 @@
             {% endfor %}
         </ul>
         <div id="add_compo" class="col-1 m-4 border border-primary rounded-lg myborder">
-            <a href="/MyTeamStats/UpdateComposition/{{ id }}">
-                <i class="fas fa-user-plus"></i>&nbsp;Modifier la compo
+            <a href="/MyTeamStats/ModifyComposition/{{ id }}">
+                <i class="fas fa-pen"></i>&nbsp;Modifier la compo
             </a>
         </div>
         <div id="add_compo" class="col-1 m-4 border border-primary rounded-lg myborder">
             <a href="/MyTeamStats/DeleteComposition/{{ id }}">
-                <i class="fas fa-user-plus"></i>&nbsp;Supprimer la compo
+                <i class="fas fa-trash-alt"></i>&nbsp;Supprimer la compo
             </a>
         </div>
     {% endif %}
+
+    <div>
+        <a href="/MyTeamsStats/MatchsList">Retour à la liste des matchs</a>
+    </div>
 {% endblock %}

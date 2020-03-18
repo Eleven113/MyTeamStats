@@ -80,22 +80,21 @@
                 </p>
             </div>
 
-            <div id="match_player" class="m-4 p-4 col-8 border border-primary rounded-lg myborder">
-                <div id="match_player-title">Joueurs convoqués</div>
-                <ul>
-                    <li>Nom Prénom</li>
-                    <li>Nom Prénom</li>
-                    <li>Nom Prénom</li>
-                    <li>Nom Prénom</li>
-                    <li>Nom Prénom</li>
-                    <li>Nom Prénom</li>
-                    <li>Nom Prénom</li>
-                    <li>Nom Prénom</li>
-                    <li>Nom Prénom</li>
-                    <li>Nom Prénom</li>
-                    <li>Nom Prénom</li>
-                </ul>
-            </div>
+            {% if playersList is null %}
+
+                <div id="no_compo">
+                    Il n'y a pas encore de composition d'équipe pour ce match
+                </div>
+            {% else %}
+                <div id="match_player" class="m-4 p-4 col-8 border border-primary rounded-lg myborder">
+                    <div id="match_player-title">Joueurs convoqués</div>
+                    <ul>
+                        {%  for player in playersList %}
+                            <li>{{ player.firstname }}  {{ player.lastname }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
         </div>
     {%  else %}
 

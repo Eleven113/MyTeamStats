@@ -97,7 +97,7 @@ class ControllerBack {
     }
 
     public function MatchStat(){
-        echo $this->twig->render('/BackEnd/MatchStat.html.twig');
+        echo $this->twig->render('/BackEnd/MatchStats.html.twig');
     }
 
     public function Admin(){
@@ -305,8 +305,48 @@ class ControllerBack {
         $idArray = [ 'gameid' => $id];
         $this->compositionManager->AddComposition($idArray, $playersList);
 
-        header('Location: http://www.thibaut-minard.fr/MyTeamStats/MatchsList');
+        $this->Composition($id);
     }
 
+    public function ModifyComposition($id){
+        $playersList = $this->playerManager->getPlayersList($id);
+        $playerInList = $this->compositionManager->getComposition($id);
+        $List = [];
+
+        for ($i = 0; $i < count($playerInList); $i++){
+            print_r($playerInList[$i]->getPlayerid());
+            array_push($List,$playerInList[$i]->getPlayerid());
+        }
+
+        echo $this->twig->render('/BackEnd/UpdateComposition.html.twig',
+            [
+                'playersList' => $playersList,
+                'id' => $id,
+                'List' => $List
+            ]);
+    }
+
+    public function UpdateComposition($id, $playersList = null){
+
+        $this->compositionManager->DeleteComposition($id);
+
+        if ( isset($playersList) ){
+            $this->AddComposition($id, $playersList);
+        }
+        else {
+            $this->Composition($id);
+        }
+    }
+
+    public function DeleteComposition($id){
+        $this->compositionManager->DeleteComposition($id);
+
+        echo $this->twig->render('/BackEnd/Composition.html.twig', [ 'id' => $id] );
+    }
+
+    public function MatchStats($id){
+
+        echo $this->twig->render('/BackEnd/MatchStats.html.twig', [ 'id' => $id] );
+    }
 }
 

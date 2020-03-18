@@ -47,4 +47,11 @@ class CompositionManager
         }
     }
 
+
+    public function DeleteComposition($id){
+        $query = $this->db->prepare('DELETE FROM PLAY WHERE GAMEID = :gameid');
+        $query->bindValue(':gameid', $id);
+
+        $query->execute();
+    }
 }

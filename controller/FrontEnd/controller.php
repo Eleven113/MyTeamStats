@@ -8,8 +8,9 @@ Class ControllerFront {
     private $opponentManager;
     private $matchManager;
     private $fieldManager;
+    private $compositionManager;
 
-    public function __construct($twig, $playerManager, $userManager, $opponentManager, $matchManager, $fieldManager)
+    public function __construct($twig, $playerManager, $userManager, $opponentManager, $matchManager, $fieldManager, $compositionManager)
     {
         $this->twig = $twig;
         $this->playerManager = $playerManager;
@@ -17,6 +18,7 @@ Class ControllerFront {
         $this->opponentManager = $opponentManager;
         $this->matchManager = $matchManager;
         $this->fieldManager = $fieldManager;
+        $this->compositionManager = $compositionManager;
     }
 
     public function Home(){
@@ -92,8 +94,12 @@ Class ControllerFront {
 
     public function Match($id){
         $match = $this->matchManager->getMatch($id);
+        $playersList = $this->compositionManager->getComposition($id);
 
-        echo $this->twig->render('/FrontEnd/Match.html.twig', [ 'match' => $match ]);
+        echo $this->twig->render('/FrontEnd/Match.html.twig', [
+            'match' => $match,
+            'playersList' => $playersList
+            ]);
     }
 
     public function SessionKill(){
