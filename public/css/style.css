@@ -94,3 +94,7 @@ header:active{
 .meteo_zipcode, .meteo_date{
     display : none;
 }
+
+.teamcol{
+    height: min-content!important;
+}

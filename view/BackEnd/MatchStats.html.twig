@@ -12,12 +12,12 @@
         <div>Vous devez d'abord définir une composition d'équipe</div>
     {% else %}
         <div id="match_banner" class="d-flex flex-row col-12">
-            {# <div id="match_banner-left" class="col-3">
+             <div id="match_banner-left" class="col-3">
                 Scorer
-            </div> #}
-                        <div id="match_banner-teams" class="d-flex flex-column align-items-start col-12">
+            </div>
+                        <div id="match_banner-teams" class="d-flex flex-column align-items-center col-6 teamcol">
                             {% if match.athome == 1 %}
-                                <div id="match_team_logo" class="d-flex flex-row justify-content-around col-6">
+                                <div id="match_team_logo" class="d-flex flex-row justify-content-around col-12">
                                     <div id="match_team_logo-home" class="col-5">
                                         <img src="https://res.cloudinary.com/marthyte/image/upload/v1584623500/v2_vnydsk.png" class="img-responsive fit-image">
                                     </div>
@@ -25,7 +25,7 @@
                                         <img src="{{ match.logo }}" class="img-responsive fit-image">
                                     </div>
                                 </div>
-                                <div id="match_team_name" class="d-flex flex-row justify-content-around col-6">
+                                <div id="match_team_name" class="d-flex flex-row justify-content-around col-12">
                                     <div id ="match_team_name-home" class="col-6 text-center">
                                         LFC
                                     </div>
@@ -33,15 +33,15 @@
                                         {{ match.oppo }}
                                     </div>
                                 </div>
-                                <div id="match-team_score" class="d-flex flex-row justify-content-around col-6">
-                                    <div id="match_team_score-home" class="col-4 text-center">
+                                <div id="match-team_score" class="d-flex flex-row justify-content-around col-12">
+                                    <div id="match_team_score-home" class="col-6 text-center">
                                         0
                                     </div>
-                                    <div id="match_team_score-away" class="col-4 text-center">
+                                    <div id="match_team_score-away" class="col-6 text-center">
                                         0
                                     </div>
                                 </div>
-                                <div id="match_team_buttons" class="d-flex flex-row justify-content-around col-6">
+                                <div id="match_team_buttons" class="d-flex flex-row justify-content-around col-12">
                                     <div id ="match_team_buttons-home" class="d-flex flex-row justify-content-center col-4">
                                         <div class="d-flex flex-row justify-content-around col-12">
                                             <button>-</button> <button>+</button>
@@ -56,38 +56,38 @@
 
                             {% else %}
 
-                                <div id="match_team_logo" class="d-flex flex-row justify-content-around col-6">
-                                    <div id="match_team_logo-home" class="col-4">
+                                <div id="match_team_logo" class="d-flex flex-row justify-content-around col-12">
+                                    <div id="match_team_logo-home" class="col-5">
                                         <img src="{{ match.logo }}" class="img-responsive fit-image">
                                     </div>
-                                    <div id ="match_team_logo-home" class="col-4">
-                                        <img src="/public/img/v2.png" class="img-responsive fit-image">
+                                    <div id ="match_team_logo-away" class="col-5">
+                                        <img src="https://res.cloudinary.com/marthyte/image/upload/v1584623500/v2_vnydsk.png" class="img-responsive fit-image">
                                     </div>
                                 </div>
-                                <div id="match_team_name-home" class="d-flex flex-row justify-content-around col-6">
-                                    <div id="match_team_name-home" class="col-4">
+                                <div id="match_team_name" class="d-flex flex-row justify-content-around col-12">
+                                    <div id ="match_team_name-home" class="col-6 text-center">
                                         {{ match.oppo }}
                                     </div>
-                                    <div id ="match_team_name-away" class="col-4">
+                                    <div id ="match_team_name-away" class="col-6 text-center">
                                         LFC
                                     </div>
                                 </div>
-                                <div id="match-team-score" class="d-flex flex-row justify-content-around col-6">
-                                    <div id="match_team_score-home" class="col-4">
+                                <div id="match-team_score" class="d-flex flex-row justify-content-around col-12">
+                                    <div id="match_team_score-home" class="col-6 text-center">
                                         0
                                     </div>
-                                    <div id="match_team_score-away" class="col-4">
+                                    <div id="match_team_score-away" class="col-6 text-center">
                                         0
                                     </div>
                                 </div>
-                                <div id="match-team-buttons" class="d-flex flex-row justify-content-around col-6">
+                                <div id="match_team_buttons" class="d-flex flex-row justify-content-around col-12">
                                     <div id ="match_team_buttons-home" class="d-flex flex-row justify-content-center col-4">
-                                        <div class="d-flex flex-row justify-content-around">
+                                        <div class="d-flex flex-row justify-content-around col-12">
                                             <button>-</button> <button>+</button>
                                         </div>
                                     </div>
-                                    <div id ="match_team_buttons-away" class="d-flex flex-row justify-content-around col-4">
-                                        <div class="d-flex flex-row justify-content-around">
+                                    <div id ="match_team_buttons-away" class="d-flex flex-row justify-content-center col-4">
+                                        <div class="d-flex flex-row justify-content-around col-12">
                                             <button>-</button> <button>+</button>
                                         </div>
                                     </div>
@@ -95,9 +95,9 @@
 
                             {% endif %}
                         </div>
-            {# <div id="match_banner-right" class="col-3">
+             <div id="match_banner-right" class="col-3">
                 Chrono
-            </div> #}
+            </div>
         </div>
 
         <div id="match_stat_record" class="d-flex flex-row col-12 mt-5">
