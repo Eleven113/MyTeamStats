@@ -314,7 +314,6 @@ class ControllerBack {
         $List = [];
 
         for ($i = 0; $i < count($playerInList); $i++){
-            print_r($playerInList[$i]->getPlayerid());
             array_push($List,$playerInList[$i]->getPlayerid());
         }
 
