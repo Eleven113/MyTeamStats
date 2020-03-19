@@ -98,3 +98,7 @@ header:active{
 .teamcol{
     height: min-content!important;
 }
+
+#stat{
+    display: none;
+}
