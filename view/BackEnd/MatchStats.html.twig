@@ -17,8 +17,8 @@
 
     <div id="modal_goal">
         <div id="scorer">
-            <label for="player">Buteur :</label>
-            <select name="player">
+            <label for="scorer">Buteur :</label>
+            <select name="scorer" id="select_scorer">
                 {% for player in playersList %}
                     <option value="{{ player.playerid }}">{{ player.firstname }} {{ player.lastname }}</option>
                 {% endfor %}
@@ -26,7 +26,7 @@
         </div>
         <div id="passer">
             <label for="passer">Passeur :</label>
-            <select name="passer">
+            <select name="passer" id="select_passer">
                 <option value="null">Pas de passeur</option>
                 {% for player in playersList %}
                     <option value="{{ player.playerid }}">{{ player.firstname }} {{ player.lastname }}</option>
@@ -35,7 +35,7 @@
         </div>
         <div id="action">
             <label for="action">Action :</label>
-            <select name="action">
+            <select name="action" id="select_action">
                 <option value="Action de jeu">Action de jeu</option>
                 <option value="Corner">Corner</option>
                 <option value="Coup franc">Coup franc</option>
@@ -45,21 +45,34 @@
         </div>
         <div id="bodypart">
             <label for="bodypart">Methode :</label>
-            <select name="bodypart">
+            <select name="bodypart" id="select_bodypart">
                 <option value="Pied droit">Pied droit</option>
                 <option value="Pied Gauche">Pied Gauche</option>
                 <option value="Tête">Tête</option>
                 <option value="CSC">CSC</option>
             </select>
         </div>
+        <button id="modal_goal-button">Valider</button>
     </div>
 
     <div id="modal_yellowcard">
-
+        <label for="player_yc">Joueur averti :</label>
+        <select name="player_yc">
+            {% for player in playersList %}
+                <option value="{{ player.playerid }}">{{ player.firstname }} {{ player.lastname }}</option>
+            {% endfor %}
+        </select>
+        <button>Valider</button>
     </div>
 
     <div id="modal_redcard">
-
+        <label for="player_rc">Joueur expulsé :</label>
+        <select name="player_rc">
+            {% for player in playersList %}
+                <option value="{{ player.playerid }}">{{ player.firstname }} {{ player.lastname }}</option>
+            {% endfor %}
+        </select>
+        <button>Valider</button>
     </div>
 
     {% if playersList is empty %}
@@ -67,7 +80,6 @@
     {% else %}
         <div id="match_banner" class="d-flex flex-row col-12">
              <div id="match_banner-left" class="col-3">
-                Scorer
             </div>
             <div id="match_banner-teams" class="d-flex flex-column align-items-center col-6 teamcol">
                 {% if match.athome == 1 %}
@@ -150,7 +162,6 @@
                 {% endif %}
             </div>
             <div id="match_banner-right" class="col-3">
-                Chrono
             </div>
         </div>
 

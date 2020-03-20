@@ -4,4 +4,4 @@ let periodNumber = parseInt(document.getElementById("periodnum").innerHTML);
 let periodDuration = parseInt(document.getElementById("periodduration").innerHTML) ;
 let matchId = parseInt(document.getElementById("matchid").innerHTML) ;
 
-score = new Score(atHome);
+score = new Score(matchId, atHome);

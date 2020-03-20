@@ -102,3 +102,8 @@ header:active{
 #match_data{
     display: none;
 }
+
+#modal_goal, #modal_redcard, #modal_yellowcard{
+    display: none;
+}
+
