@@ -1,7 +1,9 @@
 class Score {
-    constructor(matchId,atHome){
+    constructor(matchId,atHome, periodNumber, periodDuration){
         this.matchId = matchId;
         this.atHome = atHome;
+        this.periodNumber = periodNumber;
+        this.periodDuration = periodDuration;
 
         // Récupération des div liées aux buttons
         this.divHomeButtonPlus = document.getElementById("home_score-btn_plus");
@@ -43,6 +45,7 @@ class Score {
 
         this.goals = [];
         this.goal;
+        this.goalIndex;
 
         this.MyTeamScore;
         this.divOppoTeamScore;
@@ -120,9 +123,9 @@ class Score {
 
         // Clic sur button ModalGoal
         this.buttonModalGoal.addEventListener("click",function(){
-            this.MyTeamPlus();
             this.closeModalGoal();
             this.setGoal();
+            this.MyTeamPlus();
         }.bind(this));
     }
 
@@ -177,12 +180,13 @@ class Score {
 
         this.goal = {
             "matchid" : this.matchId,
+            "time" : this.minutes,
             "periodnum" : this.periodnum,
             "scorer" : this.scorer,
             "passer" : this.passer,
             "action" : this.action,
             "bodypart" : this.bodypart
-        };
+        }
 
         this.goals.push(this.goal);
         console.log(this.goals);
@@ -193,25 +197,40 @@ class Score {
 
         // Création div Goal pour afficher le but
         let divGoal = document.createElement("div");
-        divGoal.className = "goal d-flex flex-row justify-content-around col-6";
+        divGoal.className = "d-flex flex-row justify-content-around col-6";
 
         let divScorerName = document.createElement("div");
-        divScorerName.className = "scorername col-8";
+        divScorerName.className = "scorername col-10 overflow-hidden";
         divScorerName.innerHTML = this.scorerName;
 
         let divGoalTime = document.createElement("div");
-        divGoalTime.className = "goaltime col-2";
+        divGoalTime.className = "goaltime col-1";
         divGoalTime.innerHTML = this.minutes + "'";
 
         let divGoalClose = document.createElement("div");
-        divGoalClose.className = "buttonclose col-2";
+        divGoalClose.className = "buttonclose col-1";
         divGoalClose.innerHTML = '<i class="fas fa-times"></i>'
+        divGoalClose.addEventListener("click", this.getGetGoalIndexAndRemove.bind(divGoalClose) );
+        divGoalClose.addEventListener("click", function(){ this.deleteGoal(goalIndex) }.bind(this) );
 
         divGoal.append(divScorerName);
         divGoal.append(divGoalTime);
         divGoal.append(divGoalClose);
 
         this.divScorer.append(divGoal);
+      
+    }
 
+    getGetGoalIndexAndRemove(){
+        console.log(this);
+        let child = this.parentElement;
+        
+        goalIndex = Array.from(child.parentNode.children).indexOf(child);
+        child.remove();
+    }
+
+    deleteGoal(index){
+        this.goals.splice(index,1);
+        this.MyTeamMinus();
     }
 }
