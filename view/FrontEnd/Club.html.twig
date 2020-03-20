@@ -7,43 +7,47 @@
 {% block content %}
 
 <div id="club" class="d-flex flex-column col-8 offset-2 align-items-center">
-    <h1 id="club_name">E113 Football Club</h1>
+    <h1 id="club_name">CONFIG.MyTeam.name</h1>
     <div id="club_logo_soclink" class="d-flex flex-column align-items-center">
-        <div id="club_logo" class="row">
+        <div class="row">
             <div class="offset-3 col-6">
-                <img src="public/img/v2.png" class="img-responsive fit-image">
+                <img id="club_logo" src="logo.png" class="img-responsive fit-image">
             </div>
         </div>
         <div id="club_soclink" class="text-primary">
-            <a href="#"><i class="fab fa-facebook-square"></i></a>
-            <a href="#"><i class="fab fa-twitter-square"></i></a>
-            <a href="#"><i class="fab fa-instagram-square"></i></a>
-            <a href="#"><i class="fab fa-youtube-square"></i></a>
+            <a id="facebook" href="#"><i class="fab fa-facebook-square"></i></a>
+            <a id="twitter" href="#"><i class="fab fa-twitter-square"></i></a>
+            <a id="instagram" href="#"><i class="fab fa-instagram-square"></i></a>
+            <a id="youtube" href="#"><i class="fab fa-youtube-square"></i></a>
         </div>
     </div>
     <div id="club_data" class="m-4">
-        <p id="club_pres">
+        <p>
             <span class="club_data-title font-weight-bold">Président :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            <span class="club_data-txt">Thibaut MINARD</span>
+            <span id="club_pres" class="club_data-txt">Thibaut MINARD</span>
         </p>
-        <p id="club_hq">
+        <p>
             <span class="club_data-title font-weight-bold">Siège social :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            <span class="club_data-txt">28 rue des cépes 53210 Argentré</span>
+            <span id="club_hq" class="club_data-txt">28 rue des cépes 53210 Argentré</span>
         </p>
-        <p id="club_tel">
+        <p>
             <span class="club_data-title font-weight-bold">Téléphone :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            <span class="club_data-txt">06 07 08 09 10 11</span>
+            <span id="club_tel" class="club_data-txt">06 07 08 09 10 11</span>
         </p>
-        <p id="club_mail">
+        <p>
             <span class="club_data-title font-weight-bold">Mail :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            <span class="club_data-txt">contact@e113-fc.fr</span>
+            <span id="club_mail" class="club_data-txt">contact@e113-fc.fr</span>
         </p>
-        <p id="club_website">
+        <p>
             <span class="club_data-title font-weight-bold">Site internet :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            <span class="club_data-txt">www.e133-fc.fr</span>
+            <span id="club_website" class="club_data-txt">www.e133-fc.fr</span>
         </p>
     </div>    
 </div>
 
 
+{% endblock %}
+
+{% block script %}
+    <script src="/MyTeamStats/public/js/Club.js"></script>
 {% endblock %}
