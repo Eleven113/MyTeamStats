@@ -65,7 +65,6 @@ class Score {
     // Renomage des div en fonction du lieu du match
     renameDiv(){
         if ( atHome == 1){
-            console.log("home");
             this.divHomeScore.id = "MyTeamScore";
             this.divHomeAway.id = "OppoTeamScore";
             
@@ -79,7 +78,6 @@ class Score {
             this.divBannerRight.id = "banner_chrono";
         }
         else {
-            console.log("away");
             this.divHomeScore.id = "OppoTeamScore";
             this.divHomeAway.id = "MyTeamScore";
         
