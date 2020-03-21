@@ -23,12 +23,12 @@ const CONFIG = {
         },
         {
             "name": "Passes Réussies",
-            "db_name": "successpass",
+            "db_name": "pass_ok",
             "model" : 2
         },
         {
             "name": "Passes Ratées",
-            "db_name": "misspass",
+            "db_name": "pass_nok",
             "model" : 2
         },
         {
@@ -38,12 +38,12 @@ const CONFIG = {
         },
         {
             "name": "Tirs cadrés",
-            "db_name": "shotontarget",
+            "db_name": "shot_ok",
             "model" : 2
         },
         {
             "name": "Tirs non cadrés",
-            "db_name": "missshot",
+            "db_name": "shot_nok",
             "model" : 2
         },
         {
@@ -78,15 +78,16 @@ const CONFIG = {
         },
         {
             "name": "Ballons gagnés",
-            "db_name": "winball",
-            "model" : 2
+            "db_name": "ball_ok",
+            "model" : 3
         },
         {
             "name": "Ballons perdus",
-            "db_name": "lostball",
-            "model" : 2
+            "db_name": "ball_nok",
+            "model" : 3
         }
-    ]
+    ],
+
 }
 
     
