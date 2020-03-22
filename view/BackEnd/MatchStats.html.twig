@@ -20,7 +20,7 @@
             <label for="scorer">Buteur :</label>
             <select name="scorer" id="select_scorer">
                 {% for player in playersList %}
-                    <option value="{{ player.playerid }}">{{ player.firstname }} {{ player.lastname }}</option>
+                    <option value="{{ player.playerid }}">{{ player.firstname }} {{ player.lastname | truncate(1, false, ".") }}</option>
                 {% endfor %}
             </select>
         </div>

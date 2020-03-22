@@ -178,8 +178,6 @@ class Stats {
                                 stat_nok_percent_3 = 0;
                             }
                             
-                            let stat_ok_percent_3 = Math.round((stat_ok_3 / (stat_ok_3 + stat_nok_3))*100);
-                            let stat_nok_percent_3 = 100 - stat_ok_percent_3;
                             document.getElementById(statName+"_ok_percent").innerHTML = stat_ok_percent_3+"%";
                             document.getElementById(statName+"_nok_percent").innerHTML = stat_nok_percent_3+"%";
                             break;   
