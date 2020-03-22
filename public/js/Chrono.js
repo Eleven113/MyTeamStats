@@ -107,7 +107,7 @@ class Chrono {
             this.divMin.textContent = "00";
             this.divSec.textContent = "00";
 
-            Score.setStats();
+            stats.setStats();
         }
 
         events(){
