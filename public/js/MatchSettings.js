@@ -8,3 +8,4 @@ let goalIndex;
 
 score = new Score(matchId, atHome, periodNumber, periodDuration);
 stats = new Stats(matchId, periodNumber);
+chrono = new Chrono(periodNumber, periodDuration);

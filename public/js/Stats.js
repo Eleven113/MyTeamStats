@@ -8,16 +8,20 @@ class Stats {
 
         this.newDivStatBar;
 
+        this.stats;
+        this.stat;
+        this.period;
+
         this.setStatBars();
 
         this.btnsMinus = document.querySelectorAll('div[id^="btnminus_"]');
         this.btnsPlus = document.querySelectorAll('div[id^="btnplus_"]');
         this.btnsMinus;
         this.btnPlus;
-
-        console.log(this.btnsPlus);
         
         this.events();
+
+
     }
 
     setStatBars(){
@@ -188,6 +192,10 @@ class Stats {
                 });
             }
         );
+    }
+
+    setStats(){
+        console.log("Hello les stats");
     }
 }
 

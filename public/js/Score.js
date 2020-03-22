@@ -34,8 +34,8 @@ class Score {
         this.actionName;
         this.bodypart;
         this.bodypartName;
-        
-        this.minutes = 11;
+
+        this.minutes;
 
         this.divMyTeamScore;
         this.divOppoTeamScore;
@@ -62,8 +62,9 @@ class Score {
 
     }
 
-    // Renomage des div en fonction du lieu du match
+
     renameDiv(){
+            // Renomage des div en fonction du lieu du match
         if ( atHome == 1){
             this.divHomeScore.id = "MyTeamScore";
             this.divHomeAway.id = "OppoTeamScore";
@@ -93,6 +94,7 @@ class Score {
     }
 
     getNewDiv(){
+        // Récupération de divs créées
         this.divMyTeamScore = document.getElementById("MyTeamScore");
         this.divOppoTeamScore = document.getElementById("OppoTeamScore");
         this.MyTeamScore = parseInt(this.divMyTeamScore.innerHTML);
@@ -176,6 +178,11 @@ class Score {
         this.bodypart = this.divModalBodypart.options[this.divModalBodypart.selectedIndex].value;
         this.bodypartName = this.divModalBodypart.options[this.divModalBodypart.selectedIndex].text;
 
+        // Récupération du temps et mise en forme
+        this.minutes = parseInt(document.getElementById("timer_min").innerHTML);
+        this.minutes += 1;
+
+        // Préparation de l'array avec les infos du buts
         this.goal = {
             "matchid" : this.matchId,
             "time" : this.minutes,
@@ -186,8 +193,9 @@ class Score {
             "bodypart" : this.bodypart
         }
 
+        // Ajout dans la liste
         this.goals.push(this.goal);
-        console.log(this.goals);
+
         this.displayGoal();
     }
 
@@ -203,7 +211,14 @@ class Score {
 
         let divGoalTime = document.createElement("div");
         divGoalTime.className = "goaltime col-1";
-        divGoalTime.innerHTML = this.minutes + "'";
+
+        // Mise en forme du temps pour affichage
+        if ( this.minutes > this.periodDuration){
+            divGoalTime.innerHTML = this.periodDuration + "'+" + (this.minutes - this.periodDuration); 
+        }
+        else {
+            divGoalTime.innerHTML = this.minutes + "'";
+        }
 
         let divGoalClose = document.createElement("div");
         divGoalClose.className = "buttonclose col-1";
@@ -215,19 +230,22 @@ class Score {
         divGoal.append(divGoalTime);
         divGoal.append(divGoalClose);
 
+        // Affichage du but
         this.divScorer.append(divGoal);
       
     }
 
     getGetGoalIndexAndRemove(){
-        console.log(this);
+        // Récuperation de l'index dans l'array pour suppression
         let child = this.parentElement;
         
+        // Suppresion de l'affichage du but
         goalIndex = Array.from(child.parentNode.children).indexOf(child);
         child.remove();
     }
 
     deleteGoal(index){
+        // Suppression du but dans la liste des buts
         this.goals.splice(index,1);
         this.MyTeamMinus();
     }

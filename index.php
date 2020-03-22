@@ -36,6 +36,7 @@ $twig = new \Twig\Environment($loader, [
 ]);
 $twig->addExtension(new \Twig\Extension\DebugExtension());
 $twig->addExtension(new Twig_Extensions_Extension_Text());
+$twig->addExtension(new Twig_Extensions_Extension_Intl());
 $twig->addGlobal('session', $_SESSION);
 $twig->addGlobal('env', $_ENV);
 

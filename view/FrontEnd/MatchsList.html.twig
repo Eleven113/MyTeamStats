@@ -41,7 +41,7 @@
                             Extérieur
                         {% endif %}
                     </td>
-                    <th>{{ match.date }}</td>
+                    <th>{{ match.date | date('d/m/Y à H:i' )}}</td>
                     <td>
                         {%  if match.status == 1 %}
                             A venir

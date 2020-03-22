@@ -69,9 +69,10 @@
             <span class="player_data-txt">{{ match.turf }}</span>
         </p>
     </div>
+
     {% if match.status == 1 %}
         <div id="pre_match">
-            <div id="match_data" class="m-4 p-4 col-12 border border-primary rounded-lg myborder">
+            <div id="pre_match_data" class="m-4 p-4 col-12 border border-primary rounded-lg myborder">
                 <div class="meteo_zipcode">{{ match.zipcode }}</div>
                 <div class="meteo_date">{{ match.date }}</div>
                 <p id="match_meteo">
@@ -79,7 +80,6 @@
                     <span class="meteo_display"></span>
                 </p>
             </div>
-
             {% if playersList is null %}
 
                 <div id="no_compo">
@@ -110,5 +110,5 @@
 
 {% block script %}
     <script src="/MyteamStats/public/js/ajax.js"></script>
-    <script src="/MyteamStats/public/js/meteo.js"></script>
+    <script src="/MyteamStats/public/js/Meteo.js"></script>
 {% endblock %}

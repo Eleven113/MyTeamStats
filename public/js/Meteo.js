@@ -36,7 +36,7 @@ class MeteoAPI {
     // Récupérer les données dans l'API
     getMeteo(i){
         this.zipCode = this.divZipCode[i].innerHTML;
-
+        
         this.urlRequest = "http://api.openweathermap.org/data/2.5/forecast?zip="+this.zipCode+",FR&appid=544af5ad005b2c4b8fd3f5709fada161&units=metric";
 
         ajaxGet(this.urlRequest, function(response){
