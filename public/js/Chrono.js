@@ -66,7 +66,6 @@ class Chrono {
 
             this.timer = setInterval(() => {
                 this.time = this.time + 1;
-                console.log(this.time);
                 this.min = Math.floor(this.time / 60);
                 if (this.min.toString().length === 1) {
                     this.min = "0" + this.min.toString()

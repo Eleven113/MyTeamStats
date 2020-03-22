@@ -1,7 +1,8 @@
 class Stats {
-    constructor(matchId, periodNumber){
+    constructor(matchId, periodNumber, atHome){
         this.matchId = matchId;
         this.periodNumber = periodNumber;
+        this.atHome = atHome;
 
         this.div1stCol = document.getElementById("stat_1stcol");
         this.div2ndCol = document.getElementById("stat_2ndcol");
@@ -12,12 +13,40 @@ class Stats {
         this.stat;
         this.period;
 
+
         this.setStatBars();
 
         this.btnsMinus = document.querySelectorAll('div[id^="btnminus_"]');
         this.btnsPlus = document.querySelectorAll('div[id^="btnplus_"]');
         this.btnsMinus;
         this.btnPlus;
+
+        // Stats à inserer dans la DB
+        this.homeScore;
+        this.awayScore;
+        this.successPass;
+        this.missPass;
+        this.shotOnTarget;
+        this.missShot;
+        this.freeKick;
+        this.offSide;
+        this.foul;
+        this.cornerKick;
+        this.winBall;
+        this.lostBall;
+
+        this.homeScoreAgglo;
+        this.awayScoreAgglo;
+        this.successPassAgglo;
+        this.missPassAgglo;
+        this.shotOnTargetAgglo;
+        this.missShotAgglo;
+        this.freeKickAgglo;
+        this.offSideAgglo;
+        this.foulAgglo;
+        this.cornerKickAgglo;
+        this.winBallAgglo;
+        this.lostBallAgglo;
         
         this.events();
 
@@ -195,7 +224,72 @@ class Stats {
     }
 
     setStats(){
-        console.log("Hello les stats");
+        this.homeScore = 0;
+        this.awayScore = 0;
+        this.successPassAgglo = 0;
+        this.missPassAgglo = 0;
+        this.shotOnTargetAgglo = 0;
+        this.missShotAgglo = 0;
+        this.freeKickAgglo = 0;
+        this.offSideAgglo = 0;
+        this.foulAgglo = 0;
+        this.cornerKickAgglo = 0;
+        this.winBallAgglo = 0;
+        this.lostBallAgglo = 0;
+
+        this.successPass = document.getElementById("pass_ok").innerHTML;
+        this.missPass = document.getElementById("pass_nok").innerHTML;
+        this.shotOnTarget = document.getElementById("shot_ok").innerHTML;
+        this.missShot = document.getElementById("shot_ok").innerHTML;
+        this.freeKick = document.getElementById("freekick").innerHTML;
+        this.offSide = document.getElementById("offside").innerHTML;
+        this.foul = document.getElementById("foul").innerHTML;
+        this.cornerKick = document.getElementById("cornerkick").innerHTML;
+        this.winBall = document.getElementById("ball_ok").innerHTML;
+        this.lostBall = document.getElementById("ball_nok").innerHTML;
+
+        if ( this.atHome === 1) {
+            this.homeScore = document.getElementById("MyTeamScore").innerHTML;
+            this.awayScore = document.getElementById("OppoTeamScore").innerHTML
+        }
+        else {
+            this.awayScore = document.getElementById("MyTeamScore").innerHTML;
+            this.homeScore = document.getElementById("OppoTeamScore").innerHTML;
+        }
+
+        if ( this.stats.length > 0){
+            for (let i = 0; i < this.stats.length; i++){
+                this.homeScoreAgglo = this.stats[i].homescore;
+                this.awayScore = this.stats[i].awayscore;
+                this.successPassAgglo += this.stats[i].successPass;
+                this.missPassAgglo += this.stats[i].misspass;
+                this.shotOnTargetAgglo += this.stats[i].shotontarget;
+                this.missShotAgglo += this.stats[i].missshot;
+                this.freeKickAgglo += this.stats[i].freekick;
+                this.offSideAgglo += this.stats[i].offside;
+                this.foulAgglo += this.stats[i].foul;
+                this.cornerKickAgglo += this.stats[i].cornerkick;
+                this.winBallAgglo += this.stats[i].winball;
+                this.lostBallAgglo += this.stats[i].lostball;
+            }
+        }
+
+        this.stat = {
+            "homescore": this.homeScore - this.homeScoreAgglo,
+            "awayscore" : this.awayScore - this.awayScoreAgglo,
+            "successpass" : this.successPass - this.successPassAgglo,
+            "misspass" : this.missPass - this.missPassAgglo,
+            "shotontarget" : this.shotOnTarget - this.shotOnTargetAgglo ,
+            "missshot" : this.missShot - this.missShotAgglo,
+            "freekick" : this.freeKick - this.freeKickAgglo,
+            "offside" : this.offSide - this.offSideAgglo,
+            "foul" : this.foul - this.foulAgglo,
+            "cornerkick" : this.cornerKick - this.cornerKickAgglo ,
+            "winball" : this.winBall - this.winBallAgglo,
+            "lostball" : this.lostBall - this.lostBallAgglo
+        }
+
+        this.stats.push(this.stat);
     }
 }
 
