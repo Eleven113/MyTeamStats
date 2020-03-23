@@ -1,7 +1,8 @@
 class Stats {
-    constructor(matchId, periodNumber, atHome){
+    constructor(matchId, periodNumber, periodDuration, atHome){
         this.matchId = matchId;
         this.periodNumber = periodNumber;
+        this.periodDuration = periodDuration;
         this.atHome = atHome;
 
         this.div1stCol = document.getElementById("stat_1stcol");
@@ -9,7 +10,7 @@ class Stats {
 
         this.newDivStatBar;
 
-        this.stats;
+        this.stats = [];
         this.stat;
         this.period;
 
@@ -199,9 +200,9 @@ class Stats {
                             stat_nok_3 = parseInt(stat_nok_3);
                             let stat_3 = stat_ok_3 + stat_nok_3;
 
-                            let stat_ok_percent_3
-                            let stat_nok_percent_3
-                            console.log(stat_3)
+                            let stat_ok_percent_3;
+                            let stat_nok_percent_3;
+
                             if (stat_3 !== 0){
                                 stat_ok_percent_3 = Math.round((stat_ok_3 / stat_3)*100);
                                 stat_nok_percent_3 = 100 - stat_ok_percent_3;
@@ -224,8 +225,8 @@ class Stats {
     }
 
     setStats(){
-        this.homeScore = 0;
-        this.awayScore = 0;
+        this.homeScoreAgglo = 0;
+        this.awayScoreAgglo = 0;
         this.successPassAgglo = 0;
         this.missPassAgglo = 0;
         this.shotOnTargetAgglo = 0;
@@ -250,7 +251,8 @@ class Stats {
 
         if ( this.atHome === 1) {
             this.homeScore = document.getElementById("MyTeamScore").innerHTML;
-            this.awayScore = document.getElementById("OppoTeamScore").innerHTML
+
+            this.awayScore = document.getElementById("OppoTeamScore").innerHTML;
         }
         else {
             this.awayScore = document.getElementById("MyTeamScore").innerHTML;
@@ -260,8 +262,8 @@ class Stats {
         if ( this.stats.length > 0){
             for (let i = 0; i < this.stats.length; i++){
                 this.homeScoreAgglo = this.stats[i].homescore;
-                this.awayScore = this.stats[i].awayscore;
-                this.successPassAgglo += this.stats[i].successPass;
+                this.awayScoreAgglo = this.stats[i].awayscore;
+                this.successPassAgglo += this.stats[i].successpass;
                 this.missPassAgglo += this.stats[i].misspass;
                 this.shotOnTargetAgglo += this.stats[i].shotontarget;
                 this.missShotAgglo += this.stats[i].missshot;
@@ -289,7 +291,9 @@ class Stats {
             "lostball" : this.lostBall - this.lostBallAgglo
         }
 
+
         this.stats.push(this.stat);
+        console.log(this.stats);
     }
 }
 

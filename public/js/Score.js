@@ -34,6 +34,7 @@ class Score {
         this.actionName;
         this.bodypart;
         this.bodypartName;
+        this.periodDuration;
 
         this.minutes;
 
@@ -182,11 +183,12 @@ class Score {
         this.minutes = parseInt(document.getElementById("timer_min").innerHTML);
         this.minutes += 1;
 
+        this.period = document.getElementById("current_period").textContent;
         // Préparation de l'array avec les infos du buts
         this.goal = {
             "matchid" : this.matchId,
             "time" : this.minutes,
-            "periodnum" : this.periodnum,
+            "periodnum" : this.period,
             "scorer" : this.scorer,
             "passer" : this.passer,
             "action" : this.action,

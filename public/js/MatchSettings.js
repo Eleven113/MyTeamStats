@@ -7,5 +7,5 @@ let matchId = parseInt(document.getElementById("matchid").innerHTML) ;
 let goalIndex;
 
 score = new Score(matchId, atHome, periodNumber, periodDuration);
-stats = new Stats(matchId, periodNumber, atHome);
+stats = new Stats(matchId, periodNumber, periodDuration, atHome);
 chrono = new Chrono(periodNumber, periodDuration);

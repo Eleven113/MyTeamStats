@@ -15,6 +15,7 @@ class Chrono {
         this.btnPlay;
         this.btnPause;
         this.btnNext;
+        this.divStatsBtn;
 
         this.divCurrentPeriod;
 
@@ -27,6 +28,8 @@ class Chrono {
         this.time = 0;
         this.min;
         this.sec;
+
+        this.data;
 
         this.setChrono();
         this.events();
@@ -95,18 +98,42 @@ class Chrono {
 
         next(){
             if (this.time === 0) return;
-            this.pause();
 
-            if (this.period == this.periodNumber) return;
-            window.confirm("Etes-vous sûr de vouloir passer à la période suivante ?");
-            this.period = this.period + 1;
 
-            this.time = 0;
-            this.divCurrentPeriod.textContent = this.period;
-            this.divMin.textContent = "00";
-            this.divSec.textContent = "00";
+            if ( this.min < this.periodDuration){
+                alert("La période n'est pas terminée");
+                return;
+            }
 
-            stats.setStats();
+            if (this.period < this.periodNumber) {
+                this.pause();
+                window.confirm("Etes-vous sûr de vouloir passer à la période suivante ?");
+                this.period = this.period + 1;
+    
+                this.time = 0;
+                this.divCurrentPeriod.textContent = this.period;
+                this.divMin.textContent = "00";
+                this.divSec.textContent = "00";
+    
+                stats.setStats();
+            } 
+            else {
+                window.confirm("Une fois cette action effectuée, il ne sera plus possible de modifier les données");
+
+                this.divChrono.innerHTML = '<button type="submit" id="stats_btn" class="btn btn-primary"><i class="fas fa-check-circle"></i> Envoyer les données</button>';
+
+                this.divStatsBtn = document.getElementById("stats_btn");
+
+                stats.setStats();
+
+                this.data = {
+                    "goals" : score.goals,
+                    "stats" : stats.stats
+                }
+
+                console.log(this.data);
+            }
+
         }
 
         events(){
@@ -115,6 +142,7 @@ class Chrono {
             this.btnPause.addEventListener("click", this.pause.bind(this));
 
             this.btnNext.addEventListener("click", this.next.bind(this));
+
         }
 }
 
