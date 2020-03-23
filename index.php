@@ -104,6 +104,7 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('POST', '/MyTeamStats/UpdateMatch/{id:[0-9]+}', 'controllerBack/UpdateMatch');
     $r->addRoute('GET', '/MyTeamStats/DeleteMatch/{id:[0-9]+}', 'controllerBack/DeleteMatch');
     $r->addRoute('GET', '/MyTeamStats/MatchStats/{id:[0-9]+}', 'controllerBack/MatchStats');
+    $r->addRoute('POST', '/MyTeamStats/MatchData', 'controllerBack/MatchData');
 
 
         // Composition

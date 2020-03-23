@@ -353,5 +353,11 @@ class ControllerBack {
             'id' => $id
         ]);
     }
+
+    public function MatchData(){
+        ?><pre><?php
+        print_r($_POST);
+        ?></pre><?php
+    }
 }
 

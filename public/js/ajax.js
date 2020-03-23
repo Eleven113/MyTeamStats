@@ -42,3 +42,9 @@ function ajaxPost(url, data, callback, isJson) {
     }
     req.send(data);
 }
+
+function myAjaxPost(url, data){
+    let req = new XMLHttpRequest();
+    req.open("POST", url);
+    req.send(data);
+}

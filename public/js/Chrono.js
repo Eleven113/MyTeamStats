@@ -131,7 +131,10 @@ class Chrono {
                     "stats" : stats.stats
                 }
 
+                this.data = JSON.stringify(this.data);
                 console.log(this.data);
+
+                this.sendData();
             }
 
         }
@@ -143,6 +146,10 @@ class Chrono {
 
             this.btnNext.addEventListener("click", this.next.bind(this));
 
+        }
+
+        sendData(){
+            this.divStatsBtn.addEventListener("click", myAjaxPost("/MyTeamStats/MatchData", this.data).bind(this));
         }
 }
 
