@@ -56,23 +56,35 @@
     </div>
 
     <div id="modal_yellowcard">
-        <label for="player_yc">Joueur averti :</label>
-        <select name="player_yc">
-            {% for player in playersList %}
-                <option value="{{ player.playerid }}">{{ player.firstname }} {{ player.lastname | truncate(1, false, "") }}</option>
-            {% endfor %}
-        </select>
-        <button>Valider</button>
+        <div id="yc_close"><i class="fas fa-times"></i></div>
+        <div id="set_yellowcard">
+            <div class="show_yellowcard">Voir les cartons</div>
+            <label for="player_yc">Joueur averti :</label>
+            <select name="player_yc">
+                {% for player in playersList %}
+                    <option value="{{ player.playerid }}">{{ player.firstname }} {{ player.lastname | truncate(1, false, "") }}</option>
+                {% endfor %}
+            </select>
+            <button id="valid_yc">Valider</button>
+        </div>
+        <div id="get_yellowcard">
+        </div>
     </div>
 
     <div id="modal_redcard">
-        <label for="player_rc">Joueur expulsé :</label>
-        <select name="player_rc">
-            {% for player in playersList %}
-                <option value="{{ player.playerid }}">{{ player.firstname }} {{ player.lastname | truncate(1, false, "") }}</option>
-            {% endfor %}
-        </select>
-        <button>Valider</button>
+        <div id="rc_close"><i class="fas fa-times"></i></div>
+        <div id="set_redcard">
+            <div class="show_redcard">Voir les cartons</div>
+            <label for="player_rc">Joueur expulsé :</label>
+            <select name="player_rc">
+                {% for player in playersList %}
+                    <option value="{{ player.playerid }}">{{ player.firstname }} {{ player.lastname | truncate(1, false, "") }}</option>
+                {% endfor %}
+            </select>
+            <button id="valid_rc">Valider</button>
+        </div>
+        <div class="get_redcard">
+        </div>
     </div>
 
     {% if playersList is empty %}
@@ -108,13 +120,13 @@
                         </div>
                     </div>
                     <div id="match_team_buttons" class="d-flex flex-row justify-content-around col-12">
-                        <div id ="match_team_buttons-home" class="d-flex flex-row justify-content-between col-4">
-                            <div class="d-flex flex-row justify-content-between col-12">
+                        <div id ="match_team_buttons-home" class="d-flex flex-row col-4">
+                            <div class="d-flex flex-row justify-content-end col-12">
                                 <button id="home_score-btn_minus" class="btn btn-primary"><i class="fas fa-minus"></i></button> <button id="home_score-btn_plus" class="btn btn-primary"><i class="fas fa-plus"></i></button>
                             </div>
                         </div>
                         <div id ="match_team_buttons-away" class="d-flex flex-row justify-content-between col-4">
-                            <div class="d-flex flex-row justify-content-between col-12">
+                            <div class="d-flex flex-row justify-content-around col-12">
                                 <button id="away_score-btn_minus" class="btn btn-primary"><i class="fas fa-minus"></i></button> <button id="away_score-btn_plus" class="btn btn-primary"><i class="fas fa-plus"></i></button>
                             </div>
                         </div>
@@ -148,7 +160,7 @@
                     </div>
                     <div id="match_team_buttons" class="d-flex flex-row justify-content-around col-12">
                         <div id ="match_team_buttons-home" class="d-flex flex-row justify-content-between col-4">
-                            <div class="d-flex flex-row justify-content-between col-12">
+                            <div class="d-flex flex-row justify-content-end col-12">
                                 <button id="home_score-btn_minus" class="btn btn-primary"><i class="fas fa-minus"></i></button> <button id="home_score-btn_plus" class="btn btn-primary"><i class="fas fa-plus"></i></button>
                             </div>
                         </div>
@@ -160,6 +172,12 @@
                     </div>
 
                 {% endif %}
+                <div id ="match_team_buttons-cards" class="d-flex flex-row justify-content-center col-12">
+                    <div class="d-flex flex-row justify-content-around col-4">
+                        <div class="d-flex flex-row"><div class="yellowcard"></div>&nbsp;&nbsp;<span id="yellowcard_num">0</span></div>
+                        <div class="d-flex flex-row"><div class="redcard"></div>&nbsp;&nbsp;<span id="redcard_num">0</span></div>
+                    </div>
+                </div>
             </div>
             <div id="match_banner-right" class="col-3">
             </div>
@@ -181,6 +199,7 @@
 {%  block script %}
     <script src="/MyTeamStats/public/js/ajax.js"></script>
     <script src="/MyTeamStats/public/js/Score.js"></script>
+    <script src="/MyTeamStats/public/js/Card.js"></script>
     <script src="/MyTeamStats/public/js/Stats.js"></script>
     <script src="/MyTeamStats/public/js/Chrono.js"></script>
     <script src="/MyTeamStats/public/js/MatchSettings.js"></script>

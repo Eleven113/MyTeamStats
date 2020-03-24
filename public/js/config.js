@@ -17,21 +17,6 @@ const CONFIG = {
 
     data : items = [
         {
-            "name": "Passes",
-            "db_name": "pass",
-            "model" : 0
-        },
-        {
-            "name": "Passes Réussies",
-            "db_name": "pass_ok",
-            "model" : 2
-        },
-        {
-            "name": "Passes Ratées",
-            "db_name": "pass_nok",
-            "model" : 2
-        },
-        {
             "name": "Tirs",
             "db_name": "shot",
             "model" : 0
@@ -57,23 +42,28 @@ const CONFIG = {
             "model" : 1
         },
         {
-            "name": "Corner",
-            "db_name": "cornerkick",
-            "model" : 1
-        },
-        {
-            "name": "Cartons Jaunes",
-            "db_name": "yellowcard",
-            "model" : 1
-        },
-        {
-            "name": "Cartons Rouges",
-            "db_name": "redcard",
-            "model" : 1
-        },
-        {
             "name": "Fautes",
             "db_name": "foul",
+            "model" : 1
+        },
+        {
+            "name": "Passes",
+            "db_name": "pass",
+            "model" : 0
+        },
+        {
+            "name": "Passes Réussies",
+            "db_name": "pass_ok",
+            "model" : 2
+        },
+        {
+            "name": "Passes Ratées",
+            "db_name": "pass_nok",
+            "model" : 2
+        },
+        {
+            "name": "Corner",
+            "db_name": "cornerkick",
             "model" : 1
         },
         {

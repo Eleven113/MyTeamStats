@@ -58,10 +58,12 @@ class MatchManager
 
     public function UpdateStatus($match){
         $match = new Match($match);
-        print_r($match);
-//        $query = $this->db->prepare('UPDATE GAME SET STATUS = :status WHERE GAMEID = :gameid');
-//        $query->bindValue(':gameid', $match->getGameid());
-//        $query->bindValue(':status', $match->getStatus());
+
+        $query = $this->db->prepare('UPDATE GAME SET STATUS = :status WHERE GAMEID = :gameid');
+        $query->bindValue(':gameid', $match->getGameid());
+        $query->bindValue(':status', $match->getStatus());
+
+        $query->execute();
     }
 
     public function DeleteMatch($id){

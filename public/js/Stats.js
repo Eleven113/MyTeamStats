@@ -87,7 +87,7 @@ class Stats {
     }
 
     createStatBars(i){
-        if ( i <= 6) {
+        if ( i <= 5) {
             this.div1stCol.append(this.newDivStatBar);
         }
         else {
