@@ -29,7 +29,7 @@
             <select name="passer" id="select_passer">
                 <option value="null">Pas de passeur</option>
                 {% for player in playersList %}
-                    <option value="{{ player.playerid }}">{{ player.firstname }} {{ player.lastname }}</option>
+                    <option value="{{ player.playerid }}">{{ player.firstname }} {{ player.lastname | truncate(1, false, "") }}</option>
                 {% endfor %}
             </select>
         </div>
@@ -59,7 +59,7 @@
         <label for="player_yc">Joueur averti :</label>
         <select name="player_yc">
             {% for player in playersList %}
-                <option value="{{ player.playerid }}">{{ player.firstname }} {{ player.lastname }}</option>
+                <option value="{{ player.playerid }}">{{ player.firstname }} {{ player.lastname | truncate(1, false, "") }}</option>
             {% endfor %}
         </select>
         <button>Valider</button>
@@ -69,7 +69,7 @@
         <label for="player_rc">Joueur expulsé :</label>
         <select name="player_rc">
             {% for player in playersList %}
-                <option value="{{ player.playerid }}">{{ player.firstname }} {{ player.lastname }}</option>
+                <option value="{{ player.playerid }}">{{ player.firstname }} {{ player.lastname | truncate(1, false, "") }}</option>
             {% endfor %}
         </select>
         <button>Valider</button>

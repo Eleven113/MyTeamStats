@@ -9,8 +9,11 @@ Class ControllerFront {
     private $matchManager;
     private $fieldManager;
     private $compositionManager;
+    private $goalManager;
+    private $periodManager;
+    private $cardManager;
 
-    public function __construct($twig, $playerManager, $userManager, $opponentManager, $matchManager, $fieldManager, $compositionManager)
+    public function __construct($twig, $playerManager, $userManager, $opponentManager, $matchManager, $fieldManager, $compositionManager, $goalManager, $periodManager, $cardManager)
     {
         $this->twig = $twig;
         $this->playerManager = $playerManager;
@@ -19,7 +22,11 @@ Class ControllerFront {
         $this->matchManager = $matchManager;
         $this->fieldManager = $fieldManager;
         $this->compositionManager = $compositionManager;
+        $this->goalManager = $goalManager;
+        $this->periodManager = $periodManager;
+        $this->cardManager = $cardManager;
     }
+
 
     public function Home(){
         echo $this->twig->render('/FrontEnd/Homepage.html.twig');

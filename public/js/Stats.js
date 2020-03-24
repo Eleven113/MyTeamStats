@@ -35,6 +35,7 @@ class Stats {
         this.cornerKick;
         this.winBall;
         this.lostBall;
+        this.periodNum;
 
         this.homeScoreAgglo;
         this.awayScoreAgglo;
@@ -248,6 +249,7 @@ class Stats {
         this.cornerKick = document.getElementById("cornerkick").innerHTML;
         this.winBall = document.getElementById("ball_ok").innerHTML;
         this.lostBall = document.getElementById("ball_nok").innerHTML;
+        this.periodNum = document.getElementById("current_period").textContent;
 
         if ( this.atHome === 1) {
             this.homeScore = document.getElementById("MyTeamScore").innerHTML;
@@ -277,6 +279,8 @@ class Stats {
         }
 
         this.stat = {
+            "matchid": this.matchId,
+            "periodnum": this.periodNum,
             "homescore": this.homeScore - this.homeScoreAgglo,
             "awayscore" : this.awayScore - this.awayScoreAgglo,
             "successpass" : this.successPass - this.successPassAgglo,

@@ -9,8 +9,11 @@ class ControllerBack {
     private $matchManager;
     private $fieldManager;
     private $compositionManager;
+    private $goalManager;
+    private $periodManager;
+    private $cardManager;
 
-    public function __construct($twig, $playerManager, $userManager, $opponentManager, $matchManager, $fieldManager, $compositionManager)
+    public function __construct($twig, $playerManager, $userManager, $opponentManager, $matchManager, $fieldManager, $compositionManager, $goalManager, $periodManager, $cardManager)
     {
         $this->twig = $twig;
         $this->playerManager = $playerManager;
@@ -19,6 +22,9 @@ class ControllerBack {
         $this->matchManager = $matchManager;
         $this->fieldManager = $fieldManager;
         $this->compositionManager = $compositionManager;
+        $this->goalManager = $goalManager;
+        $this->periodManager = $periodManager;
+        $this->cardManager = $cardManager;
     }
 
     public function CreatePlayer(){
@@ -355,9 +361,23 @@ class ControllerBack {
     }
 
     public function MatchData(){
-        ?><pre><?php
-        print_r($_POST);
-        ?></pre><?php
+           $game = $_POST['game'];
+           $this->matchManager->UpdateStatus($game);
+
+//        for ( $i = 0; $i < count($_POST['goals']); $i++){
+//            $goal = $_POST['goals'][$i];
+//            $this->goalManager->AddGoal($goal);
+//        }
+
+//        for ( $i = 0; $i < count($_POST['stats']); $i++){
+//            $period = $_POST['stats'][$i];
+//            $this->periodManager->AddPeriod($period);
+//        }
+
+//        for ( $i = 0; $i < count($_POST['cards']); $i++){
+//            $card = $_POST['cards'][$i];
+//            $this->cardManager->AddCard($card);
+//        }
     }
 }
 

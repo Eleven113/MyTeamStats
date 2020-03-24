@@ -17,6 +17,12 @@ require ('model/Composition/Composition.php');
 require ('model/Composition/CompositionManager.php');
 require ('model/Field/Field.php');
 require ('model/Field/FieldManager.php');
+require ('model/Goal/Goal.php');
+require ('model/Goal/GoalManager.php');
+require ('model/Period/Period.php');
+require ('model/Period/PeriodManager.php');
+require ('model/Card/Card.php');
+require ('model/Card/CardManager.php');
 require ('model/DBFactory.php');
 //require ('router.php');
 
@@ -28,6 +34,9 @@ $opponentManager = new OpponentManager($db);
 $matchManager = new MatchManager($db);
 $fieldManager = new FieldManager($db);
 $compositionManager = new CompositionManager($db);
+$goalManager = new GoalManager($db);
+$periodManager = new PeriodManager($db);
+$cardManager = new CardManager($db);
 
 $loader = new \Twig\Loader\FilesystemLoader(__DIR__ . '/view');
 $twig = new \Twig\Environment($loader, [
@@ -40,8 +49,8 @@ $twig->addExtension(new Twig_Extensions_Extension_Intl());
 $twig->addGlobal('session', $_SESSION);
 $twig->addGlobal('env', $_ENV);
 
-$controllerFront = new ControllerFront($twig, $playerManager, $userManager, $opponentManager, $matchManager, $fieldManager, $compositionManager);
-$controllerBack = new ControllerBack($twig, $playerManager, $userManager, $opponentManager, $matchManager, $fieldManager, $compositionManager);
+$controllerFront = new ControllerFront($twig, $playerManager, $userManager, $opponentManager, $matchManager, $fieldManager, $compositionManager, $goalManager, $periodManager, $cardManager);
+$controllerBack = new ControllerBack($twig, $playerManager, $userManager, $opponentManager, $matchManager, $fieldManager, $compositionManager, $goalManager, $periodManager, $cardManager);
 
 \Cloudinary::config( array (
     "cloud_name" => "marthyte" ,

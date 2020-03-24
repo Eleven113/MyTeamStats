@@ -1,5 +1,6 @@
 class Chrono {
-    constructor(periodNumber, periodDuration){
+    constructor(matchId,periodNumber, periodDuration){
+        this.matchId = matchId;
         this.periodNumber = periodNumber;
         this.periodDuration = periodDuration;
 
@@ -127,8 +128,13 @@ class Chrono {
                 stats.setStats();
 
                 this.data = {
+                    "game":{
+                        "gameid": this.matchId,
+                        "status" : 0
+                    },
                     "goals" : score.goals,
-                    "stats" : stats.stats
+                    "stats" : stats.stats,
+                    "cards" : card.cards
                 }
 
                 this.data = JSON.stringify(this.data);

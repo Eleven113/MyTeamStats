@@ -189,8 +189,8 @@ class Score {
             "matchid" : this.matchId,
             "time" : this.minutes,
             "periodnum" : this.period,
-            "scorer" : this.scorer,
-            "passer" : this.passer,
+            "scorerid" : this.scorer,
+            "passerid" : this.passer,
             "action" : this.action,
             "bodypart" : this.bodypart
         }

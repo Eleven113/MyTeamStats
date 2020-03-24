@@ -7,7 +7,7 @@
 {% block content %}
 
     <div id="updatematch_form" class="d-flex flex-column justify-content-center align-items-center">
-        <form id="updatematch-form" class="col-lg-6" action="/MyTeamStats/UpdateMatch"  method="post" enctype="multipart/form-data">
+        <form id="updatematch-form" class="col-lg-6" action="/MyTeamStats/UpdateMatch/{{ match.gameid }}"  method="post" enctype="multipart/form-data">
             <legend>Créér un match</legend>
             <div class="form-group">
                 <label for="text">Date</label>

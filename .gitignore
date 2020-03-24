@@ -7,3 +7,5 @@ view/templatetest.htm
 .idea/MyTeamStats.iml
 .idea/modules.xml
 *.xml
+matchdata.php
+public/js/jquerytest.js
