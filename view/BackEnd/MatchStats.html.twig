@@ -5,6 +5,82 @@
 {% endblock %}
 
 {% block content %}
+    <div id="modal">
+        <div id="modal_goal" class="modalflex">
+            <div id="scorer">
+                <label for="scorer">Buteur :</label>
+                <select name="scorer" id="select_scorer">
+                    {% for player in playersList %}
+                        <option value="{{ player.playerid }}">{{ player.firstname }} {{ player.lastname | truncate(1, false, "") }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div id="passer">
+                <label for="passer">Passeur :</label>
+                <select name="passer" id="select_passer">
+                    <option value="null">Pas de passeur</option>
+                    {% for player in playersList %}
+                        <option value="{{ player.playerid }}">{{ player.firstname }} {{ player.lastname | truncate(1, false, "") }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div id="action">
+                <label for="action">Action :</label>
+                <select name="action"  id="select_action">
+                    <option value="Action de jeu">Action de jeu</option>
+                    <option value="Corner">Corner</option>
+                    <option value="Coup franc">Coup franc</option>
+                    <option value="Coup franc direct">Coup franc direct</option>
+                    <option value="Penalty">Penalty</option>
+                </select>
+            </div>
+            <div id="bodypart">
+                <label for="bodypart">Methode :</label>
+                <select name="bodypart" id="select_bodypart">
+                    <option value="Pied droit">Pied droit</option>
+                    <option value="Pied Gauche">Pied Gauche</option>
+                    <option value="Tête">Tête</option>
+                    <option value="CSC">CSC</option>
+                </select>
+            </div>
+            <button id="modal_goal-button" class="btn btn-primary">Valider</button>
+        </div>
+
+        <div id="modal_yellowcard" class="modalflex">
+            <div id="yc_close"><i class="fas fa-times"></i></div>
+            <div id="set_yellowcard">
+                <label for="player_yc">Joueur averti :</label>
+                &nbsp;&nbsp;&nbsp;
+                <select name="player_yc" id="player_yc">
+                    {% for player in playersList %}
+                        <option value="{{ player.playerid }}">{{ player.firstname }} {{ player.lastname | truncate(1, false, "") }}</option>
+                    {% endfor %}
+                </select>
+                &nbsp;&nbsp;&nbsp;
+                <button id="valid_yc" class="btn btn-primary">Valider</button>
+            </div>
+        </div>
+
+        <div id="modal_redcard" class="modalflex">
+            <div id="rc_close"><i class="fas fa-times"></i></div>
+            <div id="set_redcard">
+                <label for="player_rc">Joueur expulsé :</label>
+                &nbsp;&nbsp;&nbsp;
+                <select name="player_rc" id="player_rc">
+                    {% for player in playersList %}
+                        <option value="{{ player.playerid }}">{{ player.firstname }} {{ player.lastname | truncate(1, false, "") }}</option>
+                    {% endfor %}
+                </select>
+                &nbsp;&nbsp;&nbsp;
+                <button id="valid_rc" class="btn btn-primary">Valider</button>
+            </div>
+        </div>
+
+        <div id="modal_displaycards">
+            <div id="cards_close"><i class="fas fa-times"></i></div>
+            <div id="set_cards"></div>
+        </div>
+    </div>
 
 <div id="match" class="d-flex flex-column col-12">
 
@@ -15,77 +91,7 @@
         <div id="periodduration">{{ match.periodduration }}</div>
     </div>
 
-    <div id="modal_goal">
-        <div id="scorer">
-            <label for="scorer">Buteur :</label>
-            <select name="scorer" id="select_scorer">
-                {% for player in playersList %}
-                    <option value="{{ player.playerid }}">{{ player.firstname }} {{ player.lastname | truncate(1, false, "") }}</option>
-                {% endfor %}
-            </select>
-        </div>
-        <div id="passer">
-            <label for="passer">Passeur :</label>
-            <select name="passer" id="select_passer">
-                <option value="null">Pas de passeur</option>
-                {% for player in playersList %}
-                    <option value="{{ player.playerid }}">{{ player.firstname }} {{ player.lastname | truncate(1, false, "") }}</option>
-                {% endfor %}
-            </select>
-        </div>
-        <div id="action">
-            <label for="action">Action :</label>
-            <select name="action"  id="select_action">
-                <option value="Action de jeu">Action de jeu</option>
-                <option value="Corner">Corner</option>
-                <option value="Coup franc">Coup franc</option>
-                <option value="Coup franc direct">Coup franc direct</option>
-                <option value="Penalty">Penalty</option>
-            </select>
-        </div>
-        <div id="bodypart">
-            <label for="bodypart">Methode :</label>
-            <select name="bodypart" id="select_bodypart">
-                <option value="Pied droit">Pied droit</option>
-                <option value="Pied Gauche">Pied Gauche</option>
-                <option value="Tête">Tête</option>
-                <option value="CSC">CSC</option>
-            </select>
-        </div>
-        <button id="modal_goal-button">Valider</button>
-    </div>
 
-    <div id="modal_yellowcard">
-        <div id="yc_close"><i class="fas fa-times"></i></div>
-        <div id="set_yellowcard">
-            <div class="show_yellowcard">Voir les cartons</div>
-            <label for="player_yc">Joueur averti :</label>
-            <select name="player_yc">
-                {% for player in playersList %}
-                    <option value="{{ player.playerid }}">{{ player.firstname }} {{ player.lastname | truncate(1, false, "") }}</option>
-                {% endfor %}
-            </select>
-            <button id="valid_yc">Valider</button>
-        </div>
-        <div id="get_yellowcard">
-        </div>
-    </div>
-
-    <div id="modal_redcard">
-        <div id="rc_close"><i class="fas fa-times"></i></div>
-        <div id="set_redcard">
-            <div class="show_redcard">Voir les cartons</div>
-            <label for="player_rc">Joueur expulsé :</label>
-            <select name="player_rc">
-                {% for player in playersList %}
-                    <option value="{{ player.playerid }}">{{ player.firstname }} {{ player.lastname | truncate(1, false, "") }}</option>
-                {% endfor %}
-            </select>
-            <button id="valid_rc">Valider</button>
-        </div>
-        <div class="get_redcard">
-        </div>
-    </div>
 
     {% if playersList is empty %}
         <div>Vous devez d'abord définir une composition d'équipe</div>
@@ -174,13 +180,23 @@
                 {% endif %}
                 <div id ="match_team_buttons-cards" class="d-flex flex-row justify-content-center col-12">
                     <div class="d-flex flex-row justify-content-around col-4">
-                        <div class="d-flex flex-row"><div class="yellowcard"></div>&nbsp;&nbsp;<span id="yellowcard_num">0</span></div>
-                        <div class="d-flex flex-row"><div class="redcard"></div>&nbsp;&nbsp;<span id="redcard_num">0</span></div>
+                        <div class="d-flex flex-row"><div id="yellowcard"></div>&nbsp;&nbsp;<span id="yellowcard_num">0</span></div>
+                        <div class="d-flex flex-row"><div id="redcard"></div>&nbsp;&nbsp;<span id="redcard_num">0</span></div>
+                    </div>
+                </div>
+                <div id ="match_team_show-cards" class="d-flex flex-row justify-content-center col-12">
+                    <div class="d-flex flex-row justify-content-around col-4">
+                        <button id="show_cards" class="btn btn-primary">Voir les cartons</button>
                     </div>
                 </div>
             </div>
             <div id="match_banner-right" class="col-3">
             </div>
+        </div>
+
+        <button id="match_stat_period_display" class="mt-4">
+            <div id="match_stat_period-bar"></div>
+            <div id="stat_all" class="period_btn">Total</div>
         </div>
 
         <div id="match_stat_record" class="d-flex flex-row col-12 mt-5">
@@ -192,6 +208,7 @@
         </div>
     {% endif %}
 </div>
+
 
 
 {% endblock %}

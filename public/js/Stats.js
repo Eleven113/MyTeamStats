@@ -8,6 +8,8 @@ class Stats {
         this.div1stCol = document.getElementById("stat_1stcol");
         this.div2ndCol = document.getElementById("stat_2ndcol");
 
+        this.divStatPeriodDisplay = document.getElementById("match_stat_period_display");
+
         this.newDivStatBar;
 
         this.stats = [];
@@ -297,6 +299,12 @@ class Stats {
 
 
         this.stats.push(this.stat);
+
+        let divStatPeriod = document.createElement("div");
+        divStatPeriod.id = "stat_" + this.periodNum;
+        divStatPeriod.innerHTML = this.periodNum;
+        this.divStatPeriodDisplay.append(divStatPeriod);
+        
         console.log(this.stats);
     }
 }

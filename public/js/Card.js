@@ -11,19 +11,27 @@ class Card {
         this.spanRc = document.getElementById("redcard_num");
 
         this.modalYc = document.getElementById("modal_yellowcard");
-        this.moddalRc = document.getElementById("modal_redcard");
+        this.modalRc = document.getElementById("modal_redcard");
 
         this.buttonYc = document.getElementById("valid_yc");
+        this.closeYc = document.getElementById("yc_close");
+        this.isDisplayYellow = false;
+
         this.buttonRc = document.getElementById("valid_rc");
+        this.closeRc = document.getElementById("rc_close");
+        this.isDisplayRed = false;
 
-        this.ycNumb;
-        this.rcNumb;
+        this.buttonShowCards = document.getElementById("show_cards");
+        this.closeShowCards = document.getElementById("cards_close");
+        this.isDisplayShow = false;
 
-        this.divShowYc = document.getElementById("show_yellowcard");
-        this.divShowRc = document.getElementById("show_redcard");
+        this.spanYc = document.getElementById("yellowcard_num");
+        this.ycNumb = 0;
+        this.spanYc = document.getElementById("yellowcard_num");
+        this.rcNumb = 0;
 
-        this.divGetYc = document.getElementById("get_yellowcard");
-        this.divGetRc = document.getElementById("get_redcard");
+        this.divDisplayCards = document.getElementById("modal_displaycards");
+        this.divSetCards = document.getElementById("set_cards");
         this.divCard;
 
         this.selectYc = document.getElementById("player_yc");
@@ -34,7 +42,7 @@ class Card {
         this.time;
         this.period;
 
-        this.cards;
+        this.cards = [];
         this.card;
 
         this.events();
@@ -42,19 +50,54 @@ class Card {
 
     events() {
         this.divYc.addEventListener("click", this.displayModalYellow.bind(this));
+        this.closeYc.addEventListener("click", this.displayModalYellow.bind(this));
 
         this.divRc.addEventListener("click", this.displayModalRed.bind(this));
+        this.closeRc.addEventListener("click", this.displayModalRed.bind(this));
+
+        this.buttonShowCards.addEventListener("click", this.displayModalShow.bind(this));
+        this.closeShowCards.addEventListener("click", this.displayModalShow.bind(this));
 
         this.buttonYc.addEventListener("click", this.setYc.bind(this));
+        this.buttonRc.addEventListener("click", this.setRc.bind(this));
+
+
 
     }
 
     displayModalYellow() {
-        this.modalYc.style.display = "block";
+        if (!this.isDisplayYellow){
+            this.modalYc.style.display = "flex";
+            this.isDisplayYellow = true;
+        }
+        else {
+            this.modalYc.style.display = "none";
+            this.isDisplayYellow = false;
+        }
+
     }
 
     displayModalRed() {
-        this.modalRc.style.display = "block";
+        if (!this.isDisplayRed){
+            this.modalRc.style.display = "flex";
+            this.isDisplayRed = true;
+        }
+        else {
+            this.modalRc.style.display = "none";
+            this.isDisplayRed = false;
+        }
+    }
+
+    displayModalShow() {
+        if (!this.isDisplayShow){
+            this.divDisplayCards.style.display = "flex";
+            this.isDisplayShow = true;
+        }
+        else {
+            this.divDisplayCards.style.display = "none";
+            this.isDisplayShow = false;
+        }
+
     }
 
     setYc() {
@@ -67,11 +110,14 @@ class Card {
             "playerid": this.playerId,
             "periodnum": this.period,
             "matchid": this.matchId,
+            "time" : this.time,
             "color": "jaune"
         }
 
-        this.card.push(this.card);
-        console.log(this.card);
+        this.cards.push(this.card);
+
+        this.ycNumb += 1;
+        this.spanYc.textContent = this.ycNumb;
 
         this.displayCard(this.card, this.playerName);
         this.modalYc.style.display = "none";
@@ -87,11 +133,14 @@ class Card {
             "playerid": this.playerId,
             "periodnum": this.period,
             "matchid": this.matchId,
+            "time" : this.time,
             "color": "rouge"
         }
 
-        this.card.push(this.card);
-        console.log(this.card);
+        this.cards.push(this.card);
+
+        this.rcNumb += 1;
+        this.spanRc.textContent = this.rcNumb;
 
         this.displayCard(this.card, this.playerName);
         this.modalRc.style.display = "none";
@@ -99,7 +148,7 @@ class Card {
 
     displayCard(card, name) {
         this.divCard = document.createElement("div");
-        this.divCard.className = "d-flex flex-row justify-content-center col-10"
+        this.divCard.id = "card"
 
         let divCardColor = document.createElement("div");
 
@@ -110,12 +159,13 @@ class Card {
         }
 
         let spanName = document.createElement("span");
-        spanName.textContent = name;
+        spanName.textContent =  name ;
 
         let spanTime = document.createElement("span");
 
+        console.log(card.time);
         if (card.time <= this.periodDuration) {
-            spanTime.textContent = card.time;
+            spanTime.textContent = card.time + "'";
         } else {
             spanTime.textContent = this.periodDuration + "'+" + (card.time - this.periodDuration);
         }
@@ -124,10 +174,6 @@ class Card {
         this.divCard.append(spanName);
         this.divCard.append(spanTime);
 
-        if (card.color === "rouge") {
-            this.divGetRc.append(this.divCard);
-        } else {
-            this.divGetYc.append(this.divCard);
-        }
+        this.divSetCards.append(this.divCard);
     }
 }

@@ -109,6 +109,7 @@ class Chrono {
             if (this.period < this.periodNumber) {
                 this.pause();
                 window.confirm("Etes-vous sûr de vouloir passer à la période suivante ?");
+                stats.setStats();
                 this.period = this.period + 1;
     
                 this.time = 0;
@@ -116,7 +117,7 @@ class Chrono {
                 this.divMin.textContent = "00";
                 this.divSec.textContent = "00";
     
-                stats.setStats();
+
             } 
             else {
                 window.confirm("Une fois cette action effectuée, il ne sera plus possible de modifier les données");
