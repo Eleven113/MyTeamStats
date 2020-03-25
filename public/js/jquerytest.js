@@ -16,7 +16,7 @@ data = {
 };
 
 dataJson = JSON.stringify(data);
-console.log(dataJson);
+console.log(data);
 
 console.log($("body"));
 

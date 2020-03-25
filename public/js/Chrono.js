@@ -122,11 +122,11 @@ class Chrono {
             else {
                 window.confirm("Une fois cette action effectuée, il ne sera plus possible de modifier les données");
 
+                stats.setStats();
+
                 this.divChrono.innerHTML = '<button type="submit" id="stats_btn" class="btn btn-primary"><i class="fas fa-check-circle"></i> Envoyer les données</button>';
 
                 this.divStatsBtn = document.getElementById("stats_btn");
-
-                stats.setStats();
 
                 this.data = {
                     "game":{
@@ -137,9 +137,6 @@ class Chrono {
                     "stats" : stats.stats,
                     "cards" : card.cards
                 }
-
-                this.data = JSON.stringify(this.data);
-                console.log(this.data);
 
                 this.sendData();
             }
@@ -156,7 +153,17 @@ class Chrono {
         }
 
         sendData(){
-            this.divStatsBtn.addEventListener("click", myAjaxPost("/MyTeamStats/MatchData", this.data).bind(this));
+            console.log(this.data)
+
+            this.divStatsBtn.addEventListener("click", function(){
+
+                $.post('/MyTeamStats/MatchData', this.data, function(returnData){
+                    $('#banner_chrono').html(returnData);   
+                }.bind(this));
+                
+            })
+
+
         }
 }
 

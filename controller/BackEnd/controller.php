@@ -361,8 +361,11 @@ class ControllerBack {
     }
 
     public function MatchData(){
-           $game = $_POST['game'];
-           $this->matchManager->UpdateStatus($game);
+        ?><pre><?php
+        print_r($_POST);
+        ?></pre><?php
+//           $game = $_POST['game'];
+//           $this->matchManager->UpdateStatus($game);
 
 //        for ( $i = 0; $i < count($_POST['goals']); $i++){
 //            $goal = $_POST['goals'][$i];

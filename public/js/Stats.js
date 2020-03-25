@@ -299,12 +299,13 @@ class Stats {
 
 
         this.stats.push(this.stat);
-
-        let divStatPeriod = document.createElement("div");
+        
+        let divStatPeriod = document.createElement("button");
         divStatPeriod.id = "stat_" + this.periodNum;
+        divStatPeriod.className = "period_btn btn btn-primary";
         divStatPeriod.innerHTML = this.periodNum;
         this.divStatPeriodDisplay.append(divStatPeriod);
-        
+
         console.log(this.stats);
     }
 }
