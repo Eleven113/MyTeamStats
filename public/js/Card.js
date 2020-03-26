@@ -163,7 +163,6 @@ class Card {
 
         let spanTime = document.createElement("span");
 
-        console.log(card.time);
         if (card.time <= this.periodDuration) {
             spanTime.textContent = card.time + "'";
         } else {

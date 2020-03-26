@@ -172,6 +172,7 @@ header:active{
     left: 78%;
     top: 2%;
     z-index: 11;
+    cursor : pointer;
 }
 
 #card{

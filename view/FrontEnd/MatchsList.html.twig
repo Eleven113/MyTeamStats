@@ -51,7 +51,7 @@
                     </td>
                     <td class="d-flex flex-row justify-content-between">
                         <div><a href="/MyTeamStats/Match/{{ match.gameid }}"><i class="far fa-futbol"></i></a></div>
-                        {% if session.user_status >= 3 %}
+                        {% if ( session.user_status ) >= 3 and ( match.status == 1 )  %}
                             <div><a href="/MyTeamStats/Composition/{{ match.gameid }}"><i class="fas fa-users"></i></a></div>
                             <div><a href="/MyTeamStats/MatchStats/{{ match.gameid }}"><i class="fas fa-clipboard-list"></i></a></div>
                             <div><a href="/MyTeamStats/ModifyMatch/{{ match.gameid }}"><i class="fas fa-pen"></i></a></div>

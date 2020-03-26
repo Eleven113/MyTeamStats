@@ -108,37 +108,49 @@ class Chrono {
 
             if (this.period < this.periodNumber) {
                 this.pause();
-                window.confirm("Etes-vous sûr de vouloir passer à la période suivante ?");
-                stats.setStats();
-                this.period = this.period + 1;
-    
-                this.time = 0;
-                this.divCurrentPeriod.textContent = this.period;
-                this.divMin.textContent = "00";
-                this.divSec.textContent = "00";
+
+                let confirm = window.confirm("Etes-vous sûr de vouloir passer à la période suivante ?");
+                if (confirm){
+                    stats.setStats();
+                    this.period = this.period + 1;
+        
+                    this.time = 0;
+                    this.divCurrentPeriod.textContent = this.period;
+                    this.divMin.textContent = "00";
+                    this.divSec.textContent = "00";
+                }
+                else {
+                    return;               }
+
     
 
             } 
             else {
-                window.confirm("Une fois cette action effectuée, il ne sera plus possible de modifier les données");
+                let confirm = window.confirm("Une fois cette action effectuée, il ne sera plus possible de modifier les données");
 
-                stats.setStats();
+                if (confirm){
+                    stats.setStats();
 
-                this.divChrono.innerHTML = '<button type="submit" id="stats_btn" class="btn btn-primary"><i class="fas fa-check-circle"></i> Envoyer les données</button>';
-
-                this.divStatsBtn = document.getElementById("stats_btn");
-
-                this.data = {
-                    "game":{
-                        "gameid": this.matchId,
-                        "status" : 0
-                    },
-                    "goals" : score.goals,
-                    "stats" : stats.stats,
-                    "cards" : card.cards
+                    this.divChrono.innerHTML = '<button type="submit" id="stats_btn" class="btn btn-primary"><i class="fas fa-check-circle"></i> Envoyer les données</button>';
+    
+                    this.divStatsBtn = document.getElementById("stats_btn");
+    
+                    this.data = {
+                        "game":{
+                            "gameid": this.matchId,
+                            "status" : 0
+                        },
+                        "goals" : score.goals,
+                        "stats" : stats.stats,
+                        "cards" : card.cards
+                    }
+    
+                    this.divStatsBtn.addEventListener("click", this.sendData.bind(this));
+                }
+                else {
+                    return;
                 }
 
-                this.sendData();
             }
 
         }
@@ -153,16 +165,11 @@ class Chrono {
         }
 
         sendData(){
-            console.log(this.data)
+            console.log(this.data);
 
-            this.divStatsBtn.addEventListener("click", function(){
-
-                $.post('/MyTeamStats/MatchData', this.data, function(returnData){
-                    $('#banner_chrono').html(returnData);   
-                }.bind(this));
-                
-            })
-
+            $.post('/MyTeamStats/MatchData', this.data, function(){
+                $('#banner_chrono').html("Les données ont bien été envoyées");   
+            }.bind(this));
 
         }
 }
