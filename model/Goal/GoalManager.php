@@ -39,4 +39,19 @@ class GoalManager
             $req->execute();
         }
     }
+
+    public function getGoalsList($matchid){
+        $goalsList = $this->db->prepare('SELECT * FROM GOAL WHERE MATCHID = :matchid');
+        $goalsList->bindValue(':matchid', $matchid);
+        $goalsList->execute();
+
+        $goalsListObj = new ArrayObject();
+
+        while ($goalArray = $goalsList->fetch(PDO::FETCH_ASSOC)){
+            $goal = new Goal($goalArray);
+            $goalsListObj->append($goal);
+        }
+
+        return $goalsListObj;
+    }
 }

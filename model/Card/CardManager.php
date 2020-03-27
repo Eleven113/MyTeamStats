@@ -23,4 +23,19 @@ class CardManager
         $req->execute();
     }
 
+    public function getCardsList($matchid){
+        $cardsList = $this->db->prepare('SELECT * FROM CARD WHERE MATCHID = :matchid');
+        $cardsList->bindValue(':matchid', $matchid);
+        $cardsList->execute();
+
+        $cardsListObj = new ArrayObject();
+
+        while ($cardArray = $cardsList->fetch(PDO::FETCH_ASSOC)){
+            $card = new Card($cardArray);
+            $cardsListObj->append($card);
+        }
+
+        return $cardsListObj;
+    }
+
 }

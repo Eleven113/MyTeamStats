@@ -102,11 +102,37 @@ Class ControllerFront {
     public function Match($id){
         $match = $this->matchManager->getMatch($id);
         $playersList = $this->compositionManager->getComposition($id);
+        $cardsList = $this->cardManager->getCardsList($id);
+        $goalsList = $this->goalManager->getGoalsList($id);
+        $periodsList = $this->periodManager->getPeriodsList($id);
 
-        echo $this->twig->render('/FrontEnd/Match.html.twig', [
-            'match' => $match,
-            'playersList' => $playersList
-            ]);
+        $cardArray = [];
+
+        for ($i=0; $i < count($cardsList); $i++){
+            $card = $cardsList[$i];
+            array_push($cardArray, $card);
+        }
+
+        $goalObj= new StdClass();
+        for ($i=0; $i < count($goalsList); $i++){
+            $goal = $goalsList[$i];
+            $goalObj->{$i} = $goal;
+        }
+
+        ?><pre><?
+        print_r($cardArray);
+        ?></pre><?php
+        $data = json_encode($cardArray);
+        ?><pre><?
+        print_r($data);
+        ?></pre><?php
+//        echo $this->twig->render('/FrontEnd/Match.html.twig', [
+//            'match' => $match,
+//            'playersList' => $playersList,
+//            'goals' => $goalsList,
+//            'cards' => $cardsList,
+//            'periods' => $periodsList
+//            ]);
     }
 
     public function SessionKill(){

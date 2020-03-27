@@ -13,18 +13,10 @@
         <div id="periodduration">{{ match.periodduration }}</div>
         <div id="page">sheet</div>
     </div>
-
+{{ dump(goals) }}
 <div id="match" class="d-flex flex-column col-12 align-items-center">
 
     <h1>{{ match.type }} - {{ match.category }}</h1>
-    <h3 id="match_name">
-        {% if match.athome == 1 %}
-            Réception de
-        {% else %}
-            Déplacement à
-        {% endif %}
-        {{ match.oppo }}
-    </h3>
     <h5 id="match_date">{{ match.date | date('\\L\\e d/m/Y à H\\hi')  }}</h5>
 
     <div id="match_teams" class="d-flex flex-row justify-content-center">
@@ -111,13 +103,6 @@
             <button id="stat_all" class="period_btn btn btn-primary">Total</button>
         </div>
 
-        <div id="match_stat_record" class="d-flex flex-row col-12 mt-2">
-            <div id ="stat_1stcol" class="col-6 d-flex flex-column">
-            </div>
-
-            <div id ="stat_2ndcol" class="col-6 d-flex flex-column">
-            </div>
-        </div>
         <div id="match_stat_displaybyperiod"  class="d-none">
             <div id ="stat_1stcol_dbp" class="col-6 d-flex flex-column">
             </div>
@@ -135,6 +120,15 @@
 {% endblock %}
 
 {%  block script %}
+    <script>
+        let goals = [];
+        let goal;
+        {%  for goal in goals %}
+            goal = {{ goal }};
+            console.log(goal);
+            goals.push(goal);
+        {% endfor %}
+    </script>
     <script src="/MyTeamStats/public/js/ajax.js"></script>
     <script src="/MyTeamStats/public/js/Score.js"></script>
     <script src="/MyTeamStats/public/js/Card.js"></script>

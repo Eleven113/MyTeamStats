@@ -34,5 +34,19 @@ class PeriodManager
         $req->execute();
     }
 
+    public function getPeriodsList($matchid){
+        $periodsList = $this->db->prepare('SELECT * FROM PERIOD WHERE MATCHID = :matchid');
+        $periodsList->bindValue(':matchid', $matchid);
+        $periodsList->execute();
+
+        $periodsListObj = new ArrayObject();
+
+        while ($periodArray = $periodsList->fetch(PDO::FETCH_ASSOC)){
+            $period = new Period($periodArray);
+            $periodsListObj->append($period);
+        }
+
+        return $periodsListObj;
+    }
 
 }
