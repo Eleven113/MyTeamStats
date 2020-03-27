@@ -1,21 +1,33 @@
 class Stats {
-    constructor(matchId, periodNumber, periodDuration, atHome){
+    constructor(matchId, periodNumber, periodDuration, atHome, stat){
         this.matchId = matchId;
         this.periodNumber = periodNumber;
         this.periodDuration = periodDuration;
         this.atHome = atHome;
+        this.pageStat = stat;
 
         this.div1stCol = document.getElementById("stat_1stcol");
         this.div2ndCol = document.getElementById("stat_2ndcol");
+        this.div1stColDbyP = document.getElementById("stat_1stcol_dbp");
+        this.div2ndColDbyP = document.getElementById("stat_2ndcol_dbp");
 
         this.divStatPeriodDisplay = document.getElementById("match_stat_period_display");
 
+        this.divStatDbyP = document.getElementById("match_stat_displaybyperiod")
+        this.divStatRecord = document.getElementById("match_stat_record");
+        this.divStatAll = document.getElementById("stat_all");
+
         this.newDivStatBar;
+        this.newDivStatBarDbyP;
+
+        this.isDisplayTotal = true;
 
         this.stats = [];
         this.stat;
         this.period;
 
+        this.statsDisplay = [];
+        this.statDisplay;
 
         this.setStatBars();
 
@@ -23,6 +35,8 @@ class Stats {
         this.btnsPlus = document.querySelectorAll('div[id^="btnplus_"]');
         this.btnsMinus;
         this.btnPlus;
+
+        
 
         // Stats à inserer dans la DB
         this.homeScore;
@@ -38,6 +52,8 @@ class Stats {
         this.winBall;
         this.lostBall;
         this.periodNum;
+        this.pass;
+        this.shot;
 
         this.homeScoreAgglo;
         this.awayScoreAgglo;
@@ -54,6 +70,11 @@ class Stats {
         
         this.events();
 
+        if (!this.pageStat){
+            this.divStatRecord.className = "d-none";
+            this.divStatDbyP.className = "d-flex flex-row col-12 mt-2";
+            this.SetPeriodBtn();    
+        }
 
     }
 
@@ -64,26 +85,42 @@ class Stats {
             this.newDivStatBar = document.createElement("div");
             this.newDivStatBar.className = "stat_bar d-flex flex-row mb-3";
 
+            this.newDivStatBarDbyP = document.createElement("div");
+            this.newDivStatBarDbyP.className = "stat_bar d-flex flex-row mb-3";
+
             switch (CONFIG.data[i].model){
                 case 0:
-                    this.newDivStatBar.innerHTML = '<div class="col-2"></div><div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">'+ CONFIG.data[i].name +'</div><div id="'+ CONFIG.data[i].db_name +'" class="stat_bar-num col-2 border border-primary border-left-0">0</div><div class="col-2"></div>';
+                    if (this.pageStat){
+                        this.newDivStatBar.innerHTML = '<div class="col-2"></div><div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">'+ CONFIG.data[i].name +'</div><div id="'+ CONFIG.data[i].db_name +'" class="stat_bar-num col-2 border border-primary border-left-0">0</div><div class="col-2"></div>';
+                    }
+                    this.newDivStatBarDbyP.innerHTML = '<div class="col-2"></div><div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">'+ CONFIG.data[i].name +'</div><div id="'+ CONFIG.data[i].db_name +'_dbp" class="stat_bar-num col-2 border border-primary border-left-0">0</div><div class="col-2"></div>';
                     break;
 
                 case 1:
-                    this.newDivStatBar.innerHTML = '<div id="btnminus_'+CONFIG.data[i].db_name+'_'+CONFIG.data[i].model+'" class="col-2 text-right"><i class="far fa-minus-square"></i></div><div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">'+ CONFIG.data[i].name +'</div><div id="'+CONFIG.data[i].db_name+'" class="stat_bar-num col-2 border border-primary border-left-0">0</div><div id="btnplus_'+CONFIG.data[i].db_name+'_'+CONFIG.data[i].model+'" class="col-2"><i class="far fa-plus-square"></i></div>';
+                    if (this.pageStat){
+                        this.newDivStatBar.innerHTML = '<div id="btnminus_'+CONFIG.data[i].db_name+'_'+CONFIG.data[i].model+'" class="col-2 text-right"><i class="far fa-minus-square"></i></div><div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">'+ CONFIG.data[i].name +'</div><div id="'+CONFIG.data[i].db_name+'" class="stat_bar-num col-2 border border-primary border-left-0">0</div><div id="btnplus_'+CONFIG.data[i].db_name+'_'+CONFIG.data[i].model+'" class="col-2"><i class="far fa-plus-square"></i></div>';
+                   }
+                    this.newDivStatBarDbyP.innerHTML = '<div class="col-2"></div><div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">'+ CONFIG.data[i].name +'</div><div id="'+CONFIG.data[i].db_name+'_dbp" class="stat_bar-num col-2 border border-primary border-left-0">0</div><div class="col-2"></div>';
                     break;
 
                 case 2:
-                    this.newDivStatBar.innerHTML = '<div id="btnminus_'+CONFIG.data[i].db_name+'_'+CONFIG.data[i].model+'" class="col-2 text-right"><i class="far fa-minus-square"></i></div><div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">'+ CONFIG.data[i].name +'</div><div class="stat_bar-num col-2 border border-primary border-left-0"><span id="'+CONFIG.data[i].db_name+'">0</span>&nbsp;&nbsp;<span id="'+CONFIG.data[i].db_name+'_percent">0%</span></div><div id="btnplus_'+CONFIG.data[i].db_name+'_'+CONFIG.data[i].model+'" class="col-2"><i class="far fa-plus-square"></i></div>';                
+                    if (this.pageStat){
+                        this.newDivStatBar.innerHTML = '<div id="btnminus_'+CONFIG.data[i].db_name+'_'+CONFIG.data[i].model+'" class="col-2 text-right"><i class="far fa-minus-square"></i></div><div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">'+ CONFIG.data[i].name +'</div><div class="stat_bar-num col-2 border border-primary border-left-0"><span id="'+CONFIG.data[i].db_name+'">0</span>&nbsp;&nbsp;<span id="'+CONFIG.data[i].db_name+'_percent">0%</span></div><div id="btnplus_'+CONFIG.data[i].db_name+'_'+CONFIG.data[i].model+'" class="col-2"><i class="far fa-plus-square"></i></div>';
+                    }
+                    this.newDivStatBarDbyP.innerHTML = '<div class="col-2"></div><div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">'+ CONFIG.data[i].name +'</div><div class="stat_bar-num col-2 border border-primary border-left-0"><span id="'+CONFIG.data[i].db_name+'_dbp">0</span>&nbsp;&nbsp;<span id="'+CONFIG.data[i].db_name+'_percent_dbp">0%</span></div><div class="col-2"></div>';                
                     break;
 
                 case 3:
-                    this.newDivStatBar.innerHTML = '<div id="btnminus_'+CONFIG.data[i].db_name+'_'+CONFIG.data[i].model+'" class="col-2 text-right"><i class="far fa-minus-square"></i></div><div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">'+ CONFIG.data[i].name +'</div><div class="stat_bar-num col-2 border border-primary border-left-0"><span id="'+CONFIG.data[i].db_name+'">0</span>&nbsp;&nbsp;<span id="'+CONFIG.data[i].db_name+'_percent">0%</span></div><div id="btnplus_'+CONFIG.data[i].db_name+'_'+CONFIG.data[i].model+'" class="col-2"><i class="far fa-plus-square"></i></div>';                
+                    if (this.pageStat){
+                    this.newDivStatBar.innerHTML = '<div id="btnminus_'+CONFIG.data[i].db_name+'_'+CONFIG.data[i].model+'" class="col-2 text-right"><i class="far fa-minus-square"></i></div><div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">'+ CONFIG.data[i].name +'</div><div class="stat_bar-num col-2 border border-primary border-left-0"><span id="'+CONFIG.data[i].db_name+'">0</span>&nbsp;&nbsp;<span id="'+CONFIG.data[i].db_name+'_percent">0%</span></div><div id="btnplus_'+CONFIG.data[i].db_name+'_'+CONFIG.data[i].model+'" class="col-2"><i class="far fa-plus-square"></i></div>';
+                    }
+                    this.newDivStatBarDbyP.innerHTML = '<div class="col-2"></div><div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">'+ CONFIG.data[i].name +'</div><div class="stat_bar-num col-2 border border-primary border-left-0"><span id="'+CONFIG.data[i].db_name+'_dbp">0</span>&nbsp;&nbsp;<span id="'+CONFIG.data[i].db_name+'_percent_dbp">0%</span></div><div class="col-2"></div>';
                     break;                    
 
                 default:
                     break;
             }
+            // console.log(this.newDivStatBarDbyP);
             this.createStatBars(i);
         }
     }
@@ -91,9 +128,11 @@ class Stats {
     createStatBars(i){
         if ( i <= 5) {
             this.div1stCol.append(this.newDivStatBar);
+            this.div1stColDbyP.append(this.newDivStatBarDbyP);
         }
         else {
             this.div2ndCol.append(this.newDivStatBar);
+            this.div2ndColDbyP.append(this.newDivStatBarDbyP);
         }
     }
 
@@ -225,6 +264,11 @@ class Stats {
                 });
             }
         );
+
+        this.divStatAll.addEventListener("click", function(){
+            this.divStatDbyP.className = "d-none";
+            this.divStatRecord.className = "d-flex flex-row col-12 mt-5";
+        }.bind(this));
     }
 
     setStats(){
@@ -244,14 +288,14 @@ class Stats {
         this.successPass = document.getElementById("pass_ok").innerHTML;
         this.missPass = document.getElementById("pass_nok").innerHTML;
         this.shotOnTarget = document.getElementById("shot_ok").innerHTML;
-        this.missShot = document.getElementById("shot_ok").innerHTML;
+        this.missShot = document.getElementById("shot_nok").innerHTML;
         this.freeKick = document.getElementById("freekick").innerHTML;
         this.offSide = document.getElementById("offside").innerHTML;
         this.foul = document.getElementById("foul").innerHTML;
         this.cornerKick = document.getElementById("cornerkick").innerHTML;
         this.winBall = document.getElementById("ball_ok").innerHTML;
         this.lostBall = document.getElementById("ball_nok").innerHTML;
-        this.periodNum = document.getElementById("current_period").textContent;
+
 
         if ( this.atHome === 1) {
             this.homeScore = document.getElementById("MyTeamScore").innerHTML;
@@ -297,8 +341,68 @@ class Stats {
             "lostball" : this.lostBall - this.lostBallAgglo
         }
 
+        this.pass = parseInt(this.successPass - this.successPassAgglo) + (this.missPass - this.missPassAgglo);
+        console.log(this.pass);
+        if (this.pass !== 0){
+            this.pass_ok_percent = Math.round(((this.successPass - this.successPassAgglo) / this.pass ) * 100 ) + "%";
+            this.pass_nok_percent = Math.round(((this.missPass - this.missPassAgglo) / this.pass ) * 100 ) + "%";
+        }
+        else {
+            this.pass_ok_percent = 0 + "%";
+            this.pass_nok_percent = 0 + "%";
+        }
+
+        this.shot = (this.shotOnTarget - this.shotOnTargetAgglo) + (this.missShot - this.missShotAgglo)
+
+        if (this.shot !== 0){
+            this.shot_ok_percent = Math.round(((this.shotOnTarget - this.shotOnTargetAgglo) / this.shot) * 100) + "%";
+            this.shot_nok_percent = Math.round(((this.missShot - this.missShotAgglo) / this.shot) * 100) + "%";
+        }
+        else {
+            this.shot_ok_percent = 0 + "%";
+            this.shot_nok_percent = 0 + "%";
+        }
+
+
+        this.ball = (this.winBall - this.winBallAgglo) + (this.lostBall - this.lostBallAgglo)
+
+        if (this.ball !== 0){
+            this.winball_percent = Math.round(((this.winBall - this.winBallAgglo) / this.ball) * 100 ) + "%";
+            this.lostball_percent = Math.round(((this.lostBall - this.lostBallAgglo) / this.ball) * 100 ) + "%";
+        }
+        else{
+            this.winball_percent = 0 + "%";
+            this.lostball_percent = 0 + "%";
+        }
+
+
+        this.statDisplay = {
+            "shot": this.shot,
+            "shot_ok": this.shotOnTarget - this.shotOnTargetAgglo,
+            "shot_ok_percent": this.shot_ok_percent,
+            "shot_nok": this.missShot - this.missShotAgglo,
+            "shot_nok_percent": this.shot_nok_percent,
+            "pass": this.pass,
+            "pass_ok" : this.successPass - this.successPassAgglo,
+            "pass_ok_percent" : this.pass_ok_percent,
+            "pass_nok" : this.missPass - this.missPassAgglo,
+            "pass_nok_percent" : this.pass_nok_percent,
+            "shot_ok" : this.shotOnTarget - this.shotOnTargetAgglo ,
+            "shot_ok_percent" : this.shot_ok_percent,
+            "shot_nok" : this.missShot - this.missShotAgglo,
+            "shot_nok_percent" : this.shot_nok_percent,
+            "freekick" : this.freeKick - this.freeKickAgglo,
+            "offside" : this.offSide - this.offSideAgglo,
+            "foul" : this.foul - this.foulAgglo,
+            "cornerkick" : this.cornerKick - this.cornerKickAgglo ,
+            "ball_ok" : this.winBall - this.winBallAgglo,
+            "ball_ok_percent" : this.winball_percent,
+            "ball_nok" : this.lostBall - this.lostBallAgglo,
+            "ball_nok_percent" : this.lostball_percent
+        }
 
         this.stats.push(this.stat);
+        this.statsDisplay.push(this.statDisplay);
         
         let divStatPeriod = document.createElement("button");
         divStatPeriod.id = "stat_" + this.periodNum;
@@ -306,7 +410,38 @@ class Stats {
         divStatPeriod.innerHTML = this.periodNum;
         this.divStatPeriodDisplay.append(divStatPeriod);
 
-        console.log(this.stats);
+        divStatPeriod.addEventListener("click", this.displayStatsByPeriod.bind(this));
+    }
+
+    displayStatsByPeriod(event){
+
+        let period = event.target.innerHTML;
+
+        let statArray = this.statsDisplay[period-1];
+        
+        for (const [key, value] of Object.entries(statArray)){
+            document.getElementById(key+"_dbp").innerHTML = value;
+        }
+
+        if (this.pageStat){
+            this.changeDisplay();
+        }
+
+    }
+
+    changeDisplay(){
+            this.divStatDbyP.className = "d-flex flex-row col-12 mt-2";
+            this.divStatRecord.className = "d-none";
+    }
+
+    SetPeriodBtn(){
+        for (let i = 1; i <= this.periodNumber; i++ ){
+            let divStatPeriod = document.createElement("button");
+            divStatPeriod.id = "stat_" + i;
+            divStatPeriod.className = "period_btn btn btn-primary";
+            divStatPeriod.innerHTML = i;
+            this.divStatPeriodDisplay.append(divStatPeriod);
+        }
     }
 }
 

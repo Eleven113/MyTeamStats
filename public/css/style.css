@@ -18,6 +18,7 @@ header {
 }
 
 body{
+    font-size: 1.25vw;
     height: 100vh;
     border: 1px solid red;
 }
@@ -74,7 +75,7 @@ header:active{
     border-width: 2px !important;
 }
 
-#match_stat_record{
+#match_stat_record, #match_stat_displaybyperiod{
     font-size: 1.7vw;
 }
 
@@ -201,4 +202,40 @@ header:active{
     margin-right: 5px;
     margin-left: 5px;
     z-index : 1;
+}
+
+#match_team_name {
+    font-size: 2em;
+}
+
+#banner_chrono, #match-team_score{
+    font-size: 2.2em;
+}
+
+#match_team_buttons-cards{
+    font-size: 1.5em;
+}
+
+.table-text-size{
+    font-size: 1.2em;
+}
+
+.add-btn{
+    font-size : 2em;
+}
+
+h1{
+    font-size: 4em;
+}
+
+h3{
+    font-size: 2.5em;
+}
+
+h5{
+    font-size: 1.75em;
+}
+
+#match_score{
+    font-size: 5.5em;
 }

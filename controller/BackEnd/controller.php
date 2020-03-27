@@ -53,6 +53,7 @@ class ControllerBack {
 
 
         header ('Location: http://www.thibaut-minard.fr/MyTeamStats/PlayersList');
+        exit();
     }
 
     public function DeletePlayer($id){

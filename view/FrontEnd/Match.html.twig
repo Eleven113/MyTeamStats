@@ -6,7 +6,15 @@
 
 {% block content %}
 
-<div id="match" class="d-flex flex-column col-10 offset-1 align-items-center">
+    <div id="match_data">
+        <div id="matchid">{{ match.gameid }}</div>
+        <div id="athome">{{ match.athome }}</div>
+        <div id="periodnum">{{ match.periodnum }}</div>
+        <div id="periodduration">{{ match.periodduration }}</div>
+        <div id="page">sheet</div>
+    </div>
+
+<div id="match" class="d-flex flex-column col-12 align-items-center">
 
     <h1>{{ match.type }} - {{ match.category }}</h1>
     <h3 id="match_name">
@@ -17,13 +25,13 @@
         {% endif %}
         {{ match.oppo }}
     </h3>
-    <h5 id="match_date">{{ match.date }}</h5>
+    <h5 id="match_date">{{ match.date | date('\\L\\e d/m/Y à H\\hi')  }}</h5>
 
     <div id="match_teams" class="d-flex flex-row justify-content-center">
-        <div id="match_team_home" class="d-flex flex-column align-items-center justify-content-end col-6">
+        <div id="match_team_home" class="d-flex flex-column align-items-end justify-content-center col-4">
             <div id ="match_team_home-logo" class="col-5">
                 {% if match.athome == 1 %}
-                    <img src="/public/img/logo.png" class="img-responsive fit-image">
+                    <img src="https://res.cloudinary.com/marthyte/image/upload/v1584623500/v2_vnydsk.png" class="img-responsive fit-image">
                 {% else %}
                 <img src="{{ match.logo }}" class="img-responsive fit-image">
                 {% endif %}
@@ -37,14 +45,14 @@
             </div>
         </div>
         {% if match.status == 0 %}
-            <div id="match_score" class="col-2">
-                3-0
+            <div id="match_score" class="col-4 d-flex flex-column justify-content-center items-align-center font-weight-bold">
+                <div class="text-center"><span id="homescore">3</span>-<span id="awayscore">0</span></div>
             </div>
         {% endif %}
-        <div id="match_team_away" class="d-flex flex-column align-items-center col-6">
+        <div id="match_team_away" class="d-flex flex-column align-items-start justify-content-center col-4">
             <div id ="match_team_away-logo" class="col-5">
                 {% if match.athome == 0 %}
-                    <img src="/public/img/logo.png" class="img-responsive fit-image">
+                    <img src="https://res.cloudinary.com/marthyte/image/upload/v1584623500/v2_vnydsk.png" class="img-responsive fit-image">
                 {% else %}
                     <img src="{{ match.logo }}" class="img-responsive fit-image">
                 {% endif %}
@@ -59,18 +67,18 @@
         </div>
     </div>
 
-    <div id="match_infos"  class="m-4 p-4 col-8 border border-primary rounded-lg myborder">
-        <p id="match_address">
-            <span class="player_data-title font-weight-bold">Terrain :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            <span class="player_data-txt">{{ match.address }} à {{ match.city }} ({{ match.zipcode }})</span>
-        </p>
-        <p id="match_field">
-            <span class="player_data-title font-weight-bold">Pelouse :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            <span class="player_data-txt">{{ match.turf }}</span>
-        </p>
-    </div>
-
     {% if match.status == 1 %}
+        <div id="match_infos"  class="m-4 p-4 col-8 border border-primary rounded-lg myborder">
+            <p id="match_address">
+                <span class="player_data-title font-weight-bold">Terrain :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                <span class="player_data-txt">{{ match.address }} à {{ match.city }} ({{ match.zipcode }})</span>
+            </p>
+            <p id="match_field">
+                <span class="player_data-title font-weight-bold">Pelouse :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                <span class="player_data-txt">{{ match.turf }}</span>
+            </p>
+        </div>
+
         <div id="pre_match">
             <div id="pre_match_data" class="m-4 p-4 col-12 border border-primary rounded-lg myborder">
                 <div class="meteo_zipcode">{{ match.zipcode }}</div>
@@ -98,9 +106,27 @@
         </div>
     {%  else %}
 
-        <div id="post_match">
-
+        <div id="match_stat_period_display" class="mt-2">
+            <div id="match_stat_period-bar" class="border border-primary rounded"></div>
+            <button id="stat_all" class="period_btn btn btn-primary">Total</button>
         </div>
+
+        <div id="match_stat_record" class="d-flex flex-row col-12 mt-2">
+            <div id ="stat_1stcol" class="col-6 d-flex flex-column">
+            </div>
+
+            <div id ="stat_2ndcol" class="col-6 d-flex flex-column">
+            </div>
+        </div>
+        <div id="match_stat_displaybyperiod"  class="d-none">
+            <div id ="stat_1stcol_dbp" class="col-6 d-flex flex-column">
+            </div>
+
+            <div id ="stat_2ndcol_dbp" class="col-6 d-flex flex-column">
+            </div>
+        </div>
+
+
     {%  endif %}
 
 </div>
@@ -108,7 +134,11 @@
 
 {% endblock %}
 
-{% block script %}
-    <script src="/MyteamStats/public/js/ajax.js"></script>
-    <script src="/MyteamStats/public/js/Meteo.js"></script>
+{%  block script %}
+    <script src="/MyTeamStats/public/js/ajax.js"></script>
+    <script src="/MyTeamStats/public/js/Score.js"></script>
+    <script src="/MyTeamStats/public/js/Card.js"></script>
+    <script src="/MyTeamStats/public/js/Stats.js"></script>
+    <script src="/MyTeamStats/public/js/Chrono.js"></script>
+    <script src="/MyTeamStats/public/js/Match.js"></script>
 {% endblock %}

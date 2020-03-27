@@ -7,15 +7,15 @@
 {% block content %}
 
     {% if session.user_status >= 3 %}
-        <div id="add_match" class="col-1 m-4 border border-primary rounded-lg myborder">
-            <a href="/MyTeamStats/CreateMatch">
-                <i class="fas fa-user-plus"></i>&nbsp;Créér un match
+        <button id="add_match" class="btn btn-primary mt-4 add-btn">
+            <a href="/MyTeamStats/CreateMatch" class="link font-weight-bold">
+                <i class="far fa-futbol"></i>&nbsp;&nbsp;&nbsp;Créer un match
             </a>
-        </div>
+        </button>
     {% endif %}
 
 <div class="table-responsive">
-    <table class="table table table-bordered table-striped text-center">
+    <table class="table table table-bordered table-striped text-center table-text-size">
         <caption class="text-center">
             <h4>Liste des Matchs</h4>
         </caption>
@@ -51,7 +51,7 @@
                     </td>
                     <td class="d-flex flex-row justify-content-between">
                         <div><a href="/MyTeamStats/Match/{{ match.gameid }}"><i class="far fa-futbol"></i></a></div>
-                        {% if ( session.user_status ) >= 3 and ( match.status == 1 )  %}
+                        {% if ( session.user_status ) >= 3 and   ( match.status == 1 )  %}
                             <div><a href="/MyTeamStats/Composition/{{ match.gameid }}"><i class="fas fa-users"></i></a></div>
                             <div><a href="/MyTeamStats/MatchStats/{{ match.gameid }}"><i class="fas fa-clipboard-list"></i></a></div>
                             <div><a href="/MyTeamStats/ModifyMatch/{{ match.gameid }}"><i class="fas fa-pen"></i></a></div>

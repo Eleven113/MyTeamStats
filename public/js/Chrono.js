@@ -38,18 +38,20 @@ class Chrono {
 
         setChrono(){
             // Création de l'affichage du chrono
+            this.divChrono.className = "col-3 d-flex flex-column justify-content-center";
             this.divPeriod.className = "d-flex flex-column align-items-center";
 
             this.divPeriod.id = "period";
-            this.divPeriod.innerHTML = '<div>Période <span id="current_period">'+ this.period +'</span> / <span id="number_period"> ' + this.periodNumber + '</span></div>';
+            this.divPeriod.innerHTML = '<div class="mb-2">Période <span id="current_period">'+ this.period +'</span> / <span id="number_period"> ' + this.periodNumber + '</span></div>';
             this.divChrono.append(this.divPeriod);
 
             this.divTimer.id = "timer";
+            this.divTimer.className = "mb-2";
             this.divTimer.innerHTML = '<span id="timer_min">00</span>:<span id="timer_sec">00</span>';
             this.divPeriod.append(this.divTimer);
 
             this.divTimerBtn.id = "timer_btn";
-            this.divTimerBtn.className = "d-flex flew-row justify-content-around col-8"
+            this.divTimerBtn.className = "d-flex flew-row justify-content-around col-12 mt-2"
             this.divTimerBtn.innerHTML = '<i class="fas fa-play" id="play_btn"></i><i class="fas fa-pause" id="pause_btn"></i><i class="fas fa-step-forward" id="next_btn"></i>';
             this.divPeriod.append(this.divTimerBtn);
 

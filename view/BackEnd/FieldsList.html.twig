@@ -7,15 +7,15 @@
 {% block content %}
 
     {% if session.user_status >= 3 %}
-        <div id="add_field" class="col-1 m-4 border border-primary rounded-lg myborder">
-            <a href="/MyTeamStats/CreateField">
-                <i class="fas fa-map-signs"></i>&nbsp;Créér un terrain
+        <button id="add_field" class="btn btn-primary mt-4 add-btn">
+            <a href="/MyTeamStats/CreateField" class="link font-weight-bold">
+                <i class="fas fa-map-signs"></i>&nbsp;&nbsp;&nbsp;Créér un terrain
             </a>
-        </div>
+        </button>
     {% endif %}
 
     <div class="table-responsive">
-        <table class="table table table-bordered table-striped text-center">
+        <table class="table table table-bordered table-striped text-center table-text-size">
             <caption class="col-12 text-center">
                 <h4>Liste des Terrains</h4>
             </caption>

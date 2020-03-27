@@ -89,6 +89,7 @@
         <div id="athome">{{ match.athome }}</div>
         <div id="periodnum">{{ match.periodnum }}</div>
         <div id="periodduration">{{ match.periodduration }}</div>
+        <div id="page">stats</div>
     </div>
 
 
@@ -102,14 +103,14 @@
             <div id="match_banner-teams" class="d-flex flex-column align-items-center col-6 teamcol">
                 {% if match.athome == 1 %}
                     <div id="match_team_logo" class="d-flex flex-row justify-content-around col-12">
-{#                        <div id="match_team_logo-home" class="col-5">#}
-{#                            <img src="https://res.cloudinary.com/marthyte/image/upload/v1584623500/v2_vnydsk.png" class="img-responsive fit-image">#}
-{#                        </div>#}
-{#                        <div id ="match_team_logo-away" class="col-5">#}
-{#                            <img src="{{ match.logo }}" class="img-responsive fit-image">#}
-{#                        </div>#}
+                        <div id="match_team_logo-home" class="col-3">
+                            <img src="https://res.cloudinary.com/marthyte/image/upload/v1584623500/v2_vnydsk.png" class="img-responsive fit-image">
+                        </div>
+                        <div id ="match_team_logo-away" class="col-3">
+                            <img src="{{ match.logo }}" class="img-responsive fit-image">
+                        </div>
                     </div>
-                    <div id="match_team_name" class="d-flex flex-row justify-content-around col-12">
+                    <div id="match_team_name" class="d-flex flex-row justify-content-around col-12 mt-1 font-weight-bold">
                         <div id ="match_team_name-home" class="col-6 text-center">
                             LFC
                         </div>
@@ -117,7 +118,7 @@
                             {{ match.oppo }}
                         </div>
                     </div>
-                    <div id="match-team_score" class="d-flex flex-row justify-content-around col-12">
+                    <div id="match-team_score" class="d-flex flex-row justify-content-around col-12 mt-1">
                         <div id="match_team_score-home" class="col-6 text-center">
                             0
                         </div>
@@ -125,7 +126,7 @@
                             0
                         </div>
                     </div>
-                    <div id="match_team_buttons" class="d-flex flex-row justify-content-around col-12">
+                    <div id="match_team_buttons" class="d-flex flex-row justify-content-around col-12 mt-1">
                         <div id ="match_team_buttons-home" class="d-flex flex-row col-4">
                             <div class="d-flex flex-row justify-content-end col-12">
                                 <button id="home_score-btn_minus" class="btn btn-primary"><i class="fas fa-minus"></i></button> <button id="home_score-btn_plus" class="btn btn-primary"><i class="fas fa-plus"></i></button>
@@ -141,14 +142,14 @@
                 {% else %}
 
                     <div id="match_team_logo" class="d-flex flex-row justify-content-around col-12">
-{#                        <div id="match_team_logo-home" class="col-5">#}
-{#                            <img src="{{ match.logo }}" class="img-responsive fit-image">#}
-{#                        </div>#}
-{#                        <div id ="match_team_logo-away" class="col-5">#}
-{#                            <img src="https://res.cloudinary.com/marthyte/image/upload/v1584623500/v2_vnydsk.png" class="img-responsive fit-image">#}
-{#                        </div>#}
+                        <div id="match_team_logo-home" class="col-3">
+                            <img src="{{ match.logo }}" class="img-responsive fit-image">
+                        </div>
+                        <div id ="match_team_logo-away" class="col-3">
+                            <img src="https://res.cloudinary.com/marthyte/image/upload/v1584623500/v2_vnydsk.png" class="img-responsive fit-image">
+                        </div>
                     </div>
-                    <div id="match_team_name" class="d-flex flex-row justify-content-around col-12">
+                    <div id="match_team_name" class="d-flex flex-row justify-content-around col-12 mt-1 font-weight-bold">
                         <div id ="match_team_name-home" class="col-6 text-center">
                             {{ match.oppo }}
                         </div>
@@ -156,7 +157,7 @@
                             LFC
                         </div>
                     </div>
-                    <div id="match-team_score" class="d-flex flex-row justify-content-around col-12">
+                    <div id="match-team_score" class="d-flex flex-row justify-content-around col-12 mt-1">
                         <div id="match_team_score-home" class="col-6 text-center">
                             0
                         </div>
@@ -164,7 +165,7 @@
                             0
                         </div>
                     </div>
-                    <div id="match_team_buttons" class="d-flex flex-row justify-content-around col-12">
+                    <div id="match_team_buttons" class="d-flex flex-row justify-content-around col-12 mt-1">
                         <div id ="match_team_buttons-home" class="d-flex flex-row justify-content-between col-4">
                             <div class="d-flex flex-row justify-content-end col-12">
                                 <button id="home_score-btn_minus" class="btn btn-primary"><i class="fas fa-minus"></i></button> <button id="home_score-btn_plus" class="btn btn-primary"><i class="fas fa-plus"></i></button>
@@ -178,13 +179,13 @@
                     </div>
 
                 {% endif %}
-                <div id ="match_team_buttons-cards" class="d-flex flex-row justify-content-center col-12">
+                <div id ="match_team_buttons-cards" class="d-flex flex-row justify-content-center col-12 mt-1">
                     <div class="d-flex flex-row justify-content-around col-4">
-                        <div class="d-flex flex-row"><div id="yellowcard"></div>&nbsp;&nbsp;<span id="yellowcard_num">0</span></div>
-                        <div class="d-flex flex-row"><div id="redcard"></div>&nbsp;&nbsp;<span id="redcard_num">0</span></div>
+                        <div class="d-flex flex-row align-items-center"><div id="yellowcard"></div>&nbsp;&nbsp;<span id="yellowcard_num">0</span></div>
+                        <div class="d-flex flex-row align-items-center"><div id="redcard"></div>&nbsp;&nbsp;<span id="redcard_num">0</span></div>
                     </div>
                 </div>
-                <div id ="match_team_show-cards" class="d-flex flex-row justify-content-center col-12">
+                <div id ="match_team_show-cards" class="d-flex flex-row justify-content-center col-12 mt-1">
                     <div class="d-flex flex-row justify-content-around col-4">
                         <button id="show_cards" class="btn btn-primary">Voir les cartons</button>
                     </div>
@@ -194,24 +195,31 @@
             </div>
         </div>
 
-        <div id="match_stat_period_display" class="mt-4">
+        <div id="match_stat_period_display" class="mt-2">
             <div id="match_stat_period-bar" class="border border-primary rounded"></div>
             <button id="stat_all" class="period_btn btn btn-primary">Total</button>
         </div>
 
-        <div id="match_stat_record" class="d-flex flex-row col-12 mt-5">
+        <div id="match_stat_record" class="d-flex flex-row col-12 mt-2">
             <div id ="stat_1stcol" class="col-6 d-flex flex-column">
             </div>
 
             <div id ="stat_2ndcol" class="col-6 d-flex flex-column">
             </div>
         </div>
+
+        <div id="match_stat_displaybyperiod"  class="d-none">
+            <div id ="stat_1stcol_dbp" class="col-6 d-flex flex-column">
+            </div>
+
+            <div id ="stat_2ndcol_dbp" class="col-6 d-flex flex-column">
+            </div>
+        </div>
     {% endif %}
 </div>
 
-
-
 {% endblock %}
+
 
 {%  block script %}
     <script src="/MyTeamStats/public/js/ajax.js"></script>
@@ -219,5 +227,5 @@
     <script src="/MyTeamStats/public/js/Card.js"></script>
     <script src="/MyTeamStats/public/js/Stats.js"></script>
     <script src="/MyTeamStats/public/js/Chrono.js"></script>
-    <script src="/MyTeamStats/public/js/MatchSettings.js"></script>
+    <script src="/MyTeamStats/public/js/MatchStats.js"></script>
 {% endblock %}

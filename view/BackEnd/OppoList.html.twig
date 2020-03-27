@@ -7,14 +7,14 @@
 {% block content %}
 
     {% if session.user_status >= 4 %}
-        <div id="add_oppo" class="col-1 m-4 border border-primary rounded-lg myborder">
-            <a href="/MyTeamStast/CreateOppo">
-                <i class="fas fa-shield-alt"></i>&nbsp;Créér un adversaire
+        <button id="add_oppo" class="btn btn-primary mt-4 add-btn">
+            <a href="/MyTeamStast/CreateOppo" class="link font-weight-bold">
+                <i class="fas fa-shield-alt"></i>&nbsp;&nbsp;&nbsp;Créer un adversaire
             </a>
-        </div>
+        </button>
 
         <div class="table-responsive">
-            <table class="table table table-bordered table-striped text-center">
+            <table class="table table table-bordered table-striped text-center table-text-size">
                 <caption class="col-12 text-center">
                     <h4>Liste des adversaires</h4>
                 </caption>
