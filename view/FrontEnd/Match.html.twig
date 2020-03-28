@@ -13,7 +13,7 @@
         <div id="periodduration">{{ match.periodduration }}</div>
         <div id="page">sheet</div>
     </div>
-{{ dump(goals) }}
+
 <div id="match" class="d-flex flex-column col-12 align-items-center">
 
     <h1>{{ match.type }} - {{ match.category }}</h1>
@@ -100,17 +100,7 @@
 
         <div id="match_stat_period_display" class="mt-2">
             <div id="match_stat_period-bar" class="border border-primary rounded"></div>
-            <button id="stat_all" class="period_btn btn btn-primary">Total</button>
         </div>
-
-        <div id="match_stat_displaybyperiod"  class="d-none">
-            <div id ="stat_1stcol_dbp" class="col-6 d-flex flex-column">
-            </div>
-
-            <div id ="stat_2ndcol_dbp" class="col-6 d-flex flex-column">
-            </div>
-        </div>
-
 
     {%  endif %}
 
@@ -121,13 +111,9 @@
 
 {%  block script %}
     <script>
-        let goals = [];
-        let goal;
-        {%  for goal in goals %}
-            goal = {{ goal }};
-            console.log(goal);
-            goals.push(goal);
-        {% endfor %}
+        let card = {{ cards | raw }};
+        let goal = {{ goals | raw }};
+        let period = {{ periods | raw }};
     </script>
     <script src="/MyTeamStats/public/js/ajax.js"></script>
     <script src="/MyTeamStats/public/js/Score.js"></script>

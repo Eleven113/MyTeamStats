@@ -1,7 +1,7 @@
 <?php
 
 
-class Goal
+class Goal implements JsonSerializable
 {
     private $goalid;
     private $scorerid;
@@ -168,5 +168,9 @@ class Goal
         }
     }
 
+    public function jsonSerialize(){
+        return get_object_vars($this);
+
+    }
 
 }

@@ -75,7 +75,7 @@ header:active{
     border-width: 2px !important;
 }
 
-#match_stat_record, #match_stat_displaybyperiod{
+#match_stat_record, #match_stat_displaybyperiod, #match_stat_period_*{
     font-size: 1.7vw;
 }
 

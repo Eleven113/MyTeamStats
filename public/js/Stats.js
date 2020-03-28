@@ -29,14 +29,12 @@ class Stats {
         this.statsDisplay = [];
         this.statDisplay;
 
-        this.setStatBars();
-
         this.btnsMinus = document.querySelectorAll('div[id^="btnminus_"]');
         this.btnsPlus = document.querySelectorAll('div[id^="btnplus_"]');
         this.btnsMinus;
         this.btnPlus;
 
-        
+        this.divMatch = document.getElementById("match");
 
         // Stats à inserer dans la DB
         this.homeScore;
@@ -71,15 +69,17 @@ class Stats {
         this.events();
 
         if (!this.pageStat){
-            this.divStatRecord.className = "d-none";
-            this.divStatDbyP.className = "d-flex flex-row col-12 mt-2";
-            this.SetPeriodBtn();    
+            this.setPeriodBtn();
+            this.AddStatBarsMatchpage(); 
+        }
+        else {
+            this.setStatBars();
         }
 
     }
 
     setStatBars(){
-
+        console.log("setStats");
         for (let i = 0; i < CONFIG.data.length; i++){
 
             this.newDivStatBar = document.createElement("div");
@@ -120,20 +120,62 @@ class Stats {
                 default:
                     break;
             }
-            // console.log(this.newDivStatBarDbyP);
-            this.createStatBars(i);
+            this.createStatBars(i);    
         }
     }
 
     createStatBars(i){
-        if ( i <= 5) {
-            this.div1stCol.append(this.newDivStatBar);
-            this.div1stColDbyP.append(this.newDivStatBarDbyP);
+        console.log("ici");
+        if (this.pageStat){
+            if ( i <= 5) {
+                this.div1stCol.append(this.newDivStatBar);
+                this.div1stColDbyP.append(this.newDivStatBarDbyP);
+            }
+            else {
+                this.div2ndCol.append(this.newDivStatBar);
+                this.div2ndColDbyP.append(this.newDivStatBarDbyP);
+            }
         }
         else {
-            this.div2ndCol.append(this.newDivStatBar);
-            this.div2ndColDbyP.append(this.newDivStatBarDbyP);
+            if ( i <= 5) {
+                this.newDivCol1.append(this.newDivStatBarDbyP);
+            }
+            else {
+                this.newDivCol2.append(this.newDivStatBarDbyP);
+            }
+
+            this.newDivStatPeriod.append(this.newDivCol1);
+            this.newDivStatPeriod.append(this.newDivCol2);
+            this.divMatch.append(this.newDivStatPeriod);
+
         }
+    }
+
+    AddStatBarsMatchpage(){
+        console.log("AddStatMatch");
+        for ( let i=1; i <= this.periodNumber+1; i++){
+            
+            this.newDivStatPeriod = document.createElement("div");
+            this.newDivStatPeriod.id = "match_stat_period_"+ i;
+            if ( i === this.periodNumber+1){
+                this.newDivStatPeriod.className = "d-flex flex-row col-12 mt-2";
+            } 
+            else {
+                this.newDivStatPeriod.className = "d-none";
+            }
+    
+            this.newDivCol1 = document.createElement("div");
+            this.newDivCol1.id = "stat_1stcol_period_" + i;
+            this.newDivCol1.className = "col-6 d-flex flex-column";
+
+            this.newDivCol2 = document.createElement("div");
+            this.newDivCol2.id = "stat_1stcol_period_" + i;
+            this.newDivCol2.className = "col-6 d-flex flex-column";
+
+            
+            this.setStatBars();
+        }
+
     }
 
     events(){
@@ -265,10 +307,12 @@ class Stats {
             }
         );
 
-        this.divStatAll.addEventListener("click", function(){
-            this.divStatDbyP.className = "d-none";
-            this.divStatRecord.className = "d-flex flex-row col-12 mt-5";
-        }.bind(this));
+        if (this.pageStat){
+            this.divStatAll.addEventListener("click", function(){
+                this.divStatDbyP.className = "d-none";
+                this.divStatRecord.className = "d-flex flex-row col-12 mt-5";
+            }.bind(this));
+        }   
     }
 
     setStats(){
@@ -434,13 +478,53 @@ class Stats {
             this.divStatRecord.className = "d-none";
     }
 
-    SetPeriodBtn(){
-        for (let i = 1; i <= this.periodNumber; i++ ){
+    setPeriodBtn(){
+        for (let i = 1; i <= this.periodNumber+1; i++ ){
             let divStatPeriod = document.createElement("button");
-            divStatPeriod.id = "stat_" + i;
+            if ( i === 1){
+                divStatPeriod.id = "btn_stat_total";
+                divStatPeriod.innerHTML = "Total";
+            } else {
+                divStatPeriod.id = "btn_stat_period_" + (i-1);
+                divStatPeriod.innerHTML = i-1;
+            }
+
             divStatPeriod.className = "period_btn btn btn-primary";
-            divStatPeriod.innerHTML = i;
+            divStatPeriod.addEventListener("click",this.btnPeriodEvents.bind(this));
             this.divStatPeriodDisplay.append(divStatPeriod);
+        }
+    }
+
+    btnPeriodEvents(event){
+        let target = event.target.innerHTML;
+        this.changeDisplayMatchpage(target);
+        if ( target !== "total"){
+
+        }
+        else {
+
+        }
+    }
+
+    changeDisplayMatchpage(target){
+        console.log(target);
+        if ( target === "Total"){
+            document.getElementById("match_stat_period_" + (this.periodNumber + 1)).className = "d-flex flex-row col-12 mt-2"
+            for ( let i = 1; i <= this.periodNumber; i++){
+                document.getElementById("match_stat_period_"+ i).className = "d-none";
+            } 
+        }
+        else {
+            document.getElementById("match_stat_period_" + (this.periodNumber + 1)).className = "d-none"
+            for ( let i = 1; i <= this.periodNumber; i++){
+                console.log(i);
+                if ( i == target){
+                    document.getElementById("match_stat_period_"+ i).className = "d-flex flex-row col-12 mt-2";
+                }
+                else {
+                    document.getElementById("match_stat_period_"+ i).className = "d-none";
+                }
+            } 
         }
     }
 }

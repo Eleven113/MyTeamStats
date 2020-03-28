@@ -113,26 +113,31 @@ Class ControllerFront {
             array_push($cardArray, $card);
         }
 
-        $goalObj= new StdClass();
+        $goalArray = [];
+
         for ($i=0; $i < count($goalsList); $i++){
             $goal = $goalsList[$i];
-            $goalObj->{$i} = $goal;
+            array_push($goalArray, $goal);
         }
 
-        ?><pre><?
-        print_r($cardArray);
-        ?></pre><?php
-        $data = json_encode($cardArray);
-        ?><pre><?
-        print_r($data);
-        ?></pre><?php
-//        echo $this->twig->render('/FrontEnd/Match.html.twig', [
-//            'match' => $match,
-//            'playersList' => $playersList,
-//            'goals' => $goalsList,
-//            'cards' => $cardsList,
-//            'periods' => $periodsList
-//            ]);
+        $periodArray = [];
+
+        for ($i=0; $i < count($periodsList); $i++){
+            $period = $periodsList[$i];
+            array_push($periodArray, $period);
+        }
+
+        $cards = json_encode($cardArray);
+        $periods = json_encode($periodArray);
+        $goals = json_encode($goalArray);
+
+        echo $this->twig->render('/FrontEnd/Match.html.twig', [
+            'match' => $match,
+            'playersList' => $playersList,
+            'goals' => $goals,
+            'cards' => $cards,
+            'periods' => $periods
+            ]);
     }
 
     public function SessionKill(){

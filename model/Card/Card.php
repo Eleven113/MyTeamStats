@@ -1,7 +1,7 @@
 <?php
 
 
-class Card
+class Card implements JsonSerializable
 {
     private $cardid;
     private $playerid;
@@ -121,21 +121,25 @@ class Card
         {
             $this->hydrate($match);
         }
+
     }
 
     // Hydrate
     public function hydrate($match)
     {
-        foreach ($match as $key => $value)
-        {
-            $method = 'set'.ucfirst($key);
+        foreach ($match as $key => $value) {
+            $method = 'set' . ucfirst($key);
 
-            if (is_callable([$this, $method]))
-            {
+            if (is_callable([$this, $method])) {
                 $this->$method($value);
             }
         }
     }
+
+    public function jsonSerialize(){
+        return get_object_vars($this);
+
+        }
 
 
 }

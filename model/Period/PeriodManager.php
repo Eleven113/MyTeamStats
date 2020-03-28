@@ -43,6 +43,7 @@ class PeriodManager
 
         while ($periodArray = $periodsList->fetch(PDO::FETCH_ASSOC)){
             $period = new Period($periodArray);
+            $period = $period->jsonSerialize();
             $periodsListObj->append($period);
         }
 

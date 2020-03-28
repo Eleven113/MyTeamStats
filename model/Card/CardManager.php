@@ -32,8 +32,10 @@ class CardManager
 
         while ($cardArray = $cardsList->fetch(PDO::FETCH_ASSOC)){
             $card = new Card($cardArray);
+            $card = $card->jsonSerialize();
             $cardsListObj->append($card);
         }
+
 
         return $cardsListObj;
     }
