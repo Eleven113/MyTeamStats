@@ -1,12 +1,13 @@
 <?php
 
+namespace MyTeamStats\Model\User;
 
 class UserManager
 {
 
     protected $db;
 
-    public function __construct(PDO $db)
+    public function __construct(\PDO $db)
     {
         $this->db = $db;
     }
@@ -31,7 +32,7 @@ class UserManager
         $userPDO = $this->db->prepare('SELECT * FROM USER WHERE MAIL = :mail ');
         $userPDO->bindValue(':mail', $mail );
         $userPDO->execute();
-        $userArray = $userPDO->fetch(PDO::FETCH_ASSOC);
+        $userArray = $userPDO->fetch(\PDO::FETCH_ASSOC);
 
         $user = new UserObject($userArray);
 
@@ -56,8 +57,8 @@ class UserManager
 
      public function getUsersList(){
         $usersList = $this->db->query('SELECT * FROM USER');
-        $usersListObj = new ArrayObject();
-        while ($userArray = $usersList->fetch(PDO::FETCH_ASSOC)){
+        $usersListObj = new \ArrayObject();
+        while ($userArray = $usersList->fetch(\PDO::FETCH_ASSOC)){
             $user = new UserObject($userArray);
             $usersListObj->append($user);
         }
@@ -77,7 +78,7 @@ class UserManager
         $query = $this->db->prepare('SELECT * FROM USER WHERE USERID = :userid');
         $query->bindValue(':userid', $id);
         $query->execute();
-        $user = new UserObject($query->fetch(PDO::FETCH_ASSOC));
+        $user = new UserObject($query->fetch(\PDO::FETCH_ASSOC));
 
         return $user;
     }

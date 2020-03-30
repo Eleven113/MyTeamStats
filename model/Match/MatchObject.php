@@ -1,5 +1,6 @@
 <?php
 
+namespace MyTeamStats\Model\Match;
 
 class MatchObject
 {

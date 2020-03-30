@@ -1,7 +1,8 @@
 <?php
 
+namespace MyTeamStats\Model\Goal;
 
-class GoalObject implements JsonSerializable
+class GoalObject implements \JsonSerializable
 {
     private $goalid;
     private $scorerid;

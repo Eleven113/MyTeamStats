@@ -1,12 +1,13 @@
 <?php
 
+namespace MyTeamStats\Model\Composition;
 
-class CompositionManager implements JsonSerializable
+class CompositionManager
 {
 
     protected $db;
 
-    public function __construct(PDO $db)
+    public function __construct(\PDO $db)
     {
         $this->db = $db;
     }
@@ -15,9 +16,9 @@ class CompositionManager implements JsonSerializable
         $composition = $this->db->prepare('SELECT PLAY.PLAYERID, PLAY.GAMEID, PLAYER.LASTNAME, PLAYER.FIRSTNAME, PLAYER.ACTIVELICENCE, PLAYER.CATEGORY FROM PLAY, PLAYER WHERE PLAY.GAMEID = :gameid AND PLAY.PLAYERID = PLAYER.PLAYERID');
         $composition->bindValue(':gameid', $id);
         $composition->execute();
-        $playerList = new ArrayObject();
+        $playerList = new \ArrayObject();
         $count = 0;
-        while($player = $composition->fetch(PDO::FETCH_ASSOC)){
+        while($player = $composition->fetch(\PDO::FETCH_ASSOC)){
             $count++;
             $player = new CompositionObject($player);
             $player = $player->jsonSerialize();

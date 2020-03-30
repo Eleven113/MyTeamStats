@@ -1,7 +1,8 @@
 <?php
 
+namespace MyTeamStats\Model\Match;
 
-class MatchDisplay implements JsonSerializable
+class MatchDisplay implements \JsonSerializable
 {
     private $category;
     private $date;

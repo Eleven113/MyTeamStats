@@ -1,7 +1,8 @@
 <?php
 
+namespace MyTeamStats\Model\Composition;
 
-class CompositionObject implements JsonSerializable
+class CompositionObject implements \JsonSerializable
 {
     private $gameid;
     private $playerid;

@@ -1,11 +1,12 @@
 <?php
 
+namespace MyTeamStats\Model\Goal;
 
 class GoalManager
 {
     private $db;
 
-    public function __construct(PDO $db)
+    public function __construct(\PDO $db)
     {
         $this->db = $db;
     }
@@ -45,9 +46,9 @@ class GoalManager
         $goalsList->bindValue(':matchid', $matchid);
         $goalsList->execute();
 
-        $goalsListObj = new ArrayObject();
+        $goalsListObj = new \ArrayObject();
 
-        while ($goalArray = $goalsList->fetch(PDO::FETCH_ASSOC)){
+        while ($goalArray = $goalsList->fetch(\PDO::FETCH_ASSOC)){
             $goal = new GoalObject($goalArray);
             $goalsListObj->append($goal);
         }

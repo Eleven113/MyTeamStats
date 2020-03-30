@@ -26,17 +26,17 @@ require ('model/Card/CardManager.php');
 require ('model/DBFactory.php');
 //require ('router.php');
 
-$db = DBFactory::ConnexionPDO();
+$db = MyTeamStats\Model\DBFactory::ConnexionPDO();
 
-$playerManager = new PlayerManager($db);
-$userManager = new UserManager($db);
-$opponentManager = new OpponentManager($db);
-$matchManager = new MatchManager($db);
-$fieldManager = new FieldManager($db);
-$compositionManager = new CompositionManager($db);
-$goalManager = new GoalManager($db);
-$periodManager = new PeriodManager($db);
-$cardManager = new CardManager($db);
+$playerManager = new MyteamStats\Model\Player\PlayerManager($db);
+$userManager = new MyteamStats\Model\User\UserManager($db);
+$opponentManager = new MyteamStats\Model\Opponent\OpponentManager($db);
+$matchManager = new MyteamStats\Model\Match\MatchManager($db);
+$fieldManager = new MyteamStats\Model\Field\FieldManager($db);
+$compositionManager = new MyteamStats\Model\Composition\CompositionManager($db);
+$goalManager = new MyteamStats\Model\Goal\GoalManager($db);
+$periodManager = new MyteamStats\Model\Period\PeriodManager($db);
+$cardManager = new MyteamStats\Model\Card\CardManager($db);
 
 $loader = new \Twig\Loader\FilesystemLoader(__DIR__ . '/view');
 $twig = new \Twig\Environment($loader, [
@@ -49,8 +49,8 @@ $twig->addExtension(new Twig_Extensions_Extension_Intl());
 $twig->addGlobal('session', $_SESSION);
 $twig->addGlobal('env', $_ENV);
 
-$controllerFront = new ControllerFront($twig, $playerManager, $userManager, $opponentManager, $matchManager, $fieldManager, $compositionManager, $goalManager, $periodManager, $cardManager);
-$controllerBack = new ControllerBack($twig, $playerManager, $userManager, $opponentManager, $matchManager, $fieldManager, $compositionManager, $goalManager, $periodManager, $cardManager);
+$controllerFront = new \MyTeamStats\Controller\ControllerFront($twig, $playerManager, $userManager, $opponentManager, $matchManager, $fieldManager, $compositionManager, $goalManager, $periodManager, $cardManager);
+$controllerBack = new \MyTeamStats\Controller\ControllerBack($twig, $playerManager, $userManager, $opponentManager, $matchManager, $fieldManager, $compositionManager, $goalManager, $periodManager, $cardManager);
 
 \Cloudinary::config( array (
     "cloud_name" => "marthyte" ,
@@ -75,18 +75,18 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
         // Home
     $r->addRoute('GET', '/MyTeamStats/', 'controllerFront/Home');
 
-        // PlayerObject
+        // Player
     $r->addRoute('GET', '/MyTeamStats/PlayersList', 'controllerFront/PlayersList');
-    $r->addRoute('GET', '/MyTeamStats/PlayerObject/{id:[0-9]+}', 'controllerFront/PlayerObject');
+    $r->addRoute('GET', '/MyTeamStats/Player/{id:[0-9]+}', 'controllerFront/Player');
 
-        // MatchObject
+        // Match
     $r->addRoute('GET', '/MyTeamStats/MatchsList', 'controllerFront/MatchsList');
-    $r->addRoute('GET', '/MyTeamStats/MatchObject/{id:[0-9]+}', 'controllerFront/MatchObject');
+    $r->addRoute('GET', '/MyTeamStats/Match/{id:[0-9]+}', 'controllerFront/Match');
 
         // Club
     $r->addRoute('GET', '/MyTeamStats/Club', 'controllerFront/Club');
 
-        // UserObject
+        // User
     $r->addRoute('GET', '/MyTeamStats/Login', 'controllerFront/Login');
     $r->addRoute('GET', '/MyTeamStats/CreateUser', 'controllerFront/CreateUser');
     $r->addRoute('POST', '/MyTeamStats/AddUser', 'controllerFront/AddUser');
@@ -99,14 +99,14 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
         // Admin
     $r->addRoute('GET', '/MyTeamStats/Admin', 'controllerBack/Admin');
 
-        // PlayerObject
+        // Player
     $r->addRoute('GET', '/MyTeamStats/CreatePlayer', 'controllerBack/CreatePlayer');
     $r->addRoute('POST', '/MyTeamStats/AddPlayer', 'controllerBack/AddPlayer');
     $r->addRoute('GET', '/MyTeamStats/ModifyPlayer/{id:[0-9]+}', 'controllerBack/ModifyPlayer');
     $r->addRoute('POST', '/MyTeamStats/UpdatePlayer/{id:[0-9]+}', 'controllerBack/UpdatePlayer');
     $r->addRoute('GET', '/MyTeamStats/DeletePlayer/{id:[0-9]+}', 'controllerBack/DeletePlayer');
 
-        // MatchObject
+        // Match
     $r->addRoute('GET', '/MyTeamStats/CreateMatch', 'controllerBack/CreateMatch');
     $r->addRoute('POST', '/MyTeamStats/AddMatch', 'controllerBack/AddMatch');
     $r->addRoute('GET', '/MyTeamStats/ModifyMatch/{id:[0-9]+}', 'controllerBack/ModifyMatch');
@@ -116,8 +116,8 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('POST', '/MyTeamStats/MatchData', 'controllerBack/MatchData');
 
 
-        // CompositionObject
-    $r->addRoute('GET', '/MyTeamStats/CompositionObject/{id:[0-9]+}', 'controllerBack/CompositionObject');
+        // Composition
+    $r->addRoute('GET', '/MyTeamStats/Composition/{id:[0-9]+}', 'controllerBack/Composition');
     $r->addRoute('GET', '/MyTeamStats/CreateComposition/{id:[0-9]+}', 'controllerBack/CreateComposition');
     $r->addRoute('POST', '/MyTeamStats/AddComposition/{id:[0-9]+}', 'controllerBack/AddComposition');
     $r->addRoute('GET', '/MyTeamStats/ModifyComposition/{id:[0-9]+}', 'controllerBack/ModifyComposition');
@@ -133,7 +133,7 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('POST', '/MyTeamStats/UpdateOppo/{id:[0-9]+}', 'controllerBack/UpdateOppo');
     $r->addRoute('GET', '/MyTeamStats/DeleteOppo/{id:[0-9]+}', 'controllerBack/DeleteOppo');
 
-        // FieldObject
+        // Field
     $r->addRoute('GET', '/MyTeamStats/FieldsList', 'controllerBack/FieldsList');
     $r->addRoute('GET', '/MyTeamStats/CreateField', 'controllerBack/CreateField');
     $r->addRoute('POST', '/MyTeamStats/AddField', 'controllerBack/AddField');

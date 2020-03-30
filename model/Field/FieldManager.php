@@ -1,19 +1,20 @@
 <?php
 
+namespace MyTeamStats\Model\Field;
 
 class FieldManager
 {
     protected $db;
 
-    public function __construct(PDO $db)
+    public function __construct(\PDO $db)
     {
         $this->db = $db;
     }
 
     public function getFieldsList(){
         $fieldsList = $this->db->query('SELECT * FROM FIELD');
-        $fieldListObj = new ArrayObject();
-        while ($fieldArray = $fieldsList->fetch(PDO::FETCH_ASSOC)){
+        $fieldListObj = new \ArrayObject();
+        while ($fieldArray = $fieldsList->fetch(\PDO::FETCH_ASSOC)){
             $field = new FieldObject($fieldArray);
             $fieldListObj->append($field);
         }
@@ -26,7 +27,7 @@ class FieldManager
         $query->bindValue(':fieldid', $id);
         $query->execute();
 
-        return new FieldObject($query->fetch(PDO::FETCH_ASSOC));
+        return new FieldObject($query->fetch(\PDO::FETCH_ASSOC));
     }
 
     public function AddField($field){

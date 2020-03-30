@@ -1,11 +1,12 @@
 <?php
 
+namespace MyTeamStats\Model\Card;
 
 class CardManager
 {
     private $db;
 
-    public function __construct(PDO $db)
+    public function __construct(\PDO $db)
     {
         $this->db = $db;
     }
@@ -28,9 +29,9 @@ class CardManager
         $cardsList->bindValue(':matchid', $matchid);
         $cardsList->execute();
 
-        $cardsListObj = new ArrayObject();
+        $cardsListObj = new \ArrayObject();
 
-        while ($cardArray = $cardsList->fetch(PDO::FETCH_ASSOC)){
+        while ($cardArray = $cardsList->fetch(\PDO::FETCH_ASSOC)){
             $card = new CardObject($cardArray);
             $card = $card->jsonSerialize();
             $cardsListObj->append($card);

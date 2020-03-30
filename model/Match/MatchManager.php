@@ -1,20 +1,21 @@
 <?php
 
+namespace MyTeamStats\Model\Match;
 
 class MatchManager
 {
 
     protected $db;
 
-    public function __construct(PDO $db)
+    public function __construct(\PDO $db)
     {
         $this->db = $db;
     }
 
     public function getMatchsList(){
         $matchList = $this->db->query('SELECT GAME.GAMEID, GAME.OPPONENTID, GAME.CATEGORY, GAME.DATE, GAME.FIELDID, GAME.ATHOME, GAME.PERIODNUM, GAME.TYPE, GAME.PERIODDURATION, GAME.STATUS, OPPONENT.OPPONENTID AS OPPOID, OPPONENT.NAME AS OPPO, OPPONENT.NAME, OPPONENT.LOGO, FIELD.FIELDID AS FIELDID, FIELD.ADDRESS, FIELD.ZIPCODE, FIELD.CITY, FIELD.TURF, SUM(PERIOD.HOMESCORE) AS HOMESCORE, SUM(PERIOD.AWAYSCORE) AS AWAYSCORE FROM GAME LEFT JOIN PERIOD ON GAME.GAMEID = PERIOD.MATCHID INNER JOIN FIELD ON GAME.FIELDID = FIELD.FIELDID INNER JOIN OPPONENT ON GAME.OPPONENTID = OPPONENT.OPPONENTID GROUP BY GAME.GAMEID');
-        $matchsList = new ArrayObject();
-        while ($matchArray = $matchList->fetch(PDO::FETCH_ASSOC)){
+        $matchsList = new \ArrayObject();
+        while ($matchArray = $matchList->fetch(\PDO::FETCH_ASSOC)){
 
             $matchDisplay = new MatchDisplay($matchArray);
 
@@ -29,7 +30,7 @@ class MatchManager
         $query->bindValue(':gameid', $id);
         $query->execute();
 
-        return new MatchDisplay($query->fetch(PDO::FETCH_ASSOC));
+        return new MatchDisplay($query->fetch(\PDO::FETCH_ASSOC));
 
     }
 

@@ -1,7 +1,8 @@
 <?php
 
+namespace MyTeamStats\Model\Period;
 
-class PeriodObject implements JsonSerializable
+class PeriodObject implements \JsonSerializable
 {
     private $matchid;
     private $periodnum;

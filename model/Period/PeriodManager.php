@@ -1,11 +1,12 @@
 <?php
 
+namespace MyTeamStats\Model\Period;
 
 class PeriodManager
 {
     private $db;
 
-    public function __construct(PDO $db)
+    public function __construct(\PDO $db)
     {
         $this->db =$db;
     }
@@ -39,9 +40,9 @@ class PeriodManager
         $periodsList->bindValue(':matchid', $matchid);
         $periodsList->execute();
 
-        $periodsListObj = new ArrayObject();
+        $periodsListObj = new \ArrayObject();
 
-        while ($periodArray = $periodsList->fetch(PDO::FETCH_ASSOC)){
+        while ($periodArray = $periodsList->fetch(\PDO::FETCH_ASSOC)){
             $period = new PeriodObject($periodArray);
             $period = $period->jsonSerialize();
             $periodsListObj->append($period);

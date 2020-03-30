@@ -1,5 +1,6 @@
-<?php 
+<?php
 
+namespace MyTeamStats\Model\Player;
 
 Class PlayerObject {
 

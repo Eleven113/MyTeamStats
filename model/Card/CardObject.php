@@ -1,7 +1,8 @@
 <?php
 
+namespace MyTeamStats\Model\Card;
 
-class CardObject implements JsonSerializable
+class CardObject implements \JsonSerializable
 {
     private $cardid;
     private $playerid;

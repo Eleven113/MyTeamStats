@@ -1,6 +1,6 @@
 <?php
 
-
+namespace MyTeamStats\Model\Opponent;
 
 class OpponentManager
 {
@@ -8,7 +8,7 @@ class OpponentManager
 
     protected $db;
 
-    public function __construct(PDO $db)
+    public function __construct(\PDO $db)
     {
         $this->db = $db;
     }
@@ -16,8 +16,8 @@ class OpponentManager
 
     public function getOppoList(){
         $oppoList = $this->db->query('SELECT * FROM OPPONENT');
-        $oppoListObj = new ArrayObject();
-        while ($oppoArray = $oppoList->fetch(PDO::FETCH_ASSOC)){
+        $oppoListObj = new \ArrayObject();
+        while ($oppoArray = $oppoList->fetch(\PDO::FETCH_ASSOC)){
             $oppo = new OpponentObject($oppoArray);
             $oppoListObj->append($oppo);
         }
@@ -30,7 +30,7 @@ class OpponentManager
         $query->bindValue(':oppoid',$id);
         $query->execute();
 
-        return new OpponentObject($query->fetch(PDO::FETCH_ASSOC));
+        return new OpponentObject($query->fetch(\PDO::FETCH_ASSOC));
     }
 
     public function AddOppo($oppo){

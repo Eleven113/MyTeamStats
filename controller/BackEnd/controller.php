@@ -1,5 +1,7 @@
 <?php
 
+namespace MyTeamStats\Controller ;
+
 class ControllerBack {
 
     private $twig;
