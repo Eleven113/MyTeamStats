@@ -60,6 +60,7 @@ class ControllerBack {
         $this->playerManager->DeletePlayer($id);
 
         header ('Location: http://www.thibaut-minard.fr/MyTeamStats/PlayersList');
+        exit();
     }
 
     public function ModifyPlayer($id){
@@ -90,6 +91,7 @@ class ControllerBack {
 
 
         header ('Location: http://www.thibaut-minard.fr/MyTeamStats/PlayersList');
+        exit();
     }
 
     public function CreateMatch(){
@@ -121,6 +123,7 @@ class ControllerBack {
         $this->userManager->DeleteUser($id);
 
         header ('Location: http://www.thibaut-minard.fr/MyTeamStats/UsersList');
+        exit();
     }
 
     public function ModifyUser($id){
@@ -141,6 +144,7 @@ class ControllerBack {
         $this->userManager->UpdateUser($user);
 
         header ('Location: http://www.thibaut-minard.fr/MyTeamStats/UsersList');
+        exit();
     }
 
     public function CreateOppo(){
@@ -159,6 +163,7 @@ class ControllerBack {
         $this->opponentManager->AddOppo($oppo);
 
         header ('Location: http://www.thibaut-minard.fr/MyTeamStats/OppoList');
+        exit();
     }
 
     public function OppoList(){
@@ -186,6 +191,7 @@ class ControllerBack {
         $this->opponentManager->UpdateOppo($oppo);
 
         header ('Location: http://www.thibaut-minard.fr/MyTeamStats/OppoList');
+        exit();
 
     }
 
@@ -193,6 +199,7 @@ class ControllerBack {
         $this->opponentManager->DeleteOppo($id);
 
         header ('Location: http://www.thibaut-minard.fr/MyTeamStats/OppoList');
+        exit();
     }
 
     public function AddMatch($date, $opponent, $athome, $fieldid, $category, $type, $periodnum, $periodduration){
@@ -211,6 +218,7 @@ class ControllerBack {
         $this->matchManager->AddMatch($match);
 
         header ('Location: http://www.thibaut-minard.fr/MyTeamStats/MatchsList');
+        exit();
 
     }
 
@@ -238,6 +246,7 @@ class ControllerBack {
         $this->fieldManager->AddField($field);
 
         header ('Location: http://www.thibaut-minard.fr/MyTeamStats/FieldsList');
+        exit();
     }
 
     public function ModifyField($id){
@@ -260,12 +269,14 @@ class ControllerBack {
         $this->fieldManager->UpdateField($field);
 
         header('Location: http://www.thibaut-minard.fr/MyTeamStats/FieldsList');
+        exit();
     }
 
     public function DeleteField($id){
         $this->fieldManager->DeleteField($id);
 
         header('Location: http://www.thibaut-minard.fr/MyTeamStats/FieldsList');
+        exit();
     }
 
     public function ModifyMatch($id){
@@ -285,6 +296,7 @@ class ControllerBack {
         $this->matchManager->DeleteMatch($id);
 
         header('Location: http://www.thibaut-minard.fr/MyTeamStats/MatchsList');
+        exit();
     }
 
     public function Composition($id){

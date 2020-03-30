@@ -1,9 +1,12 @@
 class Score {
-    constructor(matchId,atHome, periodNumber, periodDuration){
+    constructor(matchId,atHome, periodNumber, periodDuration, pageStat){
         this.matchId = matchId;
         this.atHome = atHome;
         this.periodNumber = periodNumber;
         this.periodDuration = periodDuration;
+        this.pageStat = pageStat;
+
+        if (this.pageStat){
 
         // Récupération des div liées aux buttons
         this.divHomeButtonPlus = document.getElementById("home_score-btn_plus");
@@ -60,6 +63,11 @@ class Score {
         this.renameDiv();
         this.getNewDiv();
         this.events();
+        }
+
+        else{
+            this.displayGoalMatchPage();
+        }
 
     }
 
@@ -250,5 +258,36 @@ class Score {
         // Suppression du but dans la liste des buts
         this.goals.splice(index,1);
         this.MyTeamMinus();
+    }
+
+    displayGoalMatchPage(){
+        for (let i = 0; i < goal.length; i++){
+            this.scorer = player.find(({playerid}) => playerid === goal[i].scorerid);
+            let time = goal[i].time;
+
+            if ( time > this.periodDuration){
+                let remain = time - this.periodDuration;
+                time = this.periodDuration * goal[i].periodnum + "' + " + remain;
+            }
+            else {
+                time = time * goal[i].periodnum + "'";
+            }
+
+            let divDisplayGoal = document.createElement("div");
+            divDisplayGoal.className = "goal_display d-flex flex-row justify-content-center align-items-center mt-1";
+            let divPlayer = document.createElement("div");
+            divPlayer.className = "goal_display_player col-3";
+            let divTime = document.createElement("div");
+            divTime.className = "goal_display_time col-2  d-flex flew-row justify-content-start";
+
+            divPlayer.innerHTML = '<i class="far fa-futbol"></i>&nbsp;&nbsp;&nbsp;' + this.scorer.firstname + " " + this.scorer.lastname.slice(0,1);
+            divTime.innerHTML = time;
+            
+            divDisplayGoal.append(divPlayer);
+            divDisplayGoal.append(divTime);
+
+            document.getElementById("match_goal_display").append(divDisplayGoal);
+
+        }
     }
 }

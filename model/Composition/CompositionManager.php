@@ -19,7 +19,8 @@ class CompositionManager implements JsonSerializable
         $count = 0;
         while($player = $composition->fetch(PDO::FETCH_ASSOC)){
             $count++;
-            $player = new Player($player);
+            $player = new Composition($player);
+            $player = $player->jsonSerialize();
             $playerList->append($player);
         }
 

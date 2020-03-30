@@ -1,51 +1,57 @@
 class Card {
 
-    constructor(matchId, periodDuration) {
+    constructor(matchId, periodDuration, pageStat) {
         this.matchId = matchId;
         this.periodDuration = periodDuration;
+        this.pageStat = pageStat;
 
-        this.divYc = document.getElementById("yellowcard");
-        this.divRc = document.getElementById("redcard");
+        if (this.pageStat){
+            this.divYc = document.getElementById("yellowcard");
+            this.divRc = document.getElementById("redcard");
 
-        this.spanYc = document.getElementById("yellowcard_num");
-        this.spanRc = document.getElementById("redcard_num");
+            this.spanYc = document.getElementById("yellowcard_num");
+            this.spanRc = document.getElementById("redcard_num");
 
-        this.modalYc = document.getElementById("modal_yellowcard");
-        this.modalRc = document.getElementById("modal_redcard");
+            this.modalYc = document.getElementById("modal_yellowcard");
+            this.modalRc = document.getElementById("modal_redcard");
 
-        this.buttonYc = document.getElementById("valid_yc");
-        this.closeYc = document.getElementById("yc_close");
-        this.isDisplayYellow = false;
+            this.buttonYc = document.getElementById("valid_yc");
+            this.closeYc = document.getElementById("yc_close");
+            this.isDisplayYellow = false;
 
-        this.buttonRc = document.getElementById("valid_rc");
-        this.closeRc = document.getElementById("rc_close");
-        this.isDisplayRed = false;
+            this.buttonRc = document.getElementById("valid_rc");
+            this.closeRc = document.getElementById("rc_close");
+            this.isDisplayRed = false;
 
-        this.buttonShowCards = document.getElementById("show_cards");
-        this.closeShowCards = document.getElementById("cards_close");
-        this.isDisplayShow = false;
+            this.buttonShowCards = document.getElementById("show_cards");
+            this.closeShowCards = document.getElementById("cards_close");
+            this.isDisplayShow = false;
 
-        this.spanYc = document.getElementById("yellowcard_num");
-        this.ycNumb = 0;
-        this.spanYc = document.getElementById("yellowcard_num");
-        this.rcNumb = 0;
+            this.spanYc = document.getElementById("yellowcard_num");
+            this.ycNumb = 0;
+            this.spanYc = document.getElementById("yellowcard_num");
+            this.rcNumb = 0;
 
-        this.divDisplayCards = document.getElementById("modal_displaycards");
-        this.divSetCards = document.getElementById("set_cards");
-        this.divCard;
+            this.divDisplayCards = document.getElementById("modal_displaycards");
+            this.divSetCards = document.getElementById("set_cards");
+            this.divCard;
 
-        this.selectYc = document.getElementById("player_yc");
-        this.selectRc = document.getElementById("player_rc");
+            this.selectYc = document.getElementById("player_yc");
+            this.selectRc = document.getElementById("player_rc");
 
-        this.playerId;
-        this.playerName;
-        this.time;
-        this.period;
+            this.playerId;
+            this.playerName;
+            this.time;
+            this.period;
 
-        this.cards = [];
-        this.card;
+            this.cards = [];
+            this.card;
 
-        this.events();
+            this.events();
+        }
+        else{
+            this.displayCardMatchPage();
+        }
     }
 
     events() {
@@ -174,5 +180,44 @@ class Card {
         this.divCard.append(spanTime);
 
         this.divSetCards.append(this.divCard);
+    }
+
+    displayCardMatchPage(){
+        for (let i = 0; i < card.length; i++){
+            this.player = player.find(({playerid}) => playerid === card[i].playerid);
+            let time = card[i].time;
+
+            if ( time > this.periodDuration){
+                let remain = time - this.periodDuration;
+                time = this.periodDuration * card[i].periodnum + "' + " + remain;
+            }
+            else {
+                time = time * goal[i].periodnum + "'";
+            }
+
+            let divDisplayCard = document.createElement("div");
+            divDisplayCard.className = "card_display d-flex flex-row justify-content-center align-items-center mt-1";
+            let divIcon = document.createElement("div");
+            if ( card[i].color === "jaune"){
+                divIcon.className = "card_display_icon yellowcard";
+            }
+            else {
+                divIcon.className = "card_display_icon redcard";
+            }
+            let divPlayer = document.createElement("div");
+            divPlayer.className = "card_display_player col-3";
+            let divTime = document.createElement("div");
+            divTime.className = "card_display_time col-2";
+
+            divPlayer.innerHTML = this.player.firstname + " " + this.player.lastname.slice(0,1) + ".";
+            divTime.innerHTML = time;
+            
+            divDisplayCard.append(divIcon);
+            divDisplayCard.append(divPlayer);
+            divDisplayCard.append(divTime);
+
+            document.getElementById("match_card_display").append(divDisplayCard);
+        }
+
     }
 }

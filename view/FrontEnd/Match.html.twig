@@ -38,7 +38,7 @@
         </div>
         {% if match.status == 0 %}
             <div id="match_score" class="col-4 d-flex flex-column justify-content-center items-align-center font-weight-bold">
-                <div class="text-center"><span id="homescore">3</span>-<span id="awayscore">0</span></div>
+                <div class="text-center"><span id="homescore"></span>-<span id="awayscore"></span></div>
             </div>
         {% endif %}
         <div id="match_team_away" class="d-flex flex-column align-items-start justify-content-center col-4">
@@ -98,11 +98,11 @@
         </div>
     {%  else %}
 
-        <div id="match_goal_card_display">
-            <div id="match_goal_display">
+        <div id="match_goal_card_display" class="col-12 mt-3 mb-3 d-flex flex-row">
+            <div id="match_goal_display" class="col-6 d-flex flex-column justify-content-center">
 
             </div>
-            <div id="match_card_display">
+            <div id="match_card_display" class="col-6 d-flex flex-column justify-content-center">
 
             </div>
         </div>
@@ -120,6 +120,7 @@
 
 {%  block script %}
     <script>
+        let player = {{ players | raw }};
         let card = {{ cards | raw }};
         let goal = {{ goals | raw }};
         let period = {{ periods | raw }};

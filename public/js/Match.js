@@ -8,5 +8,7 @@ let stat = false;
 let goalIndex;
 
 stats = new Stats(matchId, periodNumber, periodDuration, atHome, stat);
+card = new Card(matchId, periodDuration, stat);
+score = new Score(matchId, atHome, periodNumber, periodDuration, stat);
 
 

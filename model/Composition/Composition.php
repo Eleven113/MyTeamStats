@@ -1,7 +1,7 @@
 <?php
 
 
-class Composition
+class Composition implements JsonSerializable
 {
     private $gameid;
     private $playerid;
@@ -124,4 +124,8 @@ class Composition
         }
     }
 
+    public function jsonSerialize(){
+        return get_object_vars($this);
+
+    }
 }

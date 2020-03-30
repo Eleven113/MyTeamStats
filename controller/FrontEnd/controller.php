@@ -86,8 +86,12 @@ Class ControllerFront {
 
     public function MatchsList(){
         $matchs = $this->matchManager->getMatchsList();
+        ?><pre><?php
+        print_r($matchs);
+        ?></pre><?php
 
-        echo $this->twig->render('/FrontEnd/MatchsList.html.twig', [ 'matchs' => $matchs]);
+        for ( $i=0; $i < count($matchs))
+//        echo $this->twig->render('/FrontEnd/MatchsList.html.twig', [ 'matchs' => $matchs]);
     }
 
     public function Club(){
@@ -105,6 +109,13 @@ Class ControllerFront {
         $cardsList = $this->cardManager->getCardsList($id);
         $goalsList = $this->goalManager->getGoalsList($id);
         $periodsList = $this->periodManager->getPeriodsList($id);
+
+        $playerArray  = [];
+
+        for ($i=0; $i < count($playersList); $i++){
+            $player = $playersList[$i];
+            array_push($playerArray, $player);
+        }
 
         $cardArray = [];
 
@@ -127,13 +138,14 @@ Class ControllerFront {
             array_push($periodArray, $period);
         }
 
+        $players = json_encode($playerArray);
         $cards = json_encode($cardArray);
         $periods = json_encode($periodArray);
         $goals = json_encode($goalArray);
 
         echo $this->twig->render('/FrontEnd/Match.html.twig', [
             'match' => $match,
-            'playersList' => $playersList,
+            'players' => $players,
             'goals' => $goals,
             'cards' => $cards,
             'periods' => $periods
