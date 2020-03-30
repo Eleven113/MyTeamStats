@@ -1,7 +1,7 @@
 <?php
 
 
-class MatchDisplay
+class MatchDisplay implements JsonSerializable
 {
     private $category;
     private $date;
@@ -17,24 +17,10 @@ class MatchDisplay
     private $city;
     private $turf;
     private $gameid;
+    private $homescore;
+    private $awayscore;
 
-    // GETTER
-
-    /**
-     * @return mixed
-     */
-    public function getGameid()
-    {
-        return $this->gameid;
-    }
-
-    /**
-     * @param mixed $gameid
-     */
-    public function setGameid($gameid)
-    {
-        $this->gameid = $gameid;
-    }
+    // SETTER
 
     /**
      * @return mixed
@@ -42,14 +28,6 @@ class MatchDisplay
     public function getCategory()
     {
         return $this->category;
-    }
-
-    /**
-     * @param mixed $category
-     */
-    public function setCategory($category)
-    {
-        $this->category = $category;
     }
 
     /**
@@ -61,14 +39,6 @@ class MatchDisplay
     }
 
     /**
-     * @param mixed $date
-     */
-    public function setDate($date)
-    {
-        $this->date = $date;
-    }
-
-    /**
      * @return mixed
      */
     public function getAthome()
@@ -77,29 +47,11 @@ class MatchDisplay
     }
 
     /**
-     * @param mixed $athome
-     */
-    public function setAthome($athome)
-    {
-        $this->athome = $athome;
-    }
-
-    /**
      * @return mixed
      */
     public function getPeriodnum()
     {
         return $this->periodnum;
-    }
-
-    // SETTER
-
-    /**
-     * @param mixed $periodnum
-     */
-    public function setPeriodnum($periodnum)
-    {
-        $this->periodnum = $periodnum;
     }
 
     /**
@@ -111,27 +63,11 @@ class MatchDisplay
     }
 
     /**
-     * @param mixed $type
-     */
-    public function setType($type)
-    {
-        $this->type = $type;
-    }
-
-    /**
      * @return mixed
      */
     public function getPeriodduration()
     {
         return $this->periodduration;
-    }
-
-    /**
-     * @param mixed $periodduration
-     */
-    public function setPeriodduration($periodduration)
-    {
-        $this->periodduration = $periodduration;
     }
 
     /**
@@ -143,27 +79,11 @@ class MatchDisplay
     }
 
     /**
-     * @param mixed $status
-     */
-    public function setStatus($status)
-    {
-        $this->status = $status;
-    }
-
-    /**
      * @return mixed
      */
     public function getOppo()
     {
         return $this->oppo;
-    }
-
-    /**
-     * @param mixed $oppo
-     */
-    public function setOppo($oppo)
-    {
-        $this->oppo = $oppo;
     }
 
     /**
@@ -175,27 +95,11 @@ class MatchDisplay
     }
 
     /**
-     * @param mixed $logo
-     */
-    public function setLogo($logo)
-    {
-        $this->logo = $logo;
-    }
-
-    /**
      * @return mixed
      */
     public function getAddress()
     {
         return $this->address;
-    }
-
-    /**
-     * @param mixed $address
-     */
-    public function setAddress($address)
-    {
-        $this->address = $address;
     }
 
     /**
@@ -207,27 +111,11 @@ class MatchDisplay
     }
 
     /**
-     * @param mixed $zipcode
-     */
-    public function setZipcode($zipcode)
-    {
-        $this->zipcode = $zipcode;
-    }
-
-    /**
      * @return mixed
      */
     public function getCity()
     {
         return $this->city;
-    }
-
-    /**
-     * @param mixed $city
-     */
-    public function setCity($city)
-    {
-        $this->city = $city;
     }
 
     /**
@@ -239,11 +127,159 @@ class MatchDisplay
     }
 
     /**
+     * @return mixed
+     */
+    public function getGameid()
+    {
+        return $this->gameid;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getHomescore()
+    {
+        return $this->homescore;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAwayscore()
+    {
+        return $this->awayscore;
+    }
+
+
+    // SETTER
+
+
+    /**
+     * @param mixed $category
+     */
+    public function setCategory($category)
+    {
+        $this->category = $category;
+    }
+
+    /**
+     * @param mixed $date
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+    }
+
+    /**
+     * @param mixed $athome
+     */
+    public function setAthome($athome)
+    {
+        $this->athome = $athome;
+    }
+
+    /**
+     * @param mixed $periodnum
+     */
+    public function setPeriodnum($periodnum)
+    {
+        $this->periodnum = $periodnum;
+    }
+
+    /**
+     * @param mixed $type
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+    }
+
+    /**
+     * @param mixed $periodduration
+     */
+    public function setPeriodduration($periodduration)
+    {
+        $this->periodduration = $periodduration;
+    }
+
+    /**
+     * @param mixed $status
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+    }
+
+    /**
+     * @param mixed $oppo
+     */
+    public function setOppo($oppo)
+    {
+        $this->oppo = $oppo;
+    }
+
+    /**
+     * @param mixed $logo
+     */
+    public function setLogo($logo)
+    {
+        $this->logo = $logo;
+    }
+
+    /**
+     * @param mixed $address
+     */
+    public function setAddress($address)
+    {
+        $this->address = $address;
+    }
+
+    /**
+     * @param mixed $zipcode
+     */
+    public function setZipcode($zipcode)
+    {
+        $this->zipcode = $zipcode;
+    }
+
+    /**
+     * @param mixed $city
+     */
+    public function setCity($city)
+    {
+        $this->city = $city;
+    }
+
+    /**
      * @param mixed $turf
      */
     public function setTurf($turf)
     {
         $this->turf = $turf;
+    }
+
+    /**
+     * @param mixed $gameid
+     */
+    public function setGameid($gameid)
+    {
+        $this->gameid = $gameid;
+    }
+
+    /**
+     * @param mixed $homescore
+     */
+    public function setHomescore($homescore)
+    {
+        $this->homescore = $homescore;
+    }
+
+    /**
+     * @param mixed $awayscore
+     */
+    public function setAwayscore($awayscore)
+    {
+        $this->awayscore = $awayscore;
     }
 
     // Constructor
@@ -267,5 +303,11 @@ class MatchDisplay
                 $this->$method($value);
             }
         }
+
+    }
+
+    public function jsonSerialize(){
+        return get_object_vars($this);
+
     }
 }

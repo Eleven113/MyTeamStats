@@ -27,7 +27,6 @@ Class ControllerFront {
         $this->cardManager = $cardManager;
     }
 
-
     public function Home(){
         echo $this->twig->render('/FrontEnd/Homepage.html.twig');
     }
@@ -86,12 +85,8 @@ Class ControllerFront {
 
     public function MatchsList(){
         $matchs = $this->matchManager->getMatchsList();
-        ?><pre><?php
-        print_r($matchs);
-        ?></pre><?php
 
-        for ( $i=0; $i < count($matchs))
-//        echo $this->twig->render('/FrontEnd/MatchsList.html.twig', [ 'matchs' => $matchs]);
+        echo $this->twig->render('/FrontEnd/MatchsList.html.twig', [ 'matchs' => $matchs]);
     }
 
     public function Club(){

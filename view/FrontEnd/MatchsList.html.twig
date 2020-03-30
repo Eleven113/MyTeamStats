@@ -46,7 +46,7 @@
                         {%  if match.status == 1 %}
                             A venir
                         {%  else %}
-                            Score
+                            {{ match.homescore }} - {{ match.awayscore }}
                         {% endif %}
                     </td>
                     <td class="d-flex flex-row justify-content-between">
