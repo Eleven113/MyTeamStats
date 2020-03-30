@@ -1,7 +1,7 @@
 <?php 
 
 
-Class Player {
+Class PlayerObject {
 
     private $playerid;
     private $licence;

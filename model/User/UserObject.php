@@ -1,7 +1,7 @@
 <?php
 
 
-class User
+class UserObject
 {
     private $lastname;
     private $firstname;

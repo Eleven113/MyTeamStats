@@ -19,7 +19,7 @@ class CompositionManager implements JsonSerializable
         $count = 0;
         while($player = $composition->fetch(PDO::FETCH_ASSOC)){
             $count++;
-            $player = new Composition($player);
+            $player = new CompositionObject($player);
             $player = $player->jsonSerialize();
             $playerList->append($player);
         }
@@ -33,12 +33,12 @@ class CompositionManager implements JsonSerializable
 
     public function addComposition($id, $playersList){
         $count = count($playersList);
-        $match = new Match($id);
+        $match = new MatchObject($id);
 
         for ( $i = 0 ; $i < $count ; $i++){
 
             $player = [ 'playerid' => $playersList[$i]];
-            $player = new Player($player);
+            $player = new PlayerObject($player);
 
             $query = $this->db->prepare('INSERT INTO PLAY (GAMEID , PLAYERID) VALUES ( :gameid , :playerid )');
             $query->bindValue(':gameid', $match->getGameid());

@@ -1,7 +1,7 @@
 <?php
 
 
-class Card implements JsonSerializable
+class CardObject implements JsonSerializable
 {
     private $cardid;
     private $playerid;

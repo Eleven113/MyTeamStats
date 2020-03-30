@@ -1,7 +1,7 @@
 <?php
 
 
-class Field
+class FieldObject
 {
     private $fieldid;
     private $name;

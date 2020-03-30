@@ -1,7 +1,7 @@
 <?php
 
 
-class Match
+class MatchObject
 {
     private $gameid;
     private $opponentid;

@@ -14,7 +14,7 @@ class FieldManager
         $fieldsList = $this->db->query('SELECT * FROM FIELD');
         $fieldListObj = new ArrayObject();
         while ($fieldArray = $fieldsList->fetch(PDO::FETCH_ASSOC)){
-            $field = new Field($fieldArray);
+            $field = new FieldObject($fieldArray);
             $fieldListObj->append($field);
         }
 
@@ -26,11 +26,11 @@ class FieldManager
         $query->bindValue(':fieldid', $id);
         $query->execute();
 
-        return new Field($query->fetch(PDO::FETCH_ASSOC));
+        return new FieldObject($query->fetch(PDO::FETCH_ASSOC));
     }
 
     public function AddField($field){
-        $field = new Field($field);
+        $field = new FieldObject($field);
         $query = $this->db->prepare('INSERT INTO FIELD (NAME, ADDRESS, ZIPCODE, CITY, TURF) VALUES (:name, :address, :zipcode, :city, :turf)');
         $query->bindValue(':name', $field->getName());
         $query->bindValue(':address', $field->getAddress());
@@ -42,7 +42,7 @@ class FieldManager
     }
 
     public function UpdateField($field){
-        $field = new Field($field);
+        $field = new FieldObject($field);
         $query = $this->db->prepare('UPDATE FIELD SET NAME = :name, ADDRESS = :address, ZIPCODE = :zipcode, CITY = :city, TURF = :turf WHERE FIELDID = :fieldid');
         $query->bindValue(':fieldid', $field->getFieldid());
         $query->bindValue(':name', $field->getName());

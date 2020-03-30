@@ -20,7 +20,7 @@ class Score {
         this.divBannerLeft = document.getElementById("match_banner-left");
         this.divBannerRight = document.getElementById("match_banner-right");
 
-        // Récupération div Modal Goal
+        // Récupération div Modal GoalObject
         this.divModalGoal = document.getElementById("modal_goal");
         this.divModalScorer = document.getElementById("select_scorer");
         this.divModalPasser = document.getElementById("select_passer");
@@ -211,7 +211,7 @@ class Score {
 
     displayGoal(){
 
-        // Création div Goal pour afficher le but
+        // Création div GoalObject pour afficher le but
         let divGoal = document.createElement("div");
         divGoal.className = "d-flex flex-row justify-content-around col-6";
 

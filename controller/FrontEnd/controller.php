@@ -95,7 +95,7 @@ Class ControllerFront {
 
     public function Player($id){
         $player = $this->playerManager->getPlayer($id);
-        echo $this->twig->render('/FrontEnd/Player.html.twig', ['player' => $player]);
+        echo $this->twig->render('/FrontEnd/PlayerObject.html.twig', ['player' => $player]);
     }
 
     public function Match($id){
@@ -138,7 +138,7 @@ Class ControllerFront {
         $periods = json_encode($periodArray);
         $goals = json_encode($goalArray);
 
-        echo $this->twig->render('/FrontEnd/Match.html.twig', [
+        echo $this->twig->render('/FrontEnd/MatchObject.html.twig', [
             'match' => $match,
             'players' => $players,
             'goals' => $goals,

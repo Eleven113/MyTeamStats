@@ -34,7 +34,7 @@ class MatchManager
     }
 
     public function AddMatch($match){
-        $match = new Match($match);
+        $match = new MatchObject($match);
 
         $query = $this->db->prepare('INSERT INTO GAME (OPPONENTID, CATEGORY, DATE, FIELDID, ATHOME, PERIODNUM, TYPE, PERIODDURATION, STATUS) VALUES (:opponentid, :category, :date, :fieldid, :athome, :periodnum, :type, :periodduration, :status)');
         $query->bindValue(':opponentid', $match->getOpponentid());
@@ -57,7 +57,7 @@ class MatchManager
     }
 
     public function UpdateStatus($match){
-        $match = new Match($match);
+        $match = new MatchObject($match);
 
         $query = $this->db->prepare('UPDATE GAME SET STATUS = :status WHERE GAMEID = :gameid');
         $query->bindValue(':gameid', $match->getGameid());

@@ -11,7 +11,7 @@ class GoalManager
     }
 
     public function AddGoal($goal){
-        $goal = new Goal($goal);
+        $goal = new GoalObject($goal);
 
         if ( $goal->getPasserid() == "null" ){
             echo 'null';
@@ -48,7 +48,7 @@ class GoalManager
         $goalsListObj = new ArrayObject();
 
         while ($goalArray = $goalsList->fetch(PDO::FETCH_ASSOC)){
-            $goal = new Goal($goalArray);
+            $goal = new GoalObject($goalArray);
             $goalsListObj->append($goal);
         }
 

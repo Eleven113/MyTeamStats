@@ -1,7 +1,7 @@
 <?php
 
 
-class Opponent
+class OpponentObject
 {
     private $opponentid;
     private $name;

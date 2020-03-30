@@ -19,7 +19,7 @@ class PlayerManager
     public function AddPlayer(array $player)
     {
 
-        $player = new Player($player);
+        $player = new PlayerObject($player);
         $q = $this->db->prepare('INSERT INTO PLAYER (LICENCE, LASTNAME, FIRSTNAME, ADDRESS, PHONENUM, MAIL, BIRTHDATE, ACTIVELICENCE, PHOTO, CATEGORY, POSTE)
         VALUES (:licence, :lastname, :firstname, :address, :phonenum, :mail, :birthdate, :activelicence, :photo, :category, :poste) ');
 
@@ -44,7 +44,7 @@ class PlayerManager
         $playersList = $this->db->query('SELECT PLAYERID, LICENCE, LASTNAME, FIRSTNAME, ADDRESS, PHONENUM, MAIL, DATE_FORMAT(BIRTHDATE,\' %d-%m-%Y\') AS BIRTHDATE, ACTIVELICENCE, PHOTO, CATEGORY, POSTE FROM PLAYER');
         $playersListObj = new ArrayObject();
         while ($playerArray = $playersList->fetch(PDO::FETCH_ASSOC)){
-                $player = new Player($playerArray);
+                $player = new PlayerObject($playerArray);
                 $playersListObj->append($player);
         }
 
@@ -56,7 +56,7 @@ class PlayerManager
         $query = $this->db->prepare('SELECT PLAYERID, LICENCE, LASTNAME, FIRSTNAME, ADDRESS, PHONENUM, MAIL, DATE_FORMAT(BIRTHDATE,\' %d-%m-%Y\') AS BIRTHDATE, ACTIVELICENCE, PHOTO, CATEGORY, POSTE FROM PLAYER WHERE PLAYERID = :playerid');
         $query->bindValue(':playerid', $id);
         $query->execute();
-        $player = new Player($query->fetch(PDO::FETCH_ASSOC));
+        $player = new PlayerObject($query->fetch(PDO::FETCH_ASSOC));
 
         return $player;
     }
@@ -72,7 +72,7 @@ class PlayerManager
     public function UpdatePlayer(array $player)
     {
 
-        $player = new Player($player);
+        $player = new PlayerObject($player);
         $q = $this->db->prepare('UPDATE PLAYER SET LICENCE = :licence, LASTNAME = :lastname, FIRSTNAME = :firstname, ADDRESS = :address, PHONENUM = :phonenum, MAIL = :mail, BIRTHDATE = :birthdate, ACTIVELICENCE = :activelicence, PHOTO = :photo, CATEGORY = :category, POSTE = :poste WHERE PLAYERID = :playerid');
 
         $q->bindValue(':playerid', $player->getPlayerid());

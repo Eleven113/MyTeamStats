@@ -1,7 +1,7 @@
 <?php
 
 
-class Goal implements JsonSerializable
+class GoalObject implements JsonSerializable
 {
     private $goalid;
     private $scorerid;

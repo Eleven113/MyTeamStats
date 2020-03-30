@@ -11,7 +11,7 @@ class CardManager
     }
 
     public function AddCard($card){
-        $card = new Card($card);
+        $card = new CardObject($card);
 
         $req = $this->db->prepare('INSERT INTO CARD (PLAYERID, MATCHID, PERIODNUM, COLOR, TIME) VALUES (:playerid, :matchid, :periodnum, :color, :time)');
         $req->bindValue(':playerid', $card->getPlayerid());
@@ -31,7 +31,7 @@ class CardManager
         $cardsListObj = new ArrayObject();
 
         while ($cardArray = $cardsList->fetch(PDO::FETCH_ASSOC)){
-            $card = new Card($cardArray);
+            $card = new CardObject($cardArray);
             $card = $card->jsonSerialize();
             $cardsListObj->append($card);
         }

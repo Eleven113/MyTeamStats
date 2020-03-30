@@ -11,7 +11,7 @@ class PeriodManager
     }
 
     public function AddPeriod($period){
-        $period = new Period($period);
+        $period = new PeriodObject($period);
 
         $req = $this->db->prepare('INSERT INTO PERIOD 
 (MATCHID, PERIODNUM, HOMESCORE, AWAYSCORE, MISSSHOT, SHOTONTARGET, MISSPASS, SUCCESSPASS, FOUL, CORNERKICK, LOSTBALL, WINBALL, OFFSIDE, FREEKICK) VALUES 
@@ -42,7 +42,7 @@ class PeriodManager
         $periodsListObj = new ArrayObject();
 
         while ($periodArray = $periodsList->fetch(PDO::FETCH_ASSOC)){
-            $period = new Period($periodArray);
+            $period = new PeriodObject($periodArray);
             $period = $period->jsonSerialize();
             $periodsListObj->append($period);
         }

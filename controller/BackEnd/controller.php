@@ -153,7 +153,7 @@ class ControllerBack {
 
     public function AddOppo($name, $logo){
         $logo = $logo['tmp_name'];
-        $result = \Cloudinary\Uploader::upload($logo, array("folder" => "Opponent/") );
+        $result = \Cloudinary\Uploader::upload($logo, array("folder" => "OpponentObject/") );
 
         $oppo = [
             'name' => $name,
@@ -180,7 +180,7 @@ class ControllerBack {
 
     public function UpdateOppo($id, $name, $logo){
         $logo = $logo['tmp_name'];
-        $result = \Cloudinary\Uploader::upload($logo, array("folder" => "Opponent/") );
+        $result = \Cloudinary\Uploader::upload($logo, array("folder" => "OpponentObject/") );
 
         $oppo = [
             'oppoid' => $id,
@@ -302,7 +302,7 @@ class ControllerBack {
     public function Composition($id){
         $playersList = $this->compositionManager->getComposition($id);
 
-        echo $this->twig->render('/BackEnd/Composition.html.twig',
+        echo $this->twig->render('/BackEnd/CompositionObject.html.twig',
             [
             'playersList' => $playersList,
             'id' => $id
@@ -359,7 +359,7 @@ class ControllerBack {
     public function DeleteComposition($id){
         $this->compositionManager->DeleteComposition($id);
 
-        echo $this->twig->render('/BackEnd/Composition.html.twig', [ 'id' => $id] );
+        echo $this->twig->render('/BackEnd/CompositionObject.html.twig', [ 'id' => $id] );
     }
 
     public function MatchStats($id){

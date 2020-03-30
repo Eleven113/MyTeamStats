@@ -1,7 +1,7 @@
 <?php
 
 
-class Period implements JsonSerializable
+class PeriodObject implements JsonSerializable
 {
     private $matchid;
     private $periodnum;

@@ -4,24 +4,24 @@ session_start();
 require ('vendor/autoload.php');
 require ('controller/FrontEnd/controller.php');
 require ('controller/BackEnd/controller.php');
-require ('model/Player/Player.php');
+require('model/Player/PlayerObject.php');
 require ('model/Player/PlayerManager.php');
 require ('model/User/UserManager.php');
-require ('model/User/User.php');
-require ('model/Opponent/Opponent.php');
+require('model/User/UserObject.php');
+require('model/Opponent/OpponentObject.php');
 require ('model/Opponent/OpponentManager.php');
-require ('model/Match/Match.php');
+require('model/Match/MatchObject.php');
 require ('model/Match/MatchDisplay.php');
 require ('model/Match/MatchManager.php');
-require ('model/Composition/Composition.php');
+require('model/Composition/CompositionObject.php');
 require ('model/Composition/CompositionManager.php');
-require ('model/Field/Field.php');
+require('model/Field/FieldObject.php');
 require ('model/Field/FieldManager.php');
-require ('model/Goal/Goal.php');
+require('model/Goal/GoalObject.php');
 require ('model/Goal/GoalManager.php');
-require ('model/Period/Period.php');
+require('model/Period/PeriodObject.php');
 require ('model/Period/PeriodManager.php');
-require ('model/Card/Card.php');
+require('model/Card/CardObject.php');
 require ('model/Card/CardManager.php');
 require ('model/DBFactory.php');
 //require ('router.php');
@@ -75,18 +75,18 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
         // Home
     $r->addRoute('GET', '/MyTeamStats/', 'controllerFront/Home');
 
-        // Player
+        // PlayerObject
     $r->addRoute('GET', '/MyTeamStats/PlayersList', 'controllerFront/PlayersList');
-    $r->addRoute('GET', '/MyTeamStats/Player/{id:[0-9]+}', 'controllerFront/Player');
+    $r->addRoute('GET', '/MyTeamStats/PlayerObject/{id:[0-9]+}', 'controllerFront/PlayerObject');
 
-        // Match
+        // MatchObject
     $r->addRoute('GET', '/MyTeamStats/MatchsList', 'controllerFront/MatchsList');
-    $r->addRoute('GET', '/MyTeamStats/Match/{id:[0-9]+}', 'controllerFront/Match');
+    $r->addRoute('GET', '/MyTeamStats/MatchObject/{id:[0-9]+}', 'controllerFront/MatchObject');
 
         // Club
     $r->addRoute('GET', '/MyTeamStats/Club', 'controllerFront/Club');
 
-        // User
+        // UserObject
     $r->addRoute('GET', '/MyTeamStats/Login', 'controllerFront/Login');
     $r->addRoute('GET', '/MyTeamStats/CreateUser', 'controllerFront/CreateUser');
     $r->addRoute('POST', '/MyTeamStats/AddUser', 'controllerFront/AddUser');
@@ -99,14 +99,14 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
         // Admin
     $r->addRoute('GET', '/MyTeamStats/Admin', 'controllerBack/Admin');
 
-        // Player
+        // PlayerObject
     $r->addRoute('GET', '/MyTeamStats/CreatePlayer', 'controllerBack/CreatePlayer');
     $r->addRoute('POST', '/MyTeamStats/AddPlayer', 'controllerBack/AddPlayer');
     $r->addRoute('GET', '/MyTeamStats/ModifyPlayer/{id:[0-9]+}', 'controllerBack/ModifyPlayer');
     $r->addRoute('POST', '/MyTeamStats/UpdatePlayer/{id:[0-9]+}', 'controllerBack/UpdatePlayer');
     $r->addRoute('GET', '/MyTeamStats/DeletePlayer/{id:[0-9]+}', 'controllerBack/DeletePlayer');
 
-        // Match
+        // MatchObject
     $r->addRoute('GET', '/MyTeamStats/CreateMatch', 'controllerBack/CreateMatch');
     $r->addRoute('POST', '/MyTeamStats/AddMatch', 'controllerBack/AddMatch');
     $r->addRoute('GET', '/MyTeamStats/ModifyMatch/{id:[0-9]+}', 'controllerBack/ModifyMatch');
@@ -116,8 +116,8 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('POST', '/MyTeamStats/MatchData', 'controllerBack/MatchData');
 
 
-        // Composition
-    $r->addRoute('GET', '/MyTeamStats/Composition/{id:[0-9]+}', 'controllerBack/Composition');
+        // CompositionObject
+    $r->addRoute('GET', '/MyTeamStats/CompositionObject/{id:[0-9]+}', 'controllerBack/CompositionObject');
     $r->addRoute('GET', '/MyTeamStats/CreateComposition/{id:[0-9]+}', 'controllerBack/CreateComposition');
     $r->addRoute('POST', '/MyTeamStats/AddComposition/{id:[0-9]+}', 'controllerBack/AddComposition');
     $r->addRoute('GET', '/MyTeamStats/ModifyComposition/{id:[0-9]+}', 'controllerBack/ModifyComposition');
@@ -133,7 +133,7 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('POST', '/MyTeamStats/UpdateOppo/{id:[0-9]+}', 'controllerBack/UpdateOppo');
     $r->addRoute('GET', '/MyTeamStats/DeleteOppo/{id:[0-9]+}', 'controllerBack/DeleteOppo');
 
-        // Field
+        // FieldObject
     $r->addRoute('GET', '/MyTeamStats/FieldsList', 'controllerBack/FieldsList');
     $r->addRoute('GET', '/MyTeamStats/CreateField', 'controllerBack/CreateField');
     $r->addRoute('POST', '/MyTeamStats/AddField', 'controllerBack/AddField');
@@ -142,7 +142,7 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('GET', '/MyTeamStats/DeleteField/{id:[0-9]+}', 'controllerBack/DeleteField');
         // Club
 
-        // User
+        // UserObject
     $r->addRoute('GET', '/MyTeamStats/UsersList', 'controllerBack/UsersList');
     $r->addRoute('GET', '/MyTeamStats/ModifyUser/{id:[0-9]+}', 'controllerBack/ModifyUser');
     $r->addRoute('POST', '/MyTeamStats/UpdateUser/{id:[0-9]+}', 'controllerBack/UpdateUser');

@@ -13,7 +13,7 @@ class UserManager
 
     public function AddUser($user)
     {
-        $user = new User($user);
+        $user = new UserObject($user);
         $query = $this->db->prepare('INSERT INTO USER(LASTNAME, FIRSTNAME, MAIL, PASSWORD, STATUS) VALUES (:lastname, :firstname, :mail, :password, :status)');
 
         $query->bindValue(':lastname', $user->getLastname());
@@ -33,7 +33,7 @@ class UserManager
         $userPDO->execute();
         $userArray = $userPDO->fetch(PDO::FETCH_ASSOC);
 
-        $user = new User($userArray);
+        $user = new UserObject($userArray);
 
         if (empty($user->getMail())){
             $login = False;
@@ -58,7 +58,7 @@ class UserManager
         $usersList = $this->db->query('SELECT * FROM USER');
         $usersListObj = new ArrayObject();
         while ($userArray = $usersList->fetch(PDO::FETCH_ASSOC)){
-            $user = new User($userArray);
+            $user = new UserObject($userArray);
             $usersListObj->append($user);
         }
 
@@ -77,14 +77,14 @@ class UserManager
         $query = $this->db->prepare('SELECT * FROM USER WHERE USERID = :userid');
         $query->bindValue(':userid', $id);
         $query->execute();
-        $user = new User($query->fetch(PDO::FETCH_ASSOC));
+        $user = new UserObject($query->fetch(PDO::FETCH_ASSOC));
 
         return $user;
     }
 
     public function UpdateUser($user){
 
-        $user = new User($user);
+        $user = new UserObject($user);
 
         $query = $this->db->prepare('UPDATE USER SET LASTNAME = :lastname, FIRSTNAME = :firstname, MAIL = :mail, STATUS = :status WHERE USERID = :userid');
         $query->bindValue(':userid', $user->getUserid());
