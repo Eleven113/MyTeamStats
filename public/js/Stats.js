@@ -37,8 +37,8 @@ class Stats {
         this.divMatch = document.getElementById("match");
 
         // Stats à inserer dans la DB
-        this.homeScore;
-        this.awayScore;
+        this.homeScore = 0;
+        this.awayScore = 0;
         this.successPass;
         this.missPass;
         this.shotOnTarget;
@@ -70,7 +70,8 @@ class Stats {
 
         if (!this.pageStat){
             this.setPeriodBtn();
-            this.AddStatBarsMatchpage(); 
+            this.AddStatBarsMatchpage();
+            this.displayStatMatchpage();
         }
         else {
             this.setStatBars();
@@ -78,8 +79,7 @@ class Stats {
 
     }
 
-    setStatBars(){
-        console.log("setStats");
+    setStatBars(period){
         for (let i = 0; i < CONFIG.data.length; i++){
 
             this.newDivStatBar = document.createElement("div");
@@ -92,29 +92,42 @@ class Stats {
                 case 0:
                     if (this.pageStat){
                         this.newDivStatBar.innerHTML = '<div class="col-2"></div><div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">'+ CONFIG.data[i].name +'</div><div id="'+ CONFIG.data[i].db_name +'" class="stat_bar-num col-2 border border-primary border-left-0">0</div><div class="col-2"></div>';
+                        this.newDivStatBarDbyP.innerHTML = '<div class="col-2"></div><div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">'+ CONFIG.data[i].name +'</div><div id="'+ CONFIG.data[i].db_name +'_dbp" class="stat_bar-num col-2 border border-primary border-left-0">0</div><div class="col-2"></div>';
+                    } 
+                    else {
+                    this.newDivStatBarDbyP.innerHTML = '<div class="col-2"></div><div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">'+ CONFIG.data[i].name +'</div><div id="'+ CONFIG.data[i].db_name +'_match_stat_'+ period +'" class="stat_bar-num col-2 border border-primary border-left-0">0</div><div class="col-2"></div>';
                     }
-                    this.newDivStatBarDbyP.innerHTML = '<div class="col-2"></div><div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">'+ CONFIG.data[i].name +'</div><div id="'+ CONFIG.data[i].db_name +'_dbp" class="stat_bar-num col-2 border border-primary border-left-0">0</div><div class="col-2"></div>';
                     break;
 
                 case 1:
                     if (this.pageStat){
                         this.newDivStatBar.innerHTML = '<div id="btnminus_'+CONFIG.data[i].db_name+'_'+CONFIG.data[i].model+'" class="col-2 text-right"><i class="far fa-minus-square"></i></div><div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">'+ CONFIG.data[i].name +'</div><div id="'+CONFIG.data[i].db_name+'" class="stat_bar-num col-2 border border-primary border-left-0">0</div><div id="btnplus_'+CONFIG.data[i].db_name+'_'+CONFIG.data[i].model+'" class="col-2"><i class="far fa-plus-square"></i></div>';
-                   }
-                    this.newDivStatBarDbyP.innerHTML = '<div class="col-2"></div><div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">'+ CONFIG.data[i].name +'</div><div id="'+CONFIG.data[i].db_name+'_dbp" class="stat_bar-num col-2 border border-primary border-left-0">0</div><div class="col-2"></div>';
+                        this.newDivStatBarDbyP.innerHTML = '<div class="col-2"></div><div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">'+ CONFIG.data[i].name +'</div><div id="'+CONFIG.data[i].db_name+'_dbp" class="stat_bar-num col-2 border border-primary border-left-0">0</div><div class="col-2"></div>';
+                   
+                    }
+                    else {
+                        this.newDivStatBarDbyP.innerHTML = '<div class="col-2"></div><div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">'+ CONFIG.data[i].name +'</div><div id="'+CONFIG.data[i].db_name+'_match_stat_'+ period +'" class="stat_bar-num col-2 border border-primary border-left-0">0</div><div class="col-2"></div>';
+                    }
                     break;
 
                 case 2:
                     if (this.pageStat){
                         this.newDivStatBar.innerHTML = '<div id="btnminus_'+CONFIG.data[i].db_name+'_'+CONFIG.data[i].model+'" class="col-2 text-right"><i class="far fa-minus-square"></i></div><div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">'+ CONFIG.data[i].name +'</div><div class="stat_bar-num col-2 border border-primary border-left-0"><span id="'+CONFIG.data[i].db_name+'">0</span>&nbsp;&nbsp;<span id="'+CONFIG.data[i].db_name+'_percent">0%</span></div><div id="btnplus_'+CONFIG.data[i].db_name+'_'+CONFIG.data[i].model+'" class="col-2"><i class="far fa-plus-square"></i></div>';
+                        this.newDivStatBarDbyP.innerHTML = '<div class="col-2"></div><div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">'+ CONFIG.data[i].name +'</div><div class="stat_bar-num col-2 border border-primary border-left-0"><span id="'+CONFIG.data[i].db_name+'_match_stat_'+ period +'">0</span>&nbsp;&nbsp;<span id="'+CONFIG.data[i].db_name+'_percent_dbp">0%</span></div><div class="col-2"></div>';                                                   
+                    } 
+                    else {
+                        this.newDivStatBarDbyP.innerHTML = '<div class="col-2"></div><div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">'+ CONFIG.data[i].name +'</div><div class="stat_bar-num col-2 border border-primary border-left-0"><span id="'+CONFIG.data[i].db_name+'_match_stat_'+ period +'">0</span>&nbsp;&nbsp;<span id="'+CONFIG.data[i].db_name+'_percent_match_stat_'+ period +'">0%</span></div><div class="col-2"></div>';                
                     }
-                    this.newDivStatBarDbyP.innerHTML = '<div class="col-2"></div><div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">'+ CONFIG.data[i].name +'</div><div class="stat_bar-num col-2 border border-primary border-left-0"><span id="'+CONFIG.data[i].db_name+'_dbp">0</span>&nbsp;&nbsp;<span id="'+CONFIG.data[i].db_name+'_percent_dbp">0%</span></div><div class="col-2"></div>';                
                     break;
 
                 case 3:
                     if (this.pageStat){
-                    this.newDivStatBar.innerHTML = '<div id="btnminus_'+CONFIG.data[i].db_name+'_'+CONFIG.data[i].model+'" class="col-2 text-right"><i class="far fa-minus-square"></i></div><div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">'+ CONFIG.data[i].name +'</div><div class="stat_bar-num col-2 border border-primary border-left-0"><span id="'+CONFIG.data[i].db_name+'">0</span>&nbsp;&nbsp;<span id="'+CONFIG.data[i].db_name+'_percent">0%</span></div><div id="btnplus_'+CONFIG.data[i].db_name+'_'+CONFIG.data[i].model+'" class="col-2"><i class="far fa-plus-square"></i></div>';
+                        this.newDivStatBar.innerHTML = '<div id="btnminus_'+CONFIG.data[i].db_name+'_'+CONFIG.data[i].model+'" class="col-2 text-right"><i class="far fa-minus-square"></i></div><div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">'+ CONFIG.data[i].name +'</div><div class="stat_bar-num col-2 border border-primary border-left-0"><span id="'+CONFIG.data[i].db_name+'">0</span>&nbsp;&nbsp;<span id="'+CONFIG.data[i].db_name+'_percent">0%</span></div><div id="btnplus_'+CONFIG.data[i].db_name+'_'+CONFIG.data[i].model+'" class="col-2"><i class="far fa-plus-square"></i></div>';
+                        this.newDivStatBarDbyP.innerHTML = '<div class="col-2"></div><div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">'+ CONFIG.data[i].name +'</div><div class="stat_bar-num col-2 border border-primary border-left-0"><span id="'+CONFIG.data[i].db_name+'_dbp">0</span>&nbsp;&nbsp;<span id="'+CONFIG.data[i].db_name+'_percent_dbp">0%</span></div><div class="col-2"></div>';
                     }
-                    this.newDivStatBarDbyP.innerHTML = '<div class="col-2"></div><div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">'+ CONFIG.data[i].name +'</div><div class="stat_bar-num col-2 border border-primary border-left-0"><span id="'+CONFIG.data[i].db_name+'_dbp">0</span>&nbsp;&nbsp;<span id="'+CONFIG.data[i].db_name+'_percent_dbp">0%</span></div><div class="col-2"></div>';
+                    else {
+                        this.newDivStatBarDbyP.innerHTML = '<div class="col-2"></div><div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">'+ CONFIG.data[i].name +'</div><div class="stat_bar-num col-2 border border-primary border-left-0"><span id="'+CONFIG.data[i].db_name+'_match_stat_'+ period +'">0</span>&nbsp;&nbsp;<span id="'+CONFIG.data[i].db_name+'_percent_match_stat_'+ period +'">0%</span></div><div class="col-2"></div>';
+                    }
                     break;                    
 
                 default:
@@ -125,7 +138,6 @@ class Stats {
     }
 
     createStatBars(i){
-        console.log("ici");
         if (this.pageStat){
             if ( i <= 5) {
                 this.div1stCol.append(this.newDivStatBar);
@@ -152,16 +164,15 @@ class Stats {
     }
 
     AddStatBarsMatchpage(){
-        console.log("AddStatMatch");
         for ( let i=1; i <= this.periodNumber+1; i++){
             
             this.newDivStatPeriod = document.createElement("div");
             this.newDivStatPeriod.id = "match_stat_period_"+ i;
             if ( i === this.periodNumber+1){
-                this.newDivStatPeriod.className = "d-flex flex-row col-12 mt-2";
+                this.newDivStatPeriod.className = "d-flex flex-row col-12 mt-4 match_period";
             } 
             else {
-                this.newDivStatPeriod.className = "d-none";
+                this.newDivStatPeriod.className = "d-none match_period";
             }
     
             this.newDivCol1 = document.createElement("div");
@@ -173,7 +184,7 @@ class Stats {
             this.newDivCol2.className = "col-6 d-flex flex-column";
 
             
-            this.setStatBars();
+            this.setStatBars(i);
         }
 
     }
@@ -498,33 +509,100 @@ class Stats {
     btnPeriodEvents(event){
         let target = event.target.innerHTML;
         this.changeDisplayMatchpage(target);
-        if ( target !== "total"){
-
-        }
-        else {
-
-        }
     }
 
     changeDisplayMatchpage(target){
-        console.log(target);
         if ( target === "Total"){
-            document.getElementById("match_stat_period_" + (this.periodNumber + 1)).className = "d-flex flex-row col-12 mt-2"
+            document.getElementById("match_stat_period_" + (this.periodNumber + 1)).className = "d-flex flex-row col-12 mt-4 match_period"
             for ( let i = 1; i <= this.periodNumber; i++){
-                document.getElementById("match_stat_period_"+ i).className = "d-none";
+                document.getElementById("match_stat_period_"+ i).className = "d-none match_period";
             } 
         }
         else {
-            document.getElementById("match_stat_period_" + (this.periodNumber + 1)).className = "d-none"
+            document.getElementById("match_stat_period_" + (this.periodNumber + 1)).className = "d-none match_period"
             for ( let i = 1; i <= this.periodNumber; i++){
-                console.log(i);
                 if ( i == target){
-                    document.getElementById("match_stat_period_"+ i).className = "d-flex flex-row col-12 mt-2";
+                    document.getElementById("match_stat_period_"+ i).className = "d-flex flex-row col-12 mt-4 match_period";
                 }
                 else {
-                    document.getElementById("match_stat_period_"+ i).className = "d-none";
+                    document.getElementById("match_stat_period_"+ i).className = "d-none match_period";
                 }
             } 
+        }
+    }
+
+    displayStatMatchpage(){
+        for ( let i = 0; i < this.periodNumber; i++){
+            console.log(period[i]);
+            this.homeScore += parseInt(period[i].homescore);
+            this.awayScore += parseInt(period[i].awayscore);
+            document.getElementById("homescore").textContent = this.homeScore;
+            document.getElementById("awayscore").textContent = this.awayScore;
+        }
+
+        for ( let i = 1; i <= this.periodNumber + 1; i++){
+          
+            if ( i !== (this.periodNumber + 1)){
+                this.periodStat = {
+                    "pass_ok" : period[i-1].successpass,
+                    "pass_nok" : period[i-1].misspass,
+                    "shot_ok" : period[i-1].shotontarget,
+                    "shot_nok" : period[i-1].missshot,
+                    "freekick" : period[i-1].freekick,
+                    "offside" : period[i-1].offside,
+                    "foul" : period[i-1].foul,
+                    "cornerkick" : period[i-1].cornerkick,
+                    "ball_ok" : period[i-1].winball,
+                    "ball_nok" : period[i-1].lostball
+                }
+
+                for (const [key, value] of Object.entries(this.periodStat)){
+                    document.getElementById(key+"_match_stat_"+ i).innerHTML = value;
+                }
+            }
+            else {
+                console.log(i);
+                this.pass_ok = 0;
+                this.pass_nok = 0;
+                this.shot_ok = 0;
+                this.shot_nok = 0;
+                this.freekick = 0;
+                this.offside = 0;
+                this.foul = 0;
+                this.cornerkick = 0;
+                this.ball_ok = 0;
+                this.ball_nok = 0;
+
+                for ( let j = 0; j < this.periodNumber; j++){
+                    this.pass_ok += parseInt(period[j].successpass);
+                    this.pass_nok += parseInt(period[j].misspass);
+                    this.shot_ok += parseInt(period[j].shotontarget);
+                    this.shot_nok += parseInt(period[j].missshot);
+                    this.freekick += parseInt(period[j].freekick);
+                    this.offside += parseInt(period[j].offside);
+                    this.foul += parseInt(period[j].foul);
+                    this.cornerkick += parseInt(period[j].cornerkick);
+                    this.ball_ok = parseInt(period[j].winball);
+                    this.ball_nok = parseInt(period[j].lostball);
+                }
+
+                this.periodStat = {
+                    "pass_ok" : this.pass_ok,
+                    "pass_nok" : this.pass_nok,
+                    "shot_ok" : this.shot_ok,
+                    "shot_nok" : this.shot_nok,
+                    "freekick" : this.freekick,
+                    "offside" : this.offside,
+                    "foul" : this.foul,
+                    "cornerkick" : this.cornerkick,
+                    "ball_ok" : this.ball_ok,
+                    "ball_nok" : this.ball_nok
+                }
+                console.log(this.periodStat);
+                for (const [key, value] of Object.entries(this.periodStat)){
+                    document.getElementById(key+"_match_stat_"+ i ).innerHTML = value;
+                }
+            }
         }
     }
 }

@@ -1,7 +1,7 @@
 <?php
 
 
-class CompositionManager
+class CompositionManager implements JsonSerializable
 {
 
     protected $db;
@@ -53,5 +53,9 @@ class CompositionManager
         $query->bindValue(':gameid', $id);
 
         $query->execute();
+    }
+
+    public function jsonSerialize(){
+        return get_object_vars($this);
     }
 }
