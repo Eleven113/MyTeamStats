@@ -1,14 +1,14 @@
 {% extends "layout.html.twig" %}
 
 {% block head %}
-    <title>Modifier un match - MyTeamStats</title>
+    <title>Modifier le match - MyTeamStats</title>
 {% endblock %}
 
 {% block content %}
 
     <div id="updatematch_form" class="d-flex flex-column justify-content-center align-items-center">
         <form id="updatematch-form" class="col-lg-6" action="/MyTeamStats/UpdateMatch/{{ match.gameid }}"  method="post" enctype="multipart/form-data">
-            <legend>Créér un match</legend>
+            <legend>Modifier le  match</legend>
             <div class="form-group">
                 <label for="text">Date</label>
                 <input id="text" type="datetime-local" name="date" class="form-control" value="{{ match.date }}" required>

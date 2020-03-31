@@ -304,7 +304,7 @@ class ControllerBack {
     public function Composition($id){
         $playersList = $this->compositionManager->getComposition($id);
 
-        echo $this->twig->render('/BackEnd/CompositionObject.html.twig',
+        echo $this->twig->render('/BackEnd/Composition.html.twig',
             [
             'playersList' => $playersList,
             'id' => $id

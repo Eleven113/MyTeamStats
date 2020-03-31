@@ -2,29 +2,8 @@
 session_start();
 
 require ('vendor/autoload.php');
-require ('controller/FrontEnd/controller.php');
-require ('controller/BackEnd/controller.php');
-require('model/Player/PlayerObject.php');
-require ('model/Player/PlayerManager.php');
-require ('model/User/UserManager.php');
-require('model/User/UserObject.php');
-require('model/Opponent/OpponentObject.php');
-require ('model/Opponent/OpponentManager.php');
-require('model/Match/MatchObject.php');
-require ('model/Match/MatchDisplay.php');
-require ('model/Match/MatchManager.php');
-require('model/Composition/CompositionObject.php');
-require ('model/Composition/CompositionManager.php');
-require('model/Field/FieldObject.php');
-require ('model/Field/FieldManager.php');
-require('model/Goal/GoalObject.php');
-require ('model/Goal/GoalManager.php');
-require('model/Period/PeriodObject.php');
-require ('model/Period/PeriodManager.php');
-require('model/Card/CardObject.php');
-require ('model/Card/CardManager.php');
-require ('model/DBFactory.php');
-//require ('router.php');
+
+use MyteamStats;
 
 $db = MyTeamStats\Model\DBFactory::ConnexionPDO();
 

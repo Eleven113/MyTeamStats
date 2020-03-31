@@ -5,42 +5,49 @@
 {% endblock %}
 
 {% block content %}
+    <div class="d-flex flex-column align-items-center">
+        <h3 class="mt-4 mb-4">Composition d'équipe</h3>
 
-    <h3>Créér la composition d'équipe pour ce match</h3>
+        {% if playersList is null %}
 
-    {% if playersList is null %}
+            <div id="no_compo">
+                Il n'y a pas encore de composition d'équipe pour ce match
+            </div>
 
-        <div id="no_compo">
-            Il n'y a pas encore de composition d'équipe pour ce match
-        </div>
+            <button id="add_compo" class="btn btn-primary mt-4 add-btn">
+                <a href="/MyTeamStats/CreateComposition/{{ id }}"  class="link font-weight-bold">
+                    <i class="fas fa-user-plus"></i>&nbsp;Créér la compo
+                </a>
+            </button>
 
-        <div id="add_compo" class="col-1 m-4 border border-primary rounded-lg myborder">
-            <a href="/MyTeamStats/CreateComposition/{{ id }}">
-                <i class="fas fa-user-plus"></i>&nbsp;Créér la compo
-            </a>
-        </div>
+        {% else %}
 
-    {% else %}
-
-        Voici la liste des joueurs convoqués :
-        <ul>
-            {%  for player in playersList %}
-                <li>{{ player.firstname }}  {{ player.lastname }}</li>
-            {% endfor %}
-        </ul>
-        <div id="add_compo" class="col-1 m-4 border border-primary rounded-lg myborder">
-            <a href="/MyTeamStats/ModifyComposition/{{ id }}">
-                <i class="fas fa-pen"></i>&nbsp;Modifier la compo
-            </a>
-        </div>
-        <div id="add_compo" class="col-1 m-4 border border-primary rounded-lg myborder">
-            <a href="/MyTeamStats/DeleteComposition/{{ id }}">
-                <i class="fas fa-trash-alt"></i>&nbsp;Supprimer la compo
-            </a>
-        </div>
-    {% endif %}
-
-    <div>
-        <a href="/MyTeamsStats/MatchsList">Retour à la liste des matchs</a>
+            <h5 class="mb-2">Joueurs convoqués le match :</h5>
+            <ul>
+                {%  for player in playersList %}
+                    <li>{{ player.firstname }}  {{ player.lastname }}</li>
+                {% endfor %}
+            </ul>
+            <div class="d-flex flex-row col-10 justify-content-between">
+                <button id="modify_compo" class="btn btn-primary mt-4 add-btn">
+                    <a href="/MyTeamStats/ModifyComposition/{{ id }}"  class="link font-weight-bold">
+                        <i class="fas fa-pen"></i>&nbsp;Modifier
+                    </a>
+                </button>
+                <button id="delete_compo" class="btn btn-primary mt-4 add-btn">
+                    <a href="/MyTeamStats/DeleteComposition/{{ id }}"  class="link font-weight-bold">
+                        <i class="fas fa-trash-alt"></i>&nbsp;Supprimer
+                    </a>
+                </button>
+                <button id="match_stats" class="btn btn-primary mt-4 add-btn">
+                    <a href="/MyTeamStats/MatchStats/{{ id }}"  class="link font-weight-bold">
+                        <i class="fas fa-clipboard-list"></i>&nbsp;Mode Stats
+                    </a>
+                </button>
+            </div>
+        {% endif %}
+    </div>
+    <div class="mt-4">
+        <a href="/MyTeamsStats/MatchsList"><i class="fa fa-share fa-flip-horizontal" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Retour à la liste des matchs</a>
     </div>
 {% endblock %}

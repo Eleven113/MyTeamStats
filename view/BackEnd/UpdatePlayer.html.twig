@@ -1,14 +1,14 @@
 {% extends "layout.html.twig" %}
 
 {% block head %}
-    <title>Modifier un joueur - MyTeamStats</title>
+    <title>Modifier le joueur - MyTeamStats</title>
 {% endblock %}
 
 {% block content %}
 
     <div id="updateplayer_form" class="d-flex flex-column justify-content-center align-items-center">
         <form id="updateplayer_form-form" class="col-lg-6" action="/MyTeamStats/UpdatePlayer/{{ player.playerid }}"  method="post" enctype="multipart/form-data">
-            <legend>Modifier un joueur</legend>
+            <legend>Modifier le joueur</legend>
             <div class="form-group">
                 <label for="text">Nom</label>
                 <input id="text" type="text" name="lastname" class="form-control" value="{{ player.lastname }}" required>

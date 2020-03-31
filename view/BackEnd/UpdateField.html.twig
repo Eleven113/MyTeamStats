@@ -1,14 +1,14 @@
 {% extends "layout.html.twig" %}
 
 {% block head %}
-    <title>Créér un terrain - MyTeamStats</title>
+    <title>Modifier le  terrain - MyTeamStats</title>
 {% endblock %}
 
 {% block content %}
 
     <div id="createfield_form" class="d-flex flex-column justify-content-center align-items-center">
         <form id="createfield-form" class="col-lg-6" action="/MyTeamStats/UpdateField/{{ field.fieldid }}"  method="post" enctype="multipart/form-data">
-            <legend>Créér un terrain</legend>
+            <legend>Modifier le terrain</legend>
             <div class="form-group">
                 <label for="text">Nom</label>
                 <input id="text" type="text" name="name" class="form-control" value="{{ field.name }}" required>
