@@ -5,7 +5,7 @@ require ('vendor/autoload.php');
 
 use MyteamStats;
 
-$db = MyTeamStats\Model\DBFactory::ConnexionPDO();
+$db = \MyteamStats\Model\DBFactory::ConnexionPDO();
 
 $playerManager = new MyteamStats\Model\Player\PlayerManager($db);
 $userManager = new MyteamStats\Model\User\UserManager($db);
