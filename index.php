@@ -3,11 +3,24 @@ session_start();
 
 require ('vendor/autoload.php');
 
-use MyteamStats;
 
-$db = \MyteamStats\Model\DBFactory::ConnexionPDO();
+use MyTeamStats;
 
-$playerManager = new MyteamStats\Model\Player\PlayerManager($db);
+//var_dump( class_exists('MyTeamStats\Model\DBFactory') );
+//var_dump( class_exists('MyTeamStats\Model\Player\PlayerManager') );
+//var_dump( class_exists('MyTeamStats\Model\User\UserManager') );
+//var_dump( class_exists('MyTeamStats\Model\Opponent\OpponentManager') );
+//var_dump( class_exists('MyTeamStats\Model\Match\MatchManager') );
+//var_dump( class_exists('MyTeamStats\Model\Field\FieldManager') );
+//var_dump( class_exists('MyTeamStats\Model\Composition\CompositionManager') );
+//var_dump( class_exists('MyTeamStats\Model\Goal\GoalManager') );
+//var_dump( class_exists('MyTeamStats\Model\Period\PeriodManager') );
+//var_dump( class_exists('MyTeamStats\Model\Card\CardManager') );
+var_dump( class_exists('MyTeamStats\Controller\FrontEnd\ControllerFront'));
+
+$db = MyTeamStats\Model\DBFactory::ConnexionPDO();
+
+$playerManager = new MyTeamStats\Model\Player\PlayerManager($db);
 $userManager = new MyteamStats\Model\User\UserManager($db);
 $opponentManager = new MyteamStats\Model\Opponent\OpponentManager($db);
 $matchManager = new MyteamStats\Model\Match\MatchManager($db);
@@ -28,8 +41,8 @@ $twig->addExtension(new Twig_Extensions_Extension_Intl());
 $twig->addGlobal('session', $_SESSION);
 $twig->addGlobal('env', $_ENV);
 
-$controllerFront = new \MyTeamStats\Controller\ControllerFront($twig, $playerManager, $userManager, $opponentManager, $matchManager, $fieldManager, $compositionManager, $goalManager, $periodManager, $cardManager);
-$controllerBack = new \MyTeamStats\Controller\ControllerBack($twig, $playerManager, $userManager, $opponentManager, $matchManager, $fieldManager, $compositionManager, $goalManager, $periodManager, $cardManager);
+$controllerFront = new MyTeamStats\Controller\FrontEnd\ControllerFront($twig, $playerManager, $userManager, $opponentManager, $matchManager, $fieldManager, $compositionManager, $goalManager, $periodManager, $cardManager);
+$controllerBack = new MyTeamStats\Controller\ControllerBack($twig, $playerManager, $userManager, $opponentManager, $matchManager, $fieldManager, $compositionManager, $goalManager, $periodManager, $cardManager);
 
 \Cloudinary::config( array (
     "cloud_name" => "marthyte" ,

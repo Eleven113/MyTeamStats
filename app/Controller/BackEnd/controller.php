@@ -1,6 +1,6 @@
 <?php
 
-namespace MyTeamStats\Controller ;
+namespace MyTeamStats\Controller\BackEnd ;
 
 class ControllerBack {
 

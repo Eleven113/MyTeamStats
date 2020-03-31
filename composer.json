@@ -1,0 +1,23 @@
+{
+    "name": "myteamstats/twig",
+    "authors": [
+        {
+            "name": "Thibaut MINARD",
+            "email": "minard.thibaut@free.fr"
+        }
+    ],
+    "require": {
+        "twig/twig": "^2.0",
+        "symfony/dotenv": "^4.4",
+	"cloudinary/cloudinary_php": "^1.16",
+        "altorouter/altorouter": "^2.0",
+        "nikic/fast-route": "^1.3",
+        "twig/extensions": "^1.5",
+        "symfony/swiftmailer-bundle": "^3.4"
+    },
+    "autoload": {
+	"psr-4": {
+		"MyTeamStats\\" : "app/"
+	}
+     }
+}
