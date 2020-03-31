@@ -6,18 +6,6 @@ require ('vendor/autoload.php');
 
 use MyTeamStats;
 
-//var_dump( class_exists('MyTeamStats\Model\DBFactory') );
-//var_dump( class_exists('MyTeamStats\Model\Player\PlayerManager') );
-//var_dump( class_exists('MyTeamStats\Model\User\UserManager') );
-//var_dump( class_exists('MyTeamStats\Model\Opponent\OpponentManager') );
-//var_dump( class_exists('MyTeamStats\Model\Match\MatchManager') );
-//var_dump( class_exists('MyTeamStats\Model\Field\FieldManager') );
-//var_dump( class_exists('MyTeamStats\Model\Composition\CompositionManager') );
-//var_dump( class_exists('MyTeamStats\Model\Goal\GoalManager') );
-//var_dump( class_exists('MyTeamStats\Model\Period\PeriodManager') );
-//var_dump( class_exists('MyTeamStats\Model\Card\CardManager') );
-//var_dump( class_exists('MyTeamStats\Controller\ControllerFront'));
-
 $db = MyTeamStats\Model\DBFactory::ConnexionPDO();
 
 $playerManager = new MyTeamStats\Model\Player\PlayerManager($db);

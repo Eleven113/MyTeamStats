@@ -63,9 +63,11 @@ class Score {
         this.renameDiv();
         this.getNewDiv();
         this.events();
+
         }
 
         else{
+
             this.displayGoalMatchPage();
         }
 
@@ -118,7 +120,7 @@ class Score {
         this.divOppoTeamButtonPlus = document.getElementById("OppoTeamButtonPlus");
 
         this.divScorer = document.getElementById("banner_scorer");
-        this.divScorer.className= "d-flex flex-column flex-wrap col-3";
+        this.divScorer.className= "col-3 p-0";
         this.divChrono = document.getElementById("banner_chrono");
     }
 
@@ -213,14 +215,14 @@ class Score {
 
         // Création div GoalObject pour afficher le but
         let divGoal = document.createElement("div");
-        divGoal.className = "d-flex flex-row justify-content-around col-6";
+        divGoal.className = "stat_goal";
 
         let divScorerName = document.createElement("div");
-        divScorerName.className = "scorername col-10 overflow-hidden";
+        divScorerName.className = "stat_goal_scorer";
         divScorerName.innerHTML = this.scorerName;
 
         let divGoalTime = document.createElement("div");
-        divGoalTime.className = "goaltime col-1";
+        divGoalTime.className = "stat_goal_time";
 
         // Mise en forme du temps pour affichage
         if ( this.minutes > this.periodDuration){
@@ -231,7 +233,7 @@ class Score {
         }
 
         let divGoalClose = document.createElement("div");
-        divGoalClose.className = "buttonclose col-1";
+        divGoalClose.className = "stat_goal_close";
         divGoalClose.innerHTML = '<i class="fas fa-times"></i>'
         divGoalClose.addEventListener("click", this.getGetGoalIndexAndRemove.bind(divGoalClose) );
         divGoalClose.addEventListener("click", function(){ this.deleteGoal(goalIndex) }.bind(this) );
@@ -240,6 +242,7 @@ class Score {
         divGoal.append(divGoalTime);
         divGoal.append(divGoalClose);
 
+        console.log(divGoal);
         // Affichage du but
         this.divScorer.append(divGoal);
       

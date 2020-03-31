@@ -239,3 +239,24 @@ h5{
 #match_score{
     font-size: 5.5em;
 }
+
+#match_banner{
+    display : flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: stretch;
+    flex-wrap: wrap;
+    max-height: 100%;
+
+}
+
+.stat_goal{
+    display : flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 50%;
+}
+
+#modal_goal{
+    width: 100%;
+}
