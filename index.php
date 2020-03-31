@@ -16,7 +16,7 @@ use MyTeamStats;
 //var_dump( class_exists('MyTeamStats\Model\Goal\GoalManager') );
 //var_dump( class_exists('MyTeamStats\Model\Period\PeriodManager') );
 //var_dump( class_exists('MyTeamStats\Model\Card\CardManager') );
-var_dump( class_exists('MyTeamStats\Controller\FrontEnd\ControllerFront'));
+//var_dump( class_exists('MyTeamStats\Controller\ControllerFront'));
 
 $db = MyTeamStats\Model\DBFactory::ConnexionPDO();
 
@@ -41,7 +41,7 @@ $twig->addExtension(new Twig_Extensions_Extension_Intl());
 $twig->addGlobal('session', $_SESSION);
 $twig->addGlobal('env', $_ENV);
 
-$controllerFront = new MyTeamStats\Controller\FrontEnd\ControllerFront($twig, $playerManager, $userManager, $opponentManager, $matchManager, $fieldManager, $compositionManager, $goalManager, $periodManager, $cardManager);
+$controllerFront = new MyTeamStats\Controller\ControllerFront($twig, $playerManager, $userManager, $opponentManager, $matchManager, $fieldManager, $compositionManager, $goalManager, $periodManager, $cardManager);
 $controllerBack = new MyTeamStats\Controller\ControllerBack($twig, $playerManager, $userManager, $opponentManager, $matchManager, $fieldManager, $compositionManager, $goalManager, $periodManager, $cardManager);
 
 \Cloudinary::config( array (
