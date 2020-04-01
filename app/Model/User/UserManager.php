@@ -25,6 +25,12 @@ class UserManager
 
         $query->execute();
 
+        $title = "Confirmation d'inscription";
+
+        $message = "Bonjour ". $user->getFirstname().PHP_EOL."Vous êtes désormais inscrit sur MyTeamStats. Et ça... c'est vraiment bien";
+
+        $mail = new \MyTeamStats\Model\Mailer($user->getMail(), $title, $message);
+
     }
 
     public function UserLogin($mail, $pwd){
@@ -78,9 +84,8 @@ class UserManager
         $query = $this->db->prepare('SELECT * FROM USER WHERE USERID = :userid');
         $query->bindValue(':userid', $id);
         $query->execute();
-        $user = new UserObject($query->fetch(\PDO::FETCH_ASSOC));
+        return new UserObject($query->fetch(\PDO::FETCH_ASSOC));
 
-        return $user;
     }
 
     public function UpdateUser($user){
