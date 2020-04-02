@@ -73,7 +73,7 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('GET', '/MyTeamStats/SessionKill', 'controllerFront/SessionKill');
     $r->addRoute('POST', '/MyTeamStats/UserLogin', 'controllerFront/UserLogin');
     $r->addRoute('POST', '/MyTeamStats/ResetPassword', 'controllerFront/ResetPassword');
-    $r->addRoute('GET', '/MyTeamStats/SetPassword/{mail}/{token}', 'controllerFront/SetPassword');
+    $r->addRoute('GET', '/MyTeamStats/ModifyPassword/{mail}/{token}', 'controllerFront/SetPassword');
 
 
     // BackEnd

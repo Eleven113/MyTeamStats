@@ -133,7 +133,7 @@ class UserManager
                 '  <body>' .
                 '       Bonjour ' . $usersList[$user]->getFirstname() . ',' . '<br/><br/>' .
                 '       Vous avez demandé la ré-initialisation de votre mot de passe' . '<br/><br/>' .
-                '       Cliquez sur <a href="http://www.thibaut-minard.fr/MyTeamStats/SetPassword/' . $usersList[$user]->getMail() . '/' . $token . '">ce lien</a> pour définir un nouveau mot de passe' . '<br/><br/>' .
+                '       Cliquez sur <a href="http://www.thibaut-minard.fr/MyTeamStats/ModifyPassword/' . $usersList[$user]->getMail() . '/' . $token . '">ce lien</a> pour définir un nouveau mot de passe' . '<br/><br/>' .
                 'A bientôt, MyTeamStats' .
                 '  </body>' .
                 '</html>';
@@ -142,16 +142,21 @@ class UserManager
         }
     }
 
-        public function SetPassword($mail, $token){
+        public function ModifyPassword($mail, $token){
             $user = $this->db->prepare('SELECT TOKEN FROM USER WHERE MAIL = :mail');
             $user->bindValue(':mail', $mail);
             $user->execute();
 
-            $user = new USER($user->fetch(\PDO::FETCH_ASSOC));
+            $user = new UserObject($user->fetch(\PDO::FETCH_ASSOC));
 
-            print_r($user->getToken());
+            if ($token == $user->getToken()){
+                $check = true;
+            }
+            else {
+                $check = false;
+            }
 
-
+            return $check;
     }
 
 }

@@ -165,12 +165,19 @@ Class ControllerFront {
         $this->userManager->ResetPassword($mail);
     }
 
-    public function SetPassword($mail,$token){
-        print_r($mail);
-        print_r($token);
+    public function ModifyPassword($mail,$token){
 
-        $return = $this->userManager->SetPassword($mail, $token);
+        $return = $this->userManager->CheckToken($mail, $token);
 
+        if ($return){
+            echo $this->twig->render('/FrontEnd/ModifyPassword.html.twig', [
+                'id' => $mail,
+                'token' => $token
+            ]);
+        }
+        else {
+            // On fera un truc
+        }
     }
 
 }
