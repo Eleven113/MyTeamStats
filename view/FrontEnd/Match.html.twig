@@ -11,6 +11,7 @@
         <div id="athome">{{ match.athome }}</div>
         <div id="periodnum">{{ match.periodnum }}</div>
         <div id="periodduration">{{ match.periodduration }}</div>
+        <div id="status">{{  match.status  }}</div>
         <div id="page">sheet</div>
     </div>
 
@@ -85,7 +86,9 @@
                 <div id="no_compo">
                     Il n'y a pas encore de composition d'équipe pour ce match
                 </div>
+
             {% else %}
+
                 <div id="match_player" class="m-4 p-4 col-8 border border-primary rounded-lg myborder">
                     <div id="match_player-title">Joueurs convoqués</div>
                     <ul>
@@ -131,4 +134,5 @@
     <script src="/MyTeamStats/public/js/Stats.js"></script>
     <script src="/MyTeamStats/public/js/Chrono.js"></script>
     <script src="/MyTeamStats/public/js/Match.js"></script>
+    <script src="/MyTeamStats/public/js/Meteo.js"></script>
 {% endblock %}

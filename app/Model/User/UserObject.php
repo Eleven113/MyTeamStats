@@ -10,6 +10,7 @@ class UserObject
     private $password;
     private $status;
     private $userid;
+    private $token;
 
     // GETTER
 
@@ -61,6 +62,14 @@ class UserObject
         return $this->userid;
     }
 
+        /**
+         * @return mixed
+         */
+    public function getToken()
+    {
+        return $this->token;
+    }
+
     // SETTER
 
     /**
@@ -109,6 +118,14 @@ class UserObject
     public function setUserid($userid)
     {
         $this->userid = $userid;
+    }
+
+    /**
+    * @param mixed $token
+    */
+    public function setToken($token)
+    {
+        $this->token = $token;
     }
 
     // Constructor

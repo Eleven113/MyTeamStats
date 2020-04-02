@@ -1,10 +1,11 @@
 class Stats {
-    constructor(matchId, periodNumber, periodDuration, atHome, stat){
+    constructor(matchId, periodNumber, periodDuration, atHome, stat, matchPlayed){
         this.matchId = matchId;
         this.periodNumber = periodNumber;
         this.periodDuration = periodDuration;
         this.atHome = atHome;
         this.pageStat = stat;
+        this.matchPlayed = matchPlayed;
 
         this.div1stCol = document.getElementById("stat_1stcol");
         this.div2ndCol = document.getElementById("stat_2ndcol");
@@ -66,12 +67,16 @@ class Stats {
         this.winBallAgglo;
         this.lostBallAgglo;
         
+        console.log(this.pageStat);
+        console.log(this.matchPlayed);
         this.events();
 
         if (!this.pageStat){
-            this.setPeriodBtn();
-            this.AddStatBarsMatchpage();
-            this.displayStatMatchpage();
+            if (matchPlayed){
+                this.setPeriodBtn();
+                this.AddStatBarsMatchpage();
+                this.displayStatMatchpage();
+            }
         }
         else {
             this.setStatBars();

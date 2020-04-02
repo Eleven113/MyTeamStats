@@ -395,5 +395,14 @@ class ControllerBack {
             $this->cardManager->AddCard($card);
         }
     }
+
+    public function SendComposition($id){
+        $message = $_POST['text'];
+        $match = $this->matchManager->getMatch($id);
+        $this->compositionManager->SendComposition($id, $match, $message);
+
+        header('Location: http://www.thibaut-minard.fr/MyTeamStats/MatchsList');
+        exit();
+    }
 }
 

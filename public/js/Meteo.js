@@ -22,13 +22,13 @@ class MeteoAPI {
         for ( let i = 0 ; i < this.divZipCode.length; i++){
             this.dateMatch = (Date.parse(this.divDate[i].innerHTML)/1000 + 3600)
             let date = new Date(this.dateMatch * 1000);
-            this.hourMatch = date.getHours()-1;
+            this.hourMatch = date.getHours();
 
             if ( this.dateMatch - this.dateNow <= 432000 && this.dateMatch - this.dateNow >= - 10800 ){
                 this.getMeteo(i);
             }
             else {
-                this.spanMeteo[i].innerHTML = "La météo n'est pas disponible pour ce match"
+                this.spanMeteo[i].innerHTML = "La météo est visible au maximum 5 jours avant l'heure du match"
             }
         }
     }

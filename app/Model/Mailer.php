@@ -19,7 +19,7 @@ class Mailer
         $this->smtp = 'smtp.ionos.com';
         $this->port = 587;
         $this->from = 'myTeamStats@thibaut-minard.fr';
-        $this->alias = 'Henry de MyTeamStats';
+        $this->alias = 'LFC - MyTeamStats';
 
         $this->sendMail();
     }
@@ -45,7 +45,7 @@ class Mailer
             ->setFrom([$this->from => $this->alias])
             ->setTo([$this->receivers])
             ->SetBcc($this->from)
-            ->setBody($this->message);
+            ->setBody($this->message, 'text/html');
         ;
 
         return $message;
@@ -57,6 +57,6 @@ class Mailer
         $message = $this->createMessage();
 
         $result = $mailer->send($message);
-        print_r($result);
+
     }
 }

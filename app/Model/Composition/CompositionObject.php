@@ -8,6 +8,7 @@ class CompositionObject implements \JsonSerializable
     private $playerid;
     private $lastname;
     private $firstname;
+    private $mail;
     private $activelicence;
     private $category;
 
@@ -36,13 +37,25 @@ class CompositionObject implements \JsonSerializable
     public function getLastname()
     {
         return $this->lastname;
-    }/**
+    }
+
+    /**
      * @return mixed
      */
     public function getFirstname()
     {
         return $this->firstname;
-    }/**
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMail()
+    {
+        return $this->mail;
+    }
+
+    /**
      * @return mixed
      */
     public function getActivelicence()
@@ -81,19 +94,33 @@ class CompositionObject implements \JsonSerializable
     public function setLastname($lastname)
     {
         $this->lastname = $lastname;
-    }/**
+    }
+
+    /**
      * @param mixed $firstname
      */
     public function setFirstname($firstname)
     {
         $this->firstname = $firstname;
-    }/**
+    }
+
+    /**
+     * @param mixed $mail
+     */
+    public function setMail($mail)
+    {
+        $this->mail = $mail;
+    }
+
+    /**
      * @param mixed $activelicence
      */
     public function setActivelicence($activelicence)
     {
         $this->activelicence = $activelicence;
-    }/**
+    }
+
+    /**
      * @param mixed $category
      */
     public function setCategory($category)

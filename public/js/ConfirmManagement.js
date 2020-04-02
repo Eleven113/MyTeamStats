@@ -5,11 +5,20 @@ class ConfirmManagement {
         this.divDeleteId = divDeleteId;
 
         this.isDisplay = false;
-        this.divDelete = document.getElementsByClassName("this.divDeleteId");
+        this.divDelete = document.getElementById("this.divDeleteId");
 
         this.checkPage();
         this.createModal();
 
+    }
+
+    checkPage(){
+        switch (page){
+            case "composition":
+
+            default:
+                break;
+        }
     }
 
     createModal(){
@@ -28,10 +37,9 @@ class ConfirmManagement {
         this.yesBtn.className = "btn btn-primary";
         this.yesBtn.textContent = "Oui";
 
-        this.noBtn = document.createElement("button");
+        this.closeBtn = document.createElement("div");
         this.noBtn.id = this.page + "no_btn";
-        this.noBtn.className = "btn btn-primary";
-        this.noBtn.textContent = "Non";
+        this.noBtn.innerHTML = '<i class="fas fa-times"></i>';
     
     }
 
@@ -47,6 +55,6 @@ class ConfirmManagement {
     }
 
     events(){
-        this.
+        this.divDelete.addEventListener(this.displayModal.bind(this));
     }
 }

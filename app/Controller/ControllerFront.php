@@ -143,6 +143,7 @@ Class ControllerFront {
         echo $this->twig->render('/FrontEnd/Match.html.twig', [
             'match' => $match,
             'players' => $players,
+            'playersList' => $playersList,
             'goals' => $goals,
             'cards' => $cards,
             'periods' => $periods
@@ -158,6 +159,19 @@ Class ControllerFront {
 
     }
 
+    public function ResetPassword(){
+        $mail = $_POST['mail'];
+
+        $this->userManager->ResetPassword($mail);
+    }
+
+    public function SetPassword($mail,$token){
+        print_r($mail);
+        print_r($token);
+
+        $return = $this->userManager->SetPassword($mail, $token);
+
+    }
 
 }
 

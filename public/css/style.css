@@ -260,3 +260,32 @@ h5{
 #modal_goal{
     width: 100%;
 }
+
+#modal_send_composition{
+    position:absolute;
+    width: 95%;
+    height: 100%;
+    background-color: rgba(255,255,255,0.8);
+    display: none;
+    justify-content: center;
+    z-index: 10;
+}
+
+#modal_send_composition_container{
+    background-color: rgba(255,255,255,1);
+    height: 50%;
+    z-index : 10;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+#composition_note{
+    resize: none;
+    width : 83%;
+}
+
+#send_composition{
+    font-size: 1.2em;
+    width: 25%;
+}

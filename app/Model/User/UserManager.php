@@ -101,4 +101,57 @@ class UserManager
 
         $query->execute();
     }
+
+    public function ResetPassword($mail)
+    {
+        $usersList = $this->getUsersList();
+        $inList = false;
+
+        for ($i = 0; $i < count($usersList); $i++) {
+
+            if ($mail == $usersList[$i]->getmail()) {
+                $inList = true;
+                $user = $i;
+            }
+        }
+
+        ?>
+        <pre><?php
+        print_r($usersList[$user]);
+        ?></pre><?php
+
+
+        if ($inList) {
+            $token = uniqid();
+            $query = $this->db->prepare('UPDATE USER SET TOKEN = :token WHERE MAIL = :mail');
+            $query->bindValue(':token', $token);
+            $query->bindValue(':mail', $mail);
+            $query->execute();
+
+            $title = 'Réinitialisation de votre mot de passe';
+            $message = '<html>' .
+                '  <body>' .
+                '       Bonjour ' . $usersList[$user]->getFirstname() . ',' . '<br/><br/>' .
+                '       Vous avez demandé la ré-initialisation de votre mot de passe' . '<br/><br/>' .
+                '       Cliquez sur <a href="http://www.thibaut-minard.fr/MyTeamStats/SetPassword/' . $usersList[$user]->getMail() . '/' . $token . '">ce lien</a> pour définir un nouveau mot de passe' . '<br/><br/>' .
+                'A bientôt, MyTeamStats' .
+                '  </body>' .
+                '</html>';
+
+            $result = new \MyTeamStats\Model\Mailer($usersList[$user]->getMail(), $title, $message);
+        }
+    }
+
+        public function SetPassword($mail, $token){
+            $user = $this->db->prepare('SELECT TOKEN FROM USER WHERE MAIL = :mail');
+            $user->bindValue(':mail', $mail);
+            $user->execute();
+
+            $user = new USER($user->fetch(\PDO::FETCH_ASSOC));
+
+            print_r($user->getToken());
+
+
+    }
+
 }

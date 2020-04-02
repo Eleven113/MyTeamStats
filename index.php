@@ -3,7 +3,6 @@ session_start();
 
 require ('vendor/autoload.php');
 
-
 use MyTeamStats;
 
 $db = MyTeamStats\Model\DBFactory::ConnexionPDO();
@@ -73,6 +72,8 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('GET', '/MyTeamStats/LostPassword', 'controllerFront/LostPassword');
     $r->addRoute('GET', '/MyTeamStats/SessionKill', 'controllerFront/SessionKill');
     $r->addRoute('POST', '/MyTeamStats/UserLogin', 'controllerFront/UserLogin');
+    $r->addRoute('POST', '/MyTeamStats/ResetPassword', 'controllerFront/ResetPassword');
+    $r->addRoute('GET', '/MyTeamStats/SetPassword/{mail}/{token}', 'controllerFront/SetPassword');
 
 
     // BackEnd
@@ -102,6 +103,7 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('POST', '/MyTeamStats/AddComposition/{id:[0-9]+}', 'controllerBack/AddComposition');
     $r->addRoute('GET', '/MyTeamStats/ModifyComposition/{id:[0-9]+}', 'controllerBack/ModifyComposition');
     $r->addRoute('POST', '/MyTeamStats/UpdateComposition/{id:[0-9]+}', 'controllerBack/UpdateComposition');
+    $r->addRoute('POST', '/MyTeamStats/SendComposition/{id:[0-9]+}', 'controllerBack/SendComposition');
     $r->addRoute('GET', '/MyTeamStats/DeleteComposition/{id:[0-9]+}', 'controllerBack/DeleteComposition');
 
 
@@ -122,7 +124,7 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('GET', '/MyTeamStats/DeleteField/{id:[0-9]+}', 'controllerBack/DeleteField');
         // Club
 
-        // UserObject
+        // User
     $r->addRoute('GET', '/MyTeamStats/UsersList', 'controllerBack/UsersList');
     $r->addRoute('GET', '/MyTeamStats/ModifyUser/{id:[0-9]+}', 'controllerBack/ModifyUser');
     $r->addRoute('POST', '/MyTeamStats/UpdateUser/{id:[0-9]+}', 'controllerBack/UpdateUser');
