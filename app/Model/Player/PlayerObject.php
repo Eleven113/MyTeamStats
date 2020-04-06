@@ -76,18 +76,28 @@ Class PlayerObject {
     }
     
     public function setLicence($licence) {
+	    if ( !is_numeric($licence)){
+	        trigger_error("Le numéro de licence doit être un nombre entier", E_USER_NOTICE);
+        }
 		$this->licence = $licence;
     }
 
     public function setLastname($lastname) {
+	    if ( !is_string($lastname)){
+	        trigger_error("Le nom du joueur doit contenir plusieurs caractères", E_USER_NOTICE);
+        }
 		$this->lastname = $lastname;
     }
     
     public function setFirstname($firstname) {
+        if ( !is_string($firstname)){
+            trigger_error("Le prénom du joueur doit contenir plusieurs caractères", E_USER_NOTICE);
+        }
 		$this->firstname = $firstname;
     }
     
     public function setBirthdate($birthdate) {
+
 		$this->birthdate = $birthdate;
     }
     
@@ -100,11 +110,21 @@ Class PlayerObject {
     }
     
     public function setPhonenum($phonenum) {
+	    $phoneLength = strlen((string)$phonenum);
+
+	    if ( !is_numeric($phonenum) || $phoneLength != 10 ){
+	        trigger_error("Le numéro de téléphone saisie est incorrect", E_USER_NOTICE);
+        }
 		$this->phonenum = $phonenum;
     }
     
     public function setMail($mail) {
-		$this->mail = $mail;
+        if(filter_var($mail, FILTER_VALIDATE_EMAIL)) {
+            $this->mail = $mail;
+        }
+        else {
+            trigger_error("Le format du mail saisi est incorrect", E_USER_NOTICE);
+        }
     }
     
     public function setPhoto($photo) {

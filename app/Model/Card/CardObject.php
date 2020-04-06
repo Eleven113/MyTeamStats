@@ -70,7 +70,11 @@ class CardObject implements \JsonSerializable
      */
     public function setCardid($cardid)
     {
-        $this->cardid = $cardid;
+        $cardid = (int) $cardid;
+
+        if ( $cardid >= 0) {
+            $this->cardid = $cardid;
+        }
     }
 
     /**
@@ -78,7 +82,12 @@ class CardObject implements \JsonSerializable
      */
     public function setPlayerid($playerid)
     {
-        $this->playerid = $playerid;
+        $playerid = (int) $playerid;
+
+        if ( $playerid >= 0 ){
+            $this->playerid = $playerid;
+        }
+
     }
 
     /**
@@ -86,7 +95,11 @@ class CardObject implements \JsonSerializable
      */
     public function setMatchid($matchid)
     {
-        $this->matchid = $matchid;
+        $matchid = (int) $matchid;
+
+        if ( $matchid >= 0 ){
+            $this->matchid = $matchid;
+        }
     }
 
     /**
@@ -94,7 +107,11 @@ class CardObject implements \JsonSerializable
      */
     public function setPeriodnum($periodnum)
     {
-        $this->periodnum = $periodnum;
+        $periodnum = (int) $periodnum;
+
+        if ($periodnum >= 0 && $periodnum <= 4){
+            $this->periodnum = $periodnum;
+        }
     }
 
 
@@ -103,7 +120,10 @@ class CardObject implements \JsonSerializable
      */
     public function setColor($color)
     {
-        $this->color = $color;
+        if ( $color == "rouge" || $color = "jaune"){
+            $this->color = $color;
+        }
+
     }
 
     /**
@@ -111,7 +131,12 @@ class CardObject implements \JsonSerializable
      */
     public function setTime($time)
     {
-        $this->time = $time;
+        $time = (int) $time;
+
+        if ($time >= 0){
+            $this->time = $time;
+        }
+
     }
 
 

@@ -120,6 +120,10 @@ class MatchObject
      */
     public function setDate($date)
     {
+        if (!checkdate($date)){
+            trigger_error("Le format de la date est incorrect", E_USER_NOTICE);
+        }
+
         $this->date = $date;
     }
 
@@ -144,6 +148,9 @@ class MatchObject
      */
     public function setPeriodduration($periodduration)
     {
+        if ( !is_int($periodduration)){
+            trigger_error("La durée du match doit être un nombre", E_USER_NOTICE);
+        }
         $this->periodduration = $periodduration;
     }
 

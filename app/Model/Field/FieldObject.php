@@ -76,6 +76,10 @@ class FieldObject
      */
     public function setName($name)
     {
+        if ( !is_string($name)){
+            trigger_error("Le nom du terrain doit contenir plusieurs caractéres", E_USER_NOTICE);
+        }
+
         $this->name = $name;
     }
 
@@ -84,6 +88,9 @@ class FieldObject
      */
     public function setAddress($address)
     {
+        if ( !is_string($address)){
+            trigger_error("L'adresse doit contenir plusieurs caractéres", E_USER_NOTICE);
+        }
         $this->address = $address;
     }
 
@@ -92,6 +99,9 @@ class FieldObject
      */
     public function setZipcode($zipcode)
     {
+        if ( is_int($zipcode)){
+            trigger_error("Le code postal ne peut contenir que des chiffres", E_USER_NOTICE);
+        }
         $this->zipcode = $zipcode;
     }
 
@@ -100,6 +110,9 @@ class FieldObject
      */
     public function setCity($city)
     {
+        if ( !is_string($city)){
+            trigger_error("Le nom de la ville doit contenir plusieurs caractéres", E_USER_NOTICE);
+        }
         $this->city = $city;
     }
 

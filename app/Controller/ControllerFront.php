@@ -35,11 +35,20 @@ Class ControllerFront {
 
     public function PlayersList(){
         $playersListObj = $this->playerManager->getPlayersList();
+
+        if (date('n') >= 8){
+            $year = date('Y') + 1;
+        }
+        else {
+            $year = date('Y');
+        }
+
         echo $this->twig->render('/FrontEnd/PlayersList.html.twig',
             [
                 'playerListObj' => $playersListObj,
                 'sessionUser' => $_SESSION['user_status'],
-                'link' => $this->link
+                'link' => $this->link,
+                'year' => $year
             ]);
     }
 
@@ -163,6 +172,8 @@ Class ControllerFront {
         $mail = $_POST['mail'];
 
         $this->userManager->ResetPassword($mail);
+
+        echo $this->twig->render('/FrontEnd/Home.html.twig');
     }
 
     public function ModifyPassword($mail,$token){
@@ -171,13 +182,34 @@ Class ControllerFront {
 
         if ($return){
             echo $this->twig->render('/FrontEnd/ModifyPassword.html.twig', [
-                'id' => $mail,
+                'mail' => $mail,
                 'token' => $token
             ]);
         }
         else {
+            throw new \Exception("Vous n'êtes pas autorisé à effectuer cette action.");
+        }
+    }
+
+    public function UpdatePassword($mail, $token){
+        $return = $this->userManager->CheckToken($mail, $token);
+
+        if ($return){
+            if ($_POST['pwd1'] == $_POST['pwd2']){
+                $pwd = password_hash($_POST['pwd1'], PASSWORD_DEFAULT);
+                $user = [
+                    'mail' => $mail,
+                    'password' => $pwd
+                ];
+                $this->userManager->UpdatePassword($user);
+
+                echo $this->twig->render('/FrontEnd/Home.html.twig');
+            }
+        }
+        else {
             // On fera un truc
         }
+
     }
 
 }

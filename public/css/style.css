@@ -289,3 +289,7 @@ h5{
     font-size: 1.2em;
     width: 25%;
 }
+
+caption{
+    caption-side: top;
+}

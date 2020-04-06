@@ -15,8 +15,8 @@ else {
 
 let goalIndex;
 
-let stats = new Stats(matchId, periodNumber, periodDuration, atHome, stat, matchPlayed);
-let card = new Card(matchId, periodDuration, stat);
-let score = new Score(matchId, atHome, periodNumber, periodDuration, stat);
+stats = new Stats(matchId, periodNumber, periodDuration, atHome, stat, matchPlayed);
+card = new Card(matchId, periodDuration, stat);
+score = new Score(matchId, atHome, periodNumber, periodDuration, stat);
 
 

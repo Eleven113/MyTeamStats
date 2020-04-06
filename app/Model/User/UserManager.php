@@ -115,12 +115,6 @@ class UserManager
             }
         }
 
-        ?>
-        <pre><?php
-        print_r($usersList[$user]);
-        ?></pre><?php
-
-
         if ($inList) {
             $token = uniqid();
             $query = $this->db->prepare('UPDATE USER SET TOKEN = :token WHERE MAIL = :mail');
@@ -142,21 +136,31 @@ class UserManager
         }
     }
 
-        public function ModifyPassword($mail, $token){
-            $user = $this->db->prepare('SELECT TOKEN FROM USER WHERE MAIL = :mail');
-            $user->bindValue(':mail', $mail);
-            $user->execute();
+    public function CheckToken($mail, $token){
+        $user = $this->db->prepare('SELECT TOKEN FROM USER WHERE MAIL = :mail');
+        $user->bindValue(':mail', $mail);
+        $user->execute();
 
-            $user = new UserObject($user->fetch(\PDO::FETCH_ASSOC));
+        $user = new UserObject($user->fetch(\PDO::FETCH_ASSOC));
 
-            if ($token == $user->getToken()){
-                $check = true;
-            }
-            else {
-                $check = false;
-            }
+        if ($token == $user->getToken()){
+            $check = true;
+        }
+        else {
+            $check = false;
+        }
 
-            return $check;
+        return $check;
+    }
+
+    public function UpdatePassword($user){
+        $user = new UserObject($user);
+        $query = $this->db->prepare('UPDATE USER SET PASSWORD = :password, TOKEN = :token WHERE MAIL = :mail');
+        $query->bindValue(':password', $user->getPassword());
+        $query->bindValue(':token', null);
+        $query->bindValue(':mail', $user->getMail());
+        $query->execute();
+
     }
 
 }

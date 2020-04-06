@@ -76,7 +76,7 @@ class CompositionObject implements \JsonSerializable
      */
     public function setGameid($gameid)
     {
-        $this->gameid = $gameid;
+             $this->gameid = $gameid;
     }
 
 

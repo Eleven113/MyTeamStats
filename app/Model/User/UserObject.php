@@ -77,6 +77,9 @@ class UserObject
      */
     public function setFirstname($firstname)
     {
+        if ( !is_string($firstname)){
+            trigger_error("Le prénom de l'utilisateur doit contenir plusieurs caractères", E_USER_NOTICE);
+        }
         $this->firstname = $firstname;
     }
 
@@ -85,6 +88,9 @@ class UserObject
      */
     public function setLastname($lastname)
     {
+        if ( !is_string($lastname)){
+            trigger_error("Le nom de l'utilisateur doit contenir plusieurs caractères", E_USER_NOTICE);
+        }
         $this->lastname = $lastname;
     }
 
@@ -93,7 +99,12 @@ class UserObject
      */
     public function setMail($mail)
     {
-        $this->mail = $mail;
+        if(filter_var($mail, FILTER_VALIDATE_EMAIL)) {
+            $this->mail = $mail;
+        }
+        else {
+            trigger_error("Le format du mail saisi est incorrect", E_USER_NOTICE);
+        }
     }
 
     /**

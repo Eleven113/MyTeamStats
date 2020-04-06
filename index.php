@@ -48,135 +48,143 @@ else {
 }
 
 // Router
-
-$dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
-    // FrontEnd
+try {
+    $dispatcher = FastRoute\simpleDispatcher(function (FastRoute\RouteCollector $r) {
+        // FrontEnd
         // Home
-    $r->addRoute('GET', '/MyTeamStats/', 'controllerFront/Home');
+        $r->addRoute('GET', '/MyTeamStats/', 'controllerFront/Home');
 
         // Player
-    $r->addRoute('GET', '/MyTeamStats/PlayersList', 'controllerFront/PlayersList');
-    $r->addRoute('GET', '/MyTeamStats/Player/{id:[0-9]+}', 'controllerFront/Player');
+        $r->addRoute('GET', '/MyTeamStats/PlayersList', 'controllerFront/PlayersList');
+        $r->addRoute('GET', '/MyTeamStats/Player/{id:[0-9]+}', 'controllerFront/Player');
 
         // Match
-    $r->addRoute('GET', '/MyTeamStats/MatchsList', 'controllerFront/MatchsList');
-    $r->addRoute('GET', '/MyTeamStats/Match/{id:[0-9]+}', 'controllerFront/Match');
+        $r->addRoute('GET', '/MyTeamStats/MatchsList', 'controllerFront/MatchsList');
+        $r->addRoute('GET', '/MyTeamStats/Match/{id:[0-9]+}', 'controllerFront/Match');
 
         // Club
-    $r->addRoute('GET', '/MyTeamStats/Club', 'controllerFront/Club');
+        $r->addRoute('GET', '/MyTeamStats/Club', 'controllerFront/Club');
 
         // User
-    $r->addRoute('GET', '/MyTeamStats/Login', 'controllerFront/Login');
-    $r->addRoute('GET', '/MyTeamStats/CreateUser', 'controllerFront/CreateUser');
-    $r->addRoute('POST', '/MyTeamStats/AddUser', 'controllerFront/AddUser');
-    $r->addRoute('GET', '/MyTeamStats/LostPassword', 'controllerFront/LostPassword');
-    $r->addRoute('GET', '/MyTeamStats/SessionKill', 'controllerFront/SessionKill');
-    $r->addRoute('POST', '/MyTeamStats/UserLogin', 'controllerFront/UserLogin');
-    $r->addRoute('POST', '/MyTeamStats/ResetPassword', 'controllerFront/ResetPassword');
-    $r->addRoute('GET', '/MyTeamStats/ModifyPassword/{mail}/{token}', 'controllerFront/SetPassword');
+        $r->addRoute('GET', '/MyTeamStats/Login', 'controllerFront/Login');
+        $r->addRoute('GET', '/MyTeamStats/CreateUser', 'controllerFront/CreateUser');
+        $r->addRoute('POST', '/MyTeamStats/AddUser', 'controllerFront/AddUser');
+        $r->addRoute('GET', '/MyTeamStats/LostPassword', 'controllerFront/LostPassword');
+        $r->addRoute('GET', '/MyTeamStats/SessionKill', 'controllerFront/SessionKill');
+        $r->addRoute('POST', '/MyTeamStats/UserLogin', 'controllerFront/UserLogin');
+        $r->addRoute('POST', '/MyTeamStats/ResetPassword', 'controllerFront/ResetPassword');
+        $r->addRoute('GET', '/MyTeamStats/ModifyPassword/{mail}/{token}', 'controllerFront/ModifyPassword');
+        $r->addRoute('POST', '/MyTeamStats/UpdatePassword/{mail}/{token}', 'controllerFront/UpdatePassword');
 
 
-    // BackEnd
+        // BackEnd
         // Admin
-    $r->addRoute('GET', '/MyTeamStats/Admin', 'controllerBack/Admin');
+        $r->addRoute('GET', '/MyTeamStats/Admin', 'controllerBack/Admin');
 
         // Player
-    $r->addRoute('GET', '/MyTeamStats/CreatePlayer', 'controllerBack/CreatePlayer');
-    $r->addRoute('POST', '/MyTeamStats/AddPlayer', 'controllerBack/AddPlayer');
-    $r->addRoute('GET', '/MyTeamStats/ModifyPlayer/{id:[0-9]+}', 'controllerBack/ModifyPlayer');
-    $r->addRoute('POST', '/MyTeamStats/UpdatePlayer/{id:[0-9]+}', 'controllerBack/UpdatePlayer');
-    $r->addRoute('GET', '/MyTeamStats/DeletePlayer/{id:[0-9]+}', 'controllerBack/DeletePlayer');
+        $r->addRoute('GET', '/MyTeamStats/CreatePlayer', 'controllerBack/CreatePlayer');
+        $r->addRoute('POST', '/MyTeamStats/AddPlayer', 'controllerBack/AddPlayer');
+        $r->addRoute('GET', '/MyTeamStats/ModifyPlayer/{id:[0-9]+}', 'controllerBack/ModifyPlayer');
+        $r->addRoute('POST', '/MyTeamStats/UpdatePlayer/{id:[0-9]+}', 'controllerBack/UpdatePlayer');
+        $r->addRoute('GET', '/MyTeamStats/DeletePlayer/{id:[0-9]+}', 'controllerBack/DeletePlayer');
 
         // Match
-    $r->addRoute('GET', '/MyTeamStats/CreateMatch', 'controllerBack/CreateMatch');
-    $r->addRoute('POST', '/MyTeamStats/AddMatch', 'controllerBack/AddMatch');
-    $r->addRoute('GET', '/MyTeamStats/ModifyMatch/{id:[0-9]+}', 'controllerBack/ModifyMatch');
-    $r->addRoute('POST', '/MyTeamStats/UpdateMatch/{id:[0-9]+}', 'controllerBack/UpdateMatch');
-    $r->addRoute('GET', '/MyTeamStats/DeleteMatch/{id:[0-9]+}', 'controllerBack/DeleteMatch');
-    $r->addRoute('GET', '/MyTeamStats/MatchStats/{id:[0-9]+}', 'controllerBack/MatchStats');
-    $r->addRoute('POST', '/MyTeamStats/MatchData', 'controllerBack/MatchData');
+        $r->addRoute('GET', '/MyTeamStats/CreateMatch', 'controllerBack/CreateMatch');
+        $r->addRoute('POST', '/MyTeamStats/AddMatch', 'controllerBack/AddMatch');
+        $r->addRoute('GET', '/MyTeamStats/ModifyMatch/{id:[0-9]+}', 'controllerBack/ModifyMatch');
+        $r->addRoute('POST', '/MyTeamStats/UpdateMatch/{id:[0-9]+}', 'controllerBack/UpdateMatch');
+        $r->addRoute('GET', '/MyTeamStats/DeleteMatch/{id:[0-9]+}', 'controllerBack/DeleteMatch');
+        $r->addRoute('GET', '/MyTeamStats/MatchStats/{id:[0-9]+}', 'controllerBack/MatchStats');
+        $r->addRoute('POST', '/MyTeamStats/MatchData', 'controllerBack/MatchData');
 
 
         // Composition
-    $r->addRoute('GET', '/MyTeamStats/Composition/{id:[0-9]+}', 'controllerBack/Composition');
-    $r->addRoute('GET', '/MyTeamStats/CreateComposition/{id:[0-9]+}', 'controllerBack/CreateComposition');
-    $r->addRoute('POST', '/MyTeamStats/AddComposition/{id:[0-9]+}', 'controllerBack/AddComposition');
-    $r->addRoute('GET', '/MyTeamStats/ModifyComposition/{id:[0-9]+}', 'controllerBack/ModifyComposition');
-    $r->addRoute('POST', '/MyTeamStats/UpdateComposition/{id:[0-9]+}', 'controllerBack/UpdateComposition');
-    $r->addRoute('POST', '/MyTeamStats/SendComposition/{id:[0-9]+}', 'controllerBack/SendComposition');
-    $r->addRoute('GET', '/MyTeamStats/DeleteComposition/{id:[0-9]+}', 'controllerBack/DeleteComposition');
+        $r->addRoute('GET', '/MyTeamStats/Composition/{id:[0-9]+}', 'controllerBack/Composition');
+        $r->addRoute('GET', '/MyTeamStats/CreateComposition/{id:[0-9]+}', 'controllerBack/CreateComposition');
+        $r->addRoute('POST', '/MyTeamStats/AddComposition/{id:[0-9]+}', 'controllerBack/AddComposition');
+        $r->addRoute('GET', '/MyTeamStats/ModifyComposition/{id:[0-9]+}', 'controllerBack/ModifyComposition');
+        $r->addRoute('POST', '/MyTeamStats/UpdateComposition/{id:[0-9]+}', 'controllerBack/UpdateComposition');
+        $r->addRoute('POST', '/MyTeamStats/SendComposition/{id:[0-9]+}', 'controllerBack/SendComposition');
+        $r->addRoute('GET', '/MyTeamStats/DeleteComposition/{id:[0-9]+}', 'controllerBack/DeleteComposition');
 
 
         // Oppo
-    $r->addRoute('GET', '/MyTeamStats/OppoList', 'controllerBack/OppoList');
-    $r->addRoute('GET', '/MyTeamStats/CreateOppo', 'controllerBack/CreateOppo');
-    $r->addRoute('POST', '/MyTeamStats/AddOppo', 'controllerBack/AddOppo');
-    $r->addRoute('GET', '/MyTeamStats/ModifyOppo/{id:[0-9]+}', 'controllerBack/ModifyOppo');
-    $r->addRoute('POST', '/MyTeamStats/UpdateOppo/{id:[0-9]+}', 'controllerBack/UpdateOppo');
-    $r->addRoute('GET', '/MyTeamStats/DeleteOppo/{id:[0-9]+}', 'controllerBack/DeleteOppo');
+        $r->addRoute('GET', '/MyTeamStats/OppoList', 'controllerBack/OppoList');
+        $r->addRoute('GET', '/MyTeamStats/CreateOppo', 'controllerBack/CreateOppo');
+        $r->addRoute('POST', '/MyTeamStats/AddOppo', 'controllerBack/AddOppo');
+        $r->addRoute('GET', '/MyTeamStats/ModifyOppo/{id:[0-9]+}', 'controllerBack/ModifyOppo');
+        $r->addRoute('POST', '/MyTeamStats/UpdateOppo/{id:[0-9]+}', 'controllerBack/UpdateOppo');
+        $r->addRoute('GET', '/MyTeamStats/DeleteOppo/{id:[0-9]+}', 'controllerBack/DeleteOppo');
 
         // Field
-    $r->addRoute('GET', '/MyTeamStats/FieldsList', 'controllerBack/FieldsList');
-    $r->addRoute('GET', '/MyTeamStats/CreateField', 'controllerBack/CreateField');
-    $r->addRoute('POST', '/MyTeamStats/AddField', 'controllerBack/AddField');
-    $r->addRoute('GET', '/MyTeamStats/ModifyField/{id:[0-9]+}', 'controllerBack/ModifyField');
-    $r->addRoute('POST', '/MyTeamStats/UpdateField/{id:[0-9]+}', 'controllerBack/UpdateField');
-    $r->addRoute('GET', '/MyTeamStats/DeleteField/{id:[0-9]+}', 'controllerBack/DeleteField');
+        $r->addRoute('GET', '/MyTeamStats/FieldsList', 'controllerBack/FieldsList');
+        $r->addRoute('GET', '/MyTeamStats/CreateField', 'controllerBack/CreateField');
+        $r->addRoute('POST', '/MyTeamStats/AddField', 'controllerBack/AddField');
+        $r->addRoute('GET', '/MyTeamStats/ModifyField/{id:[0-9]+}', 'controllerBack/ModifyField');
+        $r->addRoute('POST', '/MyTeamStats/UpdateField/{id:[0-9]+}', 'controllerBack/UpdateField');
+        $r->addRoute('GET', '/MyTeamStats/DeleteField/{id:[0-9]+}', 'controllerBack/DeleteField');
         // Club
 
         // User
-    $r->addRoute('GET', '/MyTeamStats/UsersList', 'controllerBack/UsersList');
-    $r->addRoute('GET', '/MyTeamStats/ModifyUser/{id:[0-9]+}', 'controllerBack/ModifyUser');
-    $r->addRoute('POST', '/MyTeamStats/UpdateUser/{id:[0-9]+}', 'controllerBack/UpdateUser');
-    $r->addRoute('GET', '/MyTeamStats/DeleteUser/{id:[0-9]+}', 'controllerBack/DeleteUser');
+        $r->addRoute('GET', '/MyTeamStats/UsersList', 'controllerBack/UsersList');
+        $r->addRoute('GET', '/MyTeamStats/ModifyUser/{id:[0-9]+}', 'controllerBack/ModifyUser');
+        $r->addRoute('POST', '/MyTeamStats/UpdateUser/{id:[0-9]+}', 'controllerBack/UpdateUser');
+        $r->addRoute('GET', '/MyTeamStats/DeleteUser/{id:[0-9]+}', 'controllerBack/DeleteUser');
 
 
-    // {id} must be a number (\d+)
-    $r->addRoute('GET', '/user/{id:\d+}', 'get_user_handler');
-    // The /{title} suffix is optional
-    $r->addRoute('GET', '/articles/{id:\d+}[/{title}]', 'get_article_handler');
-});
+        // {id} must be a number (\d+)
+        $r->addRoute('GET', '/user/{id:\d+}', 'get_user_handler');
+        // The /{title} suffix is optional
+        $r->addRoute('GET', '/articles/{id:\d+}[/{title}]', 'get_article_handler');
+    });
 
-// Fetch method and URI from somewhere
-$httpMethod = $_SERVER['REQUEST_METHOD'];
-$uri = $_SERVER['REQUEST_URI'];
+    // Fetch method and URI from somewhere
+    $httpMethod = $_SERVER['REQUEST_METHOD'];
+    $uri = $_SERVER['REQUEST_URI'];
 
-// Strip query string (?foo=bar) and decode URI
-if (false !== $pos = strpos($uri, '?')) {
-    $uri = substr($uri, 0, $pos);
-}
-$uri = rawurldecode($uri);
+    // Strip query string (?foo=bar) and decode URI
+    if (false !== $pos = strpos($uri, '?')) {
+        $uri = substr($uri, 0, $pos);
+    }
+    $uri = rawurldecode($uri);
 
-$routeInfo = $dispatcher->dispatch($httpMethod, $uri);
+    $routeInfo = $dispatcher->dispatch($httpMethod, $uri);
 
-switch ($routeInfo[0]) {
-    case FastRoute\Dispatcher::NOT_FOUND:
-        echo '404';
-        break;
-    case FastRoute\Dispatcher::METHOD_NOT_ALLOWED:
-        $allowedMethods = $routeInfo[1];
-        echo '405';
-        break;
-    case FastRoute\Dispatcher::FOUND:
-        $handler = $routeInfo[1];
-        $vars = $routeInfo[2];
-        $vars += $_POST;
-        $vars += $_FILES;
-        $action = explode('/',$handler,2);
-        $controller = $action[0];
-        $method = $action[1];
+    switch ($routeInfo[0]) {
+        case FastRoute\Dispatcher::NOT_FOUND:
+            echo '404';
+            break;
+        case FastRoute\Dispatcher::METHOD_NOT_ALLOWED:
+            $allowedMethods = $routeInfo[1];
+            echo '405';
+            break;
+        case FastRoute\Dispatcher::FOUND:
+            $handler = $routeInfo[1];
+            $vars = $routeInfo[2];
+            $vars += $_POST;
+            $vars += $_FILES;
+            $action = explode('/', $handler, 2);
+            $controller = $action[0];
+            $method = $action[1];
 
-        if ($controller == 'controllerFront'){
-            $controllerFront->{$method}(...array_values($vars));
-        }
-        else {
-            if ($_SESSION['user_status'] >= 3){
-                $controllerBack->{$method}(...array_values($vars));
+            if ($controller == 'controllerFront') {
+                $controllerFront->{$method}(...array_values($vars));
+            } else {
+                if ($_SESSION['user_status'] >= 3) {
+                    $controllerBack->{$method}(...array_values($vars));
+                } else {
+                    echo "Vous n'êtes pas autorisé à effectuer cette action";
+                }
             }
-            else {
-                echo "Vous n'êtes pas autorisé à effectuer cette action";
-            }
-        }
 
-        break;
+            break;
+    }
 }
+catch (\Exception $e){
+    $error =  $e->getMessage();
+    echo $twig->render('exception.html.twig', [
+        'error' => $error,
+         'link' => $link
+    ]);
+}
+

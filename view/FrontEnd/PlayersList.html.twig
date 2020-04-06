@@ -1,3 +1,4 @@
+
 {% extends "layout.html.twig" %}
 
 {% block head %}
@@ -15,7 +16,7 @@
     {% endif %}
 
     <div class="table-responsive">
-        <table class="table table table-bordered table-striped text-center table-text-size">
+        <table class="table table table-bordered table-striped   text-center table-text-size">
             <caption class="col-12 text-center">
                 <h4>Liste des joueurs</h4>
             </caption>
@@ -34,11 +35,11 @@
             {%   for player in playerListObj %}
 
                 <tr>
-                    <td>{{player.licence}}</a></td>
+                    <td>{{player.licence}}</td>
                     <td>{{player.lastname}}</td>
                     <td>{{player.firstname}}</td>
-                    <td>{{player.birthdate}}</td>
-                    <td>{{player.category}}</td>
+                    <td>{{ player.birthdate }}</td>
+                    <td>U{{ year - (player.birthdate | date('Y')) }}</td>
                     <td>
                         {% if player.activelicence == 1  %}
                             <i class="fas fa-check greencheck"></i>
