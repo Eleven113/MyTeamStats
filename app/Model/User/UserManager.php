@@ -163,4 +163,16 @@ class UserManager
 
     }
 
+    public function getMails(){
+        $mails = $this->db->query("SELECT MAIL FROM USER");
+        $mailsListObj = new \ArrayObject();
+
+        while ($mailArray = $mails->fetch(\PDO::FETCH_ASSOC)){
+            $mail = new UserObject($mailArray);
+            $mailsListObj->append($mail);
+        }
+
+        return $mailsListObj;
+    }
+
 }

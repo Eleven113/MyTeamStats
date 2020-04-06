@@ -50,7 +50,7 @@ class OpponentObject
     public function setName($name)
     {
         if ( !is_string($name)){
-            trigger_error("Le nom de l'adversaire doit contenir plusieurs carractères", E_USER_NOTICE);
+            trigger_error("Le nom de l'adversaire doit contenir plusieurs caractères", E_USER_NOTICE);
         }
         $this->name = $name;
     }

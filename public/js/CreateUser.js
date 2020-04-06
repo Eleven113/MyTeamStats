@@ -1,1 +1,0 @@
-passwordCheck = new PasswordCheck("pwd1", "pwd2");

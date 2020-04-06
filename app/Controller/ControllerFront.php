@@ -61,7 +61,18 @@ Class ControllerFront {
     }
 
     public function CreateUser(){
-        echo $this->twig->render('/FrontEnd/CreateUser.html.twig');
+        $mailsList = $this->userManager->getMails();
+
+        $mailsArray  = [];
+
+        for ($i=0; $i < count($mailsList); $i++){
+            $mail = $mailsList[$i];
+            array_push($mailsArray, $mail->getMail());
+        }
+
+        $mailsList = json_encode($mailsArray);
+
+        echo $this->twig->render('/FrontEnd/CreateUser.html.twig', [ 'mails' => $mailsList]);
     }
 
     public function AddUser($lastname, $firstname, $mail, $pwd){
@@ -173,7 +184,7 @@ Class ControllerFront {
 
         $this->userManager->ResetPassword($mail);
 
-        echo $this->twig->render('/FrontEnd/Home.html.twig');
+        echo $this->twig->render('/FrontEnd/Homepage.html.twig');
     }
 
     public function ModifyPassword($mail,$token){

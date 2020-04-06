@@ -2,7 +2,7 @@
 
 namespace MyTeamStats\Model\User;
 
-class UserObject
+class UserObject implements \JsonSerializable
 {
     private $lastname;
     private $firstname;
@@ -161,4 +161,10 @@ class UserObject
             }
         }
     }
+
+    public function jsonSerialize(){
+        return get_object_vars($this);
+
+    }
+
 }

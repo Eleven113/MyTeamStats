@@ -182,9 +182,9 @@ try {
 }
 catch (\Exception $e){
     $error =  $e->getMessage();
-    echo $twig->render('exception.html.twig', [
-        'error' => $error,
-         'link' => $link
-    ]);
+//    echo $twig->render('exception.html.twig', [
+//        'error' => $error,
+//         'link' => $link
+//    ]);
 }
 
