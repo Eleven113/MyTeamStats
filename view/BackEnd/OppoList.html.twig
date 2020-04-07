@@ -31,8 +31,10 @@
                         <td>{{oppo.name}}</td>
                         <td><img src="{{oppo.logo}}" class="img-responsive fit-image"></td>
                           <td class="d-flex flex-row justify-content-around">
-                            <div><a href="/MyTeamStast/ModifyOppo/{{ oppo.opponentid }}"><i class="fas fa-pen"></i></a></div>
-                            <div><a href="/MyTeamStast/DeleteOppo/{{ oppo.opponentid }}"><i class="fas fa-trash-alt"></i></a></div>
+                              <div><a href="/MyTeamStast/ModifyOppo/{{ oppo.opponentid }}"><i class="fas fa-pen"></i></a></div>
+                              {%  if session.user_status >= 4 %}
+                                <div><a href="/MyTeamStast/DeleteOppo/{{ oppo.opponentid }}"><i class="fas fa-trash-alt"></i></a></div>
+                              {% endif %}
                         </td>
                     </tr>
                 {% endfor %}

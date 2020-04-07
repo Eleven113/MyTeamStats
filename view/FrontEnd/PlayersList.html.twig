@@ -51,6 +51,8 @@
                         <div><a href="/MyTeamStats/Player/{{ player.playerid }}"><i class="fas fa-user"></i></a></div>
                         {%  if session.user_status >= 3 %}
                             <div><a href="/MyTeamStats/ModifyPlayer/{{ player.playerid }}"><i class="fas fa-user-edit"></i></a></div>
+                        {% endif %}
+                        {%  if session.user_status >= 4 %}
                             <div><a href="/MyTeamStats/DeletePlayer/{{ player.playerid }}"><i class="fas fa-user-times"></i></a></div>
                         {% endif %}
                     </td>

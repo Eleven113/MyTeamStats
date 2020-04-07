@@ -102,7 +102,10 @@ Class ControllerFront {
 
         if ($login){
             $notice = "Vous avez été correctement identifié";
-            echo $this->twig->render('/FrontEnd/Homepage.html.twig', ['notice' => $notice]);
+            echo $this->twig->render('/FrontEnd/Homepage.html.twig', [
+                'notice' => $notice,
+                'session' => $_SESSION
+            ]);
         }
         else {
             $notice = "Adresse mail inconnue ou mot de passe incorrect";
