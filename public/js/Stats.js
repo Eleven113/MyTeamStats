@@ -30,11 +30,6 @@ class Stats {
         this.statsDisplay = [];
         this.statDisplay;
 
-        this.btnsMinus = document.querySelectorAll('div[id^="btnminus_"]');
-        this.btnsPlus = document.querySelectorAll('div[id^="btnplus_"]');
-        this.btnsMinus;
-        this.btnPlus;
-
         this.divMatch = document.getElementById("match");
 
         // Stats à inserer dans la DB
@@ -50,7 +45,7 @@ class Stats {
         this.cornerKick;
         this.winBall;
         this.lostBall;
-        this.periodNum;
+        this.periodNum = 0;
         this.pass;
         this.shot;
 
@@ -67,7 +62,7 @@ class Stats {
         this.winBallAgglo;
         this.lostBallAgglo;
         
-        this.events();
+
 
         if (!this.pageStat){
             if (matchPlayed){
@@ -78,13 +73,16 @@ class Stats {
         }
         else {
             this.setStatBars();
+            this.btnsMinus = document.querySelectorAll('div[id^="btnminus_"]');
+            this.btnsPlus = document.querySelectorAll('div[id^="btnplus_"]');
+            this.events();
+
         }
 
     }
 
     setStatBars(period){
         for (let i = 0; i < CONFIG.data.length; i++){
-
             this.newDivStatBar = document.createElement("div");
             this.newDivStatBar.className = "stat_bar d-flex flex-row mb-3";
 
@@ -116,7 +114,7 @@ class Stats {
                 case 2:
                     if (this.pageStat){
                         this.newDivStatBar.innerHTML = '<div id="btnminus_'+CONFIG.data[i].db_name+'_'+CONFIG.data[i].model+'" class="col-2 text-right"><i class="far fa-minus-square"></i></div><div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">'+ CONFIG.data[i].name +'</div><div class="stat_bar-num col-2 border border-primary border-left-0"><span id="'+CONFIG.data[i].db_name+'">0</span>&nbsp;&nbsp;<span id="'+CONFIG.data[i].db_name+'_percent">0%</span></div><div id="btnplus_'+CONFIG.data[i].db_name+'_'+CONFIG.data[i].model+'" class="col-2"><i class="far fa-plus-square"></i></div>';
-                        this.newDivStatBarDbyP.innerHTML = '<div class="col-2"></div><div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">'+ CONFIG.data[i].name +'</div><div class="stat_bar-num col-2 border border-primary border-left-0"><span id="'+CONFIG.data[i].db_name+'_match_stat_'+ period +'">0</span>&nbsp;&nbsp;<span id="'+CONFIG.data[i].db_name+'_percent_dbp">0%</span></div><div class="col-2"></div>';                                                   
+                        this.newDivStatBarDbyP.innerHTML = '<div class="col-2"></div><div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">'+ CONFIG.data[i].name +'</div><div class="stat_bar-num col-2 border border-primary border-left-0"><span id="'+CONFIG.data[i].db_name+'_dbp">0</span>&nbsp;&nbsp;<span id="'+CONFIG.data[i].db_name+'_percent_dbp">0%</span></div><div class="col-2"></div>';                                                   
                     } 
                     else {
                         this.newDivStatBarDbyP.innerHTML = '<div class="col-2"></div><div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">'+ CONFIG.data[i].name +'</div><div class="stat_bar-num col-2 border border-primary border-left-0"><span id="'+CONFIG.data[i].db_name+'_match_stat_'+ period +'">0</span>&nbsp;&nbsp;<span id="'+CONFIG.data[i].db_name+'_percent_match_stat_'+ period +'">0%</span></div><div class="col-2"></div>';                
@@ -330,6 +328,7 @@ class Stats {
     }
 
     setStats(){
+        this.periodNum += 1;
         this.homeScoreAgglo = 0;
         this.awayScoreAgglo = 0;
         this.successPassAgglo = 0;
@@ -399,8 +398,8 @@ class Stats {
             "lostball" : this.lostBall - this.lostBallAgglo
         }
 
-        this.pass = parseInt(this.successPass - this.successPassAgglo) + (this.missPass - this.missPassAgglo);
-        console.log(this.pass);
+        this.pass = parseInt(this.successPass - this.successPassAgglo) + parseInt(this.missPass - this.missPassAgglo);
+
         if (this.pass !== 0){
             this.pass_ok_percent = Math.round(((this.successPass - this.successPassAgglo) / this.pass ) * 100 ) + "%";
             this.pass_nok_percent = Math.round(((this.missPass - this.missPassAgglo) / this.pass ) * 100 ) + "%";
@@ -410,7 +409,7 @@ class Stats {
             this.pass_nok_percent = 0 + "%";
         }
 
-        this.shot = (this.shotOnTarget - this.shotOnTargetAgglo) + (this.missShot - this.missShotAgglo)
+        this.shot = parseInt(this.shotOnTarget - this.shotOnTargetAgglo) + parseInt(this.missShot - this.missShotAgglo)
 
         if (this.shot !== 0){
             this.shot_ok_percent = Math.round(((this.shotOnTarget - this.shotOnTargetAgglo) / this.shot) * 100) + "%";
@@ -422,7 +421,7 @@ class Stats {
         }
 
 
-        this.ball = (this.winBall - this.winBallAgglo) + (this.lostBall - this.lostBallAgglo)
+        this.ball = parseInt(this.winBall - this.winBallAgglo) + parseInt(this.lostBall - this.lostBallAgglo)
 
         if (this.ball !== 0){
             this.winball_percent = Math.round(((this.winBall - this.winBallAgglo) / this.ball) * 100 ) + "%";
@@ -466,6 +465,7 @@ class Stats {
         divStatPeriod.id = "stat_" + this.periodNum;
         divStatPeriod.className = "period_btn btn btn-primary";
         divStatPeriod.innerHTML = this.periodNum;
+
         this.divStatPeriodDisplay.append(divStatPeriod);
 
         divStatPeriod.addEventListener("click", this.displayStatsByPeriod.bind(this));
@@ -488,7 +488,7 @@ class Stats {
     }
 
     changeDisplay(){
-            this.divStatDbyP.className = "d-flex flex-row col-12 mt-2";
+            this.divStatDbyP.className = "d-flex flex-row col-12 mt-5";
             this.divStatRecord.className = "d-none";
     }
 

@@ -67,8 +67,6 @@ class Card {
         this.buttonYc.addEventListener("click", this.setYc.bind(this));
         this.buttonRc.addEventListener("click", this.setRc.bind(this));
 
-
-
     }
 
     displayModalYellow() {
@@ -170,9 +168,9 @@ class Card {
         let spanTime = document.createElement("span");
 
         if (card.time <= this.periodDuration) {
-            spanTime.textContent = card.time + "'";
+            spanTime.textContent = (card.time + ( (this.period-1) * this.periodDuration)) + "'";
         } else {
-            spanTime.textContent = this.periodDuration + "'+" + (card.time - this.periodDuration);
+            spanTime.textContent = (this.periodDuration * this.period) + "'+" + (card.time - this.periodDuration);
         }
 
         this.divCard.append(divCardColor);
