@@ -217,7 +217,7 @@ class ControllerBack {
 
     public function DeleteUser($id){
         $this->userManager->DeleteUser($id);
-        $notice = "L'utilisateur' a bien été supprimé";
+        $notice = "L'utilisateur a bien été supprimé";
         $this->UsersList($notice);
     }
 
@@ -237,14 +237,14 @@ class ControllerBack {
         ];
 
         $this->userManager->UpdateUser($user);
-        $notice = "L'utilisateur' a bien été supprimé";
+        $notice = "L'utilisateur a bien été modifié";
         $this->UsersList($notice);
     }
 
 
 
     // OPPONENT
-    public function OppoList($notice){
+    public function OppoList($notice = null){
         $oppoListObj = $this->opponentManager->getOppoList();
 
         if ($notice == null){
@@ -288,7 +288,7 @@ class ControllerBack {
         $result = \Cloudinary\Uploader::upload($logo, array("folder" => "OpponentObject/") );
 
         $oppo = [
-            'oppoid' => $id,
+            'opponentid' => $id,
             'name' => $name,
             'logo' => $result['url']
         ];

@@ -108,7 +108,7 @@ Class PlayerObject {
 	    $phoneLength = strlen((string)$phonenum);
 
 	    if ( !is_numeric($phonenum) || $phoneLength != 10 ){
-	        trigger_error("Le numéro de téléphone saisie est incorrect", E_USER_NOTICE);
+	        trigger_error("Le numéro de téléphone est incorrect", E_USER_NOTICE);
         }
 		$this->phonenum = $phonenum;
     }
@@ -118,7 +118,7 @@ Class PlayerObject {
             $this->mail = $mail;
         }
         else {
-            trigger_error("Le format du mail saisi est incorrect", E_USER_NOTICE);
+            trigger_error("Le format du mail est incorrect", E_USER_NOTICE);
         }
     }
     

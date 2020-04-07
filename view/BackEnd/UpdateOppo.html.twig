@@ -8,7 +8,7 @@
 
     {% if session.user_status >= 4 %}
         <div id="updateoppo_form" class="d-flex flex-column justify-content-center align-items-center">
-            <form id="updateoppo-form" class="col-lg-6" action="/MyTeamStats/UpdateOppo/{{ oppo.oppoid }}"  method="post" enctype="multipart/form-data">
+            <form id="updateoppo-form" class="col-lg-6" action="/MyTeamStats/UpdateOppo/{{ oppo.opponentid }}"  method="post" enctype="multipart/form-data">
                 <legend>Créér un adversaire</legend>
                 <div class="form-group">
                     <label for="text">Nom</label>

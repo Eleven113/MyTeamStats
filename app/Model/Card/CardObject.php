@@ -67,76 +67,87 @@ class CardObject implements \JsonSerializable
 
     /**
      * @param mixed $cardid
+     * @throws
      */
     public function setCardid($cardid)
     {
         $cardid = (int) $cardid;
-
-        if ( $cardid >= 0) {
-            $this->cardid = $cardid;
+        if ( !is_int($cardid)){
+            throw new \Exception("L'id du carton doit être un nombre entier");
         }
+        $this->cardid = $cardid;
     }
 
     /**
      * @param mixed $playerid
+     * @throws
      */
     public function setPlayerid($playerid)
     {
         $playerid = (int) $playerid;
-
-        if ( $playerid >= 0 ){
-            $this->playerid = $playerid;
+        if ( !is_int($playerid)){
+            throw new \Exception("L'id du joueur doit être un nombre entier");
         }
+        $this->playerid = $playerid;
 
     }
 
     /**
      * @param mixed $matchid
+     * @throws
      */
     public function setMatchid($matchid)
     {
         $matchid = (int) $matchid;
-
-        if ( $matchid >= 0 ){
-            $this->matchid = $matchid;
+        if ( !is_int($matchid)){
+            throw new \Exception("L'id du match doit être un nombre entier");
         }
+        $this->matchid = $matchid;
+
     }
 
     /**
      * @param mixed $periodnum
+     * @throws
      */
     public function setPeriodnum($periodnum)
     {
         $periodnum = (int) $periodnum;
-
         if ($periodnum >= 0 && $periodnum <= 4){
             $this->periodnum = $periodnum;
+        }
+        else {
+            throw new \Exception("Le numéro de période est incorrecte");
         }
     }
 
 
     /**
      * @param mixed $color
+     * @throws
      */
     public function setColor($color)
     {
         if ( $color == "rouge" || $color = "jaune"){
             $this->color = $color;
         }
+        else {
+            throw new \Exception("La couleur du carton est incorrecte");
+        }
 
     }
 
     /**
      * @param mixed $time
+     * @throws
      */
     public function setTime($time)
     {
         $time = (int) $time;
-
-        if ($time >= 0){
-            $this->time = $time;
+        if ( !is_int($time)){
+            throw new \Exception("Le temps doit être un nombre entier");
         }
-
+        $this->time = $time;
     }
 
 

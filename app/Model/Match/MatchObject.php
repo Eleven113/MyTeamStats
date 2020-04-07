@@ -145,6 +145,7 @@ class MatchObject
 
     /**
      * @param mixed $gameid
+     * @throws
      */
     public function setGameid($gameid)
     {
@@ -183,9 +184,14 @@ class MatchObject
 
     /**
      * @param mixed $type
+     * @throws
      */
     public function setType($type)
     {
+        $values = ["Championnat", "Coupe", "Futsal", "Tournoi", "Amical"];
+        if (!in_array($type, $values)){
+            throw new \Exception("Le type de match est incorrect");
+        }
         $this->type = $type;
     }
 

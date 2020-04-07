@@ -13,7 +13,7 @@ class CompositionManager
     }
 
     public function getComposition($id){
-        $composition = $this->db->prepare('SELECT PLAY.PLAYERID, PLAY.GAMEID, PLAYER.LASTNAME, PLAYER.FIRSTNAME, PLAYER.ACTIVELICENCE, PLAYER.CATEGORY, PLAYER.MAIL FROM PLAY, PLAYER WHERE PLAY.GAMEID = :gameid AND PLAY.PLAYERID = PLAYER.PLAYERID');
+        $composition = $this->db->prepare('SELECT PLAY.PLAYERID, PLAY.GAMEID, PLAYER.LASTNAME, PLAYER.FIRSTNAME, PLAYER.ACTIVELICENCE, PLAYER.MAIL FROM PLAY, PLAYER WHERE PLAY.GAMEID = :gameid AND PLAY.PLAYERID = PLAYER.PLAYERID');
         $composition->bindValue(':gameid', $id);
         $composition->execute();
         $playerList = new \ArrayObject();

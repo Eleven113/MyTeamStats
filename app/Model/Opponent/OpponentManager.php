@@ -55,7 +55,7 @@ class OpponentManager
         $query = $this->db->prepare('UPDATE OPPONENT SET NAME = :name, LOGO = :logo WHERE OPPONENTID = :oppoid');
         $query->bindValue(':name', $oppo->getName());
         $query->bindValue(':logo', $oppo->getLogo());
-        $query->bindValue(':oppoid', $oppo->getOppoid());
+        $query->bindValue(':oppoid', $oppo->getOpponentid());
         $query->execute();
 
     }

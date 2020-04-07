@@ -74,28 +74,31 @@ class UserObject implements \JsonSerializable
 
     /**
      * @param mixed $firstname
+     * @throws
      */
     public function setFirstname($firstname)
     {
         if ( !is_string($firstname)){
-            trigger_error("Le prénom de l'utilisateur doit contenir plusieurs caractères", E_USER_NOTICE);
+            throw new \Exception("Le prénom de l'utilisateur doit contenir plusieurs caractères");
         }
         $this->firstname = $firstname;
     }
 
     /**
      * @param mixed $lastname
+     * @throws
      */
     public function setLastname($lastname)
     {
         if ( !is_string($lastname)){
-            trigger_error("Le nom de l'utilisateur doit contenir plusieurs caractères", E_USER_NOTICE);
+            throw new \Exception("Le nom de l'utilisateur doit contenir plusieurs caractères");
         }
         $this->lastname = $lastname;
     }
 
     /**
      * @param mixed $mail
+     * @throws
      */
     public function setMail($mail)
     {
@@ -103,7 +106,7 @@ class UserObject implements \JsonSerializable
             $this->mail = $mail;
         }
         else {
-            trigger_error("Le format du mail saisi est incorrect", E_USER_NOTICE);
+            throw new \Exception("Le format du mail est incorrect");
         }
     }
 
@@ -117,17 +120,27 @@ class UserObject implements \JsonSerializable
 
     /**
      * @param mixed $status
+     * @throws
      */
     public function setStatus($status)
     {
+        $status = (int) $status;
+        if ( !is_int($status)){
+            throw new \Exception("Le status de l'utilisateur doit être un nombre entier");
+        }
         $this->status = $status;
     }
 
     /**
      * @param mixed $userid
+     * @throws
      */
     public function setUserid($userid)
     {
+        $userid = (int) $userid;
+        if ( !is_int($userid)){
+            throw new \Exception("L'id de l'utilisateur doit être un nombre entier");
+        }
         $this->userid = $userid;
     }
 

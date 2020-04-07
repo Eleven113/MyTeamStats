@@ -38,28 +38,38 @@ class OpponentObject
 
     /**
      * @param mixed $logo
+     * @throws
      */
     public function setLogo($logo)
     {
+        if ( !is_string($logo)){
+            throw new  \Exception("L'url du logo doit contenir plusieurs caractères");
+        }
         $this->logo = $logo;
     }
 
     /**
      * @param mixed $name
+     * @throws
      */
     public function setName($name)
     {
         if ( !is_string($name)){
-            trigger_error("Le nom de l'adversaire doit contenir plusieurs caractères", E_USER_NOTICE);
+            throw new  \Exception("Le nom de l'adversaire doit contenir plusieurs caractères");
         }
         $this->name = $name;
     }
 
     /**
      * @param mixed $opponentid
+     * @throws
      */
     public function setOpponentid($opponentid)
     {
+        $opponentid = (int) $opponentid;
+        if ( !is_int($opponentid)){
+            throw new \Exception("L'id de l'adversaire doit être un nombre entier");
+        }
         $this->opponentid = $opponentid;
     }
 
