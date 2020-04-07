@@ -16,7 +16,6 @@ class PasswordCheck {
     }
 
     checkPassword(){
-        console.log(this.form1.value, this.form2.value);
         if (this.form1.value === this.form2.value){
             this.form1.className = "form-control form-control-success";
             this.form2.className = "form-control form-control-success";

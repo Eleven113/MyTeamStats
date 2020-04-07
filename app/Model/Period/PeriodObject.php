@@ -149,6 +149,9 @@ class PeriodObject implements \JsonSerializable
      */
     public function setPeriodnum($periodnum)
     {
+        if ( !is_int($periodnum)){
+            trigger_error("Le numéro de période doit être un nombre entier", E_USER_NOTICE);
+        }
         $this->periodnum = $periodnum;
     }
 
@@ -157,6 +160,9 @@ class PeriodObject implements \JsonSerializable
      */
     public function setHomescore($homescore)
     {
+        if ( !is_int($homescore)){
+            trigger_error("Le score doit être un nombre entier", E_USER_NOTICE);
+        }
         $this->homescore = $homescore;
     }
 
@@ -165,6 +171,9 @@ class PeriodObject implements \JsonSerializable
      */
     public function setAwayscore($awayscore)
     {
+        if ( !is_int($awayscore)){
+            trigger_error("Le score doit être un nombre entier", E_USER_NOTICE);
+        }
         $this->awayscore = $awayscore;
     }
 
@@ -173,6 +182,9 @@ class PeriodObject implements \JsonSerializable
      */
     public function setMissshot($missshot)
     {
+        if ( !is_int($missshot)){
+            trigger_error("Tirs ratés doit être un nombre entier", E_USER_NOTICE);
+        }
         $this->missshot = $missshot;
     }
 
@@ -181,6 +193,9 @@ class PeriodObject implements \JsonSerializable
      */
     public function setShotontarget($shotontarget)
     {
+        if ( !is_int($shotontarget)){
+            trigger_error("Tirs réussis doit être un nombre entier", E_USER_NOTICE);
+        }
         $this->shotontarget = $shotontarget;
     }
 
@@ -189,6 +204,9 @@ class PeriodObject implements \JsonSerializable
      */
     public function setMisspass($misspass)
     {
+        if ( !is_int($misspass)){
+            trigger_error("Passes ratées doit être un nombre entier", E_USER_NOTICE);
+        }
         $this->misspass = $misspass;
     }
 
@@ -197,6 +215,9 @@ class PeriodObject implements \JsonSerializable
      */
     public function setSuccesspass($successpass)
     {
+        if ( !is_int($successpass)){
+            trigger_error("Passes réussies doit être un nombre entier", E_USER_NOTICE);
+        }
         $this->successpass = $successpass;
     }
 
@@ -205,6 +226,9 @@ class PeriodObject implements \JsonSerializable
      */
     public function setFoul($foul)
     {
+        if ( !is_int($foul)){
+            trigger_error("Fautes doit être un nombre entier", E_USER_NOTICE);
+        }
         $this->foul = $foul;
     }
 
@@ -213,6 +237,9 @@ class PeriodObject implements \JsonSerializable
      */
     public function setCornerkick($cornerkick)
     {
+        if ( !is_int($cornerkick)){
+            trigger_error("Corners doit être un nombre entier", E_USER_NOTICE);
+        }
         $this->cornerkick = $cornerkick;
     }
 
@@ -221,6 +248,9 @@ class PeriodObject implements \JsonSerializable
      */
     public function setLostball($lostball)
     {
+        if ( !is_int($lostball)){
+            trigger_error("Balles perdues doit être un nombre entier", E_USER_NOTICE);
+        }
         $this->lostball = $lostball;
     }
 
@@ -229,6 +259,9 @@ class PeriodObject implements \JsonSerializable
      */
     public function setWinball($winball)
     {
+        if ( !is_int($winball)){
+            trigger_error("Balles gagnées doit être un nombre entier", E_USER_NOTICE);
+        }
         $this->winball = $winball;
     }
 
@@ -237,6 +270,9 @@ class PeriodObject implements \JsonSerializable
      */
     public function setOffside($offside)
     {
+        if ( !is_int($offside)){
+            trigger_error("Hors jeu doit être un nombre entier", E_USER_NOTICE);
+        }
         $this->offside = $offside;
     }
 
@@ -245,6 +281,9 @@ class PeriodObject implements \JsonSerializable
      */
     public function setFreekick($freekick)
     {
+        if ( !is_int($freekick)){
+            trigger_error("Coups francs doit être un nombre entier", E_USER_NOTICE);
+        }
         $this->freekick = $freekick;
     }
 

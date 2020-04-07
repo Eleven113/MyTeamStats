@@ -2,6 +2,8 @@
 
 namespace MyTeamStats\Model\Match;
 
+use mysql_xdevapi\Exception;
+
 class MatchObject
 {
     private $gameid;
@@ -101,9 +103,14 @@ class MatchObject
 
     /**
      * @param mixed $atHome
+     * @throws
      */
     public function setAtHome($atHome)
     {
+        $atHome = (int) $atHome;
+        if ($atHome != 0 && $atHome != 1){
+            throw new \Exception("Le statut du match est incorrect");
+        }
         $this->atHome = $atHome;
     }
 
@@ -120,18 +127,19 @@ class MatchObject
      */
     public function setDate($date)
     {
-        if (!checkdate($date)){
-            trigger_error("Le format de la date est incorrect", E_USER_NOTICE);
-        }
-
         $this->date = $date;
     }
 
     /**
      * @param mixed $fieldid
+     * @throws
      */
     public function setFieldid($fieldid)
     {
+        $fieldid = (int) $fieldid;
+        if ( !is_int($fieldid)){
+            throw new \Exception("L'id du terrain doit être un nombre entier");
+        }
         $this->fieldid = $fieldid;
     }
 
@@ -140,25 +148,36 @@ class MatchObject
      */
     public function setGameid($gameid)
     {
+        $gameid = (int) $gameid;
+        if ( !is_int($gameid)){
+            throw new Exception("L'id du match doit être un nombre entier");
+        }
         $this->gameid = $gameid;
     }
 
     /**
      * @param mixed $periodduration
+     * @throws
      */
     public function setPeriodduration($periodduration)
     {
+        $periodduration = (int) $periodduration;
         if ( !is_int($periodduration)){
-            trigger_error("La durée du match doit être un nombre", E_USER_NOTICE);
+            throw new \Exception("La durée du match doit être un nombre entier");
         }
         $this->periodduration = $periodduration;
     }
 
     /**
      * @param mixed $periodnum
+     * @throws
      */
     public function setPeriodnum($periodnum)
     {
+        $periodnum = (int) $periodnum;
+        if ( !is_int($periodnum)){
+            throw new \Exception("La durée du match doit être un nombre entier");
+        }
         $this->periodnum = $periodnum;
     }
 
@@ -172,17 +191,27 @@ class MatchObject
 
     /**
      * @param mixed $status
+     * @throws
      */
     public function setStatus($status)
     {
+        $status = (int) $status;
+        if ($status != 0 && $status != 1){
+            throw new \Exception("Le statut du match est incorrect");
+        }
         $this->status = $status;
     }
 
     /**
-     * @param mixed $oppoid
+     * @param mixed $opponentid
+     * @throws
      */
     public function setOpponentid($opponentid)
     {
+        $opponentid = (int) $opponentid;
+        if ( !is_int($opponentid)){
+            throw new \Exception("L'id de l'adversaire doit être un nombre entier");
+        }
         $this->opponentid = $opponentid;
     }
 

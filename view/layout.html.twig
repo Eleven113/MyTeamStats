@@ -26,6 +26,14 @@
         </header>
 
         <div id="content">
+
+            {% if notice is defined %}
+            <div class="notice p-4 mt-2 border border-primary rounded-lg myborder">
+                <div class="notice_close"><i class="fas fa-times"></i></div>
+                <div class="notice_txt">{{ notice }}</div>
+            </div>
+            {% endif %}
+
             {% block content %}{% endblock %}
         </div>    
         
@@ -34,6 +42,9 @@
     </div>    
     <script src="/MyTeamStats/public/js/script.js"></script>
     <script src="/MyTeamStats/public/js/config.js"></script>
+    {% if notice is defined %}
+        <script src="/MyTeamStats/public/js/NoticeManagement.js"></script>
+    {% endif %}
     {% block script %}{% endblock %}
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

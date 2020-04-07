@@ -14,7 +14,6 @@ Class PlayerObject {
     private $phonenum;
     private $mail;
     private $photo;
-    private $category;
     private $poste;
 
 
@@ -59,10 +58,6 @@ Class PlayerObject {
     public function getPhoto() {
 		return $this->photo;
 	}
-
-    public function getCategory() {
-        return $this->category;
-    }
 
     public function getPoste() {
         return $this->poste;
@@ -130,10 +125,6 @@ Class PlayerObject {
     public function setPhoto($photo) {
 		$this->photo = $photo;
 	}
-
-    public function setCategory($category) {
-        $this->category = $category;
-    }
 
     public function setPoste($poste) {
         $this->poste = $poste;

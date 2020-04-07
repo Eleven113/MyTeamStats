@@ -21,8 +21,8 @@ class PlayerManager
     {
 
         $player = new PlayerObject($player);
-        $q = $this->db->prepare('INSERT INTO PLAYER (LICENCE, LASTNAME, FIRSTNAME, ADDRESS, PHONENUM, MAIL, BIRTHDATE, ACTIVELICENCE, PHOTO, CATEGORY, POSTE)
-        VALUES (:licence, :lastname, :firstname, :address, :phonenum, :mail, :birthdate, :activelicence, :photo, :category, :poste) ');
+        $q = $this->db->prepare('INSERT INTO PLAYER (LICENCE, LASTNAME, FIRSTNAME, ADDRESS, PHONENUM, MAIL, BIRTHDATE, ACTIVELICENCE, PHOTO, POSTE)
+        VALUES (:licence, :lastname, :firstname, :address, :phonenum, :mail, :birthdate, :activelicence, :photo, :poste) ');
 
         $q->bindValue(':licence', $player->getLicence());
         $q->bindValue(':lastname', $player->getLastname());
@@ -33,7 +33,6 @@ class PlayerManager
         $q->bindValue(':birthdate', $player->getBirthdate());
         $q->bindValue(':activelicence', $player->getActivelicence());
         $q->bindValue(':photo', $player->getPhoto());
-        $q->bindValue(':category', $player->getCategory());
         $q->bindValue(':poste', $player->getPoste());
 
         $q->execute();
@@ -42,7 +41,7 @@ class PlayerManager
 
     public function getPlayersList()
     {
-        $playersList = $this->db->query('SELECT PLAYERID, LICENCE, LASTNAME, FIRSTNAME, ADDRESS, PHONENUM, MAIL, DATE_FORMAT(BIRTHDATE,\' %d-%m-%Y\') AS BIRTHDATE, ACTIVELICENCE, PHOTO, CATEGORY, POSTE FROM PLAYER');
+        $playersList = $this->db->query('SELECT PLAYERID, LICENCE, LASTNAME, FIRSTNAME, ADDRESS, PHONENUM, MAIL, DATE_FORMAT(BIRTHDATE,\' %d-%m-%Y\') AS BIRTHDATE, ACTIVELICENCE, PHOTO, POSTE FROM PLAYER');
         $playersListObj = new \ArrayObject();
         while ($playerArray = $playersList->fetch(\PDO::FETCH_ASSOC)){
                 $player = new PlayerObject($playerArray);
@@ -54,7 +53,7 @@ class PlayerManager
 
     public function getPlayer($id)
     {
-        $query = $this->db->prepare('SELECT PLAYERID, LICENCE, LASTNAME, FIRSTNAME, ADDRESS, PHONENUM, MAIL, DATE_FORMAT(BIRTHDATE,\' %d-%m-%Y\') AS BIRTHDATE, ACTIVELICENCE, PHOTO, CATEGORY, POSTE FROM PLAYER WHERE PLAYERID = :playerid');
+        $query = $this->db->prepare('SELECT PLAYERID, LICENCE, LASTNAME, FIRSTNAME, ADDRESS, PHONENUM, MAIL, DATE_FORMAT(BIRTHDATE,\' %d-%m-%Y\') AS BIRTHDATE, ACTIVELICENCE, PHOTO, POSTE FROM PLAYER WHERE PLAYERID = :playerid');
         $query->bindValue(':playerid', $id);
         $query->execute();
         $player = new PlayerObject($query->fetch(\PDO::FETCH_ASSOC));
@@ -74,7 +73,7 @@ class PlayerManager
     {
 
         $player = new PlayerObject($player);
-        $q = $this->db->prepare('UPDATE PLAYER SET LICENCE = :licence, LASTNAME = :lastname, FIRSTNAME = :firstname, ADDRESS = :address, PHONENUM = :phonenum, MAIL = :mail, BIRTHDATE = :birthdate, ACTIVELICENCE = :activelicence, PHOTO = :photo, CATEGORY = :category, POSTE = :poste WHERE PLAYERID = :playerid');
+        $q = $this->db->prepare('UPDATE PLAYER SET LICENCE = :licence, LASTNAME = :lastname, FIRSTNAME = :firstname, ADDRESS = :address, PHONENUM = :phonenum, MAIL = :mail, BIRTHDATE = :birthdate, ACTIVELICENCE = :activelicence, PHOTO = :photo, POSTE = :poste WHERE PLAYERID = :playerid');
 
         $q->bindValue(':playerid', $player->getPlayerid());
         $q->bindValue(':licence', $player->getLicence());
@@ -86,7 +85,6 @@ class PlayerManager
         $q->bindValue(':birthdate', $player->getBirthdate());
         $q->bindValue(':activelicence', $player->getActivelicence());
         $q->bindValue(':photo', $player->getPhoto());
-        $q->bindValue(':category', $player->getCategory());
         $q->bindValue(':poste', $player->getPoste());
 
         $q->execute();

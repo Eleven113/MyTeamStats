@@ -29,11 +29,34 @@ class ControllerBack {
         $this->cardManager = $cardManager;
     }
 
+
+    // PLAYER
+    public function PlayersList($notice){
+        $playersListObj = $this->playerManager->getPlayersList();
+
+        if (date('n') >= 8){
+            $year = date('Y') + 1;
+        }
+        else {
+            $year = date('Y');
+        }
+
+        echo $this->twig->render('/FrontEnd/PlayersList.html.twig',
+            [
+                'playerListObj' => $playersListObj,
+                'sessionUser' => $_SESSION['user_status'],
+                'link' => $this->link,
+                'year' => $year,
+                'notice' => $notice
+            ]);
+
+    }
+
     public function CreatePlayer(){
         echo $this->twig->render('/BackEnd/CreatePlayer.html.twig');
     }
 
-    public function AddPlayer($lastname, $firstname, $licencenum, $activelicence, $birthdate, $category, $poste, $address, $phonenum, $mail, $photo){
+    public function AddPlayer($lastname, $firstname, $licencenum, $activelicence, $birthdate, $poste, $address, $phonenum, $mail, $photo){
         $photo = $photo['tmp_name'];
         $result = \Cloudinary\Uploader::upload($photo, array("folder" => "Players/") );
 
@@ -43,7 +66,6 @@ class ControllerBack {
             'licence' => $licencenum,
             'activelicence' => $activelicence,
             'birthdate' => $birthdate,
-            'category' => $category,
             'photo' => $result['url'],
             'poste' => $poste,
             'address' => $address,
@@ -53,16 +75,8 @@ class ControllerBack {
 
         $this->playerManager->AddPlayer($player);
 
-
-        header ('Location: http://www.thibaut-minard.fr/MyTeamStats/PlayersList');
-        exit();
-    }
-
-    public function DeletePlayer($id){
-        $this->playerManager->DeletePlayer($id);
-
-        header ('Location: http://www.thibaut-minard.fr/MyTeamStats/PlayersList');
-        exit();
+        $notice = "Le joueur a bien été créé";
+        $this->PlayersList($notice);
     }
 
     public function ModifyPlayer($id){
@@ -91,11 +105,21 @@ class ControllerBack {
 
         $this->playerManager->UpdatePlayer($player);
 
+        $notice = "Le joueur a bien été modifié";
+        $this->PlayersList($notice);
 
-        header ('Location: http://www.thibaut-minard.fr/MyTeamStats/PlayersList');
-        exit();
     }
 
+    public function DeletePlayer($id){
+        $this->playerManager->DeletePlayer($id);
+        $notice = "Le joueur a bien été supprimé";
+        $this->PlayersList($notice);
+    }
+
+
+
+
+    // MATCH
     public function CreateMatch(){
         $oppoListObj = $this->opponentManager->getOppoList();
         $fieldsListObj = $this->fieldManager->getFieldsList();
@@ -103,29 +127,98 @@ class ControllerBack {
         echo $this->twig->render('/BackEnd/CreateMatch.html.twig',
             [
                 'oppoListObj' => $oppoListObj,
-                'fieldsListObj' => $fieldsListObj
+                'fieldsListObj' => $fieldsListObj,
             ]);
+    }
+
+    public function AddMatch($date, $opponent, $athome, $fieldid, $category, $type, $periodnum, $periodduration){
+        $match = [
+            'date' => $date,
+            'opponentid' => $opponent,
+            'athome' => $athome,
+            'fieldid' => $fieldid,
+            'category' => $category,
+            'type' => $type,
+            'periodnum' => $periodnum,
+            'periodduration' => $periodduration,
+            'status' => 1
+        ];
+
+        $this->matchManager->AddMatch($match);
+        $notice = "Le match a bien été créé";
+        $this->MatchsList($notice);
+
+    }
+
+    public function DeleteMatch($id){
+        $this->matchManager->DeleteMatch($id);
+
+        $notice = "Le match a bien été supprimé";
+        $this->MatchsList($notice);
     }
 
     public function MatchStat(){
         echo $this->twig->render('/BackEnd/MatchStats.html.twig');
     }
 
+    public function MatchsList($notice){
+        $matchs = $this->matchManager->getMatchsList();
+
+        echo $this->twig->render('/FrontEnd/MatchsList.html.twig', [
+            'matchs' => $matchs,
+            'notice' => $notice
+        ]);
+    }
+
+    public function MatchData(){
+
+        $game = $_POST['game'];
+        $this->matchManager->UpdateStatus($game);
+
+        for ( $i = 0; $i < count($_POST['goals']); $i++){
+            $goal = $_POST['goals'][$i];
+            $this->goalManager->AddGoal($goal);
+        }
+
+        for ( $i = 0; $i < count($_POST['stats']); $i++){
+            $period = $_POST['stats'][$i];
+            $this->periodManager->AddPeriod($period);
+        }
+
+        for ( $i = 0; $i < count($_POST['cards']); $i++){
+            $card = $_POST['cards'][$i];
+            $this->cardManager->AddCard($card);
+        }
+    }
+
+
+
+
+    // ADMIN
     public function Admin(){
         echo $this->twig->render('/BackEnd/Admin.html.twig');
     }
 
-    public function UsersList(){
+
+
+    // USER
+    public function UsersList($notice = null){
         $usersListObj = $this->userManager->getUsersList();
 
-        echo $this->twig->render('/BackEnd/UsersList.html.twig', ['usersListObj' => $usersListObj]);
+        if ($notice == null){
+            echo $this->twig->render('/BackEnd/UsersList.html.twig', ['usersListObj' => $usersListObj]);
+        }
+        else {
+            echo $this->twig->render('/BackEnd/UsersList.html.twig', [
+                'usersListObj' => $usersListObj,
+                'notice' => $notice]);
+        }
     }
 
     public function DeleteUser($id){
         $this->userManager->DeleteUser($id);
-
-        header ('Location: http://www.thibaut-minard.fr/MyTeamStats/UsersList');
-        exit();
+        $notice = "L'utilisateur' a bien été supprimé";
+        $this->UsersList($notice);
     }
 
     public function ModifyUser($id){
@@ -144,9 +237,26 @@ class ControllerBack {
         ];
 
         $this->userManager->UpdateUser($user);
+        $notice = "L'utilisateur' a bien été supprimé";
+        $this->UsersList($notice);
+    }
 
-        header ('Location: http://www.thibaut-minard.fr/MyTeamStats/UsersList');
-        exit();
+
+
+    // OPPONENT
+    public function OppoList($notice){
+        $oppoListObj = $this->opponentManager->getOppoList();
+
+        if ($notice == null){
+            echo $this->twig->render('/BackEnd/OppoList.html.twig', [ 'oppoListObj' => $oppoListObj]);
+        }
+        else {
+            echo $this->twig->render('/BackEnd/OppoList.html.twig', [
+                'oppoListObj' => $oppoListObj,
+                'notice' => $notice
+            ]);
+        }
+
     }
 
     public function CreateOppo(){
@@ -163,15 +273,8 @@ class ControllerBack {
         ];
 
         $this->opponentManager->AddOppo($oppo);
-
-        header ('Location: http://www.thibaut-minard.fr/MyTeamStats/OppoList');
-        exit();
-    }
-
-    public function OppoList(){
-        $oppoListObj = $this->opponentManager->getOppoList();
-
-        echo $this->twig->render('/BackEnd/OppoList.html.twig', [ 'oppoListObj' => $oppoListObj]);
+        $notice = "L'adversaire a bien été créé";
+        $this->OppoList($notice);
     }
 
     public function ModifyOppo($id){
@@ -192,47 +295,40 @@ class ControllerBack {
 
         $this->opponentManager->UpdateOppo($oppo);
 
-        header ('Location: http://www.thibaut-minard.fr/MyTeamStats/OppoList');
-        exit();
+        $notice = "L'adversaire a bien été modifié";
+        $this->OppoList($notice);
 
     }
 
     public function DeleteOppo($id){
         $this->opponentManager->DeleteOppo($id);
 
-        header ('Location: http://www.thibaut-minard.fr/MyTeamStats/OppoList');
-        exit();
+        $notice = "L'adversaire a bien été supprimé";
+        $this->OppoList($notice);
     }
 
-    public function AddMatch($date, $opponent, $athome, $fieldid, $category, $type, $periodnum, $periodduration){
-        $match = [
-            'date' => $date,
-            'opponentid' => $opponent,
-            'athome' => $athome,
-            'fieldid' => $fieldid,
-            'category' => $category,
-            'type' => $type,
-            'periodnum' => $periodnum,
-            'periodduration' => $periodduration,
-            'status' => 1
-        ];
 
-        $this->matchManager->AddMatch($match);
 
-        header ('Location: http://www.thibaut-minard.fr/MyTeamStats/MatchsList');
-        exit();
 
-    }
-
+    // FIELD
     public function CreateField(){
 
         echo $this->twig->render('/BackEnd/CreateField.html.twig');
     }
 
-    public function FieldsList(){
+    public function FieldsList($notice = null){
         $fieldsListObj = $this->fieldManager->getFieldsList();
 
-        echo $this->twig->render('/BackEnd/FieldsList.html.twig', [ 'fieldListObj' => $fieldsListObj]);
+        if ($notice == null){
+            echo $this->twig->render('/BackEnd/FieldsList.html.twig', [ 'fieldListObj' => $fieldsListObj]);
+        }
+        else {
+            echo $this->twig->render('/BackEnd/FieldsList.html.twig', [
+                'fieldListObj' => $fieldsListObj,
+                'notice' => $notice
+            ]);
+        }
+
 
     }
 
@@ -247,8 +343,8 @@ class ControllerBack {
 
         $this->fieldManager->AddField($field);
 
-        header ('Location: http://www.thibaut-minard.fr/MyTeamStats/FieldsList');
-        exit();
+        $notice = "Le terrain a bien été créé";
+        $this->FieldsList($notice);
     }
 
     public function ModifyField($id){
@@ -270,37 +366,21 @@ class ControllerBack {
 
         $this->fieldManager->UpdateField($field);
 
-        header('Location: http://www.thibaut-minard.fr/MyTeamStats/FieldsList');
-        exit();
+        $notice = "Le terrain a bien été modifié";
+        $this->FieldsList($notice);
     }
 
     public function DeleteField($id){
         $this->fieldManager->DeleteField($id);
 
-        header('Location: http://www.thibaut-minard.fr/MyTeamStats/FieldsList');
-        exit();
+        $notice = "Le terrain a bien été supprimé";
+        $this->FieldsList($notice);
     }
 
-    public function ModifyMatch($id){
-        $match = $this->matchManager->getMatch($id);
-        $oppoListObj = $this->opponentManager->getOppoList();
-        $fieldsListObj = $this->fieldManager->getFieldsList();
 
-        echo $this->twig->render('/BackEnd/CreateMatch.html.twig',
-            [
-                'match' => $match,
-                'oppoListObj' => $oppoListObj,
-                'fieldsListObj' => $fieldsListObj
-            ]);
-    }
 
-    public function DeleteMatch($id){
-        $this->matchManager->DeleteMatch($id);
 
-        header('Location: http://www.thibaut-minard.fr/MyTeamStats/MatchsList');
-        exit();
-    }
-
+    // COMPOSITION
     public function Composition($id){
         $playersList = $this->compositionManager->getComposition($id);
 
@@ -361,7 +441,7 @@ class ControllerBack {
     public function DeleteComposition($id){
         $this->compositionManager->DeleteComposition($id);
 
-        echo $this->twig->render('/BackEnd/CompositionObject.html.twig', [ 'id' => $id] );
+        echo $this->twig->render('/BackEnd/Composition.html.twig', [ 'id' => $id] );
     }
 
     public function MatchStats($id){
@@ -375,34 +455,14 @@ class ControllerBack {
         ]);
     }
 
-    public function MatchData(){
-
-       $game = $_POST['game'];
-       $this->matchManager->UpdateStatus($game);
-
-        for ( $i = 0; $i < count($_POST['goals']); $i++){
-            $goal = $_POST['goals'][$i];
-            $this->goalManager->AddGoal($goal);
-        }
-
-        for ( $i = 0; $i < count($_POST['stats']); $i++){
-            $period = $_POST['stats'][$i];
-            $this->periodManager->AddPeriod($period);
-        }
-
-        for ( $i = 0; $i < count($_POST['cards']); $i++){
-            $card = $_POST['cards'][$i];
-            $this->cardManager->AddCard($card);
-        }
-    }
-
     public function SendComposition($id){
         $message = $_POST['text'];
         $match = $this->matchManager->getMatch($id);
         $this->compositionManager->SendComposition($id, $match, $message);
 
-        header('Location: http://www.thibaut-minard.fr/MyTeamStats/MatchsList');
-        exit();
+        $notice = "Les convocations ont bien été envoyées";
+        echo $this->twig->render('/FrontEnd/MatchsList.html.twig', ['notice' => $notice]);
     }
+
 }
 

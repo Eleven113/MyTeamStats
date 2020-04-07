@@ -293,3 +293,19 @@ h5{
 caption{
     caption-side: top;
 }
+
+.notice{
+    width: 100%;
+    color: #007bff;
+    font-size: 1.3em;
+}
+
+.notice_close{
+    position: absolute;
+    right: 3%;
+}
+
+.notice_txt{
+    text-align: center;
+
+}

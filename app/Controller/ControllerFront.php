@@ -48,8 +48,9 @@ Class ControllerFront {
                 'playerListObj' => $playersListObj,
                 'sessionUser' => $_SESSION['user_status'],
                 'link' => $this->link,
-                'year' => $year
+                'year' => $year,
             ]);
+
     }
 
     public function Login(){
@@ -72,21 +73,27 @@ Class ControllerFront {
 
         $mailsList = json_encode($mailsArray);
 
-        echo $this->twig->render('/FrontEnd/CreateUser.html.twig', [ 'mails' => $mailsList]);
+        echo $this->twig->render('/FrontEnd/CreateUser.html.twig', ['mails' => $mailsList]);
     }
 
-    public function AddUser($lastname, $firstname, $mail, $pwd){
-        $h_pwd = password_hash($pwd, PASSWORD_DEFAULT);
-        $user = [
-            'lastname' => $lastname,
-            'firstname' => $firstname,
-            'mail' => $mail,
-            'password' => $h_pwd
-        ];
+    public function AddUser($lastname, $firstname, $mail, $pwd1, $pwd2){
+        if ( $pwd1 == $pwd2){
+            $h_pwd = password_hash($pwd1, PASSWORD_DEFAULT);
+            $user = [
+                'lastname' => $lastname,
+                'firstname' => $firstname,
+                'mail' => $mail,
+                'password' => $h_pwd
+            ];
 
-        $this->userManager->AddUser($user);
+            $this->userManager->AddUser($user);
+            $notice = "Votre compte a bien été créé. Vous pouvez vous connecter dès maintenant";
+            echo $this->twig->render('/FrontEnd/Login.html.twig', ['notice' => $notice]);
+        }
+        else {
+            throw new \Exception("Les mots des passe ne sont pas identiques");
+        }
 
-        echo $this->twig->render('/FrontEnd/Login.html.twig');
     }
 
     public function UserLogin($mail, $pwd){
@@ -94,14 +101,13 @@ Class ControllerFront {
         $login = $this->userManager->UserLogin($mail, $pwd);
 
         if ($login){
-            $_SESSION['notice'] = "Vous avez été correctement identifié";
+            $notice = "Vous avez été correctement identifié";
+            echo $this->twig->render('/FrontEnd/Homepage.html.twig', ['notice' => $notice]);
         }
         else {
-            $_SESSION['notice'] = "Adresse mail inconnue ou mot de passe incorrect";
+            $notice = "Adresse mail inconnue ou mot de passe incorrect";
+            echo $this->twig->render('/FrontEnd/Login.html.twig', ['notice' => $notice]);
         }
-
-        $this->twig->addGlobal('session', $_SESSION);
-        echo $this->twig->render('/FrontEnd/Homepage.html.twig', ['notice' => $_SESSION['notice']]);
 
     }
 
@@ -188,7 +194,6 @@ Class ControllerFront {
     }
 
     public function ModifyPassword($mail,$token){
-
         $return = $this->userManager->CheckToken($mail, $token);
 
         if ($return){
@@ -216,9 +221,12 @@ Class ControllerFront {
 
                 echo $this->twig->render('/FrontEnd/Home.html.twig');
             }
+            else {
+                throw new \Exception("Les mots de passe ne sont pas identiques");
+            }
         }
         else {
-            // On fera un truc
+            throw new \Exception("Vous n'êtes pas autorisé à effectuer cette action.");
         }
 
     }

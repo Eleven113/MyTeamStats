@@ -54,7 +54,6 @@
                         {% if ( session.user_status ) >= 3 and   ( match.status == 1 )  %}
                             <div><a href="/MyTeamStats/Composition/{{ match.gameid }}"><i class="fas fa-users"></i></a></div>
                             <div><a href="/MyTeamStats/MatchStats/{{ match.gameid }}"><i class="fas fa-clipboard-list"></i></a></div>
-                            <div><a href="/MyTeamStats/ModifyMatch/{{ match.gameid }}"><i class="fas fa-pen"></i></a></div>
                         {% endif %}
                         {% if session.user_status >= 4 %}
                             <div><a href="/MyTeamStats/DeleteMatch/{{ match.gameid }}"><i class="fas fa-trash-alt"></i></a></div>
