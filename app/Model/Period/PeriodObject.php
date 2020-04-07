@@ -138,151 +138,182 @@ class PeriodObject implements \JsonSerializable
 
     /**
      * @param mixed $matchid
+     * @throws
      */
     public function setMatchid($matchid)
     {
+        $matchid = (int) $matchid;
+        if ( !is_int($matchid)){
+            throw new \Exception("L'id du match doit être un nombre entier");
+        }
         $this->matchid = $matchid;
     }
 
     /**
      * @param mixed $periodnum
+     * @throws
      */
     public function setPeriodnum($periodnum)
     {
+        $periodnum = (int) $periodnum;
         if ( !is_int($periodnum)){
-            trigger_error("Le numéro de période doit être un nombre entier", E_USER_NOTICE);
+            throw new \Exception("Le numéro de période doit être un nombre entier");
         }
         $this->periodnum = $periodnum;
     }
 
     /**
      * @param mixed $homescore
+     * @throws
      */
     public function setHomescore($homescore)
     {
+        $homescore = (int) $homescore;
         if ( !is_int($homescore)){
-            trigger_error("Le score doit être un nombre entier", E_USER_NOTICE);
+            throw new \Exception("Le score doit être un nombre entier");
         }
         $this->homescore = $homescore;
     }
 
     /**
      * @param mixed $awayscore
+     * @throws
      */
     public function setAwayscore($awayscore)
     {
+        $awayscore = (int) $awayscore;
         if ( !is_int($awayscore)){
-            trigger_error("Le score doit être un nombre entier", E_USER_NOTICE);
+            throw new \Exception("Le score doit être un nombre entier");
         }
         $this->awayscore = $awayscore;
     }
 
     /**
      * @param mixed $missshot
+     * @throws
      */
     public function setMissshot($missshot)
     {
+        $missshot = (int) $missshot;
         if ( !is_int($missshot)){
-            trigger_error("Tirs ratés doit être un nombre entier", E_USER_NOTICE);
+            throw new \Exception("Tirs ratés doit être un nombre entier");
         }
         $this->missshot = $missshot;
     }
 
     /**
      * @param mixed $shotontarget
+     * @throws
      */
     public function setShotontarget($shotontarget)
     {
+        $shotontarget = (int) $shotontarget;
         if ( !is_int($shotontarget)){
-            trigger_error("Tirs réussis doit être un nombre entier", E_USER_NOTICE);
+            throw new \Exception("Tirs réussis doit être un nombre entier");
         }
         $this->shotontarget = $shotontarget;
     }
 
     /**
      * @param mixed $misspass
+     * @throws
      */
     public function setMisspass($misspass)
     {
+        $misspass = (int) $misspass;
         if ( !is_int($misspass)){
-            trigger_error("Passes ratées doit être un nombre entier", E_USER_NOTICE);
+            throw new \Exception("Passes ratées doit être un nombre entier");
         }
         $this->misspass = $misspass;
     }
 
     /**
      * @param mixed $successpass
+     * @throws
      */
     public function setSuccesspass($successpass)
     {
+        $successpass = (int) $successpass;
         if ( !is_int($successpass)){
-            trigger_error("Passes réussies doit être un nombre entier", E_USER_NOTICE);
+           throw new \Exception("Passes réussies doit être un nombre entier");
         }
         $this->successpass = $successpass;
     }
 
     /**
      * @param mixed $foul
+     * @throws
      */
     public function setFoul($foul)
     {
+        $foul = (int) $foul;
         if ( !is_int($foul)){
-            trigger_error("Fautes doit être un nombre entier", E_USER_NOTICE);
+            throw new \Exception("Fautes doit être un nombre entier");
         }
         $this->foul = $foul;
     }
 
     /**
      * @param mixed $cornerkick
+     * @throws
      */
     public function setCornerkick($cornerkick)
     {
+        $cornerkick = (int) $cornerkick;
         if ( !is_int($cornerkick)){
-            trigger_error("Corners doit être un nombre entier", E_USER_NOTICE);
+            throw new \Exception("Corners doit être un nombre entier");
         }
         $this->cornerkick = $cornerkick;
     }
 
     /**
      * @param mixed $lostball
+     * @throws
      */
     public function setLostball($lostball)
     {
+        $lostball = (int) $lostball;
         if ( !is_int($lostball)){
-            trigger_error("Balles perdues doit être un nombre entier", E_USER_NOTICE);
+            throw new \Exception("Balles perdues doit être un nombre entier");
         }
         $this->lostball = $lostball;
     }
 
     /**
      * @param mixed $winball
+     * @throws
      */
     public function setWinball($winball)
     {
+        $winball = (int) $winball;
         if ( !is_int($winball)){
-            trigger_error("Balles gagnées doit être un nombre entier", E_USER_NOTICE);
+            throw new \Exception("Balles gagnées doit être un nombre entier");
         }
         $this->winball = $winball;
     }
 
     /**
      * @param mixed $offside
+     * @throws
      */
     public function setOffside($offside)
     {
+        $offside = (int) $offside;
         if ( !is_int($offside)){
-            trigger_error("Hors jeu doit être un nombre entier", E_USER_NOTICE);
+            throw new \Exception("Hors jeu doit être un nombre entier");
         }
         $this->offside = $offside;
     }
 
     /**
      * @param mixed $freekick
+     * @throws
      */
     public function setFreekick($freekick)
     {
+        $freekick = (int) $freekick;
         if ( !is_int($freekick)){
-            trigger_error("Coups francs doit être un nombre entier", E_USER_NOTICE);
+            throw new \Exception("Coups francs doit être un nombre entier");
         }
         $this->freekick = $freekick;
     }

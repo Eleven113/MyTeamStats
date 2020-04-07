@@ -67,26 +67,31 @@ Class PlayerObject {
     // SETTER
 
 	public function setPlayerid($playerid) {
+	    $playerid = (int) $playerid;
+	    if ( !is_int($playerid)){
+	        throw new \Exception("L'id du joueur doit être un nombre entier");
+        }
 		$this->playerid = $playerid;
     }
     
     public function setLicence($licence) {
+        $licence = (int) $licence;
 	    if ( !is_numeric($licence)){
-	        trigger_error("Le numéro de licence doit être un nombre entier", E_USER_NOTICE);
+	        throw new \Exception("Le numéro de licence doit être un nombre entier");
         }
 		$this->licence = $licence;
     }
 
     public function setLastname($lastname) {
 	    if ( !is_string($lastname)){
-	        trigger_error("Le nom du joueur doit contenir plusieurs caractères", E_USER_NOTICE);
+	        throw new \Exception("Le nom du joueur doit contenir plusieurs caractères");
         }
 		$this->lastname = $lastname;
     }
     
     public function setFirstname($firstname) {
         if ( !is_string($firstname)){
-            trigger_error("Le prénom du joueur doit contenir plusieurs caractères", E_USER_NOTICE);
+            throw new \Exception("Le prénom du joueur doit contenir plusieurs caractères");
         }
 		$this->firstname = $firstname;
     }
@@ -97,10 +102,17 @@ Class PlayerObject {
     }
     
     public function setActivelicence($activelicence) {
-		$this->activelicence = $activelicence;
+        $activelicence = (int) $activelicence;
+        if ( $activelicence != 0 && $activelicence != 1){
+            throw new \Exception("L'indicateur de licence active est incorrecte");
+        }
+        $this->activelicence = $activelicence;
     }
     
     public function setAddress($address) {
+        if ( !is_string($address)){
+            throw new \Exception("L'adresse doit contenir plusieurs caractères");
+        }
 		$this->address = $address;
     }
     
@@ -108,7 +120,7 @@ Class PlayerObject {
 	    $phoneLength = strlen((string)$phonenum);
 
 	    if ( !is_numeric($phonenum) || $phoneLength != 10 ){
-	        trigger_error("Le numéro de téléphone est incorrect", E_USER_NOTICE);
+	        throw new \Exception("Le numéro de téléphone est incorrect");
         }
 		$this->phonenum = $phonenum;
     }
@@ -118,15 +130,22 @@ Class PlayerObject {
             $this->mail = $mail;
         }
         else {
-            trigger_error("Le format du mail est incorrect", E_USER_NOTICE);
+            throw new \Exception("Le format du mail est incorrect");
         }
     }
     
     public function setPhoto($photo) {
+        if ( !is_string($photo)){
+            throw new \Exception("L'url de la photo doit contenir plusieurs caractères");
+        }
 		$this->photo = $photo;
 	}
 
     public function setPoste($poste) {
+	    $values = ["Attaquant", "Milieu", "Défenseur", "Gardien"];
+	    if ( !in_array($poste, $values)){
+	        throw new \Exception("Le poste du joueur est incorrect");
+        }
         $this->poste = $poste;
     }
 

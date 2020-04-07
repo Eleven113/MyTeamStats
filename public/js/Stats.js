@@ -67,8 +67,6 @@ class Stats {
         this.winBallAgglo;
         this.lostBallAgglo;
         
-        console.log(this.pageStat);
-        console.log(this.matchPlayed);
         this.events();
 
         if (!this.pageStat){

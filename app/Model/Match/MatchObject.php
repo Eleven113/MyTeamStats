@@ -163,7 +163,7 @@ class MatchObject
     public function setPeriodduration($periodduration)
     {
         $periodduration = (int) $periodduration;
-        if ( !is_int($periodduration)){
+        if ( !is_int($periodduration) || $periodduration < 0 ){
             throw new \Exception("La durée du match doit être un nombre entier");
         }
         $this->periodduration = $periodduration;

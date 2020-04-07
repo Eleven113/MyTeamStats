@@ -67,7 +67,7 @@ class OpponentObject
     public function setOpponentid($opponentid)
     {
         $opponentid = (int) $opponentid;
-        if ( !is_int($opponentid)){
+        if ( !is_int($opponentid) || $opponentid < 0 ){
             throw new \Exception("L'id de l'adversaire doit être un nombre entier");
         }
         $this->opponentid = $opponentid;

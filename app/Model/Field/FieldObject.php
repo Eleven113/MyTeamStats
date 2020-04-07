@@ -69,8 +69,9 @@ class FieldObject
      */
     public function setFieldid($fieldid)
     {
-        if ( !is_int($fieldid)){
-            throw new \Exception("L'id du terrain doit être un nombre entier'");
+        $fieldid = (int) $fieldid;
+        if ( !is_int($fieldid) || $fieldid < 0 ){
+            throw new \Exception("L'id du terrain doit être un nombre entier");
         }
         $this->fieldid = $fieldid;
     }
@@ -105,7 +106,9 @@ class FieldObject
      */
     public function setZipcode($zipcode)
     {
-        if ( is_int($zipcode)){
+        $zipcode = (int) $zipcode;
+
+        if ( !is_int($zipcode)){
             throw new \Exception("Le code postal ne peut contenir que des chiffres");
         }
         $this->zipcode = $zipcode;

@@ -242,7 +242,6 @@ class Score {
         divGoal.append(divGoalTime);
         divGoal.append(divGoalClose);
 
-        console.log(divGoal);
         // Affichage du but
         this.divScorer.append(divGoal);
       
