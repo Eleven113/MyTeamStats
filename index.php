@@ -55,6 +55,7 @@ try {
         // FrontEnd
         // Home
         $r->addRoute('GET', '/MyTeamStats/', 'controllerFront/Home');
+        $r->addRoute('GET', '/MyTeamStats', 'controllerFront/Home');
 
         // Player
         $r->addRoute('GET', '/MyTeamStats/PlayersList', 'controllerFront/PlayersList');
@@ -153,12 +154,10 @@ try {
 
     switch ($routeInfo[0]) {
         case FastRoute\Dispatcher::NOT_FOUND:
-            echo '404';
-            break;
+            throw new Exception("404 - La page que vous demandez n'existe pas_/MyTeamStats/_Retour à la page d'accueil");
         case FastRoute\Dispatcher::METHOD_NOT_ALLOWED:
             $allowedMethods = $routeInfo[1];
-            echo '405';
-            break;
+            throw new Exception("405 - La méthode n'est pas autorisée_/MyTeamStats/_Retour à la page d'accueil");
         case FastRoute\Dispatcher::FOUND:
             $handler = $routeInfo[1];
             $vars = $routeInfo[2];
@@ -184,8 +183,9 @@ try {
 catch (\Exception $e){
 
     echo $twig->render('exception.html.twig', [
-        'error' => $e->getMessage(),
-         'link' => $link
+        'error' => explode('_', $e->getMessage())[0],
+        'link' => explode('_', $e->getMessage())[1],
+        'linkTxt' => explode('_', $e->getMessage())[2]
     ]);
 }
 

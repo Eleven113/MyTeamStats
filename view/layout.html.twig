@@ -25,6 +25,27 @@
             </div>
         </header>
 
+        <div id="left_menu">
+            <div class="left_menu_option">
+                <span class="left_menu_option-ico"><i class="fas fa-users"></i></span><br/>
+                <span class="left_menu_option-txt">Effectif</span>
+            </div>
+            <div class="left_menu_option">
+                <span class="left_menu_option-ico"><i class="far fa-futbol"></i></span><br/>
+                <span class="left_menu_option-txt">Matchs</span>
+            </div>
+            <div class="left_menu_option">
+                <span class="left_menu_option-ico"><i class="fas fa-clipboard-list"></i></span><br/>
+                <span class="left_menu_option-txt">Infos Club</span>
+            </div>
+            {% if session.user_status >= 3 %}
+                <div class="left_menu_option">
+                    <span class="left_menu_option-ico"><i class="fas fa-cog"></i></span><br/>
+                    <span class="left_menu_option-txt">Gestion</span>
+                </div>
+            {% endif %}
+        </div>
+
         <div id="content">
 
             {% if notice is defined %}

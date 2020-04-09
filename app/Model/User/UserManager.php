@@ -81,7 +81,7 @@ class UserManager
             $query->execute();
         }
         else {
-            throw new \Exception("L'utilisateur que vous tentez de supprimer n'existe pas/plus");
+            throw new \Exception("L'utilisateur que vous tentez de supprimer n'existe pas/plus_/MyTeamStats/UserList_Retour à la liste des utilisateurs");
         }
 
 

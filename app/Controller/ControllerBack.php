@@ -57,8 +57,17 @@ class ControllerBack {
     }
 
     public function AddPlayer($lastname, $firstname, $licencenum, $activelicence, $birthdate, $poste, $address, $phonenum, $mail, $photo){
+
+        $type = explode("/", $photo['type'])[0];
         $photo = $photo['tmp_name'];
-        $result = \Cloudinary\Uploader::upload($photo, array("folder" => "Players/") );
+
+        if ( $type == 'image' ){
+            $result = \Cloudinary\Uploader::upload($photo, array("folder" => "Players/") );
+        }
+        else {
+            throw new \Exception("Le format de la photo est incorrect_/MyTeamStats/CreatePlayer_Retour à la création de joueur");
+        }
+
 
         $player = [
             'lastname' => $lastname,
@@ -86,7 +95,7 @@ class ControllerBack {
             echo $this->twig->render('/BackEnd/UpdatePlayer.html.twig', ['player' => $player]);
         }
         else {
-            throw new \Exception("Le joueur que vous tentez de modifier n'existe pas/plus");
+            throw new \Exception("Le joueur que vous tentez de modifier n'existe pas/plus_/MyTeamStats/PlayersList_Retour à liste des joueurs");
         }
 
     }
@@ -126,7 +135,7 @@ class ControllerBack {
             $this->PlayersList($notice);
         }
         else {
-            throw new \Exception("Un joueur qui a déjà participé à un match ne peut pas être supprimé, à moins de supprimer tous les matchs auquel il a participé");
+            throw new \Exception("Un joueur qui a déjà participé à un match ne peut pas être supprimé, à moins de supprimer tous les matchs auquel il a participé_/MyTeamStats/PlayersList_Retour à liste des joueurs");
         }
 
     }
@@ -180,7 +189,7 @@ class ControllerBack {
             $this->MatchsList($notice);
         }
         else {
-            throw new \Exception("Un match pour lequel il existe une composition d'équipe ne peut pas être supprimé. Il faut d'abord supprimer la composition d'équipe");
+            throw new \Exception("Un match pour lequel il existe une composition d'équipe ne peut pas être supprimé. Il faut d'abord supprimer la composition d'équipe_/MyTeamStats/MatchsList_Retour à la liste des matchs");
         }
 
     }
@@ -256,7 +265,7 @@ class ControllerBack {
             echo $this->twig->render('/BackEnd/UpdateUser.html.twig', ['user' => $user]);
         }
         else {
-            throw new \Exception("L'utilisateur que vous tentez de modifier n'existe pas/plus");
+            throw new \Exception("L'utilisateur que vous tentez de modifier n'existe pas/plus_/MyTeamStats/UserList_Retour à la liste des utilisateurs");
         }
 
     }
@@ -318,7 +327,7 @@ class ControllerBack {
             echo $this->twig->render('/BackEnd/UpdateOppo.html.twig', [ 'oppo' => $oppo]);
         }
         else {
-            throw new \Exception("L'adversaire que vous tentez de modifier n'existe pas/plus");
+            throw new \Exception("L'adversaire que vous tentez de modifier n'existe pas/plus_/MyTeamStats/OppoList_Retour à la liste des adversaires");
         }
 
     }
@@ -349,7 +358,7 @@ class ControllerBack {
             $this->OppoList($notice);
         }
         else {
-            throw new \Exception("Un adversaire qui a déjà participé à un match ne peut pas être supprimé, à moins de supprimer tous les matchs auquel il a participé");
+            throw new \Exception("Un adversaire qui a déjà participé à un match ne peut pas être supprimé, à moins de supprimer tous les matchs auquel il a participé_/MyTeamStats/OppoList_Retour à la liste des adversaires");
         }
     }
 
@@ -400,7 +409,7 @@ class ControllerBack {
             echo $this->twig->render('/BackEnd/UpdateField.html.twig', [ 'field' => $field]);
         }
         else {
-            throw new \Exception("Le terrain que vous tentez de modifier n'existe pas/plus");
+            throw new \Exception("Le terrain que vous tentez de modifier n'existe pas/plus_/MyTeamStats/FieldsList_Retour à la liste des terrains");
         }
 
     }
@@ -432,7 +441,7 @@ class ControllerBack {
             $this->FieldsList($notice);
         }
         else {
-            throw new \Exception("Un terrain qui a déjà servi pour un match ne peut pas être supprimé, à moins de supprimer tous les matchs concernés");
+            throw new \Exception("Un terrain qui a déjà servi pour un match ne peut pas être supprimé, à moins de supprimer tous les matchs concernés_/MyTeamStats/FieldsList_Retour à la liste des terrains");
         }
 
     }

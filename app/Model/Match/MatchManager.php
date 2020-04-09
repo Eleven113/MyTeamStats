@@ -73,7 +73,7 @@ class MatchManager
             $query->execute();
         }
         else{
-            throw new \Exception("Le match que vous tentez de supprimer n'existe pas/plus");
+            throw new \Exception("Le match que vous tentez de supprimer n'existe pas/plus_/MyTeamStats/MatchsList_Retour à la liste des matchs");
         }
     }
 

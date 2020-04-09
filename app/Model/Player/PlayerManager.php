@@ -71,7 +71,7 @@ class PlayerManager
             $query->execute();
         }
         else {
-            throw new \Exception("Le joueur que vous tentez d'utiliser n'existe pas/plus");
+            throw new \Exception("Le joueur que vous tentez d'utiliser n'existe pas/plus_/MyTeamStats/PlayersList_Retour à liste des joueurs");
         }
 
 

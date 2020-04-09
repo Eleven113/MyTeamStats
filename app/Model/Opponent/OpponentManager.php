@@ -52,7 +52,7 @@ class OpponentManager
             $query->execute();
         }
         else {
-            throw new \Exception("L'adversaire que vous tentez de supprimer n'existe pas/plus");
+            throw new \Exception("L'adversaire que vous tentez de supprimer n'existe pas/plus_/MyTeamStats/OppoList_Retour à la liste des adversaires");
         }
 
 
