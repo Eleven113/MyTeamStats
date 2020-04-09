@@ -6,6 +6,16 @@
 
 {% block content %}
 
+    <div class="modal_confirm_delete">
+        <div class="modal_confirm_delete_content">
+            <span class="modal_confirm_delete_content-txt">Vous êtes sur le point de supprimer un terrain. Confirmer ?  </span>
+            <div class="modal_confirm_delete_content-buttons">
+                <button class="modal_confirm_delete_content-buttonno btn btn-primary">Non</button>
+                <a href="/MyTeamStats/DeleteUser/" class="delete_link"><button class="modal_confirm_delete_content-buttonyes btn btn-primary">Oui</button></a>
+            </div>
+        </div>
+    </div>
+
     {% if session.user_status >= 4 %}
         <div class="table-responsive">
             <table class="table table table-bordered table-striped text-center">
@@ -41,7 +51,7 @@
                         <td class="d-flex flex-row justify-content-around">
                             <div><a href="/MyTeamStats/ModifyUser/{{ user.userid }}"><i class="fas fa-user-edit"></i></a></div>
                             {%  if session.user_status >= 4 %}
-                                <div><a href="/MyTeamStats/DeleteUser/{{ user.userid }}"><i class="fas fa-user-times"></i></a></div>
+                                <div class="delete_btn"><i class="fas fa-user-times" id="delete_user_{{ user.userid }}"></i></div>
                             {% endif %}
                         </td>
                     </tr>
@@ -53,5 +63,9 @@
         <span>Vous n'êtes pas autorisé à afficher cette page</span>
     {% endif %}
 
+{% endblock %}
+
+{% block script %}
+    <script src="/MyTeamStats/public/js/DeleteManagement.js"></script>
 {% endblock %}
 

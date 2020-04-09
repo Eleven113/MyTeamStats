@@ -2,8 +2,6 @@
 
 namespace MyTeamStats\Controller ;
 
-use MongoDB\Driver\Exception\CommandException;
-
 class ControllerBack {
 
     private $twig;
@@ -343,10 +341,16 @@ class ControllerBack {
     }
 
     public function DeleteOppo($id){
-        $this->opponentManager->DeleteOppo($id);
+        $oppoPlayed = $this->matchManager->CountMatchOppo($id);
 
-        $notice = "L'adversaire a bien été supprimé";
-        $this->OppoList($notice);
+        if ($oppoPlayed == 0){
+            $this->opponentManager->DeleteOppo($id);
+            $notice = "L'adversaire a bien été supprimé";
+            $this->OppoList($notice);
+        }
+        else {
+            throw new \Exception("Un adversaire qui a déjà participé à un match ne peut pas être supprimé, à moins de supprimer tous les matchs auquel il a participé");
+        }
     }
 
 
@@ -419,13 +423,19 @@ class ControllerBack {
     }
 
     public function DeleteField($id){
-        $this->fieldManager->DeleteField($id);
+        $fieldPlayed = $this->matchManager->CountMatchField($id);
 
-        $notice = "Le terrain a bien été supprimé";
-        $this->FieldsList($notice);
+        if ($fieldPlayed == 0){
+            $this->fieldManager->DeleteField($id);
+
+            $notice = "Le terrain a bien été supprimé";
+            $this->FieldsList($notice);
+        }
+        else {
+            throw new \Exception("Un terrain qui a déjà servi pour un match ne peut pas être supprimé, à moins de supprimer tous les matchs concernés");
+        }
+
     }
-
-
 
 
     // COMPOSITION

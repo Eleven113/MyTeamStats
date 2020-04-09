@@ -18,7 +18,10 @@
     <div class="modal_confirm_delete">
         <div class="modal_confirm_delete_content">
             <span class="modal_confirm_delete_content-txt">Vous êtes sur le point de supprimer un joueur. Confirmer ?  </span>
-            <div class="modal_confirm_delete_content-buttons"><button class="modal_confirm_delete_content-buttonyes btn btn-primary col-3">Oui</button><button class="modal_confirm_delete_content-buttonno btn btn-primary col-3">Non</button></div>
+            <div class="modal_confirm_delete_content-buttons">
+                <button class="modal_confirm_delete_content-buttonno btn btn-primary">Non</button>
+                <a href="/MyTeamStats/DeletePlayer/" class="delete_link"><button class="modal_confirm_delete_content-buttonyes btn btn-primary">Oui</button></a>
+            </div>
         </div>
     </div>
 
@@ -60,7 +63,7 @@
                             <div><a href="/MyTeamStats/ModifyPlayer/{{ player.playerid }}"><i class="fas fa-user-edit"></i></a></div>
                         {% endif %}
                         {%  if session.user_status >= 4 %}
-                            <div><a href="/MyTeamStats/DeletePlayer/{{ player.playerid }}"><i class="fas fa-user-times"></i></a></div>
+                            <div class="delete_btn"><i class="fas fa-user-times" id="delete_player_{{ player.playerid }}" ></i></div>
                         {% endif %}
                     </td>
                 </tr>
@@ -73,5 +76,5 @@
 {% endblock %}
 
 {% block script %}
-    <script src="/MyTeamStats/public/js/ConfirmManagement.js"></script>
+    <script src="/MyTeamStats/public/js/DeleteManagement.js"></script>
 {% endblock %}

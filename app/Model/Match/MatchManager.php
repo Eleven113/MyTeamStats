@@ -76,4 +76,20 @@ class MatchManager
             throw new \Exception("Le match que vous tentez de supprimer n'existe pas/plus");
         }
     }
+
+    public function CountMatchOppo($id){
+        $oppoPlayed = $this->db->prepare('SELECT COUNT(*) FROM GAME WHERE OPPONENTID = :opponentid');
+        $oppoPlayed->bindValue(':opponentid', $id);
+        $oppoPlayed->execute();
+
+        return $oppoPlayed->fetchColumn();
+    }
+
+    public function CountMatchField($id){
+        $fieldPlayed = $this->db->prepare('SELECT COUNT(*) FROM GAME WHERE FIELDID = :fieldid');
+        $fieldPlayed->bindValue(':fieldid', $id);
+        $fieldPlayed->execute();
+
+        return $fieldPlayed->fetchColumn();
+    }
 }

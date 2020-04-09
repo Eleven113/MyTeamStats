@@ -6,6 +6,16 @@
 
 {% block content %}
 
+    <div class="modal_confirm_delete">
+        <div class="modal_confirm_delete_content">
+            <span class="modal_confirm_delete_content-txt">Vous êtes sur le point de supprimer un terrain. Confirmer ?  </span>
+            <div class="modal_confirm_delete_content-buttons">
+                <button class="modal_confirm_delete_content-buttonno btn btn-primary">Non</button>
+                <a href="/MyTeamStats/DeleteField/" class="delete_link"><button class="modal_confirm_delete_content-buttonyes btn btn-primary">Oui</button></a>
+            </div>
+        </div>
+    </div>
+
     {% if session.user_status >= 3 %}
         <button id="add_field" class="btn btn-primary mt-4 add-btn">
             <a href="/MyTeamStats/CreateField" class="link font-weight-bold">
@@ -41,7 +51,7 @@
                     <td class="d-flex flex-row justify-content-between">
                         <div><a href="/MyTeamStast/ModifyField/{{ field.fieldid }}"><i class="fas fa-pen"></i></a></div>
                         {%  if session.user_status >= 4 %}
-                            <div><a href="/MyTeamStast/DeleteField/{{ field.fieldid }}"><i class="fas fa-trash-alt"></i></a></div>
+                            <div  class="delete_btn"><i class="fas fa-trash-alt"  id="delete_field_{{ field.fieldid }}"></i></div>
                         {% endif %}
                     </td>
                 </tr>
@@ -49,8 +59,11 @@
             {% endfor %}
             </tbody>
         </table>
-        {{ env.president }}
     </div>
 
+{% endblock %}
+
+{% block script %}
+    <script src="/MyTeamStats/public/js/DeleteManagement.js"></script>
 {% endblock %}
 
