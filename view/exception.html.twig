@@ -1,0 +1,22 @@
+{% extends "layout.html.twig" %}
+
+{% block head %}
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Erreur - MyTeamStats</title>
+{% endblock %}
+
+{% block content %}
+
+<div>
+    <h3 class="mt-4">Une erreur est survenue :</h3>
+    <h5>{{ error }}</h5>
+
+    <div class="mt-4">
+        Pour signaler une erreur, ou poser une question, vous pouvez contacter l'administrateur MyTeamStats : <a href="mailto:myTeamStats@thibaut-minard.fr">myTeamStats@thibaut-minard.fr</a>
+    </div>
+</div>
+
+
+{% endblock %}
+

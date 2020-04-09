@@ -44,9 +44,17 @@ class OpponentManager
     }
 
     public function DeleteOppo($id){
-        $query = $this->db->prepare('DELETE FROM OPPONENT WHERE OPPONENTID = :oppoid');
-        $query->bindValue(':oppoid', $id);
-        $query->execute();
+        $opponent = $this->getOppo($id);
+
+        if ( $opponent->getName() != null){
+            $query = $this->db->prepare('DELETE FROM OPPONENT WHERE OPPONENTID = :oppoid');
+            $query->bindValue(':oppoid', $id);
+            $query->execute();
+        }
+        else {
+            throw new \Exception("L'adversaire que vous tentez de supprimer n'existe pas/plus");
+        }
+
 
     }
 

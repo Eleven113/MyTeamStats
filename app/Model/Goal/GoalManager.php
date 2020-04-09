@@ -55,4 +55,20 @@ class GoalManager
 
         return $goalsListObj;
     }
+
+    public function CountGoal($id){
+        $goal = $this->db->prepare('SELECT COUNT(*) FROM GOAL WHERE SCORERID = :scorerid');
+        $goal->bindValue(':scorerid', $id);
+        $goal->execute();
+
+        return $goal->fetchColumn();
+    }
+
+    public function CountPass($id){
+        $pass = $this->db->prepare('SELECT COUNT(*) FROM GOAL WHERE PASSERID = :passerid');
+        $pass->bindValue(':passerid', $id);
+        $pass->execute();
+
+        return $pass->fetchColumn();
+    }
 }

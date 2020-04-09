@@ -64,9 +64,16 @@ class MatchManager
     }
 
     public function DeleteMatch($id){
-        $query = $this->db->prepare('DELETE FROM GAME WHERE GAMEID = :gameid');
-        $query->bindValue(':gameid', $id);
+        $match = $this->getMatch($id);
 
-        $query->execute();
+        if ( $match->getStatus() != null ){
+            $query = $this->db->prepare('DELETE FROM GAME WHERE GAMEID = :gameid');
+            $query->bindValue(':gameid', $id);
+
+            $query->execute();
+        }
+        else{
+            throw new \Exception("Le match que vous tentez de supprimer n'existe pas/plus");
+        }
     }
 }

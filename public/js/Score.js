@@ -226,10 +226,10 @@ class Score {
 
         // Mise en forme du temps pour affichage
         if ( this.minutes > this.periodDuration){
-            divGoalTime.innerHTML = this.periodDuration + "'+" + (this.minutes - this.periodDuration); 
+            divGoalTime.innerHTML =  (this.periodDuration * this.period) + "'+" + (this.minutes - this.periodDuration); 
         }
         else {
-            divGoalTime.innerHTML = this.minutes + "'";
+            divGoalTime.innerHTML = this.minutes + ((this.period-1) * this.periodDuration) + "'";
         }
 
         let divGoalClose = document.createElement("div");

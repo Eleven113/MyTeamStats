@@ -63,9 +63,17 @@ class PlayerManager
 
     public function DeletePlayer($id)
     {
-        $query = $this->db->prepare('DELETE FROM PLAYER WHERE PLAYERID = :playerid');
-        $query->bindValue(':playerid', $id);
-        $query->execute();
+        $player = $this->getPlayer($id);
+
+        if ( $player->getFirstname() != null){
+            $query = $this->db->prepare('DELETE FROM PLAYER WHERE PLAYERID = :playerid');
+            $query->bindValue(':playerid', $id);
+            $query->execute();
+        }
+        else {
+            throw new \Exception("Le joueur que vous tentez d'utiliser n'existe pas/plus");
+        }
+
 
     }
 

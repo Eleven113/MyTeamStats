@@ -15,6 +15,13 @@
         </button>
     {% endif %}
 
+    <div class="modal_confirm_delete">
+        <div class="modal_confirm_delete_content">
+            <span class="modal_confirm_delete_content-txt">Vous êtes sur le point de supprimer un joueur. Confirmer ?  </span>
+            <div class="modal_confirm_delete_content-buttons"><button class="modal_confirm_delete_content-buttonyes btn btn-primary col-3">Oui</button><button class="modal_confirm_delete_content-buttonno btn btn-primary col-3">Non</button></div>
+        </div>
+    </div>
+
     <div class="table-responsive">
         <table class="table table table-bordered table-striped   text-center table-text-size">
             <caption class="col-12 text-center">
@@ -65,3 +72,6 @@
 
 {% endblock %}
 
+{% block script %}
+    <script src="/MyTeamStats/public/js/ConfirmManagement.js"></script>
+{% endblock %}

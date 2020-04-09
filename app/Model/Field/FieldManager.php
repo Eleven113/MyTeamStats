@@ -43,7 +43,9 @@ class FieldManager
     }
 
     public function UpdateField($field){
+
         $field = new FieldObject($field);
+
         $query = $this->db->prepare('UPDATE FIELD SET NAME = :name, ADDRESS = :address, ZIPCODE = :zipcode, CITY = :city, TURF = :turf WHERE FIELDID = :fieldid');
         $query->bindValue(':fieldid', $field->getFieldid());
         $query->bindValue(':name', $field->getName());
@@ -56,9 +58,17 @@ class FieldManager
     }
 
     public function DeleteField($id){
-        $query = $this->db->prepare("DELETE FROM FIELD WHERE FIELDID = :fieldid");
-        $query->bindValue(':fieldid', $id);
+        $field = $this->getField($id);
 
-        $query->execute();
+        if ( $field->getName() != null){
+            $query = $this->db->prepare("DELETE FROM FIELD WHERE FIELDID = :fieldid");
+            $query->bindValue(':fieldid', $id);
+
+            $query->execute();
+        }
+        else {
+            throw new \Exception("Le terrain que vous tentez de supprimer n'existe pas/plus");
+        }
+
     }
 }

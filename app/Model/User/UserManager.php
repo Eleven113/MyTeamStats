@@ -73,9 +73,17 @@ class UserManager
      }
 
      public function DeleteUser($id){
-        $query = $this->db->prepare('DELETE FROM USER WHERE USERID = :userid');
-        $query->bindValue(':userid', $id);
-        $query->execute();
+        $user = $this->getUser($id);
+
+        if ( $user->getFirstname() != null){
+            $query = $this->db->prepare('DELETE FROM USER WHERE USERID = :userid');
+            $query->bindValue(':userid', $id);
+            $query->execute();
+        }
+        else {
+            throw new \Exception("L'utilisateur que vous tentez de supprimer n'existe pas/plus");
+        }
+
 
      }
 

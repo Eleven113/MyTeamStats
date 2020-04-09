@@ -2,6 +2,8 @@
 
 namespace MyTeamStats\Controller ;
 
+use MongoDB\Driver\Exception\CommandException;
+
 class ControllerBack {
 
     private $twig;
@@ -81,7 +83,14 @@ class ControllerBack {
 
     public function ModifyPlayer($id){
         $player = $this->playerManager->getPlayer($id);
-        echo $this->twig->render('/BackEnd/UpdatePlayer.html.twig', ['player' => $player]);
+
+        if ( $player->getFirstName != null) {
+            echo $this->twig->render('/BackEnd/UpdatePlayer.html.twig', ['player' => $player]);
+        }
+        else {
+            throw new \Exception("Le joueur que vous tentez de modifier n'existe pas/plus");
+        }
+
     }
 
     public function UpdatePlayer($id, $lastname, $firstname, $licencenum, $activelicence, $birthdate, $category, $poste, $address, $phonenum, $mail, $photo){
@@ -111,9 +120,17 @@ class ControllerBack {
     }
 
     public function DeletePlayer($id){
-        $this->playerManager->DeletePlayer($id);
-        $notice = "Le joueur a bien été supprimé";
-        $this->PlayersList($notice);
+        $matchPlayed = $this->compositionManager->CountMatchPlayed($id);
+
+        if ($matchPlayed == 0){
+            $this->playerManager->DeletePlayer($id);
+            $notice = "Le joueur a bien été supprimé";
+            $this->PlayersList($notice);
+        }
+        else {
+            throw new \Exception("Un joueur qui a déjà participé à un match ne peut pas être supprimé, à moins de supprimer tous les matchs auquel il a participé");
+        }
+
     }
 
 
@@ -151,10 +168,23 @@ class ControllerBack {
     }
 
     public function DeleteMatch($id){
-        $this->matchManager->DeleteMatch($id);
+        $match = $this->matchManager->getMatch($id);
+        $playersNum = $this->compositionManager->CountPlayers($id);
 
-        $notice = "Le match a bien été supprimé";
-        $this->MatchsList($notice);
+        if ( $match->getStatus() == 0){
+            throw new \Exception("Un match déjà joué ne peut pas être supprimé");
+        }
+
+        if ( $playersNum == 0 ){
+            $this->matchManager->DeleteMatch($id);
+
+            $notice = "Le match a bien été supprimé";
+            $this->MatchsList($notice);
+        }
+        else {
+            throw new \Exception("Un match pour lequel il existe une composition d'équipe ne peut pas être supprimé. Il faut d'abord supprimer la composition d'équipe");
+        }
+
     }
 
     public function MatchStat(){
@@ -224,7 +254,13 @@ class ControllerBack {
     public function ModifyUser($id){
         $user = $this->userManager->getUser($id);
 
-        echo $this->twig->render('/BackEnd/UpdateUser.html.twig', ['user' => $user]);
+        if ($user->getFirstName != null){
+            echo $this->twig->render('/BackEnd/UpdateUser.html.twig', ['user' => $user]);
+        }
+        else {
+            throw new \Exception("L'utilisateur que vous tentez de modifier n'existe pas/plus");
+        }
+
     }
 
     public function UpdateUser($id, $lastname, $firstname, $mail, $status){
@@ -280,7 +316,13 @@ class ControllerBack {
     public function ModifyOppo($id){
         $oppo = $this->opponentManager->getOppo($id);
 
-        echo $this->twig->render('/BackEnd/UpdateOppo.html.twig', [ 'oppo' => $oppo]);
+        if ($oppo->getName() != null){
+            echo $this->twig->render('/BackEnd/UpdateOppo.html.twig', [ 'oppo' => $oppo]);
+        }
+        else {
+            throw new \Exception("L'adversaire que vous tentez de modifier n'existe pas/plus");
+        }
+
     }
 
     public function UpdateOppo($id, $name, $logo){
@@ -350,7 +392,13 @@ class ControllerBack {
     public function ModifyField($id){
         $field = $this->fieldManager->getField($id);
 
-        echo $this->twig->render('/BackEnd/UpdateField.html.twig', [ 'field' => $field]);
+        if ($field->getName() != null){
+            echo $this->twig->render('/BackEnd/UpdateField.html.twig', [ 'field' => $field]);
+        }
+        else {
+            throw new \Exception("Le terrain que vous tentez de modifier n'existe pas/plus");
+        }
+
     }
 
     public function UpdateField($id, $name, $address, $zipcode, $city, $turf)

@@ -17,6 +17,7 @@ $goalManager = new MyteamStats\Model\Goal\GoalManager($db);
 $periodManager = new MyteamStats\Model\Period\PeriodManager($db);
 $cardManager = new MyteamStats\Model\Card\CardManager($db);
 
+// Preparation de TWIG
 $loader = new \Twig\Loader\FilesystemLoader(__DIR__ . '/view');
 $twig = new \Twig\Environment($loader, [
     'cache' => false,
@@ -31,6 +32,7 @@ $twig->addGlobal('env', $_ENV);
 $controllerFront = new MyTeamStats\Controller\ControllerFront($twig, $playerManager, $userManager, $opponentManager, $matchManager, $fieldManager, $compositionManager, $goalManager, $periodManager, $cardManager);
 $controllerBack = new MyTeamStats\Controller\ControllerBack($twig, $playerManager, $userManager, $opponentManager, $matchManager, $fieldManager, $compositionManager, $goalManager, $periodManager, $cardManager);
 
+// Configuration de Cloudinary
 \Cloudinary::config( array (
     "cloud_name" => "marthyte" ,
     "api_key" => "284172277764297" ,
@@ -107,7 +109,6 @@ try {
         $r->addRoute('POST', '/MyTeamStats/SendComposition/{id:[0-9]+}', 'controllerBack/SendComposition');
         $r->addRoute('GET', '/MyTeamStats/DeleteComposition/{id:[0-9]+}', 'controllerBack/DeleteComposition');
 
-
         // Oppo
         $r->addRoute('GET', '/MyTeamStats/OppoList', 'controllerBack/OppoList');
         $r->addRoute('GET', '/MyTeamStats/CreateOppo', 'controllerBack/CreateOppo');
@@ -181,10 +182,9 @@ try {
     }
 }
 catch (\Exception $e){
-    $error =  $e->getMessage();
 
     echo $twig->render('exception.html.twig', [
-        'error' => $error,
+        'error' => $e->getMessage(),
          'link' => $link
     ]);
 }

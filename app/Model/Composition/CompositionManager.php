@@ -86,6 +86,21 @@ class CompositionManager
 
    }
 
+   public function CountMatchPlayed($id){
+        $matchPlayed = $this->db->prepare("SELECT COUNT(*) FROM PLAY WHERE PLAYERID = :playerid");
+        $matchPlayed->bindValue(':playerid', $id);
+        $matchPlayed->execute();
+
+        return $matchPlayed->fetchColumn();
+   }
+
+   public function CountPlayers($id){
+        $playersNum = $this->db->prepare('SELECT COUNT(*) FROM PLAY WHERE GAMEID = :gameid');
+        $playersNum->bindValue(':gameid', $id);
+        $playersNum->execute();
+
+        return $playersNum->fetchColumn();
+   }
 
     public function jsonSerialize(){
         return get_object_vars($this);

@@ -41,4 +41,22 @@ class CardManager
         return $cardsListObj;
     }
 
+    public function CountYellow($id){
+        $yellowcard = $this->db->prepare('SELECT COUNT(*) FROM CARD WHERE COLOR = :color AND PLAYERID = :playerid');
+        $yellowcard->bindValue(':color', 'jaune');
+        $yellowcard->bindValue(':playerid', $id);
+        $yellowcard->execute();
+
+        return $yellowcard->fetchColumn();
+    }
+
+    public function CountRed($id){
+        $redcard = $this->db->prepare('SELECT COUNT(*) FROM CARD WHERE COLOR = :color AND PLAYERID = :playerid');
+        $redcard->bindValue(':color', 'rouge');
+        $redcard->bindValue(':playerid', $id);
+        $redcard->execute();
+
+        return $redcard->fetchColumn();
+    }
+
 }

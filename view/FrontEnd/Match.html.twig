@@ -3,15 +3,47 @@
 {% block head %}
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <meta property="og:title" content="MyTeamStats" />
+    <meta property="og:title" content="{{ match.type }} - {{ match.category }}" />
     <meta property="og:type" content="Website" />
     <meta property="og:url" content="http://www.thibaut-minard.fr/MyTeamStats/Match/{{ match.gameid }}" />
     <meta property="og:image" content="https://res.cloudinary.com/marthyte/image/upload/v1584623500/v2_vnydsk.png" />
-    <meta property="og:description" content="{{ match.type }} - {{ match.category }} / {% if match.athome == 1 %}Lavalloise FC - {{ match.oppo }} {% else %} {{ match.oppo }} - Lavalloise FC{% endif %}">
-    <title>Match - MyTeamStats</title>
+    {% if match.status == 0 %}
+        <meta property="og:description" content="{% if match.athome == 1 %}Lavalloise FC {{ homescore }} - {{ awayscore }} {{ match.oppo }} {% else %} {{ match.oppo }} {{ homescore }} - {{ awayscore }} Lavalloise FC{% endif %}">
+    {% else %}
+        <meta property="og:description" content="{% if match.athome == 1 %}Lavalloise FC - {{ match.oppo }} {% else %} {{ match.oppo }} - Lavalloise FC{% endif %}">
+    {% endif %}
+    <title>{% if match.athome == 1 %}Lavalloise FC - {{ match.oppo }} {% else %} {{ match.oppo }} - Lavalloise FC{% endif %} - MyTeamStats</title>
 {% endblock %}
 
 {% block content %}
+    <!-- Load Facebook SDK for JavaScript -->
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <!-- Twitter -->
+    <script>window.twttr = (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0],
+                t = window.twttr || {};
+            if (d.getElementById(id)) return t;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "https://platform.twitter.com/widgets.js";
+            fjs.parentNode.insertBefore(js, fjs);
+
+            t._e = [];
+            t.ready = function(f) {
+                t._e.push(f);
+            };
+
+            return t;
+        }(document, "script", "twitter-wjs"));
+    </script>
 
     <div id="match_data">
         <div id="matchid">{{ match.gameid }}</div>
@@ -125,10 +157,37 @@
 
 </div>
 
+    {%  if session.user_status >= 4 %}
+        <div class="mb-2 d-flex flex-row justify-content-around">
+            <div class="fb-share-button"
+                 data-href="http://www.thibaut-minard.fr/MyTeamStats/Match/{{ match.gameid }}"
+                 data-layout="button" data-size="large">
+            </div>
+            <div class="tw-share-button">
+                {% if match.status == 1 %}
+                    <a class="twitter-share-button"
+                       href="https://twitter.com/intent/tweet?text=Prochain Match"
+                       data-hashtags="LFC,FootFéminin"
+                       data-size="large">
+                        Tweet
+                    </a>
+                {% else %}
+                    <a class="twitter-share-button"
+                       href="https://twitter.com/intent/tweet?text=Résultat"
+                       data-hashtags="LFC,FootFéminin"
+                       data-size="large">
+                        Tweet
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+    {% endif %}
+
 
 {% endblock %}
 
 {%  block script %}
+
     <script>
         let player = {{ players | raw }};
         let card = {{ cards | raw }};

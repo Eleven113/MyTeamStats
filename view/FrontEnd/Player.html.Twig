@@ -8,15 +8,15 @@
 
 <div id="player" class="d-flex flex-column col-8 offset-2 align-items-center">
     <h3 id="player_name">{{ player.firstname}} {{player.lastname}}</h3>
-    <div id="player_photo" class="d-flex flex-column align-items-center">
+    <div id="player_photo" class="d-flex flex-column align-items-center mt-4">
         <div class="col-6">
             <img src="{{ player.photo }}" class="img-responsive fit-image">
         </div>
     </div>
-    <div id="player_data" class="m-4 p-4 border border-primary rounded-lg myborder">
+    <div id="player_data" class="m-4 p-4">
         <p id="player_category">
             <span class="player_data-title font-weight-bold">Catégorie :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            <span class="player_data-txt">{{ player.category }}</span>
+            <span class="player_data-txt">U{{ year - (player.birthdate | date('Y')) }}</span>
         </p>
         <p id="player_position">
             <span class="player_data-title font-weight-bold">Poste :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
@@ -24,15 +24,15 @@
         </p>
         <p id="player_goal">
             <span class="player_data-title font-weight-bold">But(s) marqué(s) :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            <span class="player_data-txt">4 (saison en cours) - 14 au total</span>
+            <span class="player_data-txt">{{ goal }}</span>
         </p>
         <p id="player_pass">
             <span class="player_data-title font-weight-bold">Passe(s) décisive(s) :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            <span class="player_data-txt">10 (saison en cours) - 30 au total</span>
+            <span class="player_data-txt">{{ pass }}</span>
         </p>
         <p id="player_card">
             <span class="player_data-title font-weight-bold">Carton(s) :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            <span class="player_data-txt">0 Jaune - 0 Rouge</span>
+            <span class="player_data-txt">{{ yellowcard }} Jaune - {{ redcard }} Rouge</span>
         </p>
         {% if session.user_status >= 2 %}
                 <p id="player_licence">

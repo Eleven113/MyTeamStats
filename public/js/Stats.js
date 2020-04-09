@@ -366,8 +366,8 @@ class Stats {
 
         if ( this.stats.length > 0){
             for (let i = 0; i < this.stats.length; i++){
-                this.homeScoreAgglo = this.stats[i].homescore;
-                this.awayScoreAgglo = this.stats[i].awayscore;
+                this.homeScoreAgglo += this.stats[i].homescore;
+                this.awayScoreAgglo += this.stats[i].awayscore;
                 this.successPassAgglo += this.stats[i].successpass;
                 this.missPassAgglo += this.stats[i].misspass;
                 this.shotOnTargetAgglo += this.stats[i].shotontarget;
@@ -380,7 +380,7 @@ class Stats {
                 this.lostBallAgglo += this.stats[i].lostball;
             }
         }
-
+        console.log("home",this.homeScoreAgglo,"away",this.awayScoreAgglo);
         this.stat = {
             "matchid": this.matchId,
             "periodnum": this.periodNum,
@@ -398,6 +398,7 @@ class Stats {
             "lostball" : this.lostBall - this.lostBallAgglo
         }
 
+        console.log(this.stat);
         this.pass = parseInt(this.successPass - this.successPassAgglo) + parseInt(this.missPass - this.missPassAgglo);
 
         if (this.pass !== 0){
@@ -613,9 +614,15 @@ class Stats {
             // Calcul du total pass et pass percent
             this.periodPassOk = parseInt(document.getElementById("pass_ok_match_stat_" + i).innerHTML);
             this.periodPassNok = parseInt(document.getElementById("pass_nok_match_stat_" + i).innerHTML);
-            this.periodPass = this.periodPassOk + this.periodPassNok ; 
-            this.periodPassOkPercent = Math.round((this.periodPassOk / this.periodPass) * 100) +"%";
-            this.periodPassNokPercent = Math.round((this.periodPassNok / this.periodPass) * 100) +"%";
+            this.periodPass = this.periodPassOk + this.periodPassNok ;
+            if (this.periodPass === 0){
+                this.periodPassOkPercent = "0 %";
+                this.periodPassNokPercent = "0 %";
+            } 
+            else {
+                this.periodPassOkPercent = Math.round((this.periodPassOk / this.periodPass) * 100) +"%";
+                this.periodPassNokPercent = Math.round((this.periodPassNok / this.periodPass) * 100) +"%";
+            }
             document.getElementById("pass_match_stat_" + i).innerHTML = this.periodPass;
             document.getElementById("pass_ok_percent_match_stat_" + i).innerHTML = this.periodPassOkPercent;
             document.getElementById("pass_nok_percent_match_stat_" + i).innerHTML = this.periodPassNokPercent;
@@ -624,8 +631,14 @@ class Stats {
             this.periodShotOk = parseInt(document.getElementById("shot_ok_match_stat_" + i).innerHTML);
             this.periodShotNok = parseInt(document.getElementById("shot_nok_match_stat_" + i).innerHTML);
             this.periodShot = this.periodShotOk + this.periodShotNok ; 
-            this.periodShotOkPercent = Math.round((this.periodShotOk / this.periodShot) * 100) +"%";
-            this.periodShotNokPercent = Math.round((this.periodShotNok / this.periodShot) * 100) +"%";
+            if (this.periodShot === 0 ){
+                this.periodShotOkPercent = "0 %";
+                this.periodShotNokPercent = "0 %";
+            }
+            else {
+                this.periodShotOkPercent = Math.round((this.periodShotOk / this.periodShot) * 100) +"%";
+                this.periodShotNokPercent = Math.round((this.periodShotNok / this.periodShot) * 100) +"%";
+            }
             document.getElementById("shot_match_stat_" + i).innerHTML = this.periodPass;
             document.getElementById("shot_ok_percent_match_stat_" + i).innerHTML = this.periodShotOkPercent;
             document.getElementById("shot_nok_percent_match_stat_" + i).innerHTML = this.periodShotNokPercent;
@@ -634,8 +647,14 @@ class Stats {
             this.periodBallOk = parseInt(document.getElementById("ball_ok_match_stat_" + i).innerHTML);
             this.periodBallNok = parseInt(document.getElementById("ball_nok_match_stat_" + i).innerHTML);
             this.periodBall = this.periodBallOk + this.periodBallNok ; 
-            this.periodBallOkPercent = Math.round((this.periodShotOk / this.periodShot) * 100) +"%";
-            this.periodBallNokPercent = Math.round((this.periodShotNok / this.periodShot) * 100) +"%";
+            if (this.periodBall === 0){
+                this.periodBallOkPercent = "0 %";
+                this.periodBallNokPercent = "0 %";
+            }
+            else {
+                this.periodBallOkPercent = Math.round((this.periodShotOk / this.periodShot) * 100) +"%";
+                this.periodBallNokPercent = Math.round((this.periodShotNok / this.periodShot) * 100) +"%";
+            }
             document.getElementById("ball_ok_percent_match_stat_" + i).innerHTML = this.periodBallOkPercent;
             document.getElementById("ball_nok_percent_match_stat_" + i).innerHTML = this.periodBallNokPercent;
         }

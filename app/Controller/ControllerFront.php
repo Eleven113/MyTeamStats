@@ -29,10 +29,20 @@ Class ControllerFront {
         $this->cardManager = $cardManager;
     }
 
+    // HOME
     public function Home(){
         echo $this->twig->render('/FrontEnd/Homepage.html.twig');
     }
 
+
+    // CLUB
+    public function Club(){
+        echo $this->twig->render('/FrontEnd/Club.html.twig');
+    }
+
+
+
+    // PLAYER
     public function PlayersList(){
         $playersListObj = $this->playerManager->getPlayersList();
 
@@ -53,12 +63,120 @@ Class ControllerFront {
 
     }
 
+    public function Player($id){
+        $player = $this->playerManager->getPlayer($id);
+        $yellowcard = $this->cardManager->CountYellow($id);
+        $redcard = $this->cardManager->CountRed($id);
+        $goal = $this->goalManager->CountGoal($id);
+        $pass = $this->goalManager->CountPass($id);
+
+        if (date('n') >= 8){
+            $year = date('Y') + 1;
+        }
+        else {
+            $year = date('Y');
+        }
+
+        echo $this->twig->render('/FrontEnd/Player.html.twig', [
+            'player' => $player,
+            'yellowcard' => $yellowcard,
+            'redcard' => $redcard,
+            'pass' => $pass,
+            'goal' => $goal,
+            'year' => $year
+        ]);
+    }
+
+
+
+    // MATCH
+    public function MatchsList(){
+        $matchs = $this->matchManager->getMatchsList();
+
+        echo $this->twig->render('/FrontEnd/MatchsList.html.twig', [ 'matchs' => $matchs]);
+    }
+
+    public function Match($id){
+        $match = $this->matchManager->getMatch($id);
+        $playersList = $this->compositionManager->getComposition($id);
+        $cardsList = $this->cardManager->getCardsList($id);
+        $goalsList = $this->goalManager->getGoalsList($id);
+        $periodsList = $this->periodManager->getPeriodsList($id);
+
+        $playerArray  = [];
+
+        for ($i=0; $i < count($playersList); $i++){
+            $player = $playersList[$i];
+            array_push($playerArray, $player);
+        }
+
+        $cardArray = [];
+
+        for ($i=0; $i < count($cardsList); $i++){
+            $card = $cardsList[$i];
+            array_push($cardArray, $card);
+        }
+
+        $goalArray = [];
+
+        for ($i=0; $i < count($goalsList); $i++){
+            $goal = $goalsList[$i];
+            array_push($goalArray, $goal);
+        }
+
+        $periodArray = [];
+        $homescore = 0;
+        $awayscore = 0;
+
+        for ($i=0; $i < count($periodsList); $i++){
+            $period = $periodsList[$i];
+            $homescore += $period[homescore];
+            $awayscore += $period[awayscore];
+            array_push($periodArray, $period);
+        }
+
+        $players = json_encode($playerArray);
+        $cards = json_encode($cardArray);
+        $periods = json_encode($periodArray);
+        $goals = json_encode($goalArray);
+
+        echo $this->twig->render('/FrontEnd/Match.html.twig', [
+            'match' => $match,
+            'players' => $players,
+            'playersList' => $playersList,
+            'goals' => $goals,
+            'cards' => $cards,
+            'periods' => $periods,
+            'homescore'=> $homescore,
+            'awayscore' => $awayscore
+            ]);
+    }
+
+
+
+
+    // USER
+
     public function Login(){
         echo $this->twig->render('/FrontEnd/Login.html.twig');
     }
 
-    public function LostPassword(){
-        echo $this->twig->render('/FrontEnd/LostPassword.html.twig');
+    public function UserLogin($mail, $pwd){
+
+        $login = $this->userManager->UserLogin($mail, $pwd);
+
+        if ($login){
+            $notice = "Vous avez été correctement identifié";
+            echo $this->twig->render('/FrontEnd/Homepage.html.twig', [
+                'notice' => $notice,
+                'session' => $_SESSION
+            ]);
+        }
+        else {
+            $notice = "Adresse mail inconnue ou mot de passe incorrect";
+            echo $this->twig->render('/FrontEnd/Login.html.twig', ['notice' => $notice]);
+        }
+
     }
 
     public function CreateUser(){
@@ -96,89 +214,6 @@ Class ControllerFront {
 
     }
 
-    public function UserLogin($mail, $pwd){
-
-        $login = $this->userManager->UserLogin($mail, $pwd);
-
-        if ($login){
-            $notice = "Vous avez été correctement identifié";
-            echo $this->twig->render('/FrontEnd/Homepage.html.twig', [
-                'notice' => $notice,
-                'session' => $_SESSION
-            ]);
-        }
-        else {
-            $notice = "Adresse mail inconnue ou mot de passe incorrect";
-            echo $this->twig->render('/FrontEnd/Login.html.twig', ['notice' => $notice]);
-        }
-
-    }
-
-    public function MatchsList(){
-        $matchs = $this->matchManager->getMatchsList();
-
-        echo $this->twig->render('/FrontEnd/MatchsList.html.twig', [ 'matchs' => $matchs]);
-    }
-
-    public function Club(){
-        echo $this->twig->render('/FrontEnd/Club.html.twig');
-    }
-
-    public function Player($id){
-        $player = $this->playerManager->getPlayer($id);
-        echo $this->twig->render('/FrontEnd/Player.html.twig', ['player' => $player]);
-    }
-
-    public function Match($id){
-        $match = $this->matchManager->getMatch($id);
-        $playersList = $this->compositionManager->getComposition($id);
-        $cardsList = $this->cardManager->getCardsList($id);
-        $goalsList = $this->goalManager->getGoalsList($id);
-        $periodsList = $this->periodManager->getPeriodsList($id);
-
-        $playerArray  = [];
-
-        for ($i=0; $i < count($playersList); $i++){
-            $player = $playersList[$i];
-            array_push($playerArray, $player);
-        }
-
-        $cardArray = [];
-
-        for ($i=0; $i < count($cardsList); $i++){
-            $card = $cardsList[$i];
-            array_push($cardArray, $card);
-        }
-
-        $goalArray = [];
-
-        for ($i=0; $i < count($goalsList); $i++){
-            $goal = $goalsList[$i];
-            array_push($goalArray, $goal);
-        }
-
-        $periodArray = [];
-
-        for ($i=0; $i < count($periodsList); $i++){
-            $period = $periodsList[$i];
-            array_push($periodArray, $period);
-        }
-
-        $players = json_encode($playerArray);
-        $cards = json_encode($cardArray);
-        $periods = json_encode($periodArray);
-        $goals = json_encode($goalArray);
-
-        echo $this->twig->render('/FrontEnd/Match.html.twig', [
-            'match' => $match,
-            'players' => $players,
-            'playersList' => $playersList,
-            'goals' => $goals,
-            'cards' => $cards,
-            'periods' => $periods
-            ]);
-    }
-
     public function SessionKill(){
         $_SESSION = array();
         session_destroy();
@@ -186,6 +221,10 @@ Class ControllerFront {
         $this->twig->addGlobal('session', $_SESSION);
         $this->home();
 
+    }
+
+    public function LostPassword(){
+        echo $this->twig->render('/FrontEnd/LostPassword.html.twig');
     }
 
     public function ResetPassword(){
