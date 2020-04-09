@@ -13,7 +13,7 @@
 
 <body>
     <div class="container-fluid">
-        <header class="row d-flex justify-content-between bg-primary">
+        <header id="head_menu" class="row d-flex justify-content-between bg-primary">
             <div class="col-4 text-left"><a href="/MyteamStats" class="link"><i class="fas fa-bars"></i></a></div>
             <div class="col-4 text-center"><a href="/MyteamStats" class="link">MyTeamStats</a></div>
             <div class="col-4 text-right">
@@ -61,8 +61,8 @@
         <footer>
         </footer>
     </div>    
-    <script src="/MyTeamStats/public/js/script.js"></script>
     <script src="/MyTeamStats/public/js/config.js"></script>
+    <script src="/MyTeamStats/public/js/DisplayMenu.js"></script>
     {% if notice is defined %}
         <script src="/MyTeamStats/public/js/NoticeManagement.js"></script>
     {% endif %}

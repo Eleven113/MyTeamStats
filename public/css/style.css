@@ -361,3 +361,34 @@ caption{
 button{
     cursor: pointer;
 }
+
+#left_menu{
+    position : absolute;
+    top: 76px;
+    left : 0;
+    height: 100%;
+    width: 40%;
+    display : flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: white;
+    z-index: 3;
+}
+
+.left_menu_option{
+    margin-left: 20px;
+    width: 70%;
+    display: flex;
+    flex-direction: row;
+    color : #007bff;
+    font-size: 3em;
+    justify-content: flex-start;
+}
+
+.left_menu_option-ico{
+    width:30%
+}
+
+.left_menu_option-txt{
+    width:70%
+}
