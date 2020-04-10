@@ -195,6 +195,10 @@ Class ControllerFront {
     }
 
     public function AddUser($lastname, $firstname, $mail, $pwd1, $pwd2){
+        $regex = "^[a-zA-Z0-9]{8,}$";
+        if (preg_match($regex, $pwd1) != 1 ){
+            throw new \Exception("Le format du mot de passe est incorrect_/MyTeamStats/CreateUser_Retour à la création d'utilisateur");
+        }
         if ( $pwd1 == $pwd2){
             $h_pwd = password_hash($pwd1, PASSWORD_DEFAULT);
             $user = [
@@ -219,7 +223,8 @@ Class ControllerFront {
         session_destroy();
 
         $this->twig->addGlobal('session', $_SESSION);
-        $this->home();
+        $notice = "Vous avez été correctement déconnecté";
+        echo $this->twig->render('/FrontEnd/Homepage.html.twig', ['notice' => $notice]);
 
     }
 

@@ -1,25 +1,40 @@
 class PasswordCheck {
-    constructor(formpwd1, formpwd2, notice, submitBtn){
+    constructor(formpwd1, formpwd2, notice, regex, submitBtn){
         this.form1 = document.getElementById(formpwd1);
         this.form2 = document.getElementById(formpwd2);
-        this.notice = document.getElementById(notice);
+        this.noticeDiv = document.getElementById(notice);
+        this.regexDiv = document.getElementById(regex)
         this.submitBtn = document.getElementById(submitBtn);
-
+        console.log(this.regexDiv);
         this.submitBtn.disabled = true;
-        this.notice.style.display = "none";
+        this.noticeDiv.style.display = "none";
+
+        this.regex = new RegExp("^[a-zA-Z0-9]{8,}$");
 
         this.event();
     }
 
     event(){
+        this.form1.addEventListener("keyup", this.checkRegex.bind(this));
         this.form2.addEventListener("keyup", this.checkPassword.bind(this));
+    }
+
+    checkRegex(){
+        if (this.regex.test(this.form1.value)){
+            console.log("vert");
+            this.regexDiv.style.color = "green";
+        }
+        else{
+            console.log("vert");
+            this.regexDiv.style.color = "red";
+        }
     }
 
     checkPassword(){
         if (this.form1.value === this.form2.value){
             this.form1.className = "form-control form-control-success";
             this.form2.className = "form-control form-control-success";
-            this.notice.style.display = "none";
+            this.noticeDiv.style.display = "none";  
             submitPassword = true;
             if (submitMail){
                 this.submitBtn.disabled = false;    
@@ -28,7 +43,7 @@ class PasswordCheck {
         else {
             this.form1.className = "form-control form-control-warning"
             this.form2.className = "form-control form-control-warning";
-            this.notice.style.display = "block";
+            this.noticeDiv.style.display = "block";
             this.submitBtn.disabled = true;
         }
     }

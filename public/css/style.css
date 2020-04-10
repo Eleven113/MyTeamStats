@@ -10,11 +10,11 @@ header {
 }
 
 .menu_option-ico{
-    font-size: 12vw;
+    font-size: 8em;
 }
 
 .menu_option-txt{
-    font-size: 5vw;
+    font-size: 4em;
 }
 
 body{
@@ -35,6 +35,17 @@ header:hover,
 header:active{
     color: white;
     text-decoration: none;
+    cursor : pointer;
+}
+
+.bluelink:link,
+.bluelink:visited,
+.bluelink:focus,
+.bluelink:hover,
+.bluelink:active{
+    color: #007bff;
+    text-decoration: none;
+    cursor : pointer;
 }
 
 #table_options{
@@ -363,9 +374,6 @@ button{
 }
 
 #left_menu{
-    position : absolute;
-    top: 76px;
-    left : 0;
     height: 100%;
     width: 40%;
     display : flex;
@@ -373,11 +381,12 @@ button{
     align-items: flex-start;
     background-color: white;
     z-index: 3;
+    justify-content: space-evenly;
 }
 
 .left_menu_option{
-    margin-left: 20px;
-    width: 70%;
+    margin-left: 30px;
+    width: 100%;
     display: flex;
     flex-direction: row;
     color : #007bff;
@@ -391,4 +400,24 @@ button{
 
 .left_menu_option-txt{
     width:70%
+}
+
+#left_menu_window{
+    width: 98%;
+    display : none;
+    flex-direction: row;
+    position : absolute;
+    height: 100%;
+}
+
+#left_menu_layout{
+    width:60%;
+    background-color: rgba(255,255,255,0.8);
+    z-index: 1;
+}
+
+.menu_content{
+    display: flex!important;
+    justify-content: center;
+    align-items: center;
 }

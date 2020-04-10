@@ -1,0 +1,39 @@
+.menu_option-ico{
+    font-size: 18em;
+}
+
+.menu_option-txt{
+    font-size: 9em;
+}
+
+.marge-menu{
+    margin-top: 40px;
+}
+
+.notice {
+    font-size: 2.5em;
+}
+
+.notice_close {
+    right: 10%;
+}
+
+.head_menu{
+    font-size: 2.5em;
+}
+
+#club_name{
+    font-size: 5em;
+}
+
+#club_soclink {
+    font-size: 8em;
+}
+
+#club_data {
+    font-size: 2.5em;
+}
+
+#login-create, #login-create, .form_label{
+    font-size: 3em;
+}

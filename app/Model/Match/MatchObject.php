@@ -138,7 +138,7 @@ class MatchObject
     {
         $fieldid = (int) $fieldid;
         if ( !is_int($fieldid)){
-            throw new \Exception("L'id du terrain doit être un nombre entier");
+            throw new \Exception("L'id du terrain doit être un nombre entier_/MyTeamStats/CreateMatch_Retour à la création de match");
         }
         $this->fieldid = $fieldid;
     }
@@ -164,7 +164,7 @@ class MatchObject
     {
         $periodduration = (int) $periodduration;
         if ( !is_int($periodduration) || $periodduration < 0 ){
-            throw new \Exception("La durée du match doit être un nombre entier");
+            throw new \Exception("La durée du match doit être un nombre entier_/MyTeamStats/CreateMatch_Retour à la création de match");
         }
         $this->periodduration = $periodduration;
     }
@@ -177,7 +177,7 @@ class MatchObject
     {
         $periodnum = (int) $periodnum;
         if ( !is_int($periodnum)){
-            throw new \Exception("La durée du match doit être un nombre entier");
+            throw new \Exception("La durée du match doit être un nombre entier_/MyTeamStats/CreateMatch_Retour à la création de match");
         }
         $this->periodnum = $periodnum;
     }
@@ -190,7 +190,7 @@ class MatchObject
     {
         $values = ["Championnat", "Coupe", "Futsal", "Tournoi", "Amical"];
         if (!in_array($type, $values)){
-            throw new \Exception("Le type de match est incorrect");
+            throw new \Exception("Le type de match est incorrect_/MyTeamStats/CreateMatch_Retour à la création de match");
         }
         $this->type = $type;
     }
@@ -203,7 +203,7 @@ class MatchObject
     {
         $status = (int) $status;
         if ($status != 0 && $status != 1){
-            throw new \Exception("Le statut du match est incorrect");
+            throw new \Exception("Le statut du match est incorrect_/MyTeamStats/CreateMatch_Retour à la création de match");
         }
         $this->status = $status;
     }
@@ -216,7 +216,7 @@ class MatchObject
     {
         $opponentid = (int) $opponentid;
         if ( !is_int($opponentid)){
-            throw new \Exception("L'id de l'adversaire doit être un nombre entier");
+            throw new \Exception("L'id de l'adversaire doit être un nombre entier_/MyTeamStats/CreateMatch_Retour à la création de match");
         }
         $this->opponentid = $opponentid;
     }

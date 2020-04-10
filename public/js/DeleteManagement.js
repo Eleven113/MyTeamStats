@@ -8,7 +8,6 @@ class DeleteManagement {
         this.deleteLinkHref = this.deleteLink.href;
 
         this.isDisplay = false;
-        console.log(this.deleteBtns);
 
         this.events();
     }
