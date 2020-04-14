@@ -34,6 +34,40 @@
     font-size: 2.5em;
 }
 
-#login-create, #login-create, .form_label{
+.compo-title{
+    font-size: 5em;
+}
+
+.compo-txt{
     font-size: 3em;
+}
+
+#match_infos {
+    font-size: 2.2em;
+}
+
+#match_goal_card_display{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.2em;
+}
+
+#match_goal_display, #match_card_display{
+    width : 70%;
+    display: flex;
+    flex-direction: column;
+}
+
+#match_card_display{
+    margin-top: 20px;
+}
+
+.match_period{
+    font-size: 2.5em;
+}
+
+#match_team_away-name, #match_team_home-name {
+    font-size: 2.7em;
 }

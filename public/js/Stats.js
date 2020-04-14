@@ -84,7 +84,7 @@ class Stats {
     setStatBars(period){
         for (let i = 0; i < CONFIG.data.length; i++){
             this.newDivStatBar = document.createElement("div");
-            this.newDivStatBar.className = "stat_bar d-flex flex-row mb-3";
+            this.newDivStatBar.className = "stat_bar d-flex flex-row mb-3 align-items-center";
 
             this.newDivStatBarDbyP = document.createElement("div");
             this.newDivStatBarDbyP.className = "stat_bar d-flex flex-row mb-3";
@@ -96,38 +96,38 @@ class Stats {
                         this.newDivStatBarDbyP.innerHTML = '<div class="col-2"></div><div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">'+ CONFIG.data[i].name +'</div><div id="'+ CONFIG.data[i].db_name +'_dbp" class="stat_bar-num col-2 border border-primary border-left-0">0</div><div class="col-2"></div>';
                     } 
                     else {
-                    this.newDivStatBarDbyP.innerHTML = '<div class="col-2"></div><div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">'+ CONFIG.data[i].name +'</div><div id="'+ CONFIG.data[i].db_name +'_match_stat_'+ period +'" class="stat_bar-num col-2 border border-primary border-left-0">0</div><div class="col-2"></div>';
+                    this.newDivStatBarDbyP.innerHTML = '<div class="col-1"></div><div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">'+ CONFIG.data[i].name +'</div><div id="'+ CONFIG.data[i].db_name +'_match_stat_'+ period +'" class="stat_bar-num col-4 border border-primary border-left-0 text-center">0</div><div class="col-1"></div>';
                     }
                     break;
 
                 case 1:
                     if (this.pageStat){
-                        this.newDivStatBar.innerHTML = '<div id="btnminus_'+CONFIG.data[i].db_name+'_'+CONFIG.data[i].model+'" class="col-2 text-right"><i class="far fa-minus-square"></i></div><div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">'+ CONFIG.data[i].name +'</div><div id="'+CONFIG.data[i].db_name+'" class="stat_bar-num col-2 border border-primary border-left-0">0</div><div id="btnplus_'+CONFIG.data[i].db_name+'_'+CONFIG.data[i].model+'" class="col-2"><i class="far fa-plus-square"></i></div>';
+                        this.newDivStatBar.innerHTML = '<div id="btnminus_'+CONFIG.data[i].db_name+'_'+CONFIG.data[i].model+'" class="col-2 text-right btn_stat"><i class="far fa-minus-square"></i></div><div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">'+ CONFIG.data[i].name +'</div><div id="'+CONFIG.data[i].db_name+'" class="stat_bar-num col-2 border border-primary border-left-0">0</div><div id="btnplus_'+CONFIG.data[i].db_name+'_'+CONFIG.data[i].model+'" class="col-2 btn_stat"><i class="far fa-plus-square"></i></div>';
                         this.newDivStatBarDbyP.innerHTML = '<div class="col-2"></div><div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">'+ CONFIG.data[i].name +'</div><div id="'+CONFIG.data[i].db_name+'_dbp" class="stat_bar-num col-2 border border-primary border-left-0">0</div><div class="col-2"></div>';
                    
                     }
                     else {
-                        this.newDivStatBarDbyP.innerHTML = '<div class="col-2"></div><div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">'+ CONFIG.data[i].name +'</div><div id="'+CONFIG.data[i].db_name+'_match_stat_'+ period +'" class="stat_bar-num col-2 border border-primary border-left-0">0</div><div class="col-2"></div>';
+                        this.newDivStatBarDbyP.innerHTML = '<div class="col-1"></div><div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">'+ CONFIG.data[i].name +'</div><div id="'+CONFIG.data[i].db_name+'_match_stat_'+ period +'" class="stat_bar-num col-4 border border-primary border-left-0 text-center">0</div><div class="col-1"></div>';
                     }
                     break;
 
                 case 2:
                     if (this.pageStat){
-                        this.newDivStatBar.innerHTML = '<div id="btnminus_'+CONFIG.data[i].db_name+'_'+CONFIG.data[i].model+'" class="col-2 text-right"><i class="far fa-minus-square"></i></div><div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">'+ CONFIG.data[i].name +'</div><div class="stat_bar-num col-2 border border-primary border-left-0"><span id="'+CONFIG.data[i].db_name+'">0</span>&nbsp;&nbsp;<span id="'+CONFIG.data[i].db_name+'_percent">0%</span></div><div id="btnplus_'+CONFIG.data[i].db_name+'_'+CONFIG.data[i].model+'" class="col-2"><i class="far fa-plus-square"></i></div>';
+                        this.newDivStatBar.innerHTML = '<div id="btnminus_'+CONFIG.data[i].db_name+'_'+CONFIG.data[i].model+'" class="col-2 text-right btn_stat"><i class="far fa-minus-square"></i></div><div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">'+ CONFIG.data[i].name +'</div><div class="stat_bar-num col-2 border border-primary border-left-0"><span id="'+CONFIG.data[i].db_name+'">0</span>&nbsp;&nbsp;<span id="'+CONFIG.data[i].db_name+'_percent">0%</span></div><div id="btnplus_'+CONFIG.data[i].db_name+'_'+CONFIG.data[i].model+'" class="col-2 btn_stat"><i class="far fa-plus-square"></i></div>';
                         this.newDivStatBarDbyP.innerHTML = '<div class="col-2"></div><div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">'+ CONFIG.data[i].name +'</div><div class="stat_bar-num col-2 border border-primary border-left-0"><span id="'+CONFIG.data[i].db_name+'_dbp">0</span>&nbsp;&nbsp;<span id="'+CONFIG.data[i].db_name+'_percent_dbp">0%</span></div><div class="col-2"></div>';                                                   
                     } 
                     else {
-                        this.newDivStatBarDbyP.innerHTML = '<div class="col-2"></div><div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">'+ CONFIG.data[i].name +'</div><div class="stat_bar-num col-2 border border-primary border-left-0"><span id="'+CONFIG.data[i].db_name+'_match_stat_'+ period +'">0</span>&nbsp;&nbsp;<span id="'+CONFIG.data[i].db_name+'_percent_match_stat_'+ period +'">0%</span></div><div class="col-2"></div>';                
+                        this.newDivStatBarDbyP.innerHTML = '<div class="col-1"></div><div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">'+ CONFIG.data[i].name +'</div><div class="stat_bar-num col-4 border border-primary border-left-0 text-center"><span id="'+CONFIG.data[i].db_name+'_match_stat_'+ period +'">0</span>&nbsp;-&nbsp;<span id="'+CONFIG.data[i].db_name+'_percent_match_stat_'+ period +'">0%</span></div><div class="col-1"></div>';                
                     }
                     break;
 
                 case 3:
                     if (this.pageStat){
-                        this.newDivStatBar.innerHTML = '<div id="btnminus_'+CONFIG.data[i].db_name+'_'+CONFIG.data[i].model+'" class="col-2 text-right"><i class="far fa-minus-square"></i></div><div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">'+ CONFIG.data[i].name +'</div><div class="stat_bar-num col-2 border border-primary border-left-0"><span id="'+CONFIG.data[i].db_name+'">0</span>&nbsp;&nbsp;<span id="'+CONFIG.data[i].db_name+'_percent">0%</span></div><div id="btnplus_'+CONFIG.data[i].db_name+'_'+CONFIG.data[i].model+'" class="col-2"><i class="far fa-plus-square"></i></div>';
+                        this.newDivStatBar.innerHTML = '<div id="btnminus_'+CONFIG.data[i].db_name+'_'+CONFIG.data[i].model+'" class="col-2 text-right btn_stat"><i class="far fa-minus-square"></i></div><div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">'+ CONFIG.data[i].name +'</div><div class="stat_bar-num col-2 border border-primary border-left-0"><span id="'+CONFIG.data[i].db_name+'">0</span>&nbsp;&nbsp;<span id="'+CONFIG.data[i].db_name+'_percent">0%</span></div><div id="btnplus_'+CONFIG.data[i].db_name+'_'+CONFIG.data[i].model+'" class="col-2 btn_stat"><i class="far fa-plus-square"></i></div>';
                         this.newDivStatBarDbyP.innerHTML = '<div class="col-2"></div><div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">'+ CONFIG.data[i].name +'</div><div class="stat_bar-num col-2 border border-primary border-left-0"><span id="'+CONFIG.data[i].db_name+'_dbp">0</span>&nbsp;&nbsp;<span id="'+CONFIG.data[i].db_name+'_percent_dbp">0%</span></div><div class="col-2"></div>';
                     }
                     else {
-                        this.newDivStatBarDbyP.innerHTML = '<div class="col-2"></div><div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">'+ CONFIG.data[i].name +'</div><div class="stat_bar-num col-2 border border-primary border-left-0"><span id="'+CONFIG.data[i].db_name+'_match_stat_'+ period +'">0</span>&nbsp;&nbsp;<span id="'+CONFIG.data[i].db_name+'_percent_match_stat_'+ period +'">0%</span></div><div class="col-2"></div>';
+                        this.newDivStatBarDbyP.innerHTML = '<div class="col-1"></div><div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">'+ CONFIG.data[i].name +'</div><div class="stat_bar-num col-4 border border-primary border-left-0 text-center"><span id="'+CONFIG.data[i].db_name+'_match_stat_'+ period +'">0</span>&nbsp;-&nbsp;<span id="'+CONFIG.data[i].db_name+'_percent_match_stat_'+ period +'">0%</span></div><div class="col-1"></div>';
                     }
                     break;                    
 
@@ -165,12 +165,21 @@ class Stats {
     }
 
     AddStatBarsMatchpage(){
+        if (window.innerWidth <= 575){
+            this.statPeriodClassName = "d-flex flex-column align-items-center col-12 mt-4 match_period";
+            this.divColClassName = "col-12 d-flex flex-column"
+        }
+        else {
+            this.statPeriodClassName = "d-flex flex-row col-12 mt-4 match_period";
+            this.divColClassName = "col-6 d-flex flex-column"
+        }    
+
         for ( let i=1; i <= this.periodNumber+1; i++){
             
             this.newDivStatPeriod = document.createElement("div");
             this.newDivStatPeriod.id = "match_stat_period_"+ i;
             if ( i === this.periodNumber+1){
-                this.newDivStatPeriod.className = "d-flex flex-row col-12 mt-4 match_period";
+                this.newDivStatPeriod.className = this.statPeriodClassName;
             } 
             else {
                 this.newDivStatPeriod.className = "d-none match_period";
@@ -178,11 +187,11 @@ class Stats {
     
             this.newDivCol1 = document.createElement("div");
             this.newDivCol1.id = "stat_1stcol_period_" + i;
-            this.newDivCol1.className = "col-6 d-flex flex-column";
+            this.newDivCol1.className = this.divColClassName;
 
             this.newDivCol2 = document.createElement("div");
             this.newDivCol2.id = "stat_1stcol_period_" + i;
-            this.newDivCol2.className = "col-6 d-flex flex-column";
+            this.newDivCol2.className = this.divColClassName;
 
             
             this.setStatBars(i);
@@ -517,8 +526,15 @@ class Stats {
     }
 
     changeDisplayMatchpage(target){
+        if (window.innerWidth <= 575){
+            this.className = "d-flex flex-column align-items-center col-12 mt-4 match_period";
+        }
+        else {
+            this.className = "d-flex flex-row col-12 mt-4 match_period";
+        }    
+
         if ( target === "Total"){
-            document.getElementById("match_stat_period_" + (this.periodNumber + 1)).className = "d-flex flex-row col-12 mt-4 match_period"
+            document.getElementById("match_stat_period_" + (this.periodNumber + 1)).className = this.className;
             for ( let i = 1; i <= this.periodNumber; i++){
                 document.getElementById("match_stat_period_"+ i).className = "d-none match_period";
             } 
@@ -527,7 +543,7 @@ class Stats {
             document.getElementById("match_stat_period_" + (this.periodNumber + 1)).className = "d-none match_period"
             for ( let i = 1; i <= this.periodNumber; i++){
                 if ( i == target){
-                    document.getElementById("match_stat_period_"+ i).className = "d-flex flex-row col-12 mt-4 match_period";
+                    document.getElementById("match_stat_period_"+ i).className = this.className;
                 }
                 else {
                     document.getElementById("match_stat_period_"+ i).className = "d-none match_period";

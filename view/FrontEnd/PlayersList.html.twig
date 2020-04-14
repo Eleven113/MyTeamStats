@@ -26,26 +26,30 @@
     </div>
 
     <div class="table-responsive">
-        <table class="table table table-bordered table-striped   text-center table-text-size">
+        <table class="table table table-bordered table-striped text-center table-text-size">
             <caption class="col-12 text-center">
                 <h4>Liste des joueurs</h4>
             </caption>
             <thead>
                 <tr>
-                    <th id="table_licencenum">N° Licence</th>
+                    {%  if session.user_status >= 3 %}
+                        <th id="table_licencenum">N° Licence</th>
+                    {% endif %}
                     <th id="table_surname">Nom</th>
                     <th id="table_name">Prénom</th>
                     <th id="table_birthdate">Date de naissance</th>
                     <th id="table_category">Catégorie</th>
-                    <th id="table_licenced">Licencié.e ?</th>
-                    <th id="table_options">Options</th>
+                    <th id="table_licenced">Licence</th>
+                    <th id="table_options" class="optionsTH">Options</th>
                 </tr>
             </thead>
             <tbody>
             {%   for player in playerListObj %}
 
-                <tr>
-                    <td>{{player.licence}}</td>
+                <tr class="tableTR">
+                    {%  if session.user_status >= 3 %}
+                        <td>{{player.licence}}</td>
+                    {% endif %}
                     <td>{{player.lastname}}</td>
                     <td>{{player.firstname}}</td>
                     <td>{{ player.birthdate }}</td>
@@ -57,7 +61,7 @@
                             <i class="fas fa-times redtimes"></i>
                          {% endif %}
                     </td>
-                    <td class="d-flex flex-row justify-content-between">
+                    <td class="optionsTD">
                         <div><a href="/MyTeamStats/Player/{{ player.playerid }}"><i class="fas fa-user"></i></a></div>
                         {%  if session.user_status >= 3 %}
                             <div><a href="/MyTeamStats/ModifyPlayer/{{ player.playerid }}"><i class="fas fa-user-edit"></i></a></div>

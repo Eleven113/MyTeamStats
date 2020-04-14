@@ -10,18 +10,18 @@
         <form id="creatematch-form" class="col-lg-6" action="/MyTeamStats/AddMatch"  method="post" enctype="multipart/form-data">
             <legend>Créér un match</legend>
             <div class="form-group">
-                <label for="text">Date</label>
+                <label for="text" class="form_label">Date</label>
                 <input id="text" type="datetime-local" name="date" class="form-control" required>
             </div>
             <div class="form-group">
-                <label for="text">Adversaire</label><br/>
-                <select name="opponent" required>
+                <label for="text" class="form_label">Adversaire</label><br/>
+                <select name="opponent" class="form-control" required>
                     {% for oppo in oppoListObj %}
                         <option value="{{ oppo.opponentid }}">{{ oppo.name }}</option>
                     {% endfor %}
                 </select>
             </div>
-            <div class="btn btn-group btn-group-toggle" data-toggle="buttons" aria-pressed="false">
+            <div class="btn btn-group btn -group-toggle" data-toggle="buttons" aria-pressed="false">
                 <label class="btn btn-secondary active">
                     <input type="radio" name="athome" value="1" id="1" autocomplete="off" checked> Domicile
                 </label>
@@ -30,23 +30,23 @@
                 </label>
             </div>
             <div class="form-group">
-                <label for="text">Terrain</label><br/>
-                <select name="fieldid" required>
+                <label for="text" class="form_label">Terrain</label><br/>
+                <select name="fieldid" class="form-control" required>
                     {% for field in fieldsListObj %}
                         <option value="{{ field.fieldid }}">{{ field.name }} / {{  field.city }} / {{ field.turf }}</option>
                     {% endfor %}
                 </select>
             </div>
             <div class="form-group">
-                <label for="text">Catégorie</label><br/>
-                <select name="category" required>
+                <label for="text" class="form_label">Catégorie</label><br/>
+                <select name="category" class="form-control" required>
                     <option value="U18">U18</option>
                     <option value="U15">U15</option>
                 </select>
             </div>
             <div class="form-group">
-                <label for="text">Compétition</label><br/>
-                <select name="type" required>
+                <label for="text" class="form_label">Compétition</label><br/>
+                <select name="type" class="form-control" required>
                     <option value="Championnat">Championnat</option>
                     <option value="Coupe">Coupe</option>
                     <option value="Futsal">Futsal</option>
@@ -55,18 +55,18 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="text">Nombre de période</label>
-                <select name="periodnum" required>
+                <label for="text" class="form_label">Nombre de période</label>
+                <select name="periodnum" class="form-control" required>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="4">4</option>
                 </select>
             </div>
             <div class="form-group">
-                <label for="text">Durée d'une période</label>
+                <label for="text" class="form_label">Durée d'une période</label>
                 <input id="text" type="number" name="periodduration" class="form-control" required>
             </div>
-            <button type="submit" class="btn btn-primary"><i class="fas fa-check-circle"></i>&nbsp;&nbsp;Envoyer</button>
+            <button type="submit" class="mt-4 btn btn-primary"><i class="fas fa-check-circle"></i>&nbsp;&nbsp;Envoyer</button>
         </form>
     </div>
 

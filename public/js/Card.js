@@ -203,9 +203,9 @@ class Card {
                 divIcon.className = "card_display_icon redcard";
             }
             let divPlayer = document.createElement("div");
-            divPlayer.className = "card_display_player col-3";
+            divPlayer.className = "card_display_player col-6";
             let divTime = document.createElement("div");
-            divTime.className = "card_display_time col-2";
+            divTime.className = "card_display_time col-4";
 
             divPlayer.innerHTML = this.player.firstname + " " + this.player.lastname.slice(0,1) + ".";
             divTime.innerHTML = time;

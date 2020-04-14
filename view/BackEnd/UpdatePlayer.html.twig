@@ -10,42 +10,42 @@
         <form id="updateplayer_form-form" class="col-lg-6" action="/MyTeamStats/UpdatePlayer/{{ player.playerid }}"  method="post" enctype="multipart/form-data">
             <legend>Modifier le joueur</legend>
             <div class="form-group">
-                <label for="text">Nom</label>
+                <label for="text" class="form_label">Nom</label>
                 <input id="text" type="text" name="lastname" class="form-control" value="{{ player.lastname }}" required>
             </div>
             <div class="form-group">
-                <label for="text">Prénom</label>
+                <label for="text" class="form_label">Prénom</label>
                 <input id="text" type="text" name="firstname" class="form-control" value="{{ player.firstname }}" required>
             </div>
             <div class="form-group">
-                <label for="text">N° Licence</label>
+                <label for="text" class="form_label">N° Licence</label>
                 <input id="text" type="number" name="licencenum" value="{{ player.licence }}" class="form-control" required>
             </div>
             <div class="form-group">
-                <label for="text">Licence active ?</label>
-                <select name="activelicence" required>
+                <label for="text" class="form_label">Licence active ?</label>
+                <select name="activelicence" class="form-control" required>
                     <option value="1">Oui</option>
                     <option value="0">Non</option>
                 </select>
             </div>
             <div class="form-group">
-                <label for="text">Date de naissance</label>
+                <label for="text" class="form_label">Date de naissance</label>
                 <input id="text" type="date" name="birthdate" class="form-control" value="{{ player.birthdate }}" required>
             </div>
             <div class="form-group">
-                <label for="text">Catégorie</label>
-                <select name="category" required>
+                <label for="text" class="form_label">Catégorie</label>
+                <select name="category" class="form-control" required>
                     <option value="U18">U18</option>
                     <option value="U15">U15</option
                 </select>
             </div>
             <div class="form-group">
-                <label for="text">Ajouter une photo</label>
+                <label for="text" class="form_label">Ajouter une photo</label>
                 <input id="text" type="file" name="photo" class="form-control" required>
             </div>
             <div class="form-group">
-                <label for="text">Poste</label>
-                <select name="poste" required>
+                <label for="text" class="form_label">Poste</label>
+                <select name="poste" class="form-control" required>
                     <option value="Attaquant">Attaquant</option>
                     <option value="Milieu">Milieu</option>
                     <option value="Défenseur">Défenseur</option>
@@ -53,14 +53,14 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="text">Adresse</label>
+                <label for="text" class="form_label">Adresse</label>
                 <input id="text" type="text" name="address" value="{{ player.address }}" class="form-control" required>
             </div>
             <div class="form-group">
-                <label for="text">Téléphone</label>
+                <label for="text" class="form_label">Téléphone</label>
                 <input id="text" type="number" name="phonenum"  value="{{ player.phonenum}}" class="form-control">
             </div>
-            <div class="form-group">
+            <div class="form-group" class="form_label">
                 <label for="text">Mail</label>
                 <input id="text" type="mail" name="mail" value="{{ player.mail }}" class="form-control" required>
             </div>

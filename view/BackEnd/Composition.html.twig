@@ -21,11 +21,11 @@
     </div>
 
     <div class="d-flex flex-column align-items-center">
-        <h3 class="mt-4 mb-4">Composition d'équipe</h3>
+        <h3 class="mt-4 mb-4 compo-title">Composition d'équipe</h3>
 
         {% if playersList is null %}
 
-            <div id="no_compo">
+            <div id="no_compo" class="compo-txt">
                 Il n'y a pas encore de composition d'équipe pour ce match
             </div>
 
@@ -37,8 +37,7 @@
 
         {% else %}
 
-            <h5 class="mb-2">Joueurs convoqués le match :</h5>
-            <ul>
+            <ul class="compo-txt">
                 {%  for player in playersList %}
                     <li>{{ player.firstname }}  {{ player.lastname }}</li>
                 {% endfor %}
@@ -69,8 +68,8 @@
             </div>
         {% endif %}
     </div>
-    <div class="mt-4">
-        <a href="/MyTeamStats/MatchsList"><i class="fa fa-share fa-flip-horizontal" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Retour à la liste des matchs</a>
+    <div class="mt-4 backlink">
+        <a href="/MyTeamStats/MatchsList" class="bluelink"><i class="fa fa-share fa-flip-horizontal" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Retour à la liste des matchs</a>
     </div>
 {% endblock %}
 

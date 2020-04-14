@@ -57,21 +57,24 @@
         <div id="page">sheet</div>
     </div>
 
+    <div class="meteo_zipcode">{{ match.zipcode }}</div>
+    <div class="meteo_date">{{ match.date }}</div>
+
 <div id="match" class="d-flex flex-column col-12 align-items-center">
 
-    <h1>{{ match.type }} - {{ match.category }}</h1>
-    <h5 id="match_date">{{ match.date | date('\\L\\e d/m/Y à H\\hi')  }}</h5>
+    <h1 class="mt-2 mb-2">{{ match.type }} - {{ match.category }}</h1>
+    <h5 id="match_date" class="mt-2 mb-4">{{ match.date | date('\\L\\e d/m/Y à H\\hi')  }}</h5>
 
-    <div id="match_teams" class="d-flex flex-row justify-content-center">
-        <div id="match_team_home" class="d-flex flex-column align-items-end justify-content-center col-4">
-            <div id ="match_team_home-logo" class="col-5">
+    <div id="match_teams" class="col-12 d-flex flex-row justify-content-center mb-4">
+        <div id="match_team_home" class="d-flex flex-column align-items-center justify-content-center col-4">
+            <div id ="match_team_home-logo">
                 {% if match.athome == 1 %}
-                    <img src="https://res.cloudinary.com/marthyte/image/upload/v1584623500/v2_vnydsk.png" class="img-responsive fit-image">
+                    <img src="https://res.cloudinary.com/marthyte/image/upload/v1584623500/v2_vnydsk.png" class="logo_img">
                 {% else %}
-                <img src="{{ match.logo }}" class="img-responsive fit-image">
+                    <img src="{{ match.logo }}" class="logo_img">
                 {% endif %}
             </div>
-            <div id ="match_team_home-name">
+            <div id ="match_team_home-name" class="text-center">
                 {%  if match.athome == 1 %}
                     Lavalloise Football Cub
                 {% else %}
@@ -84,15 +87,15 @@
                 <div class="text-center"><span id="homescore"></span>-<span id="awayscore"></span></div>
             </div>
         {% endif %}
-        <div id="match_team_away" class="d-flex flex-column align-items-start justify-content-center col-4">
-            <div id ="match_team_away-logo" class="col-5">
+        <div id="match_team_away" class="d-flex flex-column align-items-center justify-content-center col-4">
+            <div id ="match_team_away-logo">
                 {% if match.athome == 0 %}
-                    <img src="https://res.cloudinary.com/marthyte/image/upload/v1584623500/v2_vnydsk.png" class="img-responsive fit-image">
+                    <img src="https://res.cloudinary.com/marthyte/image/upload/v1584623500/v2_vnydsk.png" class="logo_img">
                 {% else %}
-                    <img src="{{ match.logo }}" class="img-responsive fit-image">
+                    <img src="{{ match.logo }}" class="logo_img">
                 {% endif %}
             </div>
-            <div id ="match_team_away-name">
+            <div id ="match_team_away-name" class="text-center">
                 {%  if match.athome == 0 %}
                     Lavalloise Football Cub
                 {% else %}
@@ -103,7 +106,7 @@
     </div>
 
     {% if match.status == 1 %}
-        <div id="match_infos"  class="m-4 p-4 col-8 border border-primary rounded-lg myborder">
+        <div id="match_infos"  class="mt-4 mb-4 col-10">
             <p id="match_address">
                 <span class="player_data-title font-weight-bold">Terrain :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                 <span class="player_data-txt">{{ match.address }} à {{ match.city }} ({{ match.zipcode }})</span>
@@ -112,42 +115,38 @@
                 <span class="player_data-title font-weight-bold">Pelouse :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                 <span class="player_data-txt">{{ match.turf }}</span>
             </p>
-        </div>
-
-        <div id="pre_match">
-            <div id="pre_match_data" class="m-4 p-4 col-12 border border-primary rounded-lg myborder">
-                <div class="meteo_zipcode">{{ match.zipcode }}</div>
-                <div class="meteo_date">{{ match.date }}</div>
-                <p id="match_meteo">
+            <p id="match_meteo">
                     <span class="player_data-title font-weight-bold">Prévision météo :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                     <span class="meteo_display"></span>
-                </p>
-            </div>
+            </p>
+
             {% if playersList is null %}
 
-                <div id="no_compo">
-                    Il n'y a pas encore de composition d'équipe pour ce match
-                </div>
+                <p id="no_compo">
+                    <span class="font-weight-bold">Il n'y a pas encore de composition d'équipe pour ce match</span>
+                </p>
 
             {% else %}
 
-                <div id="match_player" class="m-4 p-4 col-8 border border-primary rounded-lg myborder">
-                    <div id="match_player-title">Joueurs convoqués</div>
+                <p id="match_player">
+                    <span id="match_player-title" class="font-weight-bold">Joueurs convoqués :</span>
                     <ul>
                         {%  for player in playersList %}
                             <li>{{ player.firstname }}  {{ player.lastname }}</li>
                         {% endfor %}
                     </ul>
-                </div>
+                </p>
+
             {% endif %}
         </div>
+
     {%  else %}
 
-        <div id="match_goal_card_display" class="col-12 mt-3 mb-3 d-flex flex-row">
-            <div id="match_goal_display" class="col-6 d-flex flex-column justify-content-center">
+        <div id="match_goal_card_display" class="col-12 mt-3 mb-3">
+            <div id="match_goal_display">
 
             </div>
-            <div id="match_card_display" class="col-6 d-flex flex-column justify-content-center">
+            <div id="match_card_display">
 
             </div>
         </div>

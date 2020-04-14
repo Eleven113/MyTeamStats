@@ -278,9 +278,9 @@ class Score {
             let divDisplayGoal = document.createElement("div");
             divDisplayGoal.className = "goal_display d-flex flex-row justify-content-center align-items-center mt-1";
             let divPlayer = document.createElement("div");
-            divPlayer.className = "goal_display_player col-3";
+            divPlayer.className = "goal_display_player col-6";
             let divTime = document.createElement("div");
-            divTime.className = "goal_display_time col-2  d-flex flew-row justify-content-start";
+            divTime.className = "goal_display_time col-4  d-flex flew-row justify-content-start";
 
             divPlayer.innerHTML = '<i class="far fa-futbol"></i>&nbsp;&nbsp;&nbsp;' + this.scorer.firstname + " " + this.scorer.lastname.slice(0,1);
             divTime.innerHTML = time;

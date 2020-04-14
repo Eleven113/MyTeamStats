@@ -17,25 +17,25 @@
     <form id="createuser-form" class="col-lg-6" action="/MyTeamStats/AddUser"  method="post">
         <legend>Créer votre compte</legend>
         <div class="form-group">
-            <label for="text">Nom</label>
+            <label for="text" class="form_label">Nom</label>
             <input id="createuser_lastname" type="text" name="lastname" class="form-control" required>
         </div>
         <div class="form-group">
-            <label for="text">Prénom</label>
+            <label for="text" class="form_label">Prénom</label>
             <input id="createuser_firstname" type="text" name="firstname" class="form-control" required>
         </div>
         <div class="form-group">
-            <label for="text"><i class="fas fa-at"></i>&nbsp;&nbsp;Adresse mail</label>
+            <label for="text" class="form_label"><i class="fas fa-at"></i>&nbsp;&nbsp;Adresse mail</label>
             <input id="createuser_mail" type="text" name="mail" class="form-control" required>
             <div id="createuser_notice_mail" class="form-control-feedback"></div>
         </div>
         <div class="form-group">
-            <label for="text"><i class="fas fa-key"></i>&nbsp;&nbsp;Entrer un mot de passe</label>
+            <label for="text" class="form_label"><i class="fas fa-key"></i>&nbsp;&nbsp;Entrer un mot de passe</label>
             <input id="createuser_pwd1" type="password" name="pwd1" class="form-control" required>
             <div id="createuser_regex_pwd" class="form-control-feedback">Le mot de passe doit contenir au moins 8 caractères</div>
         </div>
         <div class="form-group">
-            <label for="text"><i class="fas fa-key"></i>&nbsp;&nbsp;Confirmer le mot de passe</label>
+            <label for="text" class="form_label"><i class="fas fa-key"></i>&nbsp;&nbsp;Confirmer le mot de passe</label>
             <input id="createuser_pwd2" type="password" name="pwd2" class="form-control" required>
             <div id="createuser_notice_pwd" class="form-control-feedback">Les deux mots de passe sont différents</div>
         </div>    

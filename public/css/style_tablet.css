@@ -1,0 +1,41 @@
+#login-create, #login-create, .form_label{
+    font-size: 3em;
+}
+
+
+legend {
+    font-size: 4em;
+    text-align: center;
+}
+
+#createuser_regex_pwd, #createuser_notice_pwd, #modifypwd_notice_pwd{
+    font-size: 1.5em;
+}
+
+.form-control, .btn, .table-text-size-oppo, .table-text-size-compo{
+    font-size: 2.5em!important;
+}
+
+#player_name{
+    font-size: 5em;
+}
+
+#player_data{
+    font-size: 2.5em;
+}
+
+.compo-title{
+    font-size: 4em;
+}
+
+.compo-txt{
+    font-size: 2em;
+}
+
+.backlink{
+    font-size : 3em;
+}
+
+.match_period{
+    font-size: 1.9vw;
+}

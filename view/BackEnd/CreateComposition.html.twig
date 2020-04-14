@@ -6,11 +6,11 @@
 
 {% block content %}
 
-    <h3>Créér la composition d'équipe pour ce match</h3>
+    <h3 class="text-center mt-4">Créér la composition d'équipe pour ce match</h3>
 
-    <form id="createcompo-form" class="col-lg-6" action="/MyTeamStats/AddComposition/{{ id }}"  method="post">
+    <form id="createcompo-form" class="col-12" action="/MyTeamStats/AddComposition/{{ id }}"  method="post">
         <div class="table-responsive">
-            <table class="table table table-bordered table-striped text-center">
+            <table class="table table table-bordered table-striped text-center table-text-size-compo">
                 <caption class="col-12 text-center">
                     <h4>Liste des joueurs</h4>
                 </caption>
@@ -19,18 +19,18 @@
                     <th id="table_surname">Nom</th>
                     <th id="table_name">Prénom</th>
                     <th id="table_category">Catégorie</th>
-                    <th id="table_licenced">Licencié.e ?</th>
-                    <th id="table_options">Selection</th>
+                    <th id="table_licenced">Licence</th>
+                    <th id="table_options" class="optionsTH">Selection</th>
                 </tr>
                 </thead>
                 <tbody>
 
                 {%   for player in playersList %}
 
-                    <tr>
+                    <tr class="tableTR">
                         <td>{{player.lastname}}</td>
                         <td>{{player.firstname}}</td>
-                        <td>{{player.category}}</td>
+                        <td>U{{ year - (player.birthdate | date('Y')) }}</td>
                         <td>
                             {% if player.activelicence == 1  %}
                                 <i class="fas fa-check greencheck"></i>
@@ -38,7 +38,7 @@
                                 <i class="fas fa-times redtimes"></i>
                             {% endif %}
                         </td>
-                        <td class="d-flex flex-row justify-content-between">
+                        <td class="optionsTD">
                             <input type="checkbox" name="check_list[]" value="{{ player.playerid }}">
                         </td>
                     </tr>
@@ -50,5 +50,9 @@
         </div>
         <button type="submit" class="btn btn-primary"><i class="fas fa-check-circle"></i>&nbsp;&nbsp;Envoyer</button>
     </form>
+{% endblock %}
+
+{% block script %}
+    <script src="/MyTeamStats/public/js/TableOptions.js"></script>
 {% endblock %}
 

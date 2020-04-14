@@ -49,15 +49,15 @@ header:active{
 }
 
 #table_options{
-    width: 10%
+    width: 19%;
 }
 
 #table_licenced{
-    width: 15%
+    width: 10%;
 }
 
 #table_licencenum{
-    width: 13%
+    width: 13%;
 }
 
 #login_form, #lostpassword_form, #createaccount_form, .table-responsive, #club, #player, #createplayer_form, #creatematch_form, #match{
@@ -229,7 +229,7 @@ header:active{
 }
 
 .table-text-size{
-    font-size: 1.2em;
+    font-size: 1.5em;
 }
 
 .add-btn{
@@ -373,6 +373,10 @@ button{
     cursor: pointer;
 }
 
+#player_name{
+    color: #007bff;
+}
+
 #left_menu{
     height: 100%;
     width: 40%;
@@ -420,4 +424,62 @@ button{
     display: flex!important;
     justify-content: center;
     align-items: center;
+}
+
+table{
+    font-size: 1.5em;
+}
+
+.backlink{
+    font-size : 2em;
+}
+
+.optionsTD{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.delete_btn{
+    color: #007bff;
+}
+
+#match_infos{
+    font-size: 1.8em;
+}
+
+.compo-txt{
+    font-size: 2em;
+}
+
+#match_team_away-name, #match_team_home-name{
+    font-size: 2.2em;
+}
+
+#match_team_home-logo, #match_team_away-logo{
+    height : 120px;
+}
+
+.logo_img{
+    min-height: 100%;
+    max-height: 100%;
+}
+
+#match_goal_card_display{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    font-size: 1.4em;
+}
+
+#match_goal_display, #match_card_display{
+    width : 45%;
+    display: flex;
+    flex-direction: column;
+}
+
+.btn_stat{
+    font-size: 1.3em;
+    color : #007bff;
 }

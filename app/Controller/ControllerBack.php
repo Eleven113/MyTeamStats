@@ -61,7 +61,7 @@ class ControllerBack {
         $type = explode("/", $photo['type'])[0];
         $photo = $photo['tmp_name'];
 
-        if ( $type == 'image' ){
+        if ( $type ==  'image' ){
             $result = \Cloudinary\Uploader::upload($photo, array("folder" => "Players/") );
         }
         else {
@@ -91,7 +91,7 @@ class ControllerBack {
     public function ModifyPlayer($id){
         $player = $this->playerManager->getPlayer($id);
 
-        if ( $player->getFirstName != null) {
+        if ( $player->getFirstName() != null) {
             echo $this->twig->render('/BackEnd/UpdatePlayer.html.twig', ['player' => $player]);
         }
         else {
@@ -261,11 +261,11 @@ class ControllerBack {
     public function ModifyUser($id){
         $user = $this->userManager->getUser($id);
 
-        if ($user->getFirstName != null){
+        if ($user->getFirstName() != null){
             echo $this->twig->render('/BackEnd/UpdateUser.html.twig', ['user' => $user]);
         }
         else {
-            throw new \Exception("L'utilisateur que vous tentez de modifier n'existe pas/plus_/MyTeamStats/UserList_Retour à la liste des utilisateurs");
+            throw new \Exception("L'utilisateur que vous tentez de modifier n'existe pas/plus_/MyTeamStats/UsersList_Retour à la liste des utilisateurs");
         }
 
     }
@@ -462,10 +462,18 @@ class ControllerBack {
     public function CreateComposition($id){
         $playersList = $this->playerManager->getPlayersList($id);
 
+        if (date('n') >= 8){
+            $year = date('Y') + 1;
+        }
+        else {
+            $year = date('Y');
+        }
+
         echo $this->twig->render('/BackEnd/CreateComposition.html.twig',
             [
                 'playersList' => $playersList,
-                'id' => $id
+                'id' => $id,
+                'year' => $year
             ]);
     }
 
@@ -481,6 +489,13 @@ class ControllerBack {
         $playerInList = $this->compositionManager->getComposition($id);
         $List = [];
 
+        if (date('n') >= 8){
+            $year = date('Y') + 1;
+        }
+        else {
+            $year = date('Y');
+        }
+
         for ($i = 0; $i < count($playerInList); $i++){
             array_push($List,$playerInList[$i]->getPlayerid());
         }
@@ -489,7 +504,8 @@ class ControllerBack {
             [
                 'playersList' => $playersList,
                 'id' => $id,
-                'List' => $List
+                'List' => $List,
+                'year' => $year
             ]);
     }
 

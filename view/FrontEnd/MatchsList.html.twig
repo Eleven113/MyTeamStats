@@ -61,12 +61,12 @@
                     </td>
                     <td class="d-flex flex-row justify-content-between">
                         <div><a href="/MyTeamStats/Match/{{ match.gameid }}" class="bluelink"><i class="far fa-futbol"></i></a></div>
-                        {% if ( session.user_status ) >= 3 and   ( match.status == 1 )  %}
+                        {% if ( session.user_status ) >= 3  and  ( match.status == 1 )  %}
                             <div><a href="/MyTeamStats/Composition/{{ match.gameid }}" class="bluelink"><i class="fas fa-users"></i></a></div>
                             <div><a href="/MyTeamStats/MatchStats/{{ match.gameid }}" class="bluelink"><i class="fas fa-clipboard-list"></i></a></div>
                         {% endif %}
                         {% if session.user_status >= 4 %}
-                            {% if match.status == 1 %}<div class="delete_btn"><a href="#" class="bluelink"><i class="fas fa-trash-alt" id="delete_match_{{ match.gameid }}"></i></a></div>{% endif %}
+                            {% if match.status == 1 %}<div class="delete_btn"><i class="fas fa-trash-alt" id="delete_match_{{ match.gameid }}"></i></div>{% endif %}
                         {% endif %}
                     </td>
                 </tr>

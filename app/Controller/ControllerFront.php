@@ -236,8 +236,8 @@ Class ControllerFront {
         $mail = $_POST['mail'];
 
         $this->userManager->ResetPassword($mail);
-
-        echo $this->twig->render('/FrontEnd/Homepage.html.twig');
+        $notice = "Un mail vous a été envoyé";
+        echo $this->twig->render('/FrontEnd/Homepage.html.twig', ['notice' => $notice]);
     }
 
     public function ModifyPassword($mail,$token){
