@@ -19,8 +19,6 @@ header {
 
 body{
     font-size: 1.25vw;
-    height: 100vh;
-    border: 1px solid red;
 }
 
 .link:link,
@@ -151,7 +149,7 @@ header:active{
     z-index : 10;
 }
 
-#set_yellowcard, #set_redcard{
+#set_yellowcard, #set_redcard, #set_goal{
     height: 50%;
     width: 80%;
     background: white;
@@ -179,7 +177,7 @@ header:active{
     justify-content: center;
 }
 
-#yc_close, #rc_close, #cards_close{
+#yc_close, #rc_close, #cards_close, #goal_close{
     position: relative;
     height: 4%;
     left: 78%;
@@ -482,4 +480,28 @@ table{
 .btn_stat{
     font-size: 1.3em;
     color : #007bff;
+}
+
+#user_modal{
+    position: absolute;
+    display: none;
+    border : 2px solid #007bff;
+    width : 25%;
+    right: 0;
+    height : 60px;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5em;
+    background-color: rgba(255,255,255,0.8);
+    z-index : 3;
+}
+
+#pages_bar{
+    width: 60%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    color: #007bff;
+    font-size: 2em;
 }

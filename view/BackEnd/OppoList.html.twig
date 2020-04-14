@@ -37,7 +37,7 @@
                 </thead>
                 <tbody>
                 {%   for oppo in oppoListObj %}
-                    <tr class="tableTR">
+                    <tr class="tableTR trlist">
                         <td>{{oppo.name}}</td>
                         <td><img src="{{oppo.logo}}" class="img-responsive fit-image"></td>
                           <td class="optionsTD">
@@ -55,9 +55,12 @@
         <span>Vous n'êtes pas autorisé à afficher cette page</span>
     {% endif %}
 
+    <div class="list_bar col-12 d-flex flex-row justify-content-center mb-4">
+    </div>
+
 {% endblock %}
 
 {% block script %}
     <script src="/MyTeamStats/public/js/TableOptions.js"></script>
-    <script src="/MyTeamStats/public/js/DeleteManagement.js"></script>
+    <script src="/MyTeamStats/public/js/ListDisplay.js"></script>
 {% endblock %}

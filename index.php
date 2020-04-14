@@ -73,7 +73,7 @@ try {
         $r->addRoute('GET', '/MyTeamStats/CreateUser', 'controllerFront/CreateUser');
         $r->addRoute('POST', '/MyTeamStats/AddUser', 'controllerFront/AddUser');
         $r->addRoute('GET', '/MyTeamStats/LostPassword', 'controllerFront/LostPassword');
-        $r->addRoute('GET', '/MyTeamStats/SessionKill', 'controllerFront/SessionKill');
+        $r->addRoute('GET', '/MyTeamStats/Logout', 'controllerFront/Logout');
         $r->addRoute('POST', '/MyTeamStats/UserLogin', 'controllerFront/UserLogin');
         $r->addRoute('POST', '/MyTeamStats/ResetPassword', 'controllerFront/ResetPassword');
         $r->addRoute('GET', '/MyTeamStats/ModifyPassword/{mail}/{token}', 'controllerFront/ModifyPassword');

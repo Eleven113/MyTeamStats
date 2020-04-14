@@ -71,3 +71,12 @@
 #match_team_away-name, #match_team_home-name {
     font-size: 2.7em;
 }
+
+#user_modal{
+    font-size: 2em;
+}
+
+#pages_bar {
+    width: 90%;
+    font-size: 3em;
+}

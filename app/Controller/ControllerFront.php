@@ -46,6 +46,8 @@ Class ControllerFront {
     public function PlayersList(){
         $playersListObj = $this->playerManager->getPlayersList();
 
+        $count = count($playersListObj);
+
         if (date('n') >= 8){
             $year = date('Y') + 1;
         }
@@ -59,6 +61,7 @@ Class ControllerFront {
                 'sessionUser' => $_SESSION['user_status'],
                 'link' => $this->link,
                 'year' => $year,
+                'count' => $count
             ]);
 
     }
@@ -218,7 +221,7 @@ Class ControllerFront {
 
     }
 
-    public function SessionKill(){
+    public function Logout(){
         $_SESSION = array();
         session_destroy();
 

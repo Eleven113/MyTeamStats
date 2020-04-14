@@ -3,7 +3,7 @@ class NoticeManagement {
         this.div = document.querySelector(".notice");
         this.divClose = document.querySelector(".notice_close");
         this.event();
-        // this.timer();
+        this.timer();
 
     }
 

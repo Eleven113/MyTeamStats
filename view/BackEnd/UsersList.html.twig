@@ -23,7 +23,7 @@
                     <h4>Liste des utilisateurs</h4>
                 </caption>
                 <thead>
-                <tr>
+                <tr class="trlist">
                     <th id="table_surname">Nom</th>
                     <th id="table_name">Prénom</th>
                     <th id="table_birthdate">Mail</th>
@@ -63,9 +63,13 @@
         <span>Vous n'êtes pas autorisé à afficher cette page</span>
     {% endif %}
 
+    <div class="list_bar col-12 d-flex flex-row justify-content-center mb-4">
+    </div>
+
 {% endblock %}
 
 {% block script %}
     <script src="/MyTeamStats/public/js/DeleteManagement.js"></script>
+    <script src="/MyTeamStats/public/js/ListDisplay.js"></script>
 {% endblock %}
 

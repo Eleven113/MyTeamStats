@@ -6,44 +6,48 @@
 
 {% block content %}
     <div id="modal">
+
         <div id="modal_goal" class="modalflex">
-            <div id="scorer">
-                <label for="scorer">Buteur :</label>
-                <select name="scorer" id="select_scorer">
-                    {% for player in playersList %}
-                        <option value="{{ player.playerid }}">{{ player.firstname }} {{ player.lastname | truncate(1, false, "") }}</option>
-                    {% endfor %}
-                </select>
+            <div id="goal_close"><i class="fas fa-times"></i></div>
+            <div id="set_goal">
+                <div id="scorer">
+                    <label for="scorer">Buteur :</label>
+                    <select name="scorer" id="select_scorer">
+                        {% for player in playersList %}
+                            <option value="{{ player.playerid }}">{{ player.firstname }} {{ player.lastname | truncate(1, false, "") }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div id="passer">
+                    <label for="passer">Passeur :</label>
+                    <select name="passer" id="select_passer">
+                        <option value="null">Pas de passeur</option>
+                        {% for player in playersList %}
+                            <option value="{{ player.playerid }}">{{ player.firstname }} {{ player.lastname | truncate(1, false, "") }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div id="action">
+                    <label for="action">Action :</label>
+                    <select name="action"  id="select_action">
+                        <option value="Action de jeu">Action de jeu</option>
+                        <option value="Corner">Corner</option>
+                        <option value="Coup franc">Coup franc</option>
+                        <option value="Coup franc direct">Coup franc direct</option>
+                        <option value="Penalty">Penalty</option>
+                    </select>
+                </div>
+                <div id="bodypart">
+                    <label for="bodypart">Methode :</label>
+                    <select name="bodypart" id="select_bodypart">
+                        <option value="Pied droit">Pied droit</option>
+                        <option value="Pied gauche">Pied gauche</option>
+                        <option value="Tête">Tête</option>
+                        <option value="CSC">CSC</option>
+                    </select>
+                </div>
+                <button id="modal_goal-button" class="btn btn-primary">Valider</button>
             </div>
-            <div id="passer">
-                <label for="passer">Passeur :</label>
-                <select name="passer" id="select_passer">
-                    <option value="null">Pas de passeur</option>
-                    {% for player in playersList %}
-                        <option value="{{ player.playerid }}">{{ player.firstname }} {{ player.lastname | truncate(1, false, "") }}</option>
-                    {% endfor %}
-                </select>
-            </div>
-            <div id="action">
-                <label for="action">Action :</label>
-                <select name="action"  id="select_action">
-                    <option value="Action de jeu">Action de jeu</option>
-                    <option value="Corner">Corner</option>
-                    <option value="Coup franc">Coup franc</option>
-                    <option value="Coup franc direct">Coup franc direct</option>
-                    <option value="Penalty">Penalty</option>
-                </select>
-            </div>
-            <div id="bodypart">
-                <label for="bodypart">Methode :</label>
-                <select name="bodypart" id="select_bodypart">
-                    <option value="Pied droit">Pied droit</option>
-                    <option value="Pied gauche">Pied gauche</option>
-                    <option value="Tête">Tête</option>
-                    <option value="CSC">CSC</option>
-                </select>
-            </div>
-            <button id="modal_goal-button" class="btn btn-primary">Valider</button>
         </div>
 
         <div id="modal_yellowcard" class="modalflex">

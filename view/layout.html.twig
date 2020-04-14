@@ -19,7 +19,7 @@
             <div class="offset-3 col-4 text-center"><a href="/MyteamStats" class="link">MyTeamStats</a></div>
             <div class="col-4 text-right">
                 {%  if session.user_status > 0 %}
-                    Bienvenue <a href="/MyTeamStats/SessionKill" class="link">{{ session.user_firstname }}</a>
+                <div id="user_menu">Bienvenue {{ session.user_firstname }}</div>
                 {% else %}
                     <a href="/MyTeamStats/Login" class="link"><i class="fas fa-user"></i>&nbsp;&nbsp;Connexion</a>
                 {% endif %}
@@ -58,6 +58,10 @@
             <div id="left_menu_layout"></div>
         </div>
 
+        <div id="user_modal">
+            <a href="/MyTeamStats/Logout" class="bluelink">Se déconnecter</a>
+        </div>
+
         <div id="content">
 
             {% if notice is defined %}
@@ -75,6 +79,7 @@
     </div>    
     <script src="/MyTeamStats/public/js/config.js"></script>
     <script src="/MyTeamStats/public/js/DisplayMenu.js"></script>
+    <script src="/MyTeamStats/public/js/LogoutManagement.js"></script>
     {% if notice is defined %}
         <script src="/MyTeamStats/public/js/NoticeManagement.js"></script>
     {% endif %}

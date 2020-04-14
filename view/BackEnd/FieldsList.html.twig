@@ -42,7 +42,7 @@
             <tbody>
             {%   for field in fieldListObj %}
 
-                <tr>
+                <tr class="trlist">
                     <td>{{ field.name }}</a></td>
                     <td>{{ field.address }}</td>
                     <td>{{ field.zipcode }}</td>
@@ -61,9 +61,13 @@
         </table>
     </div>
 
+    <div class="list_bar col-12 d-flex flex-row justify-content-center mb-4">
+    </div>
+
 {% endblock %}
 
 {% block script %}
     <script src="/MyTeamStats/public/js/DeleteManagement.js"></script>
+    <script src="/MyTeamStats/public/js/ListDisplay.js"></script>
 {% endblock %}
 

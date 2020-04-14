@@ -27,6 +27,7 @@ class Score {
         this.divModalAction = document.getElementById("select_action");
         this.divModalBodypart = document.getElementById("select_bodypart");
         this.buttonModalGoal = document.getElementById("modal_goal-button");
+        this.buttonClose = document.getElementById("goal_close");
 
         // Variables utiles au but
         this.scorer;
@@ -128,8 +129,8 @@ class Score {
         // Clic sur les buttons OppoTeam
         this.divOppoTeamButtonMinus.addEventListener("click", this.oppoTeamMinus.bind(this));
         this.divOppoTeamButtonPlus.addEventListener("click", this.oppoTeamPlus.bind(this));
-        // Clic sur les buttons MyTeam
 
+        // Clic sur les buttons MyTeam
         this.divMyTeamButtonPlus.addEventListener("click", this.openModalGoal.bind(this));
 
         // Clic sur button ModalGoal
@@ -138,6 +139,11 @@ class Score {
             this.setGoal();
             this.MyTeamPlus();
         }.bind(this));
+
+        // Clic sur button Close
+        this.buttonClose.addEventListener("click",this.closeModalGoal.bind(this));
+
+
     }
 
     MyTeamMinus(){
@@ -165,7 +171,7 @@ class Score {
     }
 
     openModalGoal(){
-        this.divModalGoal.style.display = "block" ;
+        this.divModalGoal.style.display = "flex" ;
     }
 
     closeModalGoal(){
