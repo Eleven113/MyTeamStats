@@ -20,7 +20,6 @@ class DeleteManagement {
         for ( let i = 0; i < this.deleteBtns.length; i++){
             this.deleteBtns[i].addEventListener("click", function(event){
                 let id = event.target.id.split('_')[2];
-                console.log(id);
                 this.confirmDeleteDiv.style.top = window.pageYOffset + "px"
                 this.confirmDeleteDiv.style.display = "flex";
                 this.deleteLink.href = this.deleteLinkHref + id;

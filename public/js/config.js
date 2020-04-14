@@ -1,5 +1,5 @@
 const CONFIG = {
-    listHeight : 10,
+    listLength : 10,
     MyTeam : {
         name : "Lavalloise Football Club",
         acronym : "LFC",

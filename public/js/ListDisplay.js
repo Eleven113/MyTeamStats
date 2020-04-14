@@ -3,12 +3,15 @@ class ListDisplay {
         this.tableTr = document.getElementsByClassName("trlist");
         this.count = this.tableTr.length;
         this.page = 1;
-        this.pageNumber = Math.trunc(this.count / CONFIG.listHeight) + 1;
-        this.counter = 0;
+        this.pageNumber = Math.trunc(this.count / CONFIG.listLength) + 1;
 
         this.displayTr(this.page);
         this.displayListBar();
-        this.events();
+
+        if (this.count > CONFIG.listLength){
+            this.events();
+        }
+
     }
 
     displayTr(page){
@@ -16,8 +19,8 @@ class ListDisplay {
             this.tableTr[i].style.display = "none";
         }
         
-        this.lines = page * CONFIG.listHeight;
-        for ( let i=(this.lines-10); i < this.lines; i++){
+        this.lines = page * CONFIG.listLength;
+        for ( let i=(this.lines-CONFIG.listLength); i < this.lines; i++){
             if (this.tableTr[i]){
                 this.tableTr[i].style.display = "table-row";
             }
@@ -26,7 +29,7 @@ class ListDisplay {
     }
 
     displayListBar(){
-        if ( this.count > CONFIG.listHeight ){
+        if ( this.count > CONFIG.listLength ){
             this.listBar = document.createElement("div");
             this.listBar.id = "pages_bar";
 
