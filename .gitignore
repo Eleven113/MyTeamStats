@@ -9,3 +9,4 @@ view/templatetest.htm
 *.xml
 matchdata.php
 public/js/jquerytest.js
+.htaccess

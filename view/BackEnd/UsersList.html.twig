@@ -49,7 +49,7 @@
                             {%  endif %}
                         </td>
                         <td class="d-flex flex-row justify-content-around">
-                            <div><a href="/MyTeamStats/ModifyUser/{{ user.userid }}"><i class="fas fa-user-edit"></i></a></div>
+                            <div><a href="/MyTeamStats/ModifyUser/{{ user.userid }}" class="bluelink"><i class="fas fa-user-edit"></i></a></div>
                             {%  if session.user_status >= 4 %}
                                 <div class="delete_btn"><i class="fas fa-user-times" id="delete_user_{{ user.userid }}"></i></div>
                             {% endif %}

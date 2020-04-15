@@ -41,7 +41,7 @@
                         <td>{{oppo.name}}</td>
                         <td><img src="{{oppo.logo}}" class="img-responsive fit-image"></td>
                           <td class="optionsTD">
-                              <div><a href="/MyTeamStast/ModifyOppo/{{ oppo.opponentid }}"><i class="fas fa-pen"></i></a></div>
+                              <div><a href="/MyTeamStast/ModifyOppo/{{ oppo.opponentid }}" class="bluelink"><i class="fas fa-pen"></i></a></div>
                               {%  if session.user_status >= 4 %}
                                 <div class="delete_btn"><i class="fas fa-trash-alt" id="delete_oppo_{{ oppo.opponentid }}"></i></div>
                               {% endif %}

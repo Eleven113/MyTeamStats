@@ -441,6 +441,7 @@ table{
 
 .delete_btn{
     color: #007bff;
+    cursor: pointer;
 }
 
 #match_infos{
@@ -504,4 +505,8 @@ table{
     justify-content: space-around;
     color: #007bff;
     font-size: 2em;
+}
+
+.notice_close{
+    cursor : pointer;
 }

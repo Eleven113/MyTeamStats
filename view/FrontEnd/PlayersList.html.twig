@@ -62,9 +62,9 @@
                          {% endif %}
                     </td>
                     <td class="optionsTD">
-                        <div><a href="/MyTeamStats/Player/{{ player.playerid }}"><i class="fas fa-user"></i></a></div>
+                        <div><a href="/MyTeamStats/Player/{{ player.playerid }}" class="bluelink"><i class="fas fa-user"></i></a></div>
                         {%  if session.user_status >= 3 %}
-                            <div><a href="/MyTeamStats/ModifyPlayer/{{ player.playerid }}"><i class="fas fa-user-edit"></i></a></div>
+                            <div><a href="/MyTeamStats/ModifyPlayer/{{ player.playerid }}" class="bluelink"><i class="fas fa-user-edit"></i></a></div>
                         {% endif %}
                         {%  if session.user_status >= 4 %}
                             <div class="delete_btn"><i class="fas fa-user-times" id="delete_player_{{ player.playerid }}" ></i></div>
