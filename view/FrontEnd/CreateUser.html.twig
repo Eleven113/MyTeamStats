@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width" />
     <meta property="og:title" content="MyTeamStats" />
     <meta property="og:type" content="Website" />
-    <meta property="og:url" content="http://www.thibaut-minard.fr/MyTeamStats/CreateUser" />
+    <meta property="og:url" content="http://myteamstats.thibaut-minard.fr/CreateUser" />
     <meta property="og:image" content="https://res.cloudinary.com/marthyte/image/upload/v1584623500/v2_vnydsk.png" />
     <meta property="og:description" content="Créer un compte utilisateur">
     <title>Créer un compte - MyTeamStats</title>
@@ -14,7 +14,7 @@
 {% block content %}
 
 <div id="createuser_form" class="d-flex flex-column justify-content-center align-items-center mt-2">
-    <form id="createuser-form" class="col-lg-6" action="/MyTeamStats/AddUser"  method="post">
+    <form id="createuser-form" class="col-lg-6" action="/AddUser"  method="post">
         <legend>Créer votre compte</legend>
         <div class="form-group">
             <label for="text" class="form_label">Nom</label>
@@ -48,7 +48,7 @@
 
 {% block script %}
     <script>let mails = {{ mails | raw }}</script>
-    <script src="/MyTeamStats/public/js/MailCheck.js"></script>
-    <script src="/MyTeamStats/public/js/PasswordCheck.js"></script>
-    <script src="/MyTeamStats/public/js/createUser.js"></script>
+    <script src="/js/MailCheck.js"></script>
+    <script src="/js/PasswordCheck.js"></script>
+    <script src="/js/createUser.js"></script>
 {% endblock %}

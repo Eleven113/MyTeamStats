@@ -25,7 +25,7 @@ class CardManager
     }
 
     public function getCardsList($matchid){
-        $cardsList = $this->db->prepare('SELECT * FROM CARD WHERE MATCHID = :matchid');
+        $cardsList = $this->db->prepare('SELECT * FROM CARD WHERE MATCHID = :matchid ORDER BY CARD.PERIODNUM ASC, CARD.TIME ASC ');
         $cardsList->bindValue(':matchid', $matchid);
         $cardsList->execute();
 

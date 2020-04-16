@@ -9,7 +9,7 @@
 
     {% if session.user_status >= 3 %}
         <button id="add_player" class="btn btn-primary mt-4 add-btn">
-            <a href="/MyTeamStats/CreatePlayer" class="link font-weight-bold">
+            <a href="/CreatePlayer" class="link font-weight-bold">
                 <i class="fas fa-user-plus"></i>&nbsp;&nbsp;&nbsp;Créer un joueur
             </a>
         </button>
@@ -20,7 +20,7 @@
             <span class="modal_confirm_delete_content-txt">Vous êtes sur le point de supprimer un joueur. Confirmer ?  </span>
             <div class="modal_confirm_delete_content-buttons">
                 <button class="modal_confirm_delete_content-buttonno btn btn-primary">Non</button>
-                <button class="modal_confirm_delete_content-buttonyes btn btn-primary"><a href="/MyTeamStats/DeletePlayer/" class="delete_link link">Oui</a></button>
+                <button class="modal_confirm_delete_content-buttonyes btn btn-primary"><a href="/DeletePlayer/" class="delete_link link">Oui</a></button>
             </div>
         </div>
     </div>
@@ -62,9 +62,9 @@
                          {% endif %}
                     </td>
                     <td class="optionsTD">
-                        <div><a href="/MyTeamStats/Player/{{ player.playerid }}" class="bluelink"><i class="fas fa-user"></i></a></div>
+                        <div><a href="/Player/{{ player.playerid }}" class="bluelink"><i class="fas fa-user"></i></a></div>
                         {%  if session.user_status >= 3 %}
-                            <div><a href="/MyTeamStats/ModifyPlayer/{{ player.playerid }}" class="bluelink"><i class="fas fa-user-edit"></i></a></div>
+                            <div><a href="/ModifyPlayer/{{ player.playerid }}" class="bluelink"><i class="fas fa-user-edit"></i></a></div>
                         {% endif %}
                         {%  if session.user_status >= 4 %}
                             <div class="delete_btn"><i class="fas fa-user-times" id="delete_player_{{ player.playerid }}" ></i></div>
@@ -83,6 +83,6 @@
 {% endblock %}
 
 {% block script %}
-    <script src="/MyTeamStats/public/js/DeleteManagement.js"></script>
-    <script src="/MyTeamStats/public/js/ListDisplay.js"></script>
+    <script src="js/DeleteManagement.js"></script>
+    <script src="js/ListDisplay.js"></script>
 {% endblock %}

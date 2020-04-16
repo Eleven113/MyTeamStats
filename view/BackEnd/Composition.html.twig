@@ -8,7 +8,7 @@
     <div id="modal_send_composition">
         <div id="modal_send_composition_container" class="col-6 mt-5 border border-primary rounded-lg myborder">
             <div id="modal_send_composition_close" class="d-flex flex-row justify-content-end m-3"><i class="fas fa-times"></i></div>
-            <form id="form_send_composition" action="/MyTeamStats/SendComposition/{{ id }}"  method="post">
+            <form id="form_send_composition" action="/SendComposition/{{ id }}"  method="post">
                 <div class="form-group">
                     <label for="text">Ajouter une note : </label>
                     <textarea id="composition_note" name="text" rows="9"></textarea>
@@ -30,7 +30,7 @@
             </div>
 
             <button id="add_compo" class="btn btn-primary mt-4 add-btn">
-                <a href="/MyTeamStats/CreateComposition/{{ id }}"  class="link font-weight-bold">
+                <a href="/CreateComposition/{{ id }}"  class="link font-weight-bold">
                     <i class="fas fa-user-plus"></i>&nbsp;Créér la compo
                 </a>
             </button>
@@ -44,12 +44,12 @@
             </ul>
             <div class="d-flex flex-row col-10 justify-content-around">
                 <button id="modify_compo" class="btn btn-primary mt-4 add-btn col-4">
-                    <a href="/MyTeamStats/ModifyComposition/{{ id }}"  class="link font-weight-bold">
+                    <a href="/ModifyComposition/{{ id }}"  class="link font-weight-bold">
                         <i class="fas fa-pen"></i>&nbsp;Modifier
                     </a>
                 </button>
                 <button id="delete_compo" class="btn btn-primary mt-4 add-btn col-4">
-                    <a href="/MyTeamStats/DeleteComposition/{{ id }}"  class="link font-weight-bold">
+                    <a href="/DeleteComposition/{{ id }}"  class="link font-weight-bold">
                         <i class="fas fa-trash-alt"></i>&nbsp;Supprimer
                     </a>
                 </button>
@@ -61,7 +61,7 @@
                     </a>
                 </button>
                 <button id="match_stats" class="btn btn-primary mt-4 add-btn col-4">
-                    <a href="/MyTeamStats/MatchStats/{{ id }}"  class="link font-weight-bold">
+                    <a href="/MatchStats/{{ id }}"  class="link font-weight-bold">
                         <i class="fas fa-clipboard-list"></i>&nbsp;Mode Stats
                     </a>
                 </button>
@@ -69,10 +69,10 @@
         {% endif %}
     </div>
     <div class="mt-4 backlink">
-        <a href="/MyTeamStats/MatchsList" class="bluelink"><i class="fa fa-share fa-flip-horizontal" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Retour à la liste des matchs</a>
+        <a href="/MatchsList" class="bluelink"><i class="fa fa-share fa-flip-horizontal" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Retour à la liste des matchs</a>
     </div>
 {% endblock %}
 
 {% block script %}
-    <script src="/MyTeamStats/public/js/SendComposition.js"></script>
+    <script src="/js/SendComposition.js"></script>
 {% endblock %}

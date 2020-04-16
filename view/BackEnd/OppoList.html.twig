@@ -11,14 +11,14 @@
             <span class="modal_confirm_delete_content-txt">Vous êtes sur le point de supprimer un adversaire. Confirmer ?  </span>
             <div class="modal_confirm_delete_content-buttons">
                 <button class="modal_confirm_delete_content-buttonno btn btn-primary">Non</button>
-                <button class="modal_confirm_delete_content-buttonyes btn btn-primary"><a href="/MyTeamStats/DeleteOppo/" class="delete_link link">Oui</a></button>
+                <button class="modal_confirm_delete_content-buttonyes btn btn-primary"><a href="/DeleteOppo/" class="delete_link link">Oui</a></button>
             </div>
         </div>
     </div>
 
     {% if session.user_status >= 4 %}
         <button id="add_oppo" class="btn btn-primary mt-4 add-btn">
-            <a href="/MyTeamStast/CreateOppo" class="link font-weight-bold">
+            <a href="/CreateOppo" class="link font-weight-bold">
                 <i class="fas fa-shield-alt"></i>&nbsp;&nbsp;&nbsp;Créer un adversaire
             </a>
         </button>
@@ -41,7 +41,7 @@
                         <td>{{oppo.name}}</td>
                         <td><img src="{{oppo.logo}}" class="img-responsive fit-image"></td>
                           <td class="optionsTD">
-                              <div><a href="/MyTeamStast/ModifyOppo/{{ oppo.opponentid }}" class="bluelink"><i class="fas fa-pen"></i></a></div>
+                              <div><a href="/ModifyOppo/{{ oppo.opponentid }}" class="bluelink"><i class="fas fa-pen"></i></a></div>
                               {%  if session.user_status >= 4 %}
                                 <div class="delete_btn"><i class="fas fa-trash-alt" id="delete_oppo_{{ oppo.opponentid }}"></i></div>
                               {% endif %}
@@ -61,6 +61,6 @@
 {% endblock %}
 
 {% block script %}
-    <script src="/MyTeamStats/public/js/TableOptions.js"></script>
-    <script src="/MyTeamStats/public/js/ListDisplay.js"></script>
+    <script src="/js/TableOptions.js"></script>
+    <script src="/js/ListDisplay.js"></script>
 {% endblock %}

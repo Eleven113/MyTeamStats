@@ -275,10 +275,10 @@ class Score {
 
             if ( time > this.periodDuration){
                 let remain = time - this.periodDuration;
-                time = this.periodDuration * goal[i].periodnum + "' + " + remain;
+                time = (this.periodDuration * goal[i].periodnum) + "' + " + remain;
             }
             else {
-                time = time * goal[i].periodnum + "'";
+                time = time + ((goal[i].periodnum-1) * this.periodDuration ) + "'";
             }
 
             let divDisplayGoal = document.createElement("div");

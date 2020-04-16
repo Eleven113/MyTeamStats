@@ -8,7 +8,7 @@
 
     <h3 class="text-center mt-4">Créér la composition d'équipe pour ce match</h3>
 
-    <form id="createcompo-form" class="col-12" action="/MyTeamStats/AddComposition/{{ id }}"  method="post">
+    <form id="createcompo-form" class="col-12" action="/AddComposition/{{ id }}"  method="post">
         <div class="table-responsive">
             <table class="table table table-bordered table-striped text-center table-text-size-compo">
                 <caption class="col-12 text-center">
@@ -53,6 +53,6 @@
 {% endblock %}
 
 {% block script %}
-    <script src="/MyTeamStats/public/js/TableOptions.js"></script>
+    <script src="/js/TableOptions.js"></script>
 {% endblock %}
 

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width" />
     <meta property="og:title" content="{{ match.type }} - {{ match.category }}" />
     <meta property="og:type" content="Website" />
-    <meta property="og:url" content="http://www.thibaut-minard.fr/MyTeamStats/Match/{{ match.gameid }}" />
+    <meta property="og:url" content="http://myteamstats.thibaut-minard.fr/Match/{{ match.gameid }}" />
     <meta property="og:image" content="https://res.cloudinary.com/marthyte/image/upload/v1584623500/v2_vnydsk.png" />
     {% if match.status == 0 %}
         <meta property="og:description" content="{% if match.athome == 1 %}Lavalloise FC {{ homescore }} - {{ awayscore }} {{ match.oppo }} {% else %} {{ match.oppo }} {{ homescore }} - {{ awayscore }} Lavalloise FC{% endif %}">
@@ -196,11 +196,11 @@
         let goal = {{ goals | raw }};
         let period = {{ periods | raw }};
     </script>
-    <script src="/MyTeamStats/public/js/ajax.js"></script>
-    <script src="/MyTeamStats/public/js/Score.js"></script>
-    <script src="/MyTeamStats/public/js/Card.js"></script>
-    <script src="/MyTeamStats/public/js/Stats.js"></script>
-    <script src="/MyTeamStats/public/js/Chrono.js"></script>
-    <script src="/MyTeamStats/public/js/Match.js"></script>
-    <script src="/MyTeamStats/public/js/Meteo.js"></script>
+    <script src="/js/ajax.js"></script>
+    <script src="/js/Score.js"></script>
+    <script src="/js/Card.js"></script>
+    <script src="/js/Stats.js"></script>
+    <script src="/js/Chrono.js"></script>
+    <script src="/js/Match.js"></script>
+    <script src="/js/Meteo.js"></script>
 {% endblock %}

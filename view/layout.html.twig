@@ -5,9 +5,9 @@
 
     {% block head %}{% endblock %}
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">   
-    <link href="/MyTeamStats/public/css/style.css" rel="stylesheet" />
-    <link rel="stylesheet" media="screen and (max-width: 991px)" href="/MyTeamStats/public/css/style_tablet.css" />
-    <link rel="stylesheet" media="screen and (max-width: 575px)" href="/MyTeamStats/public/css/style_mobile.css" />
+    <link href="/css/style.css" rel="stylesheet" />
+    <link rel="stylesheet" media="screen and (max-width: 991px)" href="/css/style_tablet.css" />
+    <link rel="stylesheet" media="screen and (max-width: 575px)" href="/css/style_mobile.css" />
     <script src="https://kit.fontawesome.com/5fbf6a0223.js" crossorigin="anonymous"></script>
 </head>
 
@@ -15,38 +15,38 @@
     <div class="container-fluid">
         <header id="head_menu" class="row d-flex justify-content-between bg-primary">
             <div class="col-1 text-left"><div  id="left_menu_btn"><i class="fas fa-bars"></i></div></div>
-            <div class="offset-3 col-4 text-center"><a href="/MyteamStats" class="link">MyTeamStats</a></div>
+            <div class="offset-3 col-4 text-center"><a href="/" class="link">MyTeamStats</a></div>
             <div class="col-4 text-right">
                 {%  if session.user_status > 0 %}
                 <div id="user_menu">Bienvenue {{ session.user_firstname }}</div>
                 {% else %}
-                    <a href="/MyTeamStats/Login" class="link"><i class="fas fa-user"></i>&nbsp;&nbsp;Connexion</a>
+                    <a href="/Login" class="link"><i class="fas fa-user"></i>&nbsp;&nbsp;Connexion</a>
                 {% endif %}
             </div>
         </header>
 
         <div id="left_menu_window">
             <div id="left_menu">
-                <a href="/MyTeamStats/PlayersList" class="bluelink">
+                <a href="/PlayersList" class="bluelink">
                     <div class="left_menu_option">
                         <span class="left_menu_option-ico"><i class="fas fa-users"></i></span><br/>
                         <span class="left_menu_option-txt">Effectif</span>
                     </div>
                 </a>
-                <a href="/MyTeamStats/MatchsList" class="bluelink">
+                <a href="/MatchsList" class="bluelink">
                     <div class="left_menu_option">
                         <span class="left_menu_option-ico"><i class="far fa-futbol"></i></span><br/>
                         <span class="left_menu_option-txt">Matchs</span>
                     </div>
                 </a>
-                <a href="/MyTeamStats/Club" class="bluelink">
+                <a href="/Club" class="bluelink">
                     <div class="left_menu_option">
                         <span class="left_menu_option-ico"><i class="fas fa-clipboard-list"></i></span><br/>
                         <span class="left_menu_option-txt">Club</span>
                     </div>
                 </a>
                 {% if session.user_status >= 3 %}
-                    <a href="/MyTeamStats/Admin" class="bluelink">
+                    <a href="/Admin" class="bluelink">
                         <div class="left_menu_option">
                             <span class="left_menu_option-ico"><i class="fas fa-cog"></i></span><br/>
                             <span class="left_menu_option-txt">Gestion</span>
@@ -58,7 +58,7 @@
         </div>
 
         <div id="user_modal">
-            <a href="/MyTeamStats/Logout" class="bluelink">Se déconnecter</a>
+            <a href="/Logout" class="bluelink">Se déconnecter</a>
         </div>
 
         <div id="content">
@@ -76,11 +76,11 @@
         <footer>
         </footer>
     </div>    
-    <script src="/MyTeamStats/public/js/config.js"></script>
-    <script src="/MyTeamStats/public/js/DisplayMenu.js"></script>
-    <script src="/MyTeamStats/public/js/LogoutManagement.js"></script>
+    <script src="/js/config.js"></script>
+    <script src="/js/DisplayMenu.js"></script>
+    <script src="/js/LogoutManagement.js"></script>
     {% if notice is defined %}
-        <script src="/MyTeamStats/public/js/NoticeManagement.js"></script>
+        <script src="/js/NoticeManagement.js"></script>
     {% endif %}
     {% block script %}{% endblock %}
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>

@@ -42,7 +42,7 @@ class GoalManager
     }
 
     public function getGoalsList($matchid){
-        $goalsList = $this->db->prepare('SELECT * FROM GOAL WHERE MATCHID = :matchid');
+        $goalsList = $this->db->prepare('SELECT * FROM GOAL WHERE MATCHID = :matchid ORDER BY GOAL.PERIODNUM ASC, GOAL.TIME ASC');
         $goalsList->bindValue(':matchid', $matchid);
         $goalsList->execute();
 
