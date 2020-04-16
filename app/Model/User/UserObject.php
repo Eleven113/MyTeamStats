@@ -79,7 +79,7 @@ class UserObject implements \JsonSerializable
     public function setFirstname($firstname)
     {
         if ( !is_string($firstname)){
-            throw new \Exception("Le prénom de l'utilisateur doit contenir plusieurs caractères_/MyTeamStats/CreateUser_Retour à la création de compte");
+            throw new \Exception("Le prénom de l'utilisateur doit contenir plusieurs caractères_/CreateUser_Retour à la création de compte");
         }
         $this->firstname = $firstname;
     }
@@ -91,7 +91,7 @@ class UserObject implements \JsonSerializable
     public function setLastname($lastname)
     {
         if ( !is_string($lastname)){
-            throw new \Exception("Le nom de l'utilisateur doit contenir plusieurs caractères_/MyTeamStats/CreateUser_Retour à la création de compte");
+            throw new \Exception("Le nom de l'utilisateur doit contenir plusieurs caractères_/CreateUser_Retour à la création de compte");
         }
         $this->lastname = $lastname;
     }
@@ -106,7 +106,7 @@ class UserObject implements \JsonSerializable
             $this->mail = $mail;
         }
         else {
-            throw new \Exception("Le format du mail est incorrect_/MyTeamStats/CreateUser_Retour à la création de compte");
+            throw new \Exception("Le format du mail est incorrect_/CreateUser_Retour à la création de compte");
         }
     }
 

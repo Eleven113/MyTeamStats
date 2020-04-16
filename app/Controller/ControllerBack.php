@@ -65,7 +65,7 @@ class ControllerBack {
             $result = \Cloudinary\Uploader::upload($photo, array("folder" => "Players/") );
         }
         else {
-            throw new \Exception("Le format de la photo est incorrect_/MyTeamStats/CreatePlayer_Retour à la création de joueur");
+            throw new \Exception("Le format de la photo est incorrect_/CreatePlayer_Retour à la création de joueur");
         }
 
 
@@ -95,13 +95,22 @@ class ControllerBack {
             echo $this->twig->render('/BackEnd/UpdatePlayer.html.twig', ['player' => $player]);
         }
         else {
-            throw new \Exception("Le joueur que vous tentez de modifier n'existe pas/plus_/MyTeamStats/PlayersList_Retour à liste des joueurs");
+            throw new \Exception("Le joueur que vous tentez de modifier n'existe pas/plus_/PlayersList_Retour à liste des joueurs");
         }
 
     }
 
     public function UpdatePlayer($id, $lastname, $firstname, $licencenum, $activelicence, $birthdate, $category, $poste, $address, $phonenum, $mail, $photo){
+        $type = explode("/", $photo['type'])[0];
         $photo = $photo['tmp_name'];
+
+        if ( $type ==  'image' ){
+            $result = \Cloudinary\Uploader::upload($photo, array("folder" => "Players/") );
+        }
+        else {
+            throw new \Exception("Le format de la photo est incorrect_/CreatePlayer_Retour à la modification de joueur");
+        }
+
         $result = \Cloudinary\Uploader::upload($photo, array("folder" => "Players/") );
 
         $player = [
@@ -135,7 +144,7 @@ class ControllerBack {
             $this->PlayersList($notice);
         }
         else {
-            throw new \Exception("Un joueur qui a déjà participé à un match ne peut pas être supprimé, à moins de supprimer tous les matchs auquel il a participé_/MyTeamStats/PlayersList_Retour à liste des joueurs");
+            throw new \Exception("Un joueur qui a déjà participé à un match ne peut pas être supprimé, à moins de supprimer tous les matchs auquel il a participé_/PlayersList_Retour à liste des joueurs");
         }
 
     }
@@ -189,7 +198,7 @@ class ControllerBack {
             $this->MatchsList($notice);
         }
         else {
-            throw new \Exception("Un match pour lequel il existe une composition d'équipe ne peut pas être supprimé. Il faut d'abord supprimer la composition d'équipe_/MyTeamStats/MatchsList_Retour à la liste des matchs");
+            throw new \Exception("Un match pour lequel il existe une composition d'équipe ne peut pas être supprimé. Il faut d'abord supprimer la composition d'équipe_/MatchsList_Retour à la liste des matchs");
         }
 
     }
@@ -265,7 +274,7 @@ class ControllerBack {
             echo $this->twig->render('/BackEnd/UpdateUser.html.twig', ['user' => $user]);
         }
         else {
-            throw new \Exception("L'utilisateur que vous tentez de modifier n'existe pas/plus_/MyTeamStats/UsersList_Retour à la liste des utilisateurs");
+            throw new \Exception("L'utilisateur que vous tentez de modifier n'existe pas/plus_/UsersList_Retour à la liste des utilisateurs");
         }
 
     }
@@ -307,7 +316,16 @@ class ControllerBack {
     }
 
     public function AddOppo($name, $logo){
+        $type = explode("/", $logo['type'])[0];
         $logo = $logo['tmp_name'];
+
+        if ( $type ==  'image' ){
+            $result = \Cloudinary\Uploader::upload($logo, array("folder" => "Players/") );
+        }
+        else {
+            throw new \Exception("Le format de la photo est incorrect_/CreateOppo_Retour à la création d'adversaire");
+        }
+
         $result = \Cloudinary\Uploader::upload($logo, array("folder" => "OpponentObject/") );
 
         $oppo = [
@@ -327,13 +345,22 @@ class ControllerBack {
             echo $this->twig->render('/BackEnd/UpdateOppo.html.twig', [ 'oppo' => $oppo]);
         }
         else {
-            throw new \Exception("L'adversaire que vous tentez de modifier n'existe pas/plus_/MyTeamStats/OppoList_Retour à la liste des adversaires");
+            throw new \Exception("L'adversaire que vous tentez de modifier n'existe pas/plus_/OppoList_Retour à la liste des adversaires");
         }
 
     }
 
     public function UpdateOppo($id, $name, $logo){
+        $type = explode("/", $logo['type'])[0];
         $logo = $logo['tmp_name'];
+
+        if ( $type ==  'image' ){
+            $result = \Cloudinary\Uploader::upload($logo, array("folder" => "Players/") );
+        }
+        else {
+            throw new \Exception("Le format de la photo est incorrect_/UpdateOppo_Retour à la modification d'adversaire");
+        }
+
         $result = \Cloudinary\Uploader::upload($logo, array("folder" => "OpponentObject/") );
 
         $oppo = [
@@ -358,7 +385,7 @@ class ControllerBack {
             $this->OppoList($notice);
         }
         else {
-            throw new \Exception("Un adversaire qui a déjà participé à un match ne peut pas être supprimé, à moins de supprimer tous les matchs auquel il a participé_/MyTeamStats/OppoList_Retour à la liste des adversaires");
+            throw new \Exception("Un adversaire qui a déjà participé à un match ne peut pas être supprimé, à moins de supprimer tous les matchs auquel il a participé_/OppoList_Retour à la liste des adversaires");
         }
     }
 
@@ -409,7 +436,7 @@ class ControllerBack {
             echo $this->twig->render('/BackEnd/UpdateField.html.twig', [ 'field' => $field]);
         }
         else {
-            throw new \Exception("Le terrain que vous tentez de modifier n'existe pas/plus_/MyTeamStats/FieldsList_Retour à la liste des terrains");
+            throw new \Exception("Le terrain que vous tentez de modifier n'existe pas/plus_/FieldsList_Retour à la liste des terrains");
         }
 
     }
@@ -441,7 +468,7 @@ class ControllerBack {
             $this->FieldsList($notice);
         }
         else {
-            throw new \Exception("Un terrain qui a déjà servi pour un match ne peut pas être supprimé, à moins de supprimer tous les matchs concernés_/MyTeamStats/FieldsList_Retour à la liste des terrains");
+            throw new \Exception("Un terrain qui a déjà servi pour un match ne peut pas être supprimé, à moins de supprimer tous les matchs concernés_/FieldsList_Retour à la liste des terrains");
         }
 
     }
