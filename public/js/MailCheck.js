@@ -32,12 +32,9 @@ class MailCheck {
             this.notice.textContent = "Cette adresse mail est déjà enregistrée";
         }
 
-        console.log("mail", submitMail);
-        console.log("Pwd", submitPassword);
         if (submitMail && submitPassword){
             this.submitBtn.disabled = false;
         }
-
 
     }
 }

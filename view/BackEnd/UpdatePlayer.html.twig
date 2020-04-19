@@ -6,7 +6,7 @@
 
 {% block content %}
 
-    <div id="updateplayer_form" class="d-flex flex-column justify-content-center align-items-center">
+    <div id="updateplayer_form" class="d-flex flex-column justify-content-center align-items-center mb-4">
         <form id="updateplayer_form-form" class="col-lg-6" action="/UpdatePlayer/{{ player.playerid }}"  method="post" enctype="multipart/form-data">
             <legend>Modifier le joueur</legend>
             <div class="form-group">
@@ -24,20 +24,13 @@
             <div class="form-group">
                 <label for="text" class="form_label">Licence active ?</label>
                 <select name="activelicence" class="form-control" required>
-                    <option value="1">Oui</option>
-                    <option value="0">Non</option>
+                    <option value="1" {% if player.activelicence == 1 %}selected{% endif %}>Oui</option>
+                    <option value="0" {% if player.activelicence == 0 %}selected{% endif %}>Non</option>
                 </select>
             </div>
             <div class="form-group">
                 <label for="text" class="form_label">Date de naissance</label>
-                <input id="text" type="date" name="birthdate" class="form-control" value="{{ player.birthdate }}" required>
-            </div>
-            <div class="form-group">
-                <label for="text" class="form_label">Catégorie</label>
-                <select name="category" class="form-control" required>
-                    <option value="U18">U18</option>
-                    <option value="U15">U15</option
-                </select>
+                <input id="text" type="date" name="birthdate" class="form-control" value="{{ player.birthdate | date('Y-m-d' ) }}" required>
             </div>
             <div class="form-group">
                 <label for="text" class="form_label">Ajouter une photo</label>
@@ -46,10 +39,10 @@
             <div class="form-group">
                 <label for="text" class="form_label">Poste</label>
                 <select name="poste" class="form-control" required>
-                    <option value="Attaquant">Attaquant</option>
-                    <option value="Milieu">Milieu</option>
-                    <option value="Défenseur">Défenseur</option>
-                    <option value="Gardien">Gardien</option>
+                    <option value="Attaquant" {% if player.poste == "Attaquant" %}selected{% endif %}>Attaquant</option>
+                    <option value="Milieu" {% if player.poste == "Milieu" %}selected{% endif %}>Milieu</option>
+                    <option value="Défenseur" {% if player.poste == "Défenseur" %}selected{% endif %}>Défenseur</option>
+                    <option value="Gardien" {% if player.poste == "Gardien" %}selected{% endif %}>Gardien</option>
                 </select>
             </div>
             <div class="form-group">

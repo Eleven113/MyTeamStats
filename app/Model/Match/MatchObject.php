@@ -2,9 +2,7 @@
 
 namespace MyTeamStats\Model\Match;
 
-use mysql_xdevapi\Exception;
-
-class MatchObject
+class MatchObject implements \JsonSerializable
 {
     private $gameid;
     private $opponentid;
@@ -242,5 +240,10 @@ class MatchObject
                 $this->$method($value);
             }
         }
+    }
+
+    public function jsonSerialize(){
+        return get_object_vars($this);
+
     }
 }

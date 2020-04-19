@@ -42,13 +42,13 @@
                     <th id="table_matchopponent">Adversaire</th>
                     <th id="table_matchplace">Lieu</th>
                     <th id="table_matchdate">Date</th>
-                    <th id="table_match">Résultat</th>
-                    <th id="table_match">Options</th>
+                    <th id="table_matchresul">Résultat</th>
+                    <th id="table_matchoptions" class="optionsTH">Options</th>
                 </tr>
             </thead>
             <tbody>
                 {% for match in matchs %}
-                    <tr>
+                    <tr class="tableTR">
                         <td>{{ match.category }}</td>
                         <td>{{ match.oppo }}</td>
                         <td>
@@ -58,7 +58,7 @@
                                 Extérieur
                             {% endif %}
                         </td>
-                        <th>{{ match.date | date('d/m/Y à H:i' )}}</td>
+                        <td>{{ match.date | date('d/m/Y à H:i' )}}</td>
                         <td>
                             {%  if match.status == 1 %}
                                 A venir
@@ -66,7 +66,7 @@
                                 {{ match.homescore }} - {{ match.awayscore }}
                             {% endif %}
                         </td>
-                        <td class="d-flex flex-row justify-content-between">
+                        <td class="optionsTD">
                             <div><a href="/Match/{{ match.gameid }}" class="bluelink"><i class="far fa-futbol"></i></a></div>
                             {% if ( session.user_status ) >= 3  and  ( match.status == 1 )  %}
                                 <div><a href="/Composition/{{ match.gameid }}" class="bluelink"><i class="fas fa-users"></i></a></div>
@@ -88,6 +88,10 @@
 {% endblock %}
 
 {% block script %}
+    <script>let count = {{ count }}</script>
+    <script>let list = "{{ list }}"</script>
+    <script>let userStatus = "{{ session.user_status }}"</script>
+    <script src="/js/TableOptions.js"></script>
     <script src="/js/DeleteManagement.js"></script>
     <script src="/js/ListDisplay.js"></script>
 {% endblock %}

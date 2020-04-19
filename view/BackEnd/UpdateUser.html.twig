@@ -25,10 +25,10 @@
                 <div class="form-group">
                     <label for="text" class="form_label">Statut    </label>
                     <select name="status" class="form-control" required>
-                        <option value="1">Visiteur</option>
-                        <option value="2">Joueur</option>
-                        <option value="3">Coach/Dirigeant</option>
-                        <option value="4" disabled>Administrateur</option>
+                        <option value="1" {% if user.status == 1 %}selected{% endif %}>Visiteur</option>
+                        <option value="2" {% if user.status == 2 %}selected{% endif %}>Joueur</option>
+                        <option value="3" {% if user.status == 3 %}selected{% endif %}>Coach/Dirigeant</option>
+                        <option value="4" {% if user.status == 4 %}selected{% endif %} disabled>Administrateur</option>
                     </select>
                 </div>
 

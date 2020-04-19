@@ -71,15 +71,15 @@ class CompositionManager
 
             $title = 'Convocation de match';
             $message =  '<html>'.
-                '  <body>'.
-                '       Bonjour '.$player->getFirstname().','.'<br/><br/>'.
-                '       Tu es convoquée pour le match de '.$match->getType().' '.$date.' contre  '.$match->getOppo().'.<br/><br/>'.
-                '       Tous les détails sont sur <a href="http://www.thibaut-minard.fr/MyTeamStats/Match/'.$id.'">MyTeamStats</a>'.'.'.'<br/><br/>'.
-                $text.'<br/><br/>'.
-                '       Pour signaler un retard, une absence. Contactez moi directement'.'<br/><br/>'.
-                'A bientôt, '.$senderName.' - '.$senderMail.
-                '  </body>'.
-                '</html>';
+                        '  <body>'.
+                        '       Bonjour '.$player->getFirstname().','.'<br/><br/>'.
+                        '       Tu es convoquée pour le match de '.$match->getType().' '.$date.' contre  '.$match->getOppo().'.<br/><br/>'.
+                        '       Tous les détails sont sur <a href="http://www.thibaut-minard.fr/MyTeamStats/Match/'.$id.'">MyTeamStats</a>'.'.'.'<br/><br/>'.
+                        $text.'<br/><br/>'.
+                        '       Pour signaler un retard, une absence. Contactez moi directement'.'<br/><br/>'.
+                        'A bientôt, '.$senderName.' - '.$senderMail.
+                        '  </body>'.
+                        '</html>';
 
             $result = new \MyTeamStats\Model\Mailer($player->getMail(), $title, $message);
         }

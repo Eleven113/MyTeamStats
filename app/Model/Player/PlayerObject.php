@@ -2,7 +2,7 @@
 
 namespace MyTeamStats\Model\Player;
 
-Class PlayerObject {
+Class PlayerObject implements \JsonSerializable{
 
     private $playerid;
     private $licence;
@@ -171,5 +171,11 @@ Class PlayerObject {
         }
       }
     }
+
+    public function jsonSerialize(){
+        return get_object_vars($this);
+
+    }
+
 
 }

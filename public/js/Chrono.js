@@ -167,9 +167,7 @@ class Chrono {
         }
 
         sendData(){
-            console.log(this.data);
-
-            $.post('/MyTeamStats/MatchData', this.data, function(){
+            $.post('/MatchData', this.data, function(){
                 $('#banner_chrono').html("Les données ont bien été envoyées");   
             }.bind(this));
 

@@ -51,11 +51,11 @@ header:active{
 }
 
 #table_licenced{
-    width: 10%;
+    width: 9%;
 }
 
 #table_licencenum{
-    width: 13%;
+    width: 11%;
 }
 
 #login_form, #lostpassword_form, #createaccount_form, .table-responsive, #club, #player, #createplayer_form, #creatematch_form, #match{
@@ -509,4 +509,21 @@ table{
 
 .notice_close{
     cursor : pointer;
+}
+
+
+#table_matchoptions{
+    width: 18%;
+}
+
+#table_birthdate{
+    width: 19%;
+}
+
+#user_options{
+    width: 13%;
+}
+
+#table_fieldoptions{
+    width : 12%;
 }

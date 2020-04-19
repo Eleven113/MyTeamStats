@@ -17,17 +17,17 @@ class Club {
     }
 
     setValue(){
-        this.name.innerHTML = CONFIG.MyTeam.name;
-        this.logo.src = CONFIG.MyTeam.logo;
-        this.facebook.href = CONFIG.MyTeam.facebook;
-        this.twitter.href = CONFIG.MyTeam.twitter;
-        this.instagram.href = CONFIG.MyTeam.instagram;
-        this.youtube.href = CONFIG.MyTeam.youtube;
-        this.president.innerHTML = CONFIG.MyTeam.president;
-        this.hq.innerHTML = CONFIG.MyTeam.address;
-        this.tel.innerHTML = CONFIG.MyTeam.tel;
-        this.mail.innerHTML = CONFIG.MyTeam.mail;
-        this.website.innerHTML = CONFIG.MyTeam.website;
+        this.name.innerHTML = MTSCONFIG.MyTeam.name;
+        this.logo.src = MTSCONFIG.MyTeam.logo;
+        this.facebook.href = MTSCONFIG.MyTeam.facebook;
+        this.twitter.href = MTSCONFIG.MyTeam.twitter;
+        this.instagram.href = MTSCONFIG.MyTeam.instagram;
+        this.youtube.href = MTSCONFIG.MyTeam.youtube;
+        this.president.innerHTML = MTSCONFIG.MyTeam.president;
+        this.hq.innerHTML = MTSCONFIG.MyTeam.address;
+        this.tel.innerHTML = MTSCONFIG.MyTeam.tel;
+        this.mail.innerHTML = MTSCONFIG.MyTeam.mail;
+        this.website.innerHTML = MTSCONFIG.MyTeam.website;
     }
 }
 

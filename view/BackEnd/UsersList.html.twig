@@ -11,7 +11,7 @@
             <span class="modal_confirm_delete_content-txt">Vous êtes sur le point de supprimer un utilisateur. Confirmer ?  </span>
             <div class="modal_confirm_delete_content-buttons">
                 <button class="modal_confirm_delete_content-buttonno btn btn-primary">Non</button>
-                <button class="modal_confirm_delete_content-buttonyes btn btn-primary"><a href="/MyTeamStats/DeleteUser/" class="delete_link link">Oui</a></button>
+                <button class="modal_confirm_delete_content-buttonyes btn btn-primary"><a href="/DeleteUser/" class="delete_link link">Oui</a></button>
             </div>
         </div>
     </div>
@@ -24,16 +24,16 @@
                 </caption>
                 <thead>
                 <tr class="trlist">
-                    <th id="table_surname">Nom</th>
-                    <th id="table_name">Prénom</th>
-                    <th id="table_birthdate">Mail</th>
-                    <th id="table_category">Statut</th>
-                    <th id="table_category">Options</th>
+                    <th id="user_surname">Nom</th>
+                    <th id="user_name">Prénom</th>
+                    <th id="user_birthdate">Mail</th>
+                    <th id="user_category">Statut</th>
+                    <th id="user_options" class="optionsTH">Options</th>
                 </tr>
                 </thead>
                 <tbody>
                 {%   for user in usersListObj %}
-                    <tr class="trlist">
+                    <tr class="trlist tableTR">
                         <td>{{user.lastname}}</td>
                         <td>{{user.firstname}}</td>
                         <td>{{user.mail}}</td>
@@ -48,8 +48,8 @@
                                 Administrateur
                             {%  endif %}
                         </td>
-                        <td class="d-flex flex-row justify-content-around">
-                            <div><a href="/MyTeamStats/ModifyUser/{{ user.userid }}" class="bluelink"><i class="fas fa-user-edit"></i></a></div>
+                        <td class="optionsTD">
+                            <div><a href="/ModifyUser/{{ user.userid }}" class="bluelink"><i class="fas fa-user-edit"></i></a></div>
                             {%  if session.user_status >= 4 %}
                                 <div class="delete_btn"><i class="fas fa-user-times" id="delete_user_{{ user.userid }}"></i></div>
                             {% endif %}
@@ -69,6 +69,10 @@
 {% endblock %}
 
 {% block script %}
+    <script>let count = {{ count }};</script>
+    <script>let list = "{{ list }}";</script>
+    <script>let userStatus = "{{ session.user_status }}"</script>
+    <script src="/js/TableOptions.js"></script>
     <script src="/js/DeleteManagement.js"></script>
     <script src="/js/ListDisplay.js"></script>
 {% endblock %}

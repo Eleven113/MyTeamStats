@@ -6,7 +6,7 @@
 
 {% block content %}
 
-    {% if session.user_status >= 4 %}
+    {% if session.user_status >= 3 %}
         <div id="updateoppo_form" class="d-flex flex-column justify-content-center align-items-center mt-4">
             <form id="updateoppo-form" class="col-lg-6" action="/UpdateOppo/{{ oppo.opponentid }}"  method="post" enctype="multipart/form-data">
                 <legend>Modifier un adversaire</legend>

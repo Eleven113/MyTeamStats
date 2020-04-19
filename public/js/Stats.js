@@ -82,52 +82,52 @@ class Stats {
     }
 
     setStatBars(period){
-        for (let i = 0; i < CONFIG.data.length; i++){
+        for (let i = 0; i < MTSCONFIG.data.length; i++){
             this.newDivStatBar = document.createElement("div");
             this.newDivStatBar.className = "stat_bar d-flex flex-row mb-3 align-items-center";
 
             this.newDivStatBarDbyP = document.createElement("div");
             this.newDivStatBarDbyP.className = "stat_bar d-flex flex-row mb-3";
 
-            switch (CONFIG.data[i].model){
+            switch (MTSCONFIG.data[i].model){
                 case 0:
                     if (this.pageStat){
-                        this.newDivStatBar.innerHTML = '<div class="col-2"></div><div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">'+ CONFIG.data[i].name +'</div><div id="'+ CONFIG.data[i].db_name +'" class="stat_bar-num col-2 border border-primary border-left-0">0</div><div class="col-2"></div>';
-                        this.newDivStatBarDbyP.innerHTML = '<div class="col-2"></div><div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">'+ CONFIG.data[i].name +'</div><div id="'+ CONFIG.data[i].db_name +'_dbp" class="stat_bar-num col-2 border border-primary border-left-0">0</div><div class="col-2"></div>';
+                        this.newDivStatBar.innerHTML = '<div class="col-2"></div><div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">'+ MTSCONFIG.data[i].name +'</div><div id="'+ MTSCONFIG.data[i].db_name +'" class="stat_bar-num col-2 border border-primary border-left-0">0</div><div class="col-2"></div>';
+                        this.newDivStatBarDbyP.innerHTML = '<div class="col-2"></div><div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">'+ MTSCONFIG.data[i].name +'</div><div id="'+ MTSCONFIG.data[i].db_name +'_dbp" class="stat_bar-num col-2 border border-primary border-left-0">0</div><div class="col-2"></div>';
                     } 
                     else {
-                    this.newDivStatBarDbyP.innerHTML = '<div class="col-1"></div><div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">'+ CONFIG.data[i].name +'</div><div id="'+ CONFIG.data[i].db_name +'_match_stat_'+ period +'" class="stat_bar-num col-4 border border-primary border-left-0 text-center">0</div><div class="col-1"></div>';
+                    this.newDivStatBarDbyP.innerHTML = '<div class="col-1"></div><div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">'+ MTSCONFIG.data[i].name +'</div><div id="'+ MTSCONFIG.data[i].db_name +'_match_stat_'+ period +'" class="stat_bar-num col-4 border border-primary border-left-0 text-center">0</div><div class="col-1"></div>';
                     }
                     break;
 
                 case 1:
                     if (this.pageStat){
-                        this.newDivStatBar.innerHTML = '<div id="btnminus_'+CONFIG.data[i].db_name+'_'+CONFIG.data[i].model+'" class="col-2 text-right btn_stat"><i class="far fa-minus-square"></i></div><div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">'+ CONFIG.data[i].name +'</div><div id="'+CONFIG.data[i].db_name+'" class="stat_bar-num col-2 border border-primary border-left-0">0</div><div id="btnplus_'+CONFIG.data[i].db_name+'_'+CONFIG.data[i].model+'" class="col-2 btn_stat"><i class="far fa-plus-square"></i></div>';
-                        this.newDivStatBarDbyP.innerHTML = '<div class="col-2"></div><div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">'+ CONFIG.data[i].name +'</div><div id="'+CONFIG.data[i].db_name+'_dbp" class="stat_bar-num col-2 border border-primary border-left-0">0</div><div class="col-2"></div>';
+                        this.newDivStatBar.innerHTML = '<div id="btnminus_'+MTSCONFIG.data[i].db_name+'_'+MTSCONFIG.data[i].model+'" class="col-2 text-right btn_stat"><i class="far fa-minus-square"></i></div><div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">'+ MTSCONFIG.data[i].name +'</div><div id="'+MTSCONFIG.data[i].db_name+'" class="stat_bar-num col-2 border border-primary border-left-0">0</div><div id="btnplus_'+MTSCONFIG.data[i].db_name+'_'+MTSCONFIG.data[i].model+'" class="col-2 btn_stat"><i class="far fa-plus-square"></i></div>';
+                        this.newDivStatBarDbyP.innerHTML = '<div class="col-2"></div><div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">'+ MTSCONFIG.data[i].name +'</div><div id="'+MTSCONFIG.data[i].db_name+'_dbp" class="stat_bar-num col-2 border border-primary border-left-0">0</div><div class="col-2"></div>';
                    
                     }
                     else {
-                        this.newDivStatBarDbyP.innerHTML = '<div class="col-1"></div><div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">'+ CONFIG.data[i].name +'</div><div id="'+CONFIG.data[i].db_name+'_match_stat_'+ period +'" class="stat_bar-num col-4 border border-primary border-left-0 text-center">0</div><div class="col-1"></div>';
+                        this.newDivStatBarDbyP.innerHTML = '<div class="col-1"></div><div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">'+ MTSCONFIG.data[i].name +'</div><div id="'+MTSCONFIG.data[i].db_name+'_match_stat_'+ period +'" class="stat_bar-num col-4 border border-primary border-left-0 text-center">0</div><div class="col-1"></div>';
                     }
                     break;
 
                 case 2:
                     if (this.pageStat){
-                        this.newDivStatBar.innerHTML = '<div id="btnminus_'+CONFIG.data[i].db_name+'_'+CONFIG.data[i].model+'" class="col-2 text-right btn_stat"><i class="far fa-minus-square"></i></div><div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">'+ CONFIG.data[i].name +'</div><div class="stat_bar-num col-2 border border-primary border-left-0"><span id="'+CONFIG.data[i].db_name+'">0</span>&nbsp;&nbsp;<span id="'+CONFIG.data[i].db_name+'_percent">0%</span></div><div id="btnplus_'+CONFIG.data[i].db_name+'_'+CONFIG.data[i].model+'" class="col-2 btn_stat"><i class="far fa-plus-square"></i></div>';
-                        this.newDivStatBarDbyP.innerHTML = '<div class="col-2"></div><div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">'+ CONFIG.data[i].name +'</div><div class="stat_bar-num col-2 border border-primary border-left-0"><span id="'+CONFIG.data[i].db_name+'_dbp">0</span>&nbsp;&nbsp;<span id="'+CONFIG.data[i].db_name+'_percent_dbp">0%</span></div><div class="col-2"></div>';                                                   
+                        this.newDivStatBar.innerHTML = '<div id="btnminus_'+MTSCONFIG.data[i].db_name+'_'+MTSCONFIG.data[i].model+'" class="col-2 text-right btn_stat"><i class="far fa-minus-square"></i></div><div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">'+ MTSCONFIG.data[i].name +'</div><div class="stat_bar-num col-2 border border-primary border-left-0"><span id="'+MTSCONFIG.data[i].db_name+'">0</span>&nbsp;&nbsp;<span id="'+MTSCONFIG.data[i].db_name+'_percent">0%</span></div><div id="btnplus_'+MTSCONFIG.data[i].db_name+'_'+MTSCONFIG.data[i].model+'" class="col-2 btn_stat"><i class="far fa-plus-square"></i></div>';
+                        this.newDivStatBarDbyP.innerHTML = '<div class="col-2"></div><div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">'+ MTSCONFIG.data[i].name +'</div><div class="stat_bar-num col-2 border border-primary border-left-0"><span id="'+MTSCONFIG.data[i].db_name+'_dbp">0</span>&nbsp;&nbsp;<span id="'+MTSCONFIG.data[i].db_name+'_percent_dbp">0%</span></div><div class="col-2"></div>';
                     } 
                     else {
-                        this.newDivStatBarDbyP.innerHTML = '<div class="col-1"></div><div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">'+ CONFIG.data[i].name +'</div><div class="stat_bar-num col-4 border border-primary border-left-0 text-center"><span id="'+CONFIG.data[i].db_name+'_match_stat_'+ period +'">0</span>&nbsp;-&nbsp;<span id="'+CONFIG.data[i].db_name+'_percent_match_stat_'+ period +'">0%</span></div><div class="col-1"></div>';                
+                        this.newDivStatBarDbyP.innerHTML = '<div class="col-1"></div><div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">'+ MTSCONFIG.data[i].name +'</div><div class="stat_bar-num col-4 border border-primary border-left-0 text-center"><span id="'+MTSCONFIG.data[i].db_name+'_match_stat_'+ period +'">0</span>&nbsp;-&nbsp;<span id="'+MTSCONFIG.data[i].db_name+'_percent_match_stat_'+ period +'">0%</span></div><div class="col-1"></div>';
                     }
                     break;
 
                 case 3:
                     if (this.pageStat){
-                        this.newDivStatBar.innerHTML = '<div id="btnminus_'+CONFIG.data[i].db_name+'_'+CONFIG.data[i].model+'" class="col-2 text-right btn_stat"><i class="far fa-minus-square"></i></div><div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">'+ CONFIG.data[i].name +'</div><div class="stat_bar-num col-2 border border-primary border-left-0"><span id="'+CONFIG.data[i].db_name+'">0</span>&nbsp;&nbsp;<span id="'+CONFIG.data[i].db_name+'_percent">0%</span></div><div id="btnplus_'+CONFIG.data[i].db_name+'_'+CONFIG.data[i].model+'" class="col-2 btn_stat"><i class="far fa-plus-square"></i></div>';
-                        this.newDivStatBarDbyP.innerHTML = '<div class="col-2"></div><div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">'+ CONFIG.data[i].name +'</div><div class="stat_bar-num col-2 border border-primary border-left-0"><span id="'+CONFIG.data[i].db_name+'_dbp">0</span>&nbsp;&nbsp;<span id="'+CONFIG.data[i].db_name+'_percent_dbp">0%</span></div><div class="col-2"></div>';
+                        this.newDivStatBar.innerHTML = '<div id="btnminus_'+MTSCONFIG.data[i].db_name+'_'+MTSCONFIG.data[i].model+'" class="col-2 text-right btn_stat"><i class="far fa-minus-square"></i></div><div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">'+ MTSCONFIG.data[i].name +'</div><div class="stat_bar-num col-2 border border-primary border-left-0"><span id="'+MTSCONFIG.data[i].db_name+'">0</span>&nbsp;&nbsp;<span id="'+MTSCONFIG.data[i].db_name+'_percent">0%</span></div><div id="btnplus_'+MTSCONFIG.data[i].db_name+'_'+MTSCONFIG.data[i].model+'" class="col-2 btn_stat"><i class="far fa-plus-square"></i></div>';
+                        this.newDivStatBarDbyP.innerHTML = '<div class="col-2"></div><div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">'+ MTSCONFIG.data[i].name +'</div><div class="stat_bar-num col-2 border border-primary border-left-0"><span id="'+MTSCONFIG.data[i].db_name+'_dbp">0</span>&nbsp;&nbsp;<span id="'+MTSCONFIG.data[i].db_name+'_percent_dbp">0%</span></div><div class="col-2"></div>';
                     }
                     else {
-                        this.newDivStatBarDbyP.innerHTML = '<div class="col-1"></div><div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">'+ CONFIG.data[i].name +'</div><div class="stat_bar-num col-4 border border-primary border-left-0 text-center"><span id="'+CONFIG.data[i].db_name+'_match_stat_'+ period +'">0</span>&nbsp;-&nbsp;<span id="'+CONFIG.data[i].db_name+'_percent_match_stat_'+ period +'">0%</span></div><div class="col-1"></div>';
+                        this.newDivStatBarDbyP.innerHTML = '<div class="col-1"></div><div class="stat_bar-text col-6 bg-primary text-white border border-primary border-right-0 text-center">'+ MTSCONFIG.data[i].name +'</div><div class="stat_bar-num col-4 border border-primary border-left-0 text-center"><span id="'+MTSCONFIG.data[i].db_name+'_match_stat_'+ period +'">0</span>&nbsp;-&nbsp;<span id="'+MTSCONFIG.data[i].db_name+'_percent_match_stat_'+ period +'">0%</span></div><div class="col-1"></div>';
                     }
                     break;                    
 
@@ -454,10 +454,6 @@ class Stats {
             "pass_ok_percent" : this.pass_ok_percent,
             "pass_nok" : this.missPass - this.missPassAgglo,
             "pass_nok_percent" : this.pass_nok_percent,
-            "shot_ok" : this.shotOnTarget - this.shotOnTargetAgglo ,
-            "shot_ok_percent" : this.shot_ok_percent,
-            "shot_nok" : this.missShot - this.missShotAgglo,
-            "shot_nok_percent" : this.shot_nok_percent,
             "freekick" : this.freeKick - this.freeKickAgglo,
             "offside" : this.offSide - this.offSideAgglo,
             "foul" : this.foul - this.foulAgglo,

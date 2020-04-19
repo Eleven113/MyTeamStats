@@ -15,7 +15,7 @@ Class ControllerFront {
     private $periodManager;
     private $cardManager;
 
-    public function __construct($twig, $playerManager, $userManager, $opponentManager, $matchManager, $fieldManager, $compositionManager, $goalManager, $periodManager, $cardManager)
+    public function __construct($twig, $playerManager, $userManager, $opponentManager, $matchManager, $fieldManager, $compositionManager, $goalManager, $periodManager, $cardManager, $limit)
     {
         $this->twig = $twig;
         $this->playerManager = $playerManager;
@@ -27,6 +27,7 @@ Class ControllerFront {
         $this->goalManager = $goalManager;
         $this->periodManager = $periodManager;
         $this->cardManager = $cardManager;
+        $this->limit = $limit;
     }
 
     // HOME
@@ -44,7 +45,14 @@ Class ControllerFront {
 
     // PLAYER
     public function PlayersList(){
-        $playersListObj = $this->playerManager->getPlayersList();
+
+        $playersListObj = $this->playerManager->getPlayersList($this->limit);
+        $count = $this->playerManager->countPlayers();
+
+        for ($i=0; $i < count($playersListObj); $i++){
+            $player = $playersListObj[$i];
+            array_push($playerArray, $player);
+        }
 
         if (date('n') >= 8){
             $year = date('Y') + 1;
@@ -56,11 +64,33 @@ Class ControllerFront {
         echo $this->twig->render('/FrontEnd/PlayersList.html.twig',
             [
                 'playerListObj' => $playersListObj,
-                'sessionUser' => $_SESSION['user_status'],
-                'link' => $this->link,
-                'year' => $year
-            ]);
+                'count' => $count,
+                'year' => $year,
+                'list' => "Players"
+            ]
+        );
 
+    }
+
+    public function MorePlayers($page){
+        $offset = $this->limit * ($page-1);
+        $playersListObj = $this->playerManager->getMorePlayersList($this->limit, $offset);
+
+        $playerArray  = [];
+
+        for ($i=0; $i < count($playersListObj); $i++){
+            $player = $playersListObj[$i];
+            array_push($playerArray, $player);
+        }
+
+        if (date('n') >= 8){
+            $year = date('Y') + 1;
+        }
+        else {
+            $year = date('Y');
+        }
+
+        print_r (json_encode($playerArray));
     }
 
     public function Player($id){
@@ -91,9 +121,29 @@ Class ControllerFront {
 
     // MATCH
     public function MatchsList(){
-        $matchs = $this->matchManager->getMatchsList();
+        $matchs = $this->matchManager->getMatchsList($this->limit);
+        $count = $this->matchManager->countMatchs();
 
-        echo $this->twig->render('/FrontEnd/MatchsList.html.twig', [ 'matchs' => $matchs]);
+        echo $this->twig->render('/FrontEnd/MatchsList.html.twig', [
+            'matchs' => $matchs,
+            'count' => $count,
+            'list' => 'Matchs'
+            ]);
+    }
+
+    public function MoreMatchs($page){
+
+        $offset = $this->limit * ($page-1);
+        $matchsListObj = $this->matchManager->getMoreMatchsList($this->limit, $offset);
+
+        $matchArray = [];
+
+        for ($i=0; $i < count($matchsListObj); $i++){
+            $match = $matchsListObj[$i];
+            array_push($matchArray, $match);
+        }
+
+        print_r(json_encode($matchArray));
     }
 
     public function Match($id){
@@ -194,17 +244,19 @@ Class ControllerFront {
     }
 
     public function AddUser($lastname, $firstname, $mail, $pwd1, $pwd2){
-        $regex = "^[a-zA-Z0-9]{8,}$";
+        $regex = '/^[a-zA-Z0-9]{8,}$/';
         if (preg_match($regex, $pwd1) != 1 ){
             throw new \Exception("Le format du mot de passe est incorrect_/CreateUser_Retour à la création d'utilisateur");
         }
+
+
         if ( $pwd1 == $pwd2){
-            $h_pwd = password_hash($pwd1, PASSWORD_DEFAULT);
+            $hashPwd = password_hash($pwd1, PASSWORD_DEFAULT);
             $user = [
                 'lastname' => $lastname,
                 'firstname' => $firstname,
                 'mail' => $mail,
-                'password' => $h_pwd
+                'password' => $hashPwd
             ];
 
             $this->userManager->AddUser($user);
@@ -265,7 +317,7 @@ Class ControllerFront {
                 ];
                 $this->userManager->UpdatePassword($user);
 
-                echo $this->twig->render('/FrontEnd/Home.html.twig');
+                echo $this->twig->render('/FrontEnd/Homepage.html.twig');
             }
             else {
                 throw new \Exception("Les mots de passe ne sont pas identiques");

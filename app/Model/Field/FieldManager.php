@@ -11,8 +11,17 @@ class FieldManager
         $this->db = $db;
     }
 
-    public function getFieldsList(){
-        $fieldsList = $this->db->query('SELECT * FROM FIELD');
+    public function countFields()
+    {
+        return $this->db->query('SELECT COUNT(*) FROM FIELD')->fetchColumn();
+    }
+
+    public function getFieldsList($limit){
+        $fieldsList = $this->db->prepare('SELECT * FROM FIELD LIMIT :offset, :limit');
+        $fieldsList->bindValue(':offset', 0, \PDO::PARAM_INT);
+        $fieldsList->bindValue(':limit', (int) $limit, \PDO::PARAM_INT);
+        $fieldsList->execute();
+
         $fieldListObj = new \ArrayObject();
         while ($fieldArray = $fieldsList->fetch(\PDO::FETCH_ASSOC)){
             $field = new FieldObject($fieldArray);
@@ -20,6 +29,34 @@ class FieldManager
         }
 
         return $fieldListObj;
+    }
+
+    public function getFieldsFullList(){
+        $fieldsList = $this->db->query('SELECT * FROM FIELD');
+
+        $fieldListObj = new \ArrayObject();
+        while ($fieldArray = $fieldsList->fetch(\PDO::FETCH_ASSOC)){
+            $field = new FieldObject($fieldArray);
+            $fieldListObj->append($field);
+        }
+
+        return $fieldListObj;
+    }
+
+    public function getMoreFieldsList($limit,$offset)
+    {
+        $fieldsList = $this->db->prepare('SELECT * FROM FIELD LIMIT :offset , :limit');
+        $fieldsList->bindValue(':limit', (int) $limit, \PDO::PARAM_INT);
+        $fieldsList->bindValue(':offset', (int) $offset, \PDO::PARAM_INT);
+        $fieldsList->execute();
+
+        $fieldsListObj = new \ArrayObject();
+        while ($fieldArray = $fieldsList->fetch(\PDO::FETCH_ASSOC)){
+            $field = new FieldObject($fieldArray);
+            $fieldsListObj->append($field);
+        }
+
+        return $fieldsListObj;
     }
 
     public function getField($id){

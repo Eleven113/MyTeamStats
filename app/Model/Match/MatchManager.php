@@ -12,17 +12,25 @@ class MatchManager
         $this->db = $db;
     }
 
-    public function getMatchsList(){
-        $matchList = $this->db->query('SELECT GAME.GAMEID, GAME.OPPONENTID, GAME.CATEGORY, GAME.DATE, GAME.FIELDID, GAME.ATHOME, GAME.PERIODNUM, GAME.TYPE, GAME.PERIODDURATION, GAME.STATUS, OPPONENT.OPPONENTID AS OPPOID, OPPONENT.NAME AS OPPO, OPPONENT.NAME, OPPONENT.LOGO, FIELD.FIELDID AS FIELDID, FIELD.ADDRESS, FIELD.ZIPCODE, FIELD.CITY, FIELD.TURF, SUM(PERIOD.HOMESCORE) AS HOMESCORE, SUM(PERIOD.AWAYSCORE) AS AWAYSCORE FROM GAME LEFT JOIN PERIOD ON GAME.GAMEID = PERIOD.MATCHID INNER JOIN FIELD ON GAME.FIELDID = FIELD.FIELDID INNER JOIN OPPONENT ON GAME.OPPONENTID = OPPONENT.OPPONENTID GROUP BY GAME.GAMEID ORDER BY GAME.DATE DESC');
-        $matchsList = new \ArrayObject();
-        while ($matchArray = $matchList->fetch(\PDO::FETCH_ASSOC)){
+    public function countMatchs()
+    {
+        return $this->db->query('SELECT COUNT(*) FROM GAME')->fetchColumn();
+    }
+
+    public function getMatchsList($limit){
+        $matchsList = $this->db->prepare('SELECT GAME.GAMEID, GAME.OPPONENTID, GAME.CATEGORY, GAME.DATE, GAME.FIELDID, GAME.ATHOME, GAME.PERIODNUM, GAME.TYPE, GAME.PERIODDURATION, GAME.STATUS, OPPONENT.OPPONENTID AS OPPOID, OPPONENT.NAME AS OPPO, OPPONENT.NAME, OPPONENT.LOGO, FIELD.FIELDID AS FIELDID, FIELD.ADDRESS, FIELD.ZIPCODE, FIELD.CITY, FIELD.TURF, SUM(PERIOD.HOMESCORE) AS HOMESCORE, SUM(PERIOD.AWAYSCORE) AS AWAYSCORE FROM GAME LEFT JOIN PERIOD ON GAME.GAMEID = PERIOD.MATCHID INNER JOIN FIELD ON GAME.FIELDID = FIELD.FIELDID INNER JOIN OPPONENT ON GAME.OPPONENTID = OPPONENT.OPPONENTID GROUP BY GAME.GAMEID ORDER BY GAME.DATE DESC LIMIT :offset, :limit');
+        $matchsList->bindValue(':limit', (int) $limit, \PDO::PARAM_INT);
+        $matchsList->bindValue(':offset', 0, \PDO::PARAM_INT);
+        $matchsList->execute();
+        $matchList = new \ArrayObject();
+        while ($matchArray = $matchsList->fetch(\PDO::FETCH_ASSOC)){
 
             $matchDisplay = new MatchDisplay($matchArray);
 
-            $matchsList->append($matchDisplay);
+            $matchList->append($matchDisplay);
         }
 
-        return $matchsList;
+        return $matchList;
     }
 
     public function getMatch($id){
@@ -32,6 +40,22 @@ class MatchManager
 
         return new MatchDisplay($query->fetch(\PDO::FETCH_ASSOC));
 
+    }
+
+    public function getMoreMatchsList($limit, $offset)
+    {
+        $matchsList = $this->db->prepare('SELECT GAME.GAMEID, GAME.OPPONENTID, GAME.CATEGORY, GAME.DATE, GAME.FIELDID, GAME.ATHOME, GAME.PERIODNUM, GAME.TYPE, GAME.PERIODDURATION, GAME.STATUS, OPPONENT.OPPONENTID AS OPPOID, OPPONENT.NAME AS OPPO, OPPONENT.NAME, OPPONENT.LOGO, FIELD.FIELDID AS FIELDID, FIELD.ADDRESS, FIELD.ZIPCODE, FIELD.CITY, FIELD.TURF, SUM(PERIOD.HOMESCORE) AS HOMESCORE, SUM(PERIOD.AWAYSCORE) AS AWAYSCORE FROM GAME LEFT JOIN PERIOD ON GAME.GAMEID = PERIOD.MATCHID INNER JOIN FIELD ON GAME.FIELDID = FIELD.FIELDID INNER JOIN OPPONENT ON GAME.OPPONENTID = OPPONENT.OPPONENTID GROUP BY GAME.GAMEID ORDER BY GAME.DATE DESC  LIMIT :offset , :limit');
+        $matchsList->bindValue(':limit', (int) $limit, \PDO::PARAM_INT);
+        $matchsList->bindValue(':offset', (int) $offset, \PDO::PARAM_INT);
+        $matchsList->execute();
+
+        $matchsListObj = new \ArrayObject();
+        while ($matchArray = $matchsList->fetch(\PDO::FETCH_ASSOC)){
+            $match = new MatchDisplay($matchArray);
+            $matchsListObj->append($match);
+        }
+
+        return $matchsListObj;
     }
 
     public function AddMatch($match){

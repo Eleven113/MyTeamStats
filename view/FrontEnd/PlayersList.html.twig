@@ -38,7 +38,7 @@
                     <th id="table_surname">Nom</th>
                     <th id="table_name">Prénom</th>
                     <th id="table_birthdate">Date de naissance</th>
-                    <th id="table_category">Catégorie</th>
+                    <th id="table_category">Cat.</th>
                     <th id="table_licenced">Licence</th>
                     <th id="table_options" class="optionsTH">Options</th>
                 </tr>
@@ -71,7 +71,6 @@
                         {% endif %}
                     </td>
                 </tr>
-
             {% endfor %}
             </tbody>
         </table>
@@ -83,6 +82,10 @@
 {% endblock %}
 
 {% block script %}
+    <script>let count = {{ count }}</script>
+    <script>let list = "{{ list }}"</script>
+    <script>let userStatus = "{{ session.user_status }}"</script>
+    <script src="/js/TableOptions.js"></script>
     <script src="js/DeleteManagement.js"></script>
     <script src="js/ListDisplay.js"></script>
 {% endblock %}

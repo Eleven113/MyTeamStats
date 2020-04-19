@@ -13,8 +13,25 @@ class OpponentManager
         $this->db = $db;
     }
 
+    public function countOppo(){
+        return $this->db->query('SELECT COUNT(*) FROM OPPONENT')->fetchColumn();
+    }
 
-    public function getOppoList(){
+    public function getOppoList($limit){
+        $oppoList = $this->db->prepare('SELECT * FROM OPPONENT LIMIT :offset, :limit');
+        $oppoList->bindValue(':offset', 0, \PDO::PARAM_INT);
+        $oppoList->bindValue(':limit', (int) $limit, \PDO::PARAM_INT);
+        $oppoList->execute();
+        $oppoListObj = new \ArrayObject();
+        while ($oppoArray = $oppoList->fetch(\PDO::FETCH_ASSOC)){
+            $oppo = new OpponentObject($oppoArray);
+            $oppoListObj->append($oppo);
+        }
+
+        return $oppoListObj;
+    }
+
+    public function getOppoFullList(){
         $oppoList = $this->db->query('SELECT * FROM OPPONENT');
         $oppoListObj = new \ArrayObject();
         while ($oppoArray = $oppoList->fetch(\PDO::FETCH_ASSOC)){
@@ -23,6 +40,23 @@ class OpponentManager
         }
 
         return $oppoListObj;
+    }
+
+
+    public function getMoreOppoList($limit,$offset)
+    {
+        $opposList = $this->db->prepare('SELECT * FROM OPPONENT LIMIT :offset , :limit');
+        $opposList->bindValue(':limit', (int) $limit, \PDO::PARAM_INT);
+        $opposList->bindValue(':offset', (int) $offset, \PDO::PARAM_INT);
+        $opposList->execute();
+
+        $opposListObj = new \ArrayObject();
+        while ($oppoArray = $opposList->fetch(\PDO::FETCH_ASSOC)){
+            $oppo = new OpponentObject($oppoArray);
+            $opposListObj->append($oppo);
+        }
+
+        return $opposListObj;
     }
 
     public function getOppo($id){

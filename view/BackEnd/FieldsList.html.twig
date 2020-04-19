@@ -36,19 +36,19 @@
                 <th id="table_fieldzipcode">Code Postal</th>
                 <th id="table_fieldcity">Ville</th>
                 <th id="table_fieldturf">Terrain</th>
-                <th id="table_fieldoptions">Options</th>
+                <th id="table_fieldoptions" class="optionsTH">Options</th>
             </tr>
             </thead>
             <tbody>
             {%   for field in fieldListObj %}
 
-                <tr class="trlist">
+                <tr class="trlist tableTR">
                     <td>{{ field.name }}</a></td>
                     <td>{{ field.address }}</td>
                     <td>{{ field.zipcode }}</td>
                     <td>{{ field.city }}</td>
                     <td>{{ field.turf}}</td>
-                    <td class="d-flex flex-row justify-content-between">
+                    <td class="optionsTD">
                         <div><a href="/ModifyField/{{ field.fieldid }}" class="bluelink"><i class="fas fa-pen"></i></a></div>
                         {%  if session.user_status >= 4 %}
                             <div  class="delete_btn"><i class="fas fa-trash-alt"  id="delete_field_{{ field.fieldid }}"></i></div>
@@ -67,6 +67,10 @@
 {% endblock %}
 
 {% block script %}
+    <script>let count = {{ count }};</script>
+    <script>let list = "{{ list }}";</script>
+    <script>let userStatus = "{{ session.user_status }}"</script>
+    <script src="/js/TableOptions.js"></script>
     <script src="/js/DeleteManagement.js"></script>
     <script src="/js/ListDisplay.js"></script>
 {% endblock %}

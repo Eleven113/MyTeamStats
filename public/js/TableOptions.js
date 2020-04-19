@@ -6,11 +6,10 @@ class TableOptions {
 
         this.setTDSize();
 
-        // window.onresize = this.setTDSize.bind(this);
     }
 
     setTDSize(){
-        let width = this.thead.getBoundingClientRect().right - this.thead.getBoundingClientRect().left;
+        let width = this.thead.getBoundingClientRect().width;
         let height = this.tr.getBoundingClientRect().bottom - this.tr.getBoundingClientRect().top;
 
         for ( let i=0; i < this.td.length; i++){
@@ -22,3 +21,5 @@ class TableOptions {
 }
 
 let tableOptions = new TableOptions();
+
+

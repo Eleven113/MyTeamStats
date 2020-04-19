@@ -12,6 +12,11 @@ class UserManager
         $this->db = $db;
     }
 
+    public function countUsers(){
+        return $this->db->query('SELECT COUNT(*) FROM USER')->fetchColumn();
+    }
+
+
     public function AddUser($user)
     {
         $user = new UserObject($user);
@@ -27,8 +32,15 @@ class UserManager
 
         $title = "Confirmation d'inscription";
 
-        $message = "Bonjour ". $user->getFirstname().PHP_EOL."Vous êtes désormais inscrit sur MyTeamStats. Et ça... c'est vraiment bien";
-
+        $message =  '<html>'.
+                    '<body>'.
+                    '   Bonjour '. $user->getFirstname().'<br/>'.
+                    '   Vous êtes désormais inscrit(e) sur MyTeamStats. Vous pouvez des à présent vous connecter et retrouver toutes les informations du club.'.'<br/>'.
+                    '   Si vous êtes membre du club, vos droits d\'accès seront activés prochainement.'.'<br/>'.
+                    '   Cordialement,'.'<br/>'.
+                    '   LFC by MyTeamStats'.
+                    '</body>'.
+                    '</html>';
         $mail = new \MyTeamStats\Model\Mailer($user->getMail(), $title, $message);
 
     }
@@ -61,8 +73,11 @@ class UserManager
         return $login;
     }
 
-     public function getUsersList(){
-        $usersList = $this->db->query('SELECT * FROM USER');
+     public function getUsersList($limit){
+        $usersList = $this->db->prepare('SELECT * FROM USER LIMIT :offset, :limit');
+        $usersList->bindValue(':offset', 0, \PDO::PARAM_INT);
+        $usersList->bindValue(':limit', (int) $limit, \PDO::PARAM_INT);
+        $usersList->execute();
         $usersListObj = new \ArrayObject();
         while ($userArray = $usersList->fetch(\PDO::FETCH_ASSOC)){
             $user = new UserObject($userArray);
@@ -71,6 +86,35 @@ class UserManager
 
         return $usersListObj;
      }
+
+    public function getFullUsersList(){
+        $usersList = $this->db->query('SELECT * FROM USER ');
+
+        $usersListObj = new \ArrayObject();
+        while ($userArray = $usersList->fetch(\PDO::FETCH_ASSOC)){
+            $user = new UserObject($userArray);
+            $usersListObj->append($user);
+        }
+
+        return $usersListObj;
+    }
+
+
+    public function getMoreUsersList($limit,$offset)
+    {
+        $usersList = $this->db->prepare('SELECT * FROM USER LIMIT :offset , :limit');
+        $usersList->bindValue(':limit', (int) $limit, \PDO::PARAM_INT);
+        $usersList->bindValue(':offset', (int) $offset, \PDO::PARAM_INT);
+        $usersList->execute();
+
+        $usersListObj = new \ArrayObject();
+        while ($userArray = $usersList->fetch(\PDO::FETCH_ASSOC)){
+            $user = new UserObject($userArray);
+            $usersListObj->append($user);
+        }
+
+        return $usersListObj;
+    }
 
      public function DeleteUser($id){
         $user = $this->getUser($id);
@@ -112,7 +156,7 @@ class UserManager
 
     public function ResetPassword($mail)
     {
-        $usersList = $this->getUsersList();
+        $usersList = $this->getFullUsersList();
         $inList = false;
 
         for ($i = 0; $i < count($usersList); $i++) {
@@ -135,7 +179,7 @@ class UserManager
                 '  <body>' .
                 '       Bonjour ' . $usersList[$user]->getFirstname() . ',' . '<br/><br/>' .
                 '       Vous avez demandé la ré-initialisation de votre mot de passe' . '<br/><br/>' .
-                '       Cliquez sur <a href="http://www.thibaut-minard.fr/MyTeamStats/ModifyPassword/' . $usersList[$user]->getMail() . '/' . $token . '">ce lien</a> pour définir un nouveau mot de passe' . '<br/><br/>' .
+                '       Cliquez sur <a href="http://myteamstats.thibaut-minard.fr/ModifyPassword/' . $usersList[$user]->getMail() . '/' . $token . '">ce lien</a> pour définir un nouveau mot de passe' . '<br/><br/>' .
                 'A bientôt, MyTeamStats' .
                 '  </body>' .
                 '</html>';

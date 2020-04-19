@@ -2,7 +2,7 @@
 
 namespace MyTeamStats\Model\Field;
 
-class FieldObject
+class FieldObject implements \JsonSerializable
 {
     private $fieldid;
     private $name;
@@ -160,5 +160,9 @@ class FieldObject
                 $this->$method($value);
             }
         }
+    }
+
+    public function jsonSerialize(){
+        return get_object_vars($this);
     }
 }

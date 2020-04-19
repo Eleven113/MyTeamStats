@@ -1,5 +1,5 @@
     function ajaxGet(url, callback) {
-    var req = new XMLHttpRequest();
+    let req = new XMLHttpRequest();
     req.open("GET", url);
     req.addEventListener("load", function () {
         if (req.status >= 200 && req.status < 400) {
@@ -21,7 +21,7 @@
 // Prend en paramètres l'URL cible, la donnée à envoyer et la fonction callback appelée en cas de succès
 // Le paramètre isJson permet d'indiquer si l'envoi concerne des données JSON
 function ajaxPost(url, data, callback, isJson) {
-    var req = new XMLHttpRequest();
+    let req = new XMLHttpRequest();
     req.open("POST", url);
     req.addEventListener("load", function () {
         if (req.status >= 200 && req.status < 400) {

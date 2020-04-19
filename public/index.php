@@ -29,8 +29,12 @@ $twig->addExtension(new Twig_Extensions_Extension_Intl());
 $twig->addGlobal('session', $_SESSION);
 $twig->addGlobal('env', $_ENV);
 
-$controllerFront = new MyTeamStats\Controller\ControllerFront($twig, $playerManager, $userManager, $opponentManager, $matchManager, $fieldManager, $compositionManager, $goalManager, $periodManager, $cardManager);
-$controllerBack = new MyTeamStats\Controller\ControllerBack($twig, $playerManager, $userManager, $opponentManager, $matchManager, $fieldManager, $compositionManager, $goalManager, $periodManager, $cardManager);
+
+// Définition de la limite de longueur des listes
+$limit = 10;
+
+$controllerFront = new MyTeamStats\Controller\ControllerFront($twig, $playerManager, $userManager, $opponentManager, $matchManager, $fieldManager, $compositionManager, $goalManager, $periodManager, $cardManager, $limit);
+$controllerBack = new MyTeamStats\Controller\ControllerBack($twig, $playerManager, $userManager, $opponentManager, $matchManager, $fieldManager, $compositionManager, $goalManager, $periodManager, $cardManager, $limit);
 
 // Configuration de Cloudinary
 \Cloudinary::config( array (
@@ -39,6 +43,7 @@ $controllerBack = new MyTeamStats\Controller\ControllerBack($twig, $playerManage
     "api_secret" => "FymxxaeAwKJB9bVn-2J5cFozT4k" ,
     "secure" => true
 ));
+
 
 // Vérifie le statut de l'utilisateur pour protéger la saisie via URL
 
@@ -58,10 +63,12 @@ try {
 
         // Player
         $r->addRoute('GET', '/PlayersList', 'controllerFront/PlayersList');
+        $r->addRoute('GET', '/MorePlayers/{page:[0-9]+}', 'controllerFront/MorePlayers');
         $r->addRoute('GET', '/Player/{id:[0-9]+}', 'controllerFront/Player');
 
         // Match
         $r->addRoute('GET', '/MatchsList', 'controllerFront/MatchsList');
+        $r->addRoute('GET', '/MoreMatch/{page:[0-9]+}', 'controllerFront/MoreMatchs');
         $r->addRoute('GET', '/Match/{id:[0-9]+}', 'controllerFront/Match');
 
         // Club
@@ -93,6 +100,7 @@ try {
         // Match
         $r->addRoute('GET', '/CreateMatch', 'controllerBack/CreateMatch');
         $r->addRoute('POST', '/AddMatch', 'controllerBack/AddMatch');
+        $r->addRoute('GET', '/MoreMatchs/{page:[0-9]+}', 'controllerFront/MoreMatchs');
         $r->addRoute('GET', '/ModifyMatch/{id:[0-9]+}', 'controllerBack/ModifyMatch');
         $r->addRoute('POST', '/UpdateMatch/{id:[0-9]+}', 'controllerBack/UpdateMatch');
         $r->addRoute('GET', '/DeleteMatch/{id:[0-9]+}', 'controllerBack/DeleteMatch');
@@ -111,6 +119,7 @@ try {
 
         // Oppo
         $r->addRoute('GET', '/OppoList', 'controllerBack/OppoList');
+        $r->addRoute('GET', '/MoreOppo/{page:[0-9]+}', 'controllerBack/MoreOppo');
         $r->addRoute('GET', '/CreateOppo', 'controllerBack/CreateOppo');
         $r->addRoute('POST', '/AddOppo', 'controllerBack/AddOppo');
         $r->addRoute('GET', '/ModifyOppo/{id:[0-9]+}', 'controllerBack/ModifyOppo');
@@ -121,6 +130,7 @@ try {
         $r->addRoute('GET', '/FieldsList', 'controllerBack/FieldsList');
         $r->addRoute('GET', '/CreateField', 'controllerBack/CreateField');
         $r->addRoute('POST', '/AddField', 'controllerBack/AddField');
+        $r->addRoute('GET', '/MoreFields/{page:[0-9]+}', 'controllerBack/MoreFields');
         $r->addRoute('GET', '/ModifyField/{id:[0-9]+}', 'controllerBack/ModifyField');
         $r->addRoute('POST', '/UpdateField/{id:[0-9]+}', 'controllerBack/UpdateField');
         $r->addRoute('GET', '/DeleteField/{id:[0-9]+}', 'controllerBack/DeleteField');
@@ -128,6 +138,7 @@ try {
 
         // User
         $r->addRoute('GET', '/UsersList', 'controllerBack/UsersList');
+        $r->addRoute('GET', '/MoreUsers/{page:[0-9]+}', 'controllerBack/MoreUsers');
         $r->addRoute('GET', '/ModifyUser/{id:[0-9]+}', 'controllerBack/ModifyUser');
         $r->addRoute('POST', '/UpdateUser/{id:[0-9]+}', 'controllerBack/UpdateUser');
         $r->addRoute('GET', '/DeleteUser/{id:[0-9]+}', 'controllerBack/DeleteUser');
@@ -168,7 +179,7 @@ try {
                 if ($_SESSION['user_status'] >= 3) {
                     $controllerBack->{$method}(...array_values($vars));
                 } else {
-                    echo "Vous n'êtes pas autorisé à effectuer cette action";
+                    throw new Exception("Vous n'avez l'autorisation d'accèder à cette page_/MyTeamStats/_Retour à la page d'accueil");;
                 }
             }
 

@@ -28,9 +28,9 @@
             <div class="form-group">
                 <label for="text" class="form_label">Pelouse</label>
                 <select name="turf" class="form-control" required>
-                    <option value="Naturelle">Naturelle</option>
-                    <option value="Synthétique">Synthétique</option>
-                    <option value="Salle">Salle</option>
+                    <option value="Naturelle" {% if field.turf == "Naturelle" %}selected{% endif %}>Naturelle</option>
+                    <option value="Synthétique" {% if field.turf == "Synthétique" %}selected{% endif %}>Synthétique</option>
+                    <option value="Salle" {% if field.turf == "Salle" %}selected{% endif %}>Salle</option>
                 </select>
             </div>
             <button type="submit" class="mt-4 btn btn-primary"><i class="fas fa-check-circle"></i>&nbsp;&nbsp;Envoyer</button>

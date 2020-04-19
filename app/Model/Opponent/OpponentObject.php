@@ -2,7 +2,7 @@
 
 namespace MyTeamStats\Model\Opponent;
 
-class OpponentObject
+class OpponentObject implements \JsonSerializable
 {
     private $opponentid;
     private $name;
@@ -95,4 +95,9 @@ class OpponentObject
             }
         }
     }
+
+    public function jsonSerialize(){
+        return get_object_vars($this);
+    }
+
 }

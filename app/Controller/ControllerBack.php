@@ -15,8 +15,7 @@ class ControllerBack {
     private $periodManager;
     private $cardManager;
 
-    public function __construct($twig, $playerManager, $userManager, $opponentManager, $matchManager, $fieldManager, $compositionManager, $goalManager, $periodManager, $cardManager)
-    {
+    public function __construct($twig, $playerManager, $userManager, $opponentManager, $matchManager, $fieldManager, $compositionManager, $goalManager, $periodManager, $cardManager, $limit){
         $this->twig = $twig;
         $this->playerManager = $playerManager;
         $this->userManager = $userManager;
@@ -27,12 +26,14 @@ class ControllerBack {
         $this->goalManager = $goalManager;
         $this->periodManager = $periodManager;
         $this->cardManager = $cardManager;
+        $this->limit = $limit;
     }
 
 
     // PLAYER
-    public function PlayersList($notice){
-        $playersListObj = $this->playerManager->getPlayersList();
+    public function PlayersList($notice = null){
+        $playersListObj = $this->playerManager->getPlayersList($this->limit);
+        $count = $this->playerManager->countPlayers();
 
         if (date('n') >= 8){
             $year = date('Y') + 1;
@@ -45,9 +46,10 @@ class ControllerBack {
             [
                 'playerListObj' => $playersListObj,
                 'sessionUser' => $_SESSION['user_status'],
-                'link' => $this->link,
                 'year' => $year,
-                'notice' => $notice
+                'notice' => $notice,
+                'list' => 'Players',
+                'count' => $count
             ]);
 
     }
@@ -100,7 +102,7 @@ class ControllerBack {
 
     }
 
-    public function UpdatePlayer($id, $lastname, $firstname, $licencenum, $activelicence, $birthdate, $category, $poste, $address, $phonenum, $mail, $photo){
+    public function UpdatePlayer($id, $lastname, $firstname, $licencenum, $activelicence, $birthdate, $poste, $address, $phonenum, $mail, $photo){
         $type = explode("/", $photo['type'])[0];
         $photo = $photo['tmp_name'];
 
@@ -120,12 +122,12 @@ class ControllerBack {
             'licence' => $licencenum,
             'activelicence' => $activelicence,
             'birthdate' => $birthdate,
-            'category' => $category,
-            'photo' => $result['url'],
             'poste' => $poste,
+            'photo' => $result['url'],
             'address' => $address,
             'phonenum' => $phonenum,
             'mail' => $mail
+
         ];
 
         $this->playerManager->UpdatePlayer($player);
@@ -151,11 +153,10 @@ class ControllerBack {
 
 
 
-
     // MATCH
     public function CreateMatch(){
-        $oppoListObj = $this->opponentManager->getOppoList();
-        $fieldsListObj = $this->fieldManager->getFieldsList();
+        $oppoListObj = $this->opponentManager->getOppoFullList();
+        $fieldsListObj = $this->fieldManager->getFieldsFullList();
 
         echo $this->twig->render('/BackEnd/CreateMatch.html.twig',
             [
@@ -208,11 +209,14 @@ class ControllerBack {
     }
 
     public function MatchsList($notice){
-        $matchs = $this->matchManager->getMatchsList();
+        $matchs = $this->matchManager->getMatchsList($this->limit);
+        $count = $this->matchManager->countMatchs();
 
         echo $this->twig->render('/FrontEnd/MatchsList.html.twig', [
             'matchs' => $matchs,
-            'notice' => $notice
+            'notice' => $notice,
+            'count' => $count,
+            'list' => 'Matchs'
         ]);
     }
 
@@ -249,16 +253,39 @@ class ControllerBack {
 
     // USER
     public function UsersList($notice = null){
-        $usersListObj = $this->userManager->getUsersList();
+        $usersListObj = $this->userManager->getUsersList($this->limit);
+        $count = $this->userManager->countUsers();
 
         if ($notice == null){
-            echo $this->twig->render('/BackEnd/UsersList.html.twig', ['usersListObj' => $usersListObj]);
+            echo $this->twig->render('/BackEnd/UsersList.html.twig', [
+                'usersListObj' => $usersListObj,
+                'count' => $count,
+                'list' => 'Users'
+            ]);
         }
         else {
             echo $this->twig->render('/BackEnd/UsersList.html.twig', [
                 'usersListObj' => $usersListObj,
-                'notice' => $notice]);
+                'notice' => $notice,
+                'count' => $count,
+                'list' => 'Users'
+            ]);
         }
+    }
+
+    public function MoreUsers($page){
+        $offset = $this->limit * ($page-1);
+        $userListObj = $this->userManager->getMoreUsersList($this->limit, $offset);
+
+        $userArray = [];
+
+        for ($i=0; $i < count($userListObj); $i++){
+            $user = $userListObj[$i];
+            array_push($userArray, $user);
+        }
+
+        print_r(json_encode($userArray));
+
     }
 
     public function DeleteUser($id){
@@ -297,17 +324,39 @@ class ControllerBack {
 
     // OPPONENT
     public function OppoList($notice = null){
-        $oppoListObj = $this->opponentManager->getOppoList();
+        $oppoListObj = $this->opponentManager->getOppoList($this->limit);
+        $count = $this->opponentManager->countOppo();
 
         if ($notice == null){
-            echo $this->twig->render('/BackEnd/OppoList.html.twig', [ 'oppoListObj' => $oppoListObj]);
+            echo $this->twig->render('/BackEnd/OppoList.html.twig', [
+                'oppoListObj' => $oppoListObj,
+                'count' => $count,
+                'list' => 'Oppo'
+            ]);
         }
         else {
             echo $this->twig->render('/BackEnd/OppoList.html.twig', [
                 'oppoListObj' => $oppoListObj,
+                'count' => $count,
+                'list' => 'Oppo',
                 'notice' => $notice
             ]);
         }
+
+    }
+
+    public function MoreOppo($page){
+        $offset = $this->limit * ($page-1);
+        $oppopListObj = $this->opponentManager->getMoreOppoList($this->limit, $offset);
+
+        $oppoArray = [];
+
+        for ($i=0; $i < count($oppopListObj); $i++){
+            $oppo = $oppopListObj[$i];
+            array_push($oppoArray, $oppo);
+        }
+
+        print_r(json_encode($oppoArray));
 
     }
 
@@ -320,7 +369,7 @@ class ControllerBack {
         $logo = $logo['tmp_name'];
 
         if ( $type ==  'image' ){
-            $result = \Cloudinary\Uploader::upload($logo, array("folder" => "Players/") );
+            $result = \Cloudinary\Uploader::upload($logo, array("folder" => "Opponent/") );
         }
         else {
             throw new \Exception("Le format de la photo est incorrect_/CreateOppo_Retour à la création d'adversaire");
@@ -355,7 +404,7 @@ class ControllerBack {
         $logo = $logo['tmp_name'];
 
         if ( $type ==  'image' ){
-            $result = \Cloudinary\Uploader::upload($logo, array("folder" => "Players/") );
+            $result = \Cloudinary\Uploader::upload($logo, array("folder" => "Opponent/") );
         }
         else {
             throw new \Exception("Le format de la photo est incorrect_/UpdateOppo_Retour à la modification d'adversaire");
@@ -399,18 +448,38 @@ class ControllerBack {
     }
 
     public function FieldsList($notice = null){
-        $fieldsListObj = $this->fieldManager->getFieldsList();
+        $fieldsListObj = $this->fieldManager->getFieldsList($this->limit);
+        $count = $this->fieldManager->countFields();
 
         if ($notice == null){
-            echo $this->twig->render('/BackEnd/FieldsList.html.twig', [ 'fieldListObj' => $fieldsListObj]);
+            echo $this->twig->render('/BackEnd/FieldsList.html.twig', [
+                'fieldListObj' => $fieldsListObj,
+                'count' => $count,
+                'list' => 'Fields'
+            ]);
         }
         else {
             echo $this->twig->render('/BackEnd/FieldsList.html.twig', [
                 'fieldListObj' => $fieldsListObj,
-                'notice' => $notice
+                'notice' => $notice,
+                'count' => $count,
+                'list' => 'Fields'
             ]);
         }
+    }
 
+    public function MoreFields($page){
+        $offset = $this->limit * ($page-1);
+        $fieldListObj = $this->fieldManager->getMoreFieldsList($this->limit, $offset);
+
+        $fieldArray = [];
+
+        for ($i=0; $i < count($fieldListObj); $i++){
+            $field = $fieldListObj[$i];
+            array_push($fieldArray, $field);
+        }
+
+        print_r(json_encode($fieldArray));
 
     }
 

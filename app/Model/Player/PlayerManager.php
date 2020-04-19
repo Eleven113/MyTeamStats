@@ -12,9 +12,9 @@ class PlayerManager
         $this->db = $db;
     }
 
-    public function count()
+    public function countPlayers()
     {
-        return $this->db->query('SELECT COUNT(*) FROM PLAYERS')->fetchColumn();
+        return $this->db->query('SELECT COUNT(*) FROM PLAYER')->fetchColumn();
     }
 
     public function AddPlayer(array $player)
@@ -39,13 +39,34 @@ class PlayerManager
 
     }
 
-    public function getPlayersList()
+    public function getPlayersList($limit)
     {
-        $playersList = $this->db->query('SELECT PLAYERID, LICENCE, LASTNAME, FIRSTNAME, ADDRESS, PHONENUM, MAIL, DATE_FORMAT(BIRTHDATE,\' %d-%m-%Y\') AS BIRTHDATE, ACTIVELICENCE, PHOTO, POSTE FROM PLAYER');
+
+        $playersList = $this->db->prepare('SELECT PLAYERID, LICENCE, LASTNAME, FIRSTNAME, ADDRESS, PHONENUM, MAIL, DATE_FORMAT(BIRTHDATE,\' %d-%m-%Y\') AS BIRTHDATE, ACTIVELICENCE, PHOTO, POSTE FROM PLAYER LIMIT :offset , :limit');
+        $playersList->bindValue(':limit', (int) $limit, \PDO::PARAM_INT);
+        $playersList->bindValue(':offset', 0, \PDO::PARAM_INT);
+        $playersList->execute();
+
         $playersListObj = new \ArrayObject();
         while ($playerArray = $playersList->fetch(\PDO::FETCH_ASSOC)){
                 $player = new PlayerObject($playerArray);
                 $playersListObj->append($player);
+        }
+
+        return $playersListObj;
+    }
+
+    public function getMorePlayersList($limit,$offset)
+    {
+        $playersList = $this->db->prepare('SELECT PLAYERID, LICENCE, LASTNAME, FIRSTNAME, ADDRESS, PHONENUM, MAIL, DATE_FORMAT(BIRTHDATE,\' %d-%m-%Y\') AS BIRTHDATE, ACTIVELICENCE, PHOTO, POSTE FROM PLAYER LIMIT :offset , :limit');
+        $playersList->bindValue(':limit', (int) $limit, \PDO::PARAM_INT);
+        $playersList->bindValue(':offset', (int) $offset, \PDO::PARAM_INT);
+        $playersList->execute();
+
+        $playersListObj = new \ArrayObject();
+        while ($playerArray = $playersList->fetch(\PDO::FETCH_ASSOC)){
+            $player = new PlayerObject($playerArray);
+            $playersListObj->append($player);
         }
 
         return $playersListObj;
@@ -81,6 +102,7 @@ class PlayerManager
     {
 
         $player = new PlayerObject($player);
+
         $q = $this->db->prepare('UPDATE PLAYER SET LICENCE = :licence, LASTNAME = :lastname, FIRSTNAME = :firstname, ADDRESS = :address, PHONENUM = :phonenum, MAIL = :mail, BIRTHDATE = :birthdate, ACTIVELICENCE = :activelicence, PHOTO = :photo, POSTE = :poste WHERE PLAYERID = :playerid');
 
         $q->bindValue(':playerid', $player->getPlayerid());

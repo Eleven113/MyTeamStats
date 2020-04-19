@@ -1,4 +1,4 @@
-const CONFIG = {
+const MTSCONFIG = {
     listLength : 10,
     MyTeam : {
         name : "Lavalloise Football Club",
@@ -15,6 +15,21 @@ const CONFIG = {
         youtube : "lien youtube"
 
     },
+    //     MyTeam : {
+    //     name : "Stade Lavallois",
+    //     acronym : "SL",
+    //     logo : "https://res.cloudinary.com/marthyte/image/upload/v1586247596/OpponentObject/wbwbxtouui9xsemognux.png",
+    //     president : "NOM Prénom",
+    //     address : "Plaine des Gandonnières, Rue Georges Coupeau, 53000 LAVAL",
+    //     tel : "02 43 53 97 05",
+    //     mail : "contact@stade-lavallois.com",
+    //     website : "www.stade-lavallois.com",
+    //     facebook : "lien facebook",
+    //     twitter : "lien twitter",
+    //     instagram : "lien insta",
+    //     youtube : "lien youtube"
+    //
+    // },
 
     data : items = [
         {
