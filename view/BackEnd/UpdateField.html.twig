@@ -8,26 +8,26 @@
 
     <div id="createfield_form" class="d-flex flex-column justify-content-center align-items-center mt-4">
         <form id="createfield-form" class="col-lg-6" action="/UpdateField/{{ field.fieldid }}"  method="post" enctype="multipart/form-data">
-            <legend>Modifier le terrain</legend>
+            <h3>Modifier le terrain</h3>
             <div class="form-group">
-                <label for="text" class="form_label">Nom</label>
-                <input id="text" type="text" name="name" class="form-control" value="{{ field.name }}" required>
+                <label for="field_upd_name" class="form_label">Nom</label>
+                <input id="field_upd_name" type="text" name="name" class="form-control" value="{{ field.name }}" required>
             </div>
             <div class="form-group">
-                <label for="text" class="form_label">Adresse</label>
-                <input id="text" type="text" name="address" class="form-control" value="{{ field.address }}" required>
+                <label for="field_upd_address" class="form_label">Adresse</label>
+                <input id="field_upd_address" type="text" name="address" class="form-control" value="{{ field.address }}" required>
             </div>
             <div class="form-group">
-                <label for="text" class="form_label">Code Postal</label>
-                <input id="text" type="number" name="zipcode" class="form-control" value="{{ field.zipcode }}" required>
+                <label for="field_upd_zip" class="form_label">Code Postal</label>
+                <input id="field_upd_zip" type="number" name="zipcode" class="form-control" value="{{ field.zipcode }}" required>
             </div>
             <div class="form-group">
-                <label for="text" class="form_label">Ville</label>
-                <input id="text" type="text" name="city" class="form-control" value="{{ field.city }}" required>
+                <label for="field_upd_city" class="form_label">Ville</label>
+                <input id="field_upd_city" type="text" name="city" class="form-control" value="{{ field.city }}" required>
             </div>
             <div class="form-group">
-                <label for="text" class="form_label">Pelouse</label>
-                <select name="turf" class="form-control" required>
+                <label for="field_upd_turf" class="form_label">Pelouse</label>
+                <select id="field_upd_turf" name="turf" class="form-control" required>
                     <option value="Naturelle" {% if field.turf == "Naturelle" %}selected{% endif %}>Naturelle</option>
                     <option value="Synthétique" {% if field.turf == "Synthétique" %}selected{% endif %}>Synthétique</option>
                     <option value="Salle" {% if field.turf == "Salle" %}selected{% endif %}>Salle</option>

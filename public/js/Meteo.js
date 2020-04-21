@@ -3,15 +3,7 @@ class MeteoAPI {
     this.divZipCode = document.getElementsByClassName(divZipCode);
     this.divDate = document.getElementsByClassName(divDate);
     this.spanMeteo = document.getElementsByClassName(spanMeteo);
-    this.dateMatch;
-    this.hourMatch;
     this.dateNow = Date.now()/1000;
-    this.zipCode;
-    this.urlRequest
-    this.apiResponse;
-    this.temperature;
-    this.weather;
-    this.icon;
 
     this.testTimestamp();
     this.displayMeteo();

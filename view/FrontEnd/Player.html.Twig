@@ -1,12 +1,10 @@
 {% extends "layout.html.twig" %}
 
 {% block head %}
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
     <meta property="og:title" content="MyTeamStats" />
     <meta property="og:type" content="Website" />
     <meta property="og:url" content="http://myteamstats.thibaut-minard.fr/Player/{{ player.playerid }}" />
-    <meta property="og:image" content="https://res.cloudinary.com/marthyte/image/upload/v1586247596/OpponentObject/wbwbxtouui9xsemognux.png" />
+    <meta property="og:image" content="https://res.cloudinary.com/marthyte/image/upload/v1584623500/v2_vnydsk.png" />
     <meta property="og:description" content="Fiche Joueur - {{ player.firstname}} {{player.lastname}}">
     <title>Fiche Joueur - {{ player.firstname}} {{player.lastname}} - MyTeamStats</title>
 {% endblock %}
@@ -17,7 +15,7 @@
     <h3 id="player_name">{{ player.firstname}} {{player.lastname}}</h3>
     <div id="player_photo" class="d-flex flex-column align-items-center mt-4">
         <div class="col-10">
-            <img src="{{ player.photo }}" class="img-responsive fit-image">
+            <img src="{{ player.photo }}" class="img-responsive fit-image" alt="photo de {{ player.firstname }} {{ player.lastname }}">
         </div>
     </div>
     <div id="player_data" class="m-4 p-4">

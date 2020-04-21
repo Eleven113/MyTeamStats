@@ -14,7 +14,7 @@ class Mailer
         $this->title = $title;
         $this->message = $message;
         $this->username = 'myTeamStats@thibaut-minard.fr';
-        $this->userpwd = 'Oh7811bm!=';
+        $this->userpwd = 'BRW?G5e_s_p?JeQ';
         $this->encryption = 'tls';
         $this->smtp = 'smtp.ionos.com';
         $this->port = 587;

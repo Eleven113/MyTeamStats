@@ -3,7 +3,6 @@ class LogoutManagement {
         this.menuBtn = document.getElementById("user_menu");
         this.menuModal = document.getElementById("user_modal");
         this.header = document.getElementById("head_menu");
-        this.timer;
         this.events();
     }
 

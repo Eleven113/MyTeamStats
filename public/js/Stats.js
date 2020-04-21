@@ -18,51 +18,17 @@ class Stats {
         this.divStatRecord = document.getElementById("match_stat_record");
         this.divStatAll = document.getElementById("stat_all");
 
-        this.newDivStatBar;
-        this.newDivStatBarDbyP;
-
         this.isDisplayTotal = true;
 
         this.stats = [];
-        this.stat;
-        this.period;
 
         this.statsDisplay = [];
-        this.statDisplay;
 
         this.divMatch = document.getElementById("match");
 
-        // Stats à inserer dans la DB
         this.homeScore = 0;
         this.awayScore = 0;
-        this.successPass;
-        this.missPass;
-        this.shotOnTarget;
-        this.missShot;
-        this.freeKick;
-        this.offSide;
-        this.foul;
-        this.cornerKick;
-        this.winBall;
-        this.lostBall;
         this.periodNum = 0;
-        this.pass;
-        this.shot;
-
-        this.homeScoreAgglo;
-        this.awayScoreAgglo;
-        this.successPassAgglo;
-        this.missPassAgglo;
-        this.shotOnTargetAgglo;
-        this.missShotAgglo;
-        this.freeKickAgglo;
-        this.offSideAgglo;
-        this.foulAgglo;
-        this.cornerKickAgglo;
-        this.winBallAgglo;
-        this.lostBallAgglo;
-        
-
 
         if (!this.pageStat){
             if (matchPlayed){
@@ -389,7 +355,7 @@ class Stats {
                 this.lostBallAgglo += this.stats[i].lostball;
             }
         }
-        console.log("home",this.homeScoreAgglo,"away",this.awayScoreAgglo);
+
         this.stat = {
             "matchid": this.matchId,
             "periodnum": this.periodNum,
@@ -407,7 +373,6 @@ class Stats {
             "lostball" : this.lostBall - this.lostBallAgglo
         }
 
-        console.log(this.stat);
         this.pass = parseInt(this.successPass - this.successPassAgglo) + parseInt(this.missPass - this.missPassAgglo);
 
         if (this.pass !== 0){

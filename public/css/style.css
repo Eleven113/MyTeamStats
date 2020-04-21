@@ -442,6 +442,7 @@ table{
 .delete_btn{
     color: #007bff;
     cursor: pointer;
+    z-index: 2;
 }
 
 #match_infos{
@@ -507,7 +508,7 @@ table{
     font-size: 2em;
 }
 
-.notice_close{
+.notice_close, #btn_start, #btn_next, #btn_prev, #btn_end{
     cursor : pointer;
 }
 
@@ -527,3 +528,4 @@ table{
 #table_fieldoptions{
     width : 12%;
 }
+

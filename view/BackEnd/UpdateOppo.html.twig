@@ -11,12 +11,12 @@
             <form id="updateoppo-form" class="col-lg-6" action="/UpdateOppo/{{ oppo.opponentid }}"  method="post" enctype="multipart/form-data">
                 <legend>Modifier un adversaire</legend>
                 <div class="form-group">
-                    <label for="text" class="form_label">Nom</label>
-                    <input id="text" type="text" name="name" class="form-control" value="{{ oppo.name }}" required>
+                    <label for="oppo_upd_name" class="form_label">Nom</label>
+                    <input id="oppo_upd_name" type="text" name="name" class="form-control" value="{{ oppo.name }}" required>
                 </div>
                 <div class="form-group">
-                    <label for="text" class="form_label">Ajouter un logo</label>
-                    <input id="text" type="file" name="logo" value="{{ oppo.logo }}" class="form-control" required>
+                    <label for="oppo_upd_logo" class="form_label">Ajouter un logo</label>
+                    <input id="oppo_upd_logo" type="file" name="logo" value="{{ oppo.logo }}" class="form-control" required>
                 </div>
                 <button type="submit" class="mt-4 btn btn-primary"><i class="fas fa-check-circle"></i>&nbsp;&nbsp;Envoyer</button>
             </form>

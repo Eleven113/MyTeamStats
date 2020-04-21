@@ -8,14 +8,14 @@
 
     <div id="creatematch_form" class="d-flex flex-column justify-content-center align-items-center">
         <form id="creatematch-form" class="col-lg-6" action="/AddMatch"  method="post" enctype="multipart/form-data">
-            <legend>Créér un match</legend>
+            <h3>Créér un match</h3>
             <div class="form-group">
-                <label for="text" class="form_label">Date</label>
-                <input id="text" type="datetime-local" name="date" class="form-control" required>
+                <label for="match_cr_date" class="form_label">Date</label>
+                <input id="match_cr_date" type="datetime-local" name="date" class="form-control" required>
             </div>
             <div class="form-group">
-                <label for="text" class="form_label">Adversaire</label><br/>
-                <select name="opponent" class="form-control" required>
+                <label for="match_cr_oppo" class="form_label">Adversaire</label><br/>
+                <select id="match_cr_oppo" name="opponent" class="form-control" required>
                     {% for oppo in oppoListObj %}
                         <option value="{{ oppo.opponentid }}">{{ oppo.name }}</option>
                     {% endfor %}
@@ -30,23 +30,23 @@
                 </label>
             </div>
             <div class="form-group">
-                <label for="text" class="form_label">Terrain</label><br/>
-                <select name="fieldid" class="form-control" required>
+                <label for="match_cr_field" class="form_label">Terrain</label><br/>
+                <select id="match_cr_field" name="fieldid" class="form-control" required>
                     {% for field in fieldsListObj %}
                         <option value="{{ field.fieldid }}">{{ field.name }} / {{  field.city }} / {{ field.turf }}</option>
                     {% endfor %}
                 </select>
             </div>
             <div class="form-group">
-                <label for="text" class="form_label">Catégorie</label><br/>
-                <select name="category" class="form-control" required>
+                <label for="match_cr_category" class="form_label">Catégorie</label><br/>
+                <select name="match_cr_category" class="form-control" required>
                     <option value="U18">U18</option>
                     <option value="U15">U15</option>
                 </select>
             </div>
             <div class="form-group">
-                <label for="text" class="form_label">Compétition</label><br/>
-                <select name="type" class="form-control" required>
+                <label for="match_cr_type" class="form_label">Compétition</label><br/>
+                <select id="match_cr_type" name="type" class="form-control" required>
                     <option value="Championnat">Championnat</option>
                     <option value="Coupe">Coupe</option>
                     <option value="Futsal">Futsal</option>
@@ -55,18 +55,18 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="text" class="form_label">Nombre de période</label>
-                <select name="periodnum" class="form-control" required>
+                <label for="match_cr_periodnum" class="form_label">Nombre de période</label>
+                <select id="match_cr_periodnum" name="periodnum" class="form-control" required>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="4">4</option>
                 </select>
             </div>
             <div class="form-group">
-                <label for="text" class="form_label">Durée d'une période</label>
-                <input id="text" type="number" name="periodduration" class="form-control" required>
+                <label for="match_cr_periodduration" class="form_label">Durée d'une période</label>
+                <input id="match_cr_periodduration" type="number" name="periodduration" class="form-control" required>
             </div>
-            <button type="submit" class="mt-4 btn btn-primary"><i class="fas fa-check-circle"></i>&nbsp;&nbsp;Envoyer</button>
+            <button type="submit" class="mt-4 mb-4 btn btn-primary"><i class="fas fa-check-circle"></i>&nbsp;&nbsp;Envoyer</button>
         </form>
     </div>
 

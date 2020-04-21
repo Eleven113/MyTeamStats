@@ -9,16 +9,16 @@
     {% if session.user_status >= 3 %}
         <div id="createoppo_form" class="d-flex flex-column justify-content-center align-items-center mt-4">
             <form id="createoppo-form" class="col-lg-6" action="/AddOppo"  method="post" enctype="multipart/form-data">
-                <legend>Créér un adversaire</legend>
+                <h3>Créér un adversaire</h3>
                 <div class="form-group">
-                    <label for="text" class="form_label">Nom</label>
-                    <input id="text" type="text" name="name" class="form-control" required>
+                    <label for="oppo_cr_name" class="form_label">Nom</label>
+                    <input id="oppo_cr_name" type="text" name="name" class="form-control" required>
                 </div>
                 <div class="form-group">
-                    <label for="text" class="form_label">Ajouter un logo</label>
-                    <input id="text" type="file" name="logo" class="form-control" required>
+                    <label for="oppo_cr_logo" class="form_label">Ajouter un logo</label>
+                    <input id="oppo_cr_logo" type="file" name="logo" class="form-control" required>
                 </div>
-                <button type="submit" class="mt-4 btn btn-primary"><i class="fas fa-check-circle"></i>&nbsp;&nbsp;Envoyer</button>
+                <button type="submit" class="mt-4 mb-4 btn btn-primary"><i class="fas fa-check-circle"></i>&nbsp;&nbsp;Envoyer</button>
             </form>
         </div>
     {% else %}

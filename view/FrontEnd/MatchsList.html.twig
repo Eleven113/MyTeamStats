@@ -1,12 +1,10 @@
 {% extends "layout.html.twig" %}
 
 {% block head %}
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
     <meta property="og:title" content="MyTeamStats" />
     <meta property="og:type" content="Website" />
     <meta property="og:url" content="http://myteamstats.thibaut-minard.fr/MatchsList" />
-    <meta property="og:image" content="https://res.cloudinary.com/marthyte/image/upload/v1584623500/v2_vnydsk.png" />
+    <meta property="og:image" content="https://res.cloudinary.com/marthyte/image/upload/v1584623500/v2_vnydsk.png />
     <meta property="og:description" content="Liste des matchs">
     <title>Liste des matchs - MyTeamStats</title>
 {% endblock %}
@@ -18,16 +16,14 @@
             <span class="modal_confirm_delete_content-txt">Vous êtes sur le point de supprimer un match. Confirmer ?  </span>
             <div class="modal_confirm_delete_content-buttons">
                 <button class="modal_confirm_delete_content-buttonno btn btn-primary">Non</button>
-                <button class="modal_confirm_delete_content-buttonyes btn btn-primary"><a href="/DeleteMatch/" class="delete_link link">Oui</a></button>
+                <button id="/DeleteMatch/" class="modal_confirm_delete_content-buttonyes btn btn-primary">Oui</button>
             </div>
         </div>
     </div>
 
     {% if session.user_status >= 3 %}
-        <button id="add_match" class="btn btn-primary mt-4 add-btn">
-            <a href="/CreateMatch" class="link font-weight-bold">
+        <button id="add_match" class="btn btn-primary mt-4 add-btn font-weight-bold" onclick="location.href='/CreateMatch';">
                 <i class="far fa-futbol"></i>&nbsp;&nbsp;&nbsp;Créer un match
-            </a>
         </button>
     {% endif %}
 
@@ -73,7 +69,7 @@
                                 <div><a href="/MatchStats/{{ match.gameid }}" class="bluelink"><i class="fas fa-clipboard-list"></i></a></div>
                             {% endif %}
                             {% if session.user_status >= 4 %}
-                                {% if match.status == 1 %}<div class="delete_btn"><i class="fas fa-trash-alt" id="delete_match_{{ match.gameid }}"></i></div>{% endif %}
+                                {% if match.status == 1 %}<div class="delete_btn" id="delete_matchdiv_{{ match.gameid }}"><i class="fas fa-trash-alt" id="delete_matchico_{{ match.gameid }}"></i></div>{% endif %}
                             {% endif %}
                         </td>
                     </tr>

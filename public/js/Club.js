@@ -12,6 +12,7 @@ class Club {
         this.tel = document.getElementById("club_tel");
         this.mail = document.getElementById("club_mail");
         this.website = document.getElementById("club_website");
+        this.img = document.getElementById("club_logo");
 
         this.setValue();
     }
@@ -28,6 +29,7 @@ class Club {
         this.tel.innerHTML = MTSCONFIG.MyTeam.tel;
         this.mail.innerHTML = MTSCONFIG.MyTeam.mail;
         this.website.innerHTML = MTSCONFIG.MyTeam.website;
+        this.img.alt = "logo " + MTSCONFIG.MyTeam.acronym;
     }
 }
 

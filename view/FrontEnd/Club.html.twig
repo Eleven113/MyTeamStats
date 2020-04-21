@@ -1,12 +1,10 @@
 {% extends "layout.html.twig" %}
 
 {% block head %}
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
     <meta property="og:title" content="MyTeamStats" />
     <meta property="og:type" content="Website" />
     <meta property="og:url" content="http://myteamstats.thibaut-minard.fr/Club" />
-    <meta property="og:image" content="https://res.cloudinary.com/marthyte/image/upload/v1586247596/OpponentObject/wbwbxtouui9xsemognux.png" />
+    <meta property="og:image" content="https://res.cloudinary.com/marthyte/image/upload/v1584623500/v2_vnydsk.png" />
     <meta property="og:description" content="Infos club">
     <title>Infos - MyTeamStats</title>
 {% endblock %}
@@ -18,7 +16,7 @@
     <div id="club_logo_soclink" class="d-flex flex-column align-items-center">
         <div class="row">
             <div class="col-xs-8 offset-xs-2 offset-sm-3 col-sm-6 mt-2">
-                <img id="club_logo" src="logo.png" class="img-responsive fit-image">
+                <img id="club_logo" src="logo.png" class="img-responsive fit-image" alt="logo LFC">
             </div>
         </div>
         <div id="club_soclink" class="text-primary">
@@ -56,6 +54,5 @@
 {% endblock %}
 
 {% block script %}
-    <script src="/js/MTSCONFIG.js"></script>
     <script src="/js/Club.js"></script>
 {% endblock %}

@@ -29,37 +29,7 @@ class Score {
         this.buttonModalGoal = document.getElementById("modal_goal-button");
         this.buttonClose = document.getElementById("goal_close");
 
-        // Variables utiles au but
-        this.scorer;
-        this.scorerName;
-        this.passer;
-        this.passerName;
-        this.action;
-        this.actionName;
-        this.bodypart;
-        this.bodypartName;
-        this.periodDuration;
-
-        this.minutes;
-
-        this.divMyTeamScore;
-        this.divOppoTeamScore;
-
-        this.divScorer;
-        this.divChrono;
-
         this.goals = [];
-        this.goal;
-        this.goalIndex;
-
-        this.MyTeamScore;
-        this.divOppoTeamScore;
-
-        this.divMyTeamButtonMinus;
-        this.divMyTeamButtonPlus;
-
-        this.divOppoTeamButtonMinus;
-        this.divOppoTeamButtonPlus;
 
         this.renameDiv();
         this.getNewDiv();

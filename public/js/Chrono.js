@@ -11,26 +11,9 @@ class Chrono {
         this.divTimer = document.createElement("div");
         this.divTimerBtn = document.createElement("div");
 
-
-        // Buttons
-        this.btnPlay;
-        this.btnPause;
-        this.btnNext;
-        this.divStatsBtn;
-
-        this.divCurrentPeriod;
-
-        // Div pour afficher Heures et minutes
-        this.divMin;
-        this.divSec;
-
         // Variables du chrono
         this.timer = null;
         this.time = 0;
-        this.min;
-        this.sec;
-
-        this.data;
 
         this.setChrono();
         this.events();
@@ -128,7 +111,7 @@ class Chrono {
 
             } 
             else {
-                let confirm = window.confirm("Une fois cette action effectuée, il ne sera plus possible de modifier les données");
+                let confirm = window.confirm("Une fois cette action effectuée, il ne sera plus possible de modifier les données. Pensez à envoyer les données avant de quitter la page");
 
                 if (confirm){
                     stats.setStats();

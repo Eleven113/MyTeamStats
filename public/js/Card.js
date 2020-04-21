@@ -39,13 +39,7 @@ class Card {
             this.selectYc = document.getElementById("player_yc");
             this.selectRc = document.getElementById("player_rc");
 
-            this.playerId;
-            this.playerName;
-            this.time;
-            this.period;
-
             this.cards = [];
-            this.card;
 
             this.events();
         }

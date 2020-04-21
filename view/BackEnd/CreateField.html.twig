@@ -8,32 +8,32 @@
 
     <div id="createfield_form" class="d-flex flex-column justify-content-center align-items-center mt-4">
         <form id="createfield-form" class="col-lg-6" action="/AddField"  method="post" enctype="multipart/form-data">
-            <legend>Créér un terrain</legend>
+            <h3>Créér un terrain</h3>
             <div class="form-group">
-                <label for="text" class="form_label">Nom</label>
-                <input id="text" type="text" name="name" class="form-control" required>
+                <label for="field_cr_name" class="form_label">Nom</label>
+                <input id="field_cr_name" type="text" name="name" class="form-control" required>
             </div>
             <div class="form-group">
-                <label for="text" class="form_label">Adresse</label>
-                <input id="text" type="text" name="address" class="form-control" required>
+                <label for="field_cr_address" class="form_label">Adresse</label>
+                <input id="field_cr_address" type="text" name="address" class="form-control" required>
             </div>
             <div class="form-group">
-                <label for="text" class="form_label">Code Postal</label>
-                <input id="text" type="number" name="zipcode" class="form-control" required>
+                <label for="field_cr_zip" class="form_label">Code Postal</label>
+                <input id="field_cr_zip" type="number" name="zipcode" class="form-control" required>
             </div>
             <div class="form-group">
-                <label for="text" class="form_label">Ville</label>
-                <input id="text" type="text" name="city" class="form-control" required>
+                <label for="field_cr_city" class="form_label">Ville</label>
+                <input id="field_cr_city" type="text" name="city" class="form-control" required>
             </div>
             <div class="form-group">
-                <label for="text" class="form_label">Pelouse</label>
-                <select name="turf" class="form-control" required>
+                <label for="field_cr_turf" class="form_label">Pelouse</label>
+                <select id="field_cr_turf" name="turf" class="form-control" required>
                     <option value="Naturelle">Naturelle</option>
                     <option value="Synthétique">Synthétique</option>
                     <option value="Salle">Salle</option>
                 </select>
             </div>
-            <button type="submit" class="mt-4 btn btn-primary"><i class="fas fa-check-circle"></i>&nbsp;&nbsp;Envoyer</button>
+            <button type="submit" class="mt-4 mb-4 btn btn-primary"><i class="fas fa-check-circle"></i>&nbsp;&nbsp;Envoyer</button>
         </form>
     </div>
 

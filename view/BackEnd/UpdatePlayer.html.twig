@@ -8,37 +8,37 @@
 
     <div id="updateplayer_form" class="d-flex flex-column justify-content-center align-items-center mb-4">
         <form id="updateplayer_form-form" class="col-lg-6" action="/UpdatePlayer/{{ player.playerid }}"  method="post" enctype="multipart/form-data">
-            <legend>Modifier le joueur</legend>
+            <h3>Modifier le joueur</h3>
             <div class="form-group">
-                <label for="text" class="form_label">Nom</label>
-                <input id="text" type="text" name="lastname" class="form-control" value="{{ player.lastname }}" required>
+                <label for="player_upd_lastname" class="form_label">Nom</label>
+                <input id="player_upd_lastname" type="text" name="lastname" class="form-control" value="{{ player.lastname }}" required>
             </div>
             <div class="form-group">
-                <label for="text" class="form_label">Prénom</label>
-                <input id="text" type="text" name="firstname" class="form-control" value="{{ player.firstname }}" required>
+                <label for="player_upd_firstname" class="form_label">Prénom</label>
+                <input id="player_upd_firstname" type="text" name="firstname" class="form-control" value="{{ player.firstname }}" required>
             </div>
             <div class="form-group">
-                <label for="text" class="form_label">N° Licence</label>
-                <input id="text" type="number" name="licencenum" value="{{ player.licence }}" class="form-control" required>
+                <label for="player_upd_licencenum" class="form_label">N° Licence</label>
+                <input id="player_upd_licencenum" type="number" name="licencenum" value="{{ player.licence }}" class="form-control" required>
             </div>
             <div class="form-group">
-                <label for="text" class="form_label">Licence active ?</label>
-                <select name="activelicence" class="form-control" required>
+                <label for="player_upd_activelicence" class="form_label">Licence active ?</label>
+                <select id="player_upd_activelicence" name="activelicence" class="form-control" required>
                     <option value="1" {% if player.activelicence == 1 %}selected{% endif %}>Oui</option>
                     <option value="0" {% if player.activelicence == 0 %}selected{% endif %}>Non</option>
                 </select>
             </div>
             <div class="form-group">
-                <label for="text" class="form_label">Date de naissance</label>
-                <input id="text" type="date" name="birthdate" class="form-control" value="{{ player.birthdate | date('Y-m-d' ) }}" required>
+                <label for="player_upd_birthdate" class="form_label">Date de naissance</label>
+                <input id="player_upd_birthdate" type="date" name="birthdate" class="form-control" value="{{ player.birthdate | date('Y-m-d' ) }}" required>
             </div>
             <div class="form-group">
-                <label for="text" class="form_label">Ajouter une photo</label>
-                <input id="text" type="file" name="photo" class="form-control" required>
+                <label for="player_upd_photo" class="form_label">Ajouter une photo</label>
+                <input id="player_upd_photo" type="file" name="photo" class="form-control" required>
             </div>
             <div class="form-group">
-                <label for="text" class="form_label">Poste</label>
-                <select name="poste" class="form-control" required>
+                <label for="player_upd_poste" class="form_label">Poste</label>
+                <select id="player_upd_poste" name="poste" class="form-control" required>
                     <option value="Attaquant" {% if player.poste == "Attaquant" %}selected{% endif %}>Attaquant</option>
                     <option value="Milieu" {% if player.poste == "Milieu" %}selected{% endif %}>Milieu</option>
                     <option value="Défenseur" {% if player.poste == "Défenseur" %}selected{% endif %}>Défenseur</option>
@@ -46,16 +46,16 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="text" class="form_label">Adresse</label>
-                <input id="text" type="text" name="address" value="{{ player.address }}" class="form-control" required>
+                <label for="player_upd_address" class="form_label">Adresse</label>
+                <input id="player_upd_address" type="text" name="address" value="{{ player.address }}" class="form-control" required>
             </div>
             <div class="form-group">
-                <label for="text" class="form_label">Téléphone</label>
-                <input id="text" type="number" name="phonenum"  value="{{ player.phonenum}}" class="form-control">
+                <label for="player_upd_phonume" class="form_label">Téléphone</label>
+                <input id="player_upd_phonume" type="number" name="phonenum"  value="{{ player.phonenum}}" class="form-control">
             </div>
             <div class="form-group" class="form_label">
-                <label for="text">Mail</label>
-                <input id="text" type="mail" name="mail" value="{{ player.mail }}" class="form-control" required>
+                <label for="player_upd_mail">Mail</label>
+                <input id="player_upd_mail" type="mail" name="mail" value="{{ player.mail }}" class="form-control" required>
             </div>
             <button type="submit" class="btn btn-primary"><i class="fas fa-check-circle"></i>&nbsp;&nbsp;Envoyer</button>
         </form>

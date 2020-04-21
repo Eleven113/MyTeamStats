@@ -5,8 +5,8 @@ class DeleteManagement {
         this.confirmBtnNo = document.querySelector(".modal_confirm_delete_content-buttonno");
         this.deleteBtns = document.getElementsByClassName("delete_btn");
         this.deleteLink = document.querySelector(".delete_link");
-        this.deleteLinkHref = this.deleteLink.href;
-
+        this.deleteMethod = this.confirmBtnYes.id;
+        console.log("putain",this.deleteMethod);
         this.isDisplay = false;
 
         this.events();
@@ -20,9 +20,13 @@ class DeleteManagement {
         for ( let i = 0; i < this.deleteBtns.length; i++){
             this.deleteBtns[i].addEventListener("click", function(event){
                 let id = event.target.id.split('_')[2];
+                console.log(id);
                 this.confirmDeleteDiv.style.top = window.pageYOffset + "px"
                 this.confirmDeleteDiv.style.display = "flex";
-                this.deleteLink.href = this.deleteLinkHref + id;
+                console.log(this.deleteMethod);
+                this.confirmBtnYes.onclick = function(){
+                    location.href= this.deleteMethod + id;
+                }.bind(this);
             }.bind(this))
         }
     }

@@ -1,12 +1,15 @@
 <?php
 session_start();
 
+// Autoload
 require ('../vendor/autoload.php');
-
+// Namespace de l'appli
 use MyTeamStats;
 
+// PDO Connexion DB
 $db = MyTeamStats\Model\DBFactory::ConnexionPDO();
 
+// Création des Model
 $playerManager = new MyTeamStats\Model\Player\PlayerManager($db);
 $userManager = new MyteamStats\Model\User\UserManager($db);
 $opponentManager = new MyteamStats\Model\Opponent\OpponentManager($db);
@@ -33,6 +36,7 @@ $twig->addGlobal('env', $_ENV);
 // Définition de la limite de longueur des listes
 $limit = 10;
 
+// Création des Controller
 $controllerFront = new MyTeamStats\Controller\ControllerFront($twig, $playerManager, $userManager, $opponentManager, $matchManager, $fieldManager, $compositionManager, $goalManager, $periodManager, $cardManager, $limit);
 $controllerBack = new MyTeamStats\Controller\ControllerBack($twig, $playerManager, $userManager, $opponentManager, $matchManager, $fieldManager, $compositionManager, $goalManager, $periodManager, $cardManager, $limit);
 
@@ -186,6 +190,8 @@ try {
             break;
     }
 }
+
+// Gestion des exceptions
 catch (\Exception $e){
 
     echo $twig->render('exception.html.twig', [

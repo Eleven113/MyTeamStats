@@ -32,7 +32,6 @@ class ListDisplay {
 
     getList(list,page,userStatus){
         $.get('/More'+ list +'/'+ page , function(data){
-            console.log(data);
             data = JSON.parse(data);
             $("tbody").html('');
             for (let i=0; i < data.length; i++){

@@ -11,7 +11,7 @@
             <span class="modal_confirm_delete_content-txt">Vous êtes sur le point de supprimer un utilisateur. Confirmer ?  </span>
             <div class="modal_confirm_delete_content-buttons">
                 <button class="modal_confirm_delete_content-buttonno btn btn-primary">Non</button>
-                <button class="modal_confirm_delete_content-buttonyes btn btn-primary"><a href="/DeleteUser/" class="delete_link link">Oui</a></button>
+                <button id="/DeleteUser/" class="modal_confirm_delete_content-buttonyes btn btn-primary">Oui</button>
             </div>
         </div>
     </div>
@@ -51,7 +51,7 @@
                         <td class="optionsTD">
                             <div><a href="/ModifyUser/{{ user.userid }}" class="bluelink"><i class="fas fa-user-edit"></i></a></div>
                             {%  if session.user_status >= 4 %}
-                                <div class="delete_btn"><i class="fas fa-user-times" id="delete_user_{{ user.userid }}"></i></div>
+                                <div class="delete_btn" id="delete_userdiv_{{ user.userid }}"><i class="fas fa-user-times" id="delete_userico_{{ user.userid }}"></i></div>
                             {% endif %}
                         </td>
                     </tr>

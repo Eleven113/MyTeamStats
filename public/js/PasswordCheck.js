@@ -5,7 +5,6 @@ class PasswordCheck {
         this.noticeDiv = document.getElementById(notice);
         this.regexDiv = document.getElementById(regex)
         this.submitBtn = document.getElementById(submitBtn);
-        console.log(this.regexDiv);
         this.submitBtn.disabled = true;
         this.noticeDiv.style.display = "none";
 
